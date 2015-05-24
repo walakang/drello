@@ -1,4 +1,4 @@
-/* base.scss */
+/* begin scss */
 
 @import 'reset';
 
@@ -33,6 +33,27 @@ a{
 .big{
 	font-size: 26pt;
 }
+.white{
+	color: white;
+}
+.button{
+	@include border-radius(6px);
+	padding: 12px 18px;
+	text-align: center;
+}
+.button.green{
+	background: linear-gradient(to bottom, #70b500 0, #64a200 100%);
+	color: white;
+}
+.button.basic.blue{
+	background: transparent;
+	border: 1px solid rgb(94, 152, 186);
+	color: rgb(94, 152, 186);
+}.button.basic.white{
+	background: transparent;
+	border: 1px solid white;
+	color: white;
+}
 header{
 	background: $primaryColor;
 }
@@ -41,11 +62,97 @@ header{
 	text-align: center;
 	padding: 6%;
 	margin: 0 auto;
-	font-size: 15pt;
+	font-size: 16pt;
 	summary{
 		padding: 2% 15%;
 	}
 	p{
-		padding: 0% 23%;
+		padding: 0% 22%;
 	}
+	a{
+		text-decoration: underline;
+	}
+	
+}
+
+footer{
+	text-align: center;
+	font-size: 13pt;
+	padding: 30px 0px;
+	background: white;
+	
+	a{
+		padding-left: 8px;
+		text-decoration: underline;
+	}
+}
+section{
+
+}
+section#screenshot{
+	color: white;
+	background: $bgColor;
+	text-align:center;
+	font-size: 15pt;
+	
+	
+	summary{
+		text-align: left;
+		padding: 80px 378px 40px;
+	}
+	figure{
+		padding: 0px 60px;
+		img{
+			max-width: 100%;
+			box-sizing: border-box;
+		}
+	}
+}
+section#abilities{
+	color: black;
+	background: white;
+	text-align:center;
+	font-size: 15pt;
+	
+	summary{
+		text-align: left;
+		padding: 80px 378px 40px;
+	}
+	figure{
+		padding: 0px 60px;
+		img{
+			max-width: 100%;
+			box-sizing: border-box;
+		}
+	}
+}
+section#signup{
+	color: white;
+	background: $bgColor;
+	text-align:center;
+	font-size: 15pt;
+	
+	summary{
+		text-align: left;
+		padding: 80px 378px 40px;
+	}
+}
+
+/* boards css */
+#header-boards{
+	background: #026aa7;
+	height: 30px;
+	overflow: hidden;
+	padding: 5px;
+	position: relative;
+	z-index: 10;
+	a{
+		text-decoration: underline;
+	}
+
+}
+.popup{
+	display:none;
+	position:absolute;
+	z-index:8;
 }

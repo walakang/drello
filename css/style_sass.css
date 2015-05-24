@@ -1,4 +1,4 @@
-/* base.scss */
+/* begin scss */
 html,
 body,
 ul,
@@ -21,6 +21,31 @@ a {
 .big {
   font-size: 26pt; }
 
+.white {
+  color: white; }
+
+.button {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  border-radius: 6px;
+  padding: 12px 18px;
+  text-align: center; }
+
+.button.green {
+  background: linear-gradient(to bottom, #70b500 0, #64a200 100%);
+  color: white; }
+
+.button.basic.blue {
+  background: transparent;
+  border: 1px solid #5e98ba;
+  color: #5e98ba; }
+
+.button.basic.white {
+  background: transparent;
+  border: 1px solid white;
+  color: white; }
+
 header {
   background: #026aa7; }
 
@@ -29,10 +54,74 @@ header {
   text-align: center;
   padding: 6%;
   margin: 0 auto;
-  font-size: 15pt; }
+  font-size: 16pt; }
   #header-home summary {
     padding: 2% 15%; }
   #header-home p {
-    padding: 0% 23%; }
+    padding: 0% 22%; }
+  #header-home a {
+    text-decoration: underline; }
+
+footer {
+  text-align: center;
+  font-size: 13pt;
+  padding: 30px 0px;
+  background: white; }
+  footer a {
+    padding-left: 8px;
+    text-decoration: underline; }
+
+section#screenshot {
+  color: white;
+  background: #0e74af;
+  text-align: center;
+  font-size: 15pt; }
+  section#screenshot summary {
+    text-align: left;
+    padding: 80px 378px 40px; }
+  section#screenshot figure {
+    padding: 0px 60px; }
+    section#screenshot figure img {
+      max-width: 100%;
+      box-sizing: border-box; }
+
+section#abilities {
+  color: black;
+  background: white;
+  text-align: center;
+  font-size: 15pt; }
+  section#abilities summary {
+    text-align: left;
+    padding: 80px 378px 40px; }
+  section#abilities figure {
+    padding: 0px 60px; }
+    section#abilities figure img {
+      max-width: 100%;
+      box-sizing: border-box; }
+
+section#signup {
+  color: white;
+  background: #0e74af;
+  text-align: center;
+  font-size: 15pt; }
+  section#signup summary {
+    text-align: left;
+    padding: 80px 378px 40px; }
+
+/* boards css */
+#header-boards {
+  background: #026aa7;
+  height: 30px;
+  overflow: hidden;
+  padding: 5px;
+  position: relative;
+  z-index: 10; }
+  #header-boards a {
+    text-decoration: underline; }
+
+.popup {
+  display: none;
+  position: absolute;
+  z-index: 8; }
 
 /*# sourceMappingURL=style_sass.css.map */
