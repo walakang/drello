@@ -1,0 +1,25 @@
+/* base.scss */
+
+@import 'reset';
+
+/* defne macros */
+$bgColor: rgb(14, 116, 175);
+$primaryColor: #026aa7;
+$secondaryColor: #cdd2d4;
+$primaryFont: 'Anaheim', sans-serif;
+$secondaryFont: 'Open Sans', sans-serif;
+$ScriptFont: 'Rochester', cursive;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+header{
+	background: $primaryColor;
+}
+#header-home{
+	background: white;
+}
