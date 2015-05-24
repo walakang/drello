@@ -13,11 +13,24 @@ $secondaryFont: 'Anaheim', sans-serif;
 $ScriptFont: 'Rochester', cursive;
 
 @mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
 }
+@mixin img-tag(){
+	max-width: 100%;
+	box-sizing: border-box;
+}
+@mixin transition-all(){
+	-webkit-transition: 0.2s all ease-in-out;
+	-moz-transition: 0.2s all ease-in-out;
+	-ms-transition: 0.2s all ease-in-out;
+	transition: 0.2s all ease-in-out;
+	
+}
+
+
 body{
 	font-family: $primaryFont;
 	font-size: 13pt;
@@ -143,11 +156,27 @@ section#signup{
 	background: #026aa7;
 	height: 30px;
 	overflow: hidden;
-	padding: 5px;
+	padding: 6px;
 	position: relative;
 	z-index: 10;
 	a{
 		text-decoration: underline;
+	}
+	figure{
+		float: left;
+		margin: 0;
+		opacity: 0.8;
+		@include transition-all();
+		img{
+			@include img-tag();
+		}
+	}
+	figure:hover{
+		@include transition-all();
+		opacity: 1;
+	}
+	div{
+		float: left;
 	}
 
 }

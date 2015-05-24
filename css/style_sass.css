@@ -113,11 +113,30 @@ section#signup {
   background: #026aa7;
   height: 30px;
   overflow: hidden;
-  padding: 5px;
+  padding: 6px;
   position: relative;
   z-index: 10; }
   #header-boards a {
     text-decoration: underline; }
+  #header-boards figure {
+    float: left;
+    margin: 0;
+    opacity: 0.8;
+    -webkit-transition: 0.2s all ease-in-out;
+    -moz-transition: 0.2s all ease-in-out;
+    -ms-transition: 0.2s all ease-in-out;
+    transition: 0.2s all ease-in-out; }
+    #header-boards figure img {
+      max-width: 100%;
+      box-sizing: border-box; }
+  #header-boards figure:hover {
+    -webkit-transition: 0.2s all ease-in-out;
+    -moz-transition: 0.2s all ease-in-out;
+    -ms-transition: 0.2s all ease-in-out;
+    transition: 0.2s all ease-in-out;
+    opacity: 1; }
+  #header-boards div {
+    float: left; }
 
 .popup {
   display: none;
