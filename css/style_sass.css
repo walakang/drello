@@ -1,0 +1,38 @@
+/* base.scss */
+html,
+body,
+ul,
+ol {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13pt;
+  color: #555; }
+
+a {
+  color: #5e98ba;
+  text-decoration: none; }
+
+.bold {
+  font-weight: bold; }
+
+.big {
+  font-size: 26pt; }
+
+header {
+  background: #026aa7; }
+
+#header-home {
+  background: white;
+  text-align: center;
+  padding: 6%;
+  margin: 0 auto;
+  font-size: 15pt; }
+  #header-home summary {
+    padding: 2% 15%; }
+  #header-home p {
+    padding: 0% 23%; }
+
+/*# sourceMappingURL=style_sass.css.map */

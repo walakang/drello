@@ -2,12 +2,14 @@
 
 @import 'reset';
 
-/* defne macros */
-$bgColor: rgb(14, 116, 175);
+// defne macros 
+$bgColor:  rgb(14, 116, 175);
 $primaryColor: #026aa7;
 $secondaryColor: #cdd2d4;
-$primaryFont: 'Anaheim', sans-serif;
-$secondaryFont: 'Open Sans', sans-serif;
+$primaryFontColor: #555;
+$secondaryFontColor: #5e98ba;
+$primaryFont: 'Open Sans', sans-serif;
+$secondaryFont: 'Anaheim', sans-serif;
 $ScriptFont: 'Rochester', cursive;
 
 @mixin border-radius($radius) {
@@ -16,10 +18,34 @@ $ScriptFont: 'Rochester', cursive;
       -ms-border-radius: $radius;
           border-radius: $radius;
 }
-
+body{
+	font-family: $primaryFont;
+	font-size: 13pt;
+	color: $primaryFontColor;
+}
+a{
+	color: $secondaryFontColor;
+	text-decoration: none;
+}
+.bold{
+	font-weight: bold;
+}
+.big{
+	font-size: 26pt;
+}
 header{
 	background: $primaryColor;
 }
 #header-home{
 	background: white;
+	text-align: center;
+	padding: 6%;
+	margin: 0 auto;
+	font-size: 15pt;
+	summary{
+		padding: 2% 15%;
+	}
+	p{
+		padding: 0% 23%;
+	}
 }
