@@ -19,19 +19,21 @@
 				<input type="text" name="search-string" />
 				<div id="search-submit" ></div>
 			</div>
-			<figure class="logo">
-				<img src="images/logo-small.png" alt="Drello" />
-			</figure>
-			<div id="add" class="button header-item"></div>
-			<div id="profile" class="header-item">
-				<figure class="avatar small">
-					<img src="/images/avatar.png" />
+			<div id="logo">
+				<figure class="logo">
+					<img src="images/logo-small.png" alt="Drello" />
 				</figure>
-				Shidil Eringa
 			</div>
 			<div id="notifications" class="header-item" >
 
 			</div>
+			<div id="profile" class="header-item">
+				<figure class="avatar small">
+					<img src="images/avatar.png" />
+				</figure>
+				<span>Shidil Eringa</span>
+			</div>
+			<div id="add" class="button header-item"></div>
 		</header>
 		<section id="boards-container">
 			<article id="boards-starred">
@@ -41,10 +43,8 @@
 				<ul class="boards-wrap">	
 					<li class="board starred">
 						<a href="/board1.html">
-							<div>
 								<span class="bold">Website Redesign</span>
 								<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>
-							</div>
 						</a>
 					</li>
 				</ul>
@@ -56,25 +56,19 @@
 				<ul class="boards-wrap">	
 					<li class="board starred">
 						<a href="/board1.html">
-							<div>
 								<span class="bold">Website Redesign</span>
 								<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>
-							<div>
 						</a>
 					</li>
 					<li class="board">
 						<a href="#">
-							<div>
 								<span class="bold">Welcome Board</span>
 								<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>
-							</div>
 						</a>
 					</li>
 					<li class="board add-board">
-						<a href="#">
-							<div>
+						<a href="#" id="add-board">
 								<span class="bold">Create new board...</span>
-							</div>
 						</a>
 					</li>
 				</ul>
@@ -82,19 +76,17 @@
 			<section id="organizations">
 				<article id="boards-organization-1" name="RasterBrain">
 					<summary class="bold">
-						RasterBrain <span class="org-overview">Overview</span>
+						RasterBrain <span class="overview">Overview</span>
 					</summary>
 					<ul class="boards-wrap">	
 						<li class="board add-board">
-							<a href="#">
-								<div>
+							<a href="#" id="add-board">
 									<span class="bold">Create new board...</span>
-								</div>
 							</a>
 						</li>
 					</ul>
 				</article>
-				<a href="#" >Create a new Organization</a>
+				<a href="#" id="org-create">Create a new Organization</a>
 			</section>
 		</section>
 		<footer>
