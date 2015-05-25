@@ -15,25 +15,71 @@
 				
 				</div>
 			</div>
+			<div id="search" class="header-item">
+				<input type="text" name="search-string" />
+				<div id="search-submit" ></div>
+			</div>
 			<figure class="logo">
 				<img src="images/logo-small.png" alt="Drello" />
 			</figure>
-		</header>
-		<section id="screenshot">
-			<article>
-				<summary>
-					This is a Drello board. It's a list of lists filled with cards, used with a team or by yourself.
-				</summary>	
-				<figure>
-					<img src="images/screenshot.jpg" />
+			<div id="add" class="button header-item"></div>
+			<div id="profile" class="header-item">
+				<figure class="avatar small">
+					<img src="/images/avatar.png" />
 				</figure>
+				Shidil Eringa
+			</div>
+			<div id="notifications" class="header-item" >
+
+			</div>
+		</header>
+		<section id="boards-container">
+			<article id="boards-starred">
 				<summary>
-					Drag and drop cards between lists to show progress. Add as many people as you need and drag them to cards. Add and reorder lists as you need. <b>Drello adapts to your project, team, and workflow.</b>
-					<br>
-					<br>
-					You'll see everything about your project just by glancing at the board, and it all updates in real-time. There's nothing to set up and everyone gets it instantly.
+					Starred Boards
 				</summary>
+				<div class="boards-wrap">	
+					<div class="board">
+						<span class="bold">Website Redesign</span>
+						<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>
+					</div>
+				</div>
 			</article>
+			<article id="boards-my">
+				<summary>
+					Starred Boards
+				</summary>
+				<ul class="boards-wrap">	
+					<li class="board">
+						<span class="bold">Website Redesign</span>
+						<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>
+					</div>
+					<div class="board">
+						<span class="bold">Welcome Board</span>
+						<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>
+					</div>
+					<div class="board" id="board-create">
+						<span class="bold">Create a board</span>
+					</div>
+				</div>
+			</article>
+			<section id="organizations">
+				<article id="boards-organization-1" name="RasterBrain">
+					<summary>
+						RasterBrain <span class="org-overview">Overview</span>
+					</summary>
+					<div class="boards-wrap">	
+						<div class="board">
+							<span class="bold">Website Redesign</span>
+							<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>
+						</div>
+						<div class="board" id="board-create">
+							<span class="bold">Create a board</span>
+						</div>
+					</div>
+				</article>
+				<a href="#" >Create a new Organization>
+			</section>
 		</section>
 		<footer>
 			<a href="#">Tour</a> <a href="#> Apps</a> <a href="#">Jobs</a> <a href="#">Blog</a> <a href="#">API</a> <a href="#">About</a> <a href="#">Help</a> <a href="#">Terms</a> <a href="#">Privacy</a>
