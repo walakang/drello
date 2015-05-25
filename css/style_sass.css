@@ -143,4 +143,33 @@ section#signup {
   position: absolute;
   z-index: 8; }
 
+section#boards-container {
+  background: white;
+  padding: 6px;
+  overflow: hidden;
+  position: relative;
+  z-index: 6; }
+  section#boards-container article summary {
+    font-size: 13pt;
+    font-weight: 500;
+    padding: 2px 6px;
+    display: block; }
+  section#boards-container ul {
+    list-style: none; }
+  section#boards-container li {
+    display: inline;
+    padding: 10px; }
+  section#boards-container a {
+    background: #0e74af;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    border-radius: 6px;
+    padding: 10px 0px 40px 16px;
+    color: white; }
+    section#boards-container a div {
+      width: 220px; }
+  section#boards-container article#boards-starred summary {
+    background: url("../images/star.png"); }
+
 /*# sourceMappingURL=style_sass.css.map */
