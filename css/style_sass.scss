@@ -23,10 +23,10 @@ $ScriptFont: 'Rochester', cursive;
 	box-sizing: border-box;
 }
 @mixin transition-all(){
-	-webkit-transition: 0.2s all ease-in-out;
-	-moz-transition: 0.2s all ease-in-out;
-	-ms-transition: 0.2s all ease-in-out;
-	transition: 0.2s all ease-in-out;
+	-webkit-transition: 0.1s all ease-in-out;
+	-moz-transition: 0.1s all ease-in-out;
+	-ms-transition: 0.1s all ease-in-out;
+	transition: 0.1s all ease-in-out;
 	
 }
 @mixin add-bg-image($url){
@@ -46,6 +46,12 @@ a{
 	color: $secondaryFontColor;
 	text-decoration: none;
 }
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
 .bold{
 	font-weight: bold;
 }
@@ -54,6 +60,9 @@ a{
 }
 .white{
 	color: white;
+}
+.no-overflow{
+	overflow: hidden;
 }
 .button{
 	@include border-radius(6px);
@@ -159,7 +168,7 @@ section#signup{
 
 /* boards css */
 #header-boards{
-	background: #026aa7;
+	background: #0B5B8A;
 	height: 32px;
 	overflow: hidden;
 	padding: 4px;
@@ -383,6 +392,135 @@ section#boards-container{
 			padding-left: 36px;
 			background-position: 0px 2px;
 			background-size: 22px;
+		}
+	}
+}
+span.starred{
+	@include add-bg-image(star-gold);
+	opacity: 1;
+	background-size: 100%;
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+	@include transition-all();
+}
+span.not-starred{
+	@include add-bg-image(star);
+	background-size: 100%;
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+	@include transition-all();
+}
+
+// styles for the board and lists page
+
+section#board-ribbon{
+	background: $bgColor;
+	height: 40px;
+	padding: 10px 15px;
+	padding-top: 16px;
+
+	span{
+		padding: 8px;
+		color: #f6f6f6;
+		border-radius: 4px;
+		font-size: 10pt;
+		display: inline;
+		margin-right: 10px;
+		cursor: pointer;
+	}
+	span:hover:not(.starred):not(.not-starred){
+		background: rgba(0,0,0,0.1);
+	}
+	span.title{
+		font-weight: bold;
+		font-size: 12pt;
+	}
+	span.starred,span.not-starred{
+		background-position: center;
+	}
+	span.starred:hover,span.not-starred:hover{
+		background-size: 120%;
+	}
+	span#privacy{
+		@include add-bg-image(lock);
+		background-size: 18px;
+		background-position: 4px center;
+		padding-left: 25px;
+
+	}
+	span#privacy:hover{
+		@include add-bg-image-color(lock,rgba(0,0,0,0.1));
+		background-size: 18px;
+		background-position: 4px center;
+	}
+	span#menu-toggle{
+		@include add-bg-image(left);
+		background-size: 18px;
+		background-position: 4px center;
+		padding-left: 25px;
+		text-decoration: underline;
+
+	}
+	span#menu-toggle:hover{
+		@include add-bg-image-color(left,rgba(0,0,0,0.1));
+		background-size: 18px;
+		background-position: 4px center;
+	}
+
+}
+section#board-content{
+	background: $bgColor;
+	min-height: 605px;
+	max-height: 700px;;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	padding-left: 20px;
+
+	article.list{
+		@include border-radius(4px);
+		background: #e2e4e6;
+		display: inline-table;
+		width: 270px;
+		margin: 0px 2px;
+
+		summary{
+			padding: 6px 10px;
+			font-weight: bold;
+			font-size: 16px;
+			cursor: pointer;
+		}
+		#add-card{
+			padding: 6px 10px;
+			cursor: pointer;
+			color: #888;
+		}
+		.card{
+			margin: 4px 8px;
+			background: #FFFFFF;
+			@include border-radius(4px);
+
+			figure{
+				margin: 0;
+				padding: 0;
+
+				img{
+					@include img-tag();
+				}
+			}
+
+			.card-detail{
+				padding: 8px;
+				font-size: 13px;
+			}
+		}
+		#add-card:hover,.card-detail:hover{
+			@include border-radius(4px);
+			background: rgba(0,0,0,0.05);
 		}
 	}
 }

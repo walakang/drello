@@ -15,6 +15,12 @@ a {
   color: #5e98ba;
   text-decoration: none; }
 
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
 .bold {
   font-weight: bold; }
 
@@ -23,6 +29,9 @@ a {
 
 .white {
   color: white; }
+
+.no-overflow {
+  overflow: hidden; }
 
 .button {
   -webkit-border-radius: 6px;
@@ -110,7 +119,7 @@ section#signup {
 
 /* boards css */
 #header-boards {
-  background: #026aa7;
+  background: #0B5B8A;
   height: 32px;
   overflow: hidden;
   padding: 4px;
@@ -125,18 +134,18 @@ section#signup {
       float: left;
       margin: 0;
       opacity: 0.8;
-      -webkit-transition: 0.2s all ease-in-out;
-      -moz-transition: 0.2s all ease-in-out;
-      -ms-transition: 0.2s all ease-in-out;
-      transition: 0.2s all ease-in-out; }
+      -webkit-transition: 0.1s all ease-in-out;
+      -moz-transition: 0.1s all ease-in-out;
+      -ms-transition: 0.1s all ease-in-out;
+      transition: 0.1s all ease-in-out; }
       #header-boards #logo figure img {
         max-width: 100%;
         box-sizing: border-box; }
     #header-boards #logo figure:hover {
-      -webkit-transition: 0.2s all ease-in-out;
-      -moz-transition: 0.2s all ease-in-out;
-      -ms-transition: 0.2s all ease-in-out;
-      transition: 0.2s all ease-in-out;
+      -webkit-transition: 0.1s all ease-in-out;
+      -moz-transition: 0.1s all ease-in-out;
+      -ms-transition: 0.1s all ease-in-out;
+      transition: 0.1s all ease-in-out;
       opacity: 1; }
   #header-boards div {
     float: left; }
@@ -261,10 +270,10 @@ section#boards-container {
       width: 18px;
       height: 18px;
       display: inline-block;
-      -webkit-transition: 0.2s all ease-in-out;
-      -moz-transition: 0.2s all ease-in-out;
-      -ms-transition: 0.2s all ease-in-out;
-      transition: 0.2s all ease-in-out;
+      -webkit-transition: 0.1s all ease-in-out;
+      -moz-transition: 0.1s all ease-in-out;
+      -ms-transition: 0.1s all ease-in-out;
+      transition: 0.1s all ease-in-out;
       opacity: 0;
       float: right;
       margin-right: 20px; }
@@ -274,10 +283,10 @@ section#boards-container {
     section#boards-container a:not(#org-create) span:not(.bold):hover {
       width: 21px;
       height: 21px;
-      -webkit-transition: 0.2s all ease-in-out;
-      -moz-transition: 0.2s all ease-in-out;
-      -ms-transition: 0.2s all ease-in-out;
-      transition: 0.2s all ease-in-out;
+      -webkit-transition: 0.1s all ease-in-out;
+      -moz-transition: 0.1s all ease-in-out;
+      -ms-transition: 0.1s all ease-in-out;
+      transition: 0.1s all ease-in-out;
       opacity: 1; }
   section#boards-container a:not(#org-create):hover {
     background: #0F6CA2; }
@@ -310,5 +319,121 @@ section#boards-container {
     padding-left: 36px;
     background-position: 0px 2px;
     background-size: 22px; }
+
+span.starred {
+  background: url("../images/star-gold.png") no-repeat;
+  opacity: 1;
+  background-size: 100%;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  -webkit-transition: 0.1s all ease-in-out;
+  -moz-transition: 0.1s all ease-in-out;
+  -ms-transition: 0.1s all ease-in-out;
+  transition: 0.1s all ease-in-out; }
+
+span.not-starred {
+  background: url("../images/star.png") no-repeat;
+  background-size: 100%;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  -webkit-transition: 0.1s all ease-in-out;
+  -moz-transition: 0.1s all ease-in-out;
+  -ms-transition: 0.1s all ease-in-out;
+  transition: 0.1s all ease-in-out; }
+
+section#board-ribbon {
+  background: #0e74af;
+  height: 40px;
+  padding: 10px 15px;
+  padding-top: 16px; }
+  section#board-ribbon span {
+    padding: 8px;
+    color: #f6f6f6;
+    border-radius: 4px;
+    font-size: 10pt;
+    display: inline;
+    margin-right: 10px;
+    cursor: pointer; }
+  section#board-ribbon span:hover:not(.starred):not(.not-starred) {
+    background: rgba(0, 0, 0, 0.1); }
+  section#board-ribbon span.title {
+    font-weight: bold;
+    font-size: 12pt; }
+  section#board-ribbon span.starred, section#board-ribbon span.not-starred {
+    background-position: center; }
+  section#board-ribbon span.starred:hover, section#board-ribbon span.not-starred:hover {
+    background-size: 120%; }
+  section#board-ribbon span#privacy {
+    background: url("../images/lock.png") no-repeat;
+    background-size: 18px;
+    background-position: 4px center;
+    padding-left: 25px; }
+  section#board-ribbon span#privacy:hover {
+    background: url("../images/lock.png") no-repeat rgba(0, 0, 0, 0.1);
+    background-size: 18px;
+    background-position: 4px center; }
+  section#board-ribbon span#menu-toggle {
+    background: url("../images/left.png") no-repeat;
+    background-size: 18px;
+    background-position: 4px center;
+    padding-left: 25px;
+    text-decoration: underline; }
+  section#board-ribbon span#menu-toggle:hover {
+    background: url("../images/left.png") no-repeat rgba(0, 0, 0, 0.1);
+    background-size: 18px;
+    background-position: 4px center; }
+
+section#board-content {
+  background: #0e74af;
+  min-height: 605px;
+  max-height: 700px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  padding-left: 20px; }
+  section#board-content article.list {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    background: #e2e4e6;
+    display: inline-table;
+    width: 270px;
+    margin: 0px 2px; }
+    section#board-content article.list summary {
+      padding: 6px 10px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer; }
+    section#board-content article.list #add-card {
+      padding: 6px 10px;
+      cursor: pointer;
+      color: #888; }
+    section#board-content article.list .card {
+      margin: 4px 8px;
+      background: #FFFFFF;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      border-radius: 4px; }
+      section#board-content article.list .card figure {
+        margin: 0;
+        padding: 0; }
+        section#board-content article.list .card figure img {
+          max-width: 100%;
+          box-sizing: border-box; }
+      section#board-content article.list .card .card-detail {
+        padding: 8px;
+        font-size: 13px; }
+    section#board-content article.list #add-card:hover, section#board-content article.list .card-detail:hover {
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.05); }
 
 /*# sourceMappingURL=style_sass.css.map */
