@@ -55,6 +55,9 @@ a {
   border: 1px solid white;
   color: white; }
 
+.border-bottom {
+  border-bottom: 1px solid #999; }
+
 header {
   background: #026aa7; }
 
@@ -409,6 +412,15 @@ section#board-content {
       font-weight: bold;
       font-size: 16px;
       cursor: pointer; }
+      section#board-content article.list summary a {
+        background: url("../images/down.png") no-repeat;
+        width: 18px;
+        height: 18px;
+        background-size: 14px;
+        opacity: 0.7;
+        margin-top: 3px; }
+      section#board-content article.list summary a:hover {
+        opacity: 1; }
     section#board-content article.list #add-card {
       padding: 6px 10px;
       cursor: pointer;
@@ -435,5 +447,35 @@ section#board-content {
       -ms-border-radius: 4px;
       border-radius: 4px;
       background: rgba(0, 0, 0, 0.05); }
+
+#board-menu {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  transform: translate(0px, 0px);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: 0.2s transform opacity cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: 0.2s transform opacity cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: 0.2s transform opacity cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: 0.2s transform opacity cubic-bezier(0.165, 0.84, 0.44, 1);
+  background: #e2e4e6;
+  width: 270px;
+  padding: 12px; }
+  #board-menu nav {
+    background: rgba(0, 0, 0, 0.05); }
+    #board-menu nav #board-menu-nav-toggle {
+      font-weight: bold;
+      font-size: 16px;
+      padding: 6px 9px;
+      color: #777; }
+    #board-menu nav ul {
+      list-style: none; }
+      #board-menu nav ul li {
+        padding: 6px 6px 6px 20px;
+        color: #444;
+        font-size: 14px; }
 
 /*# sourceMappingURL=style_sass.css.map */

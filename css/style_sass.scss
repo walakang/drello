@@ -22,6 +22,12 @@ $ScriptFont: 'Rochester', cursive;
 	max-width: 100%;
 	box-sizing: border-box;
 }
+@mixin transition($time,$prop,$ease){
+	-webkit-transition: $time $prop $ease;
+	-moz-transition: $time $prop $ease;
+	-ms-transition: $time $prop $ease;
+	transition: $time $prop $ease;
+}
 @mixin transition-all(){
 	-webkit-transition: 0.1s all ease-in-out;
 	-moz-transition: 0.1s all ease-in-out;
@@ -81,6 +87,9 @@ a{
 	background: transparent;
 	border: 1px solid white;
 	color: white;
+}
+.border-bottom{
+	border-bottom: 1px solid #999;
 }
 header{
 	background: $primaryColor;
@@ -493,6 +502,18 @@ section#board-content{
 			font-weight: bold;
 			font-size: 16px;
 			cursor: pointer;
+
+			a{
+				@include add-bg-image(down);
+				width: 18px;
+				height: 18px;
+				background-size: 14px;
+				opacity: 0.7;
+				margin-top: 3px;
+			}
+			a:hover{
+				opacity: 1;
+			}
 		}
 		#add-card{
 			padding: 6px 10px;
@@ -521,6 +542,37 @@ section#board-content{
 		#add-card:hover,.card-detail:hover{
 			@include border-radius(4px);
 			background: rgba(0,0,0,0.05);
+		}
+	}
+}
+#board-menu{
+	position: absolute;
+	top: 45px;
+	right: 0;
+	transform: translate(0px,0px);
+	@include border-radius(4px);
+	@include transition(0.2s,transform opacity,cubic-bezier(0.165, 0.84, 0.44, 1));
+	background: #e2e4e6;
+	width: 270px;
+	padding: 12px;
+
+	nav{
+		background: rgba(0,0,0,0.05);
+
+		#board-menu-nav-toggle{
+			font-weight: bold;
+			font-size: 16px;
+			padding: 6px 9px;
+			color: #777;
+		}
+		ul{
+			list-style: none;
+
+			li{
+				padding: 6px 6px 6px 20px;
+				color: #444;
+				font-size: 14px;
+			}
 		}
 	}
 }

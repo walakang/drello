@@ -14,7 +14,7 @@
    viewBox="0 0 744.09448819 1052.3622047"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="drawing.svg">
   <defs
      id="defs4" />
@@ -25,16 +25,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="163.36036"
-     inkscape:cy="598.99165"
+     inkscape:zoom="1.4"
+     inkscape:cx="352.1537"
+     inkscape:cy="511.35099"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1366"
-     inkscape:window-height="715"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-height="744"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -143,5 +143,27 @@
        y="228.07773"
        rx="8.4375"
        ry="6.5999999" />
+    <g
+       id="g3765"
+       transform="translate(21.428569,-51.428572)"
+       inkscape:export-filename="/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/images/down.png"
+       inkscape:export-xdpi="48.695061"
+       inkscape:export-ydpi="48.695061">
+      <path
+         transform="matrix(1.0006289,0,0,0.98251404,-0.08893906,10.286276)"
+         d="m 181.82746,629.10828 c 0,21.75778 -18.09043,39.39595 -40.4061,39.39595 -22.31568,0 -40.40611,-17.63817 -40.40611,-39.39595 0,-21.75779 18.09043,-39.39595 40.40611,-39.39595 22.31567,0 40.4061,17.63816 40.4061,39.39595 z"
+         sodipodi:ry="39.39595"
+         sodipodi:rx="40.406101"
+         sodipodi:cy="629.10828"
+         sodipodi:cx="141.42136"
+         id="path2993"
+         style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="arc" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3763"
+         d="M 121.42857,617.36218 140,645.21932 159.28571,618.07647"
+         style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
   </g>
 </svg>
