@@ -4,6 +4,7 @@
 		<title> Drello </title>
 		<link rel="stylesheet" href="css/style_sass.css" >
 		<link href='http://fonts.googleapis.com/css?family=Anaheim|Open+Sans:400,700|Rochester' rel='stylesheet' type='text/css'>
+		<script type="javascript" src="js/Core.js" ></script>
 		<script type="javascript" src="js/site.js" ></script>
 		<link rel="shortcut icon" href="favicon.ico"/>
 	</head>
@@ -38,10 +39,10 @@
 			<div id="add" class="button header-item"></div>
 		</header>
 		<section id="boards-container">
-			<article id="boards-starred">
-				<summary class="bold">
+			<div id="boards-starred">
+				<h1 bg="star">
 					Starred Boards
-				</summary>
+				</h1>
 				<ul class="boards-wrap">	
 					<li class="board starred">
 						<a href="board1.html">
@@ -50,11 +51,11 @@
 						</a>
 					</li>
 				</ul>
-			</article>
-			<article id="boards-my">
-				<summary class="bold">
+			</div>
+			<div id="boards-my">
+				<h1 bg="user">
 					My Boards
-				</summary>
+				</h1>
 				<ul class="boards-wrap">	
 					<li class="board starred">
 						<a href="board1.html">
@@ -74,12 +75,12 @@
 						</a>
 					</li>
 				</ul>
-			</article>
+			</div>
 			<section id="organizations">
-				<article id="boards-organization-1" name="RasterBrain">
-					<summary class="bold">
+				<div id="boards-organization-1" name="RasterBrain">
+					<h1 bg="organization">
 						RasterBrain <span class="overview">Overview</span>
-					</summary>
+					</h1>
 					<ul class="boards-wrap">	
 						<li class="board add-board">
 							<a href="#" id="add-board">
@@ -87,7 +88,7 @@
 							</a>
 						</li>
 					</ul>
-				</article>
+				</div>
 				<a href="#" id="org-create">Create a new Organization</a>
 			</section>
 		</section>

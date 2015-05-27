@@ -38,17 +38,17 @@
 			<div id="add" class="button header-item"></div>
 		</header>
 		<section id="board-ribbon" class="no-overflow">
-				<span class="title"> Website Redesign </span>
-				<span class="starred"></span>
-				<span id="privacy"> Private</span>
-				<span id="menu-toggle" class="right"> Show menu </span>
+			<span class="title"> Website Redesign </span>
+			<span class="starred"></span>
+			<span id="privacy"> Private</span>
+			<span id="menu-toggle" class="right"> Show menu </span>
 		</section>
 		<section id="board-content">
-			<article class="list" id="list-1">
-				<summary class="list-item">
+			<div class="list" id="list-1">
+				<div class="list-item list-head">
 					<span class="title">Ideas</span>
-					<a class="right" id="list-actions-toggle"></a>
-				</summary>
+					<span><a class="right" id="list-actions-toggle"></a></span>
+				</div>
 				<div class="list-item card">
 					<figure class="card-image">
 						<img src="" />
@@ -60,38 +60,52 @@
 				<div class="list-item" id="add-card">
 					Add a card...
 				</div>
-			</article>
-			<article class="list" id="list-2">
-				<summary class="list-item">
-					<span class="title">Ideas</span>
-					<a class="right" id="list-actions-toggle"></a>
-				</summary>
+			</div>
+			<div class="list" id="list-2">
+				<div class="list-item list-head">
+					<span class="title">To Do</span>
+					</span>
+						<a class="right" id="list-actions-toggle"></a>
+					</span>
+				</div>
 				<div class="list-item card">
 
 				</div>
 				<div class="list-item" id="add-card">
-					Add a card...
+					<span>Add a card...</span>
 				</div>
-			</article>
+			</div>
 		</section>
 		<aside id="board-menu">
-			<nav>
-				<div id="board-menu-nav-toggle" class="border-bottom">
-					<span class="title">
-						Menu
-					</span>
-					<span class="right"></span>
-				</div>
-				<ul>
-					<li>Power-Ups</li>
-					<li>Labels</li>
-					<li>Stickers</li>
-					<li>Filter Cards</li>
-					<li class="border-bottom">Archived Items</li>
-				</ul>
+			<div id="toggle-sidebar"></div>
+			<div class="container">
+				<nav>
+					<div id="board-menu-nav-toggle" class="border-bottom">
+						<span class="title">
+							Menu
+						</span>
+						<span class="right"></span>
+					</div>
+					<ul>
+						<li>Power-Ups</li>
+						<li>Labels</li>
+						<li>Stickers</li>
+						<li>Filter Cards</li>
+						<li class="border-bottom">Archived Items</li>
+						<li> Change Background </li>
+						<li> Email-to-board settings </li>
+						<li> Subscribe </li>
+						<li> Copy Board... </li>
+						<li class="border-bottom"> Share, Print, and Export </li>
+						<li> Additional Settings </li>
+						<li> Close Board </li>
+					</ul>
+			
+				</nav>
+				<section id="board-activity">
 
-
-			</nav>
+				</section>
+			</div>
 		</aside>
 		<footer>
 			<a href="#">Tour</a> <a href="#"> Apps</a> <a href="#">Jobs</a> <a href="#">Blog</a> <a href="#">API</a> <a href="#">About</a> <a href="#">Help</a> <a href="#">Terms</a> <a href="#">Privacy</a>

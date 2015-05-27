@@ -83,44 +83,43 @@ footer {
     padding-left: 8px;
     text-decoration: underline; }
 
-section#screenshot {
+article#screenshot {
   color: white;
   background: #0e74af;
   text-align: center;
   font-size: 15pt; }
-  section#screenshot summary {
+  article#screenshot summary {
     text-align: left;
     padding: 80px 378px 40px; }
-  section#screenshot figure {
+  article#screenshot figure {
     padding: 0px 60px; }
-    section#screenshot figure img {
+    article#screenshot figure img {
       max-width: 100%;
       box-sizing: border-box; }
 
-section#abilities {
+article#abilities {
   color: black;
   background: white;
   text-align: center;
   font-size: 15pt; }
-  section#abilities summary {
+  article#abilities summary {
     text-align: left;
     padding: 80px 378px 40px; }
-  section#abilities figure {
+  article#abilities figure {
     padding: 0px 60px; }
-    section#abilities figure img {
+    article#abilities figure img {
       max-width: 100%;
       box-sizing: border-box; }
 
-section#signup {
+article#signup {
   color: white;
   background: #0e74af;
   text-align: center;
   font-size: 15pt; }
-  section#signup summary {
+  article#signup summary {
     text-align: left;
     padding: 80px 378px 40px; }
 
-/* boards css */
 #header-boards {
   background: #0B5B8A;
   height: 32px;
@@ -233,21 +232,39 @@ section#boards-container {
   overflow: hidden;
   position: relative;
   z-index: 6; }
-  section#boards-container article summary {
+  section#boards-container div[id^='boards-organization-'] h1, section#boards-container div#boards-starred h1, section#boards-container div#boards-my h1 {
     font-size: 12pt;
     font-weight: 500;
     padding: 2px 6px;
     display: block;
     margin-bottom: 16px;
     margin-top: 20px;
-    font-weight: 600; }
-    section#boards-container article summary span.overview {
+    font-weight: 600;
+    padding-left: 36px;
+    background-position: 0px 2px;
+    background-size: 22px; }
+    section#boards-container div[id^='boards-organization-'] h1 span.overview, section#boards-container div#boards-starred h1 span.overview, section#boards-container div#boards-my h1 span.overview {
       background: url("../images/info.png") no-repeat;
       padding-left: 6px;
       background-size: 100%;
       width: 5px;
       height: 5px;
       background-position: 0px 0px; }
+  section#boards-container div#boards-starred h1 {
+    background: url("../images/star.png") no-repeat;
+    padding-left: 36px;
+    background-position: 0px 2px;
+    background-size: 22px; }
+  section#boards-container div#boards-my h1 {
+    background: url("../images/user.png") no-repeat;
+    padding-left: 36px;
+    background-position: 0px 2px;
+    background-size: 22px; }
+  section#boards-container div[id^='boards-organization-'] h1 {
+    background: url("../images/organization.png") no-repeat;
+    padding-left: 36px;
+    background-position: 0px 2px;
+    background-size: 22px; }
   section#boards-container ul {
     list-style: none;
     margin: 5px 0px 5px 25px; }
@@ -307,21 +324,6 @@ section#boards-container {
     text-decoration: underline;
     margin: 20px 35px;
     display: block; }
-  section#boards-container article#boards-starred summary {
-    background: url("../images/star.png") no-repeat;
-    padding-left: 36px;
-    background-position: 0px 2px;
-    background-size: 22px; }
-  section#boards-container article#boards-my summary {
-    background: url("../images/user.png") no-repeat;
-    padding-left: 36px;
-    background-position: 0px 2px;
-    background-size: 22px; }
-  section#boards-container article[id^='boards-organization-'] summary {
-    background: url("../images/organization.png") no-repeat;
-    padding-left: 36px;
-    background-position: 0px 2px;
-    background-size: 22px; }
 
 span.starred {
   background: url("../images/star-gold.png") no-repeat;
@@ -398,7 +400,7 @@ section#board-content {
   font-style: normal;
   font-weight: 400;
   padding-left: 20px; }
-  section#board-content article.list {
+  section#board-content .list {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
@@ -407,41 +409,42 @@ section#board-content {
     display: inline-table;
     width: 270px;
     margin: 0px 2px; }
-    section#board-content article.list summary {
+    section#board-content .list .list-head {
       padding: 6px 10px;
       font-weight: bold;
       font-size: 16px;
       cursor: pointer; }
-      section#board-content article.list summary a {
+      section#board-content .list .list-head a {
         background: url("../images/down.png") no-repeat;
         width: 18px;
         height: 18px;
         background-size: 14px;
         opacity: 0.7;
         margin-top: 3px; }
-      section#board-content article.list summary a:hover {
+      section#board-content .list .list-head a:hover {
         opacity: 1; }
-    section#board-content article.list #add-card {
+    section#board-content .list #add-card {
       padding: 6px 10px;
       cursor: pointer;
       color: #888; }
-    section#board-content article.list .card {
+    section#board-content .list .card {
       margin: 4px 8px;
       background: #FFFFFF;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
       -ms-border-radius: 4px;
-      border-radius: 4px; }
-      section#board-content article.list .card figure {
+      border-radius: 4px;
+      cursor: pointer; }
+      section#board-content .list .card figure {
         margin: 0;
         padding: 0; }
-        section#board-content article.list .card figure img {
+        section#board-content .list .card figure img {
           max-width: 100%;
           box-sizing: border-box; }
-      section#board-content article.list .card .card-detail {
+      section#board-content .list .card .card-detail {
         padding: 8px;
         font-size: 13px; }
-    section#board-content article.list #add-card:hover, section#board-content article.list .card-detail:hover {
+    section#board-content .list #add-card:hover, section#board-content .list .card-detail:hover {
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
       -ms-border-radius: 4px;
@@ -462,17 +465,68 @@ section#board-content {
   -ms-transition: 0.2s transform opacity cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: 0.2s transform opacity cubic-bezier(0.165, 0.84, 0.44, 1);
   background: #e2e4e6;
-  width: 270px;
+  width: 260px;
+  max-height: 605px;
   padding: 12px; }
+  #board-menu div.container {
+    overflow-y: scroll;
+    max-height: inherit; }
+  #board-menu #toggle-sidebar {
+    background: url("../images/left.png") no-repeat #e2e4e6;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-transition: 0.1s left ease-in-out;
+    -moz-transition: 0.1s left ease-in-out;
+    -ms-transition: 0.1s left ease-in-out;
+    transition: 0.1s left ease-in-out;
+    background-size: 20px;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 15px;
+    left: -26px;
+    cursor: pointer; }
+  #board-menu #toggle-sidebar:hover {
+    left: -24px;
+    -webkit-transition: 0.1s left ease-in-out;
+    -moz-transition: 0.1s left ease-in-out;
+    -ms-transition: 0.1s left ease-in-out;
+    transition: 0.1s left ease-in-out; }
   #board-menu nav {
-    background: rgba(0, 0, 0, 0.05); }
+    margin-bottom: 8px;
+    position: relative; }
     #board-menu nav #board-menu-nav-toggle {
       font-weight: bold;
       font-size: 16px;
       padding: 6px 9px;
-      color: #777; }
+      color: #777;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.05); }
+      #board-menu nav #board-menu-nav-toggle span.right {
+        background: url("../images/down.png") no-repeat;
+        width: 18px;
+        height: 18px;
+        background-size: 14px;
+        opacity: 0.7;
+        margin-top: 3px; }
+    #board-menu nav #board-menu-nav-toggle:hover {
+      background: rgba(0, 0, 0, 0.1); }
     #board-menu nav ul {
-      list-style: none; }
+      list-style: none;
+      background: rgba(0, 0, 0, 0.05);
+      height: 0;
+      overflow: hidden;
+      -webkit-transition: 0.1s height ease-in-out;
+      -moz-transition: 0.1s height ease-in-out;
+      -ms-transition: 0.1s height ease-in-out;
+      transition: 0.1s height ease-in-out; }
       #board-menu nav ul li {
         padding: 6px 6px 6px 20px;
         color: #444;

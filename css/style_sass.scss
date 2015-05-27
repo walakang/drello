@@ -35,6 +35,12 @@ $ScriptFont: 'Rochester', cursive;
 	transition: 0.1s all ease-in-out;
 	
 }
+@mixin transform($function){
+	-webkit-transform: $function;
+	-moz-transform: $function;
+	-ms-transform: $function;
+	transform: $function;
+}
 @mixin add-bg-image($url){
 	background: url('../images/'+$url+'.png') no-repeat;
 }
@@ -126,7 +132,11 @@ footer{
 section{
 
 }
-section#screenshot{
+.content{
+	
+}
+//////// Index CSS ////////////////////////////////
+article#screenshot{
 	color: white;
 	background: $bgColor;
 	text-align:center;
@@ -145,7 +155,7 @@ section#screenshot{
 		}
 	}
 }
-section#abilities{
+article#abilities{
 	color: black;
 	background: white;
 	text-align:center;
@@ -163,7 +173,7 @@ section#abilities{
 		}
 	}
 }
-section#signup{
+article#signup{
 	color: white;
 	background: $bgColor;
 	text-align:center;
@@ -175,7 +185,7 @@ section#signup{
 	}
 }
 
-/* boards css */
+////////////////// boards css /////////////////////////
 #header-boards{
 	background: #0B5B8A;
 	height: 32px;
@@ -296,8 +306,8 @@ section#boards-container{
 	position: relative;
 	z-index: 6;
 
-	article{
-		summary{
+	div[id^='boards-organization-'],div#boards-starred,div#boards-my{
+		h1{
 			font-size: 12pt;
 			font-weight: 500;
 			padding: 2px 6px;
@@ -305,6 +315,10 @@ section#boards-container{
 			margin-bottom: 16px;
   			margin-top: 20px;
   			font-weight: 600;
+			padding-left: 36px;
+			background-position: 0px 2px;
+			background-size: 22px;
+
 			span.overview{
 				@include add-bg-image(info);
 				padding-left: 6px;
@@ -313,6 +327,30 @@ section#boards-container{
 				height: 5px;
 				background-position: 0px 0px;
 			}
+		}
+	}
+	div#boards-starred{
+		h1{
+			@include add-bg-image(star);
+			padding-left: 36px;
+			background-position: 0px 2px;
+			background-size: 22px;
+		}
+	}
+	div#boards-my{
+		h1{
+			@include add-bg-image(user);
+			padding-left: 36px;
+			background-position: 0px 2px;
+			background-size: 22px;
+		}
+	}
+	div[id^='boards-organization-']{
+   	h1{
+			@include add-bg-image(organization);
+			padding-left: 36px;
+			background-position: 0px 2px;
+			background-size: 22px;
 		}
 	}
 	ul{
@@ -379,30 +417,6 @@ section#boards-container{
 	display: block;
 	}
 
-	article#boards-starred{
-		summary{
-			@include add-bg-image(star);
-			padding-left: 36px;
-			background-position: 0px 2px;
-			background-size: 22px;
-		}
-	}
-	article#boards-my{
-		summary{
-			@include add-bg-image(user);
-			padding-left: 36px;
-			background-position: 0px 2px;
-			background-size: 22px;
-		}
-	}
-	article[id^='boards-organization-']{
-   		summary{
-			@include add-bg-image(organization);
-			padding-left: 36px;
-			background-position: 0px 2px;
-			background-size: 22px;
-		}
-	}
 }
 span.starred{
 	@include add-bg-image(star-gold);
@@ -490,14 +504,14 @@ section#board-content{
 	font-weight: 400;
 	padding-left: 20px;
 
-	article.list{
+	.list{
 		@include border-radius(4px);
 		background: #e2e4e6;
 		display: inline-table;
 		width: 270px;
 		margin: 0px 2px;
 
-		summary{
+		.list-head{
 			padding: 6px 10px;
 			font-weight: bold;
 			font-size: 16px;
@@ -524,6 +538,7 @@ section#board-content{
 			margin: 4px 8px;
 			background: #FFFFFF;
 			@include border-radius(4px);
+			cursor: pointer;
 
 			figure{
 				margin: 0;
@@ -553,20 +568,62 @@ section#board-content{
 	@include border-radius(4px);
 	@include transition(0.2s,transform opacity,cubic-bezier(0.165, 0.84, 0.44, 1));
 	background: #e2e4e6;
-	width: 270px;
+	width: 260px;
+	max-height: 605px;
 	padding: 12px;
 
+	div.container{
+		overflow-y: scroll;
+		max-height: inherit;
+	}
+	#toggle-sidebar{
+			@include add-bg-image-color(left,#e2e4e6);
+			@include transform(rotate(180deg));
+			@include border-radius(4px);
+			@include transition(0.1s,left,ease-in-out);
+			background-size: 20px;
+			background-position: center;
+			width: 30px;
+			height: 30px;
+			position: absolute;
+			top: 15px;
+			left: -26px;
+			cursor: pointer;
+	}
+	#toggle-sidebar:hover{
+		left: -24px;
+		@include transition(0.1s,left,ease-in-out);
+	}
 	nav{
-		background: rgba(0,0,0,0.05);
-
+		margin-bottom: 8px;		
+		position: relative;
 		#board-menu-nav-toggle{
 			font-weight: bold;
 			font-size: 16px;
 			padding: 6px 9px;
 			color: #777;
+			cursor: pointer;
+			background: rgba(0,0,0,0.05);
+
+			span.right{
+				@include add-bg-image(down);
+				width: 18px;
+				height: 18px;
+				background-size: 14px;
+				opacity: 0.7;
+				margin-top: 3px;
+			}
+		}
+		#board-menu-nav-toggle:hover{
+			background: rgba(0,0,0,0.1);
 		}
 		ul{
 			list-style: none;
+			background: rgba(0,0,0,0.05);
+			height: 0;
+			//height: 380px; //change to expand the list.
+			overflow: hidden;
+			@include transition(0.1s,height,ease-in-out);
 
 			li{
 				padding: 6px 6px 6px 20px;
