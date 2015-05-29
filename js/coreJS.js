@@ -41,7 +41,24 @@ function Board(name){
 	this.isPublic = function(){
 		return this.isPublic;
 	}
+	this.createNode = function(){
+		this.node = document.createElement("li");
+		this.node.className = "board";
+		// create children
+		var a = document.createElement("a");
+		a.href = "board-display.html";
+		var title = document.createElement("span");
+		title.className = "bold";
+		title.innerHTML = this.name;
+		var star = document.createElement("span");
+		star.className = "star";
+		star.title = "Click to star this board. It will be shown at the top of the list";
+		a.appendChild(title);
+		a.appendChild(star);
+		this.node.appendChild(a);
 
+
+	}
 }
 function List(name){
 	// public vars

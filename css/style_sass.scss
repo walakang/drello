@@ -18,9 +18,16 @@ $ScriptFont: 'Rochester', cursive;
 	-ms-border-radius: $radius;
 	border-radius: $radius;
 }
+@mixin box-shadow($shadow) {
+	-webkit-box-shadow: $shadow;
+	-moz-box-shadow: $shadow;
+	-ms-box-shadow: $shadow;
+	box-shadow: $shadow;
+}
 @mixin img-tag(){
 	max-width: 100%;
 	box-sizing: border-box;
+	height: auto;
 }
 @mixin transition($time,$prop,$ease){
 	-webkit-transition: $time $prop $ease;
@@ -84,6 +91,8 @@ a{
 .button.green{
 	background: linear-gradient(to bottom, #70b500 0, #64a200 100%);
 	color: white;
+	border: none;
+	@include box-shadow(0px 0px 3px #AAA);
 }
 .button.basic.blue{
 	background: transparent;
@@ -102,12 +111,14 @@ header{
 }
 #header-home{
 	background: white;
-	text-align: center;
+	text-align: center !important;
 	padding: 6%;
 	margin: 0 auto;
 	font-size: 16pt;
 	summary{
 		padding: 2% 15%;
+		text-align: center !important;
+		display: block;
 	}
 	p{
 		padding: 0% 22%;
@@ -115,7 +126,12 @@ header{
 	a{
 		text-decoration: underline;
 	}
-	
+	.logo{
+		display: inline-block;
+	}
+	img{
+		@include img-tag();
+	}
 }
 
 footer{
@@ -129,6 +145,11 @@ footer{
 		text-decoration: underline;
 	}
 }
+@media only screen and (max-width: 400px){
+	footer{
+		display: none;
+	}
+}
 section{
 
 }
@@ -136,17 +157,14 @@ section{
 	
 }
 //////// Index CSS ////////////////////////////////
-article#screenshot{
-	color: white;
-	background: $bgColor;
-	text-align:center;
-	font-size: 15pt;
-	
-	
+section.content article{
 	summary{
 		text-align: left;
-		padding: 80px 378px 40px;
-	}
+		padding: 80px 0% 40px;
+		width: 60%;
+		margin: 0 auto;
+		display: block;
+	}	
 	figure{
 		padding: 0px 60px;
 		img{
@@ -154,34 +172,62 @@ article#screenshot{
 			box-sizing: border-box;
 		}
 	}
+}
+article#screenshot{
+	color: white;
+	background: $bgColor;
+	text-align:center;
+	font-size: 15pt;
 }
 article#abilities{
 	color: black;
 	background: white;
 	text-align:center;
 	font-size: 15pt;
-	
-	summary{
-		text-align: left;
-		padding: 80px 378px 40px;
-	}
-	figure{
-		padding: 0px 60px;
-		img{
-			max-width: 100%;
-			box-sizing: border-box;
-		}
-	}
 }
 article#signup{
 	color: white;
 	background: $bgColor;
 	text-align:center;
 	font-size: 15pt;
-	
-	summary{
-		text-align: left;
-		padding: 80px 378px 40px;
+}  /*text-align: left;
+  padding: 80px 0% 40px;
+  text-indent: 18%;*/
+@media only screen and (max-width: 950px){
+	section.content article{
+		summary{
+			text-align: left;
+			padding: 25px 12% 20px;
+			width: 80%;
+		}
+		figure{
+			padding: 0px 12%;
+			margin: 0;
+		}
+	}
+	#header-home{
+		summary{
+			text-align: center;
+			padding: 16px 0%;
+			width: 100%;
+			font-size: 17pt;
+		}
+		p{
+			padding: 0 4%;
+			text-align: left;
+			font-size: 14pt;
+			width: 90%;
+			margin: 0 auto;
+		}
+		figure.logo{
+				width: 200px;
+		}
+	}
+
+}
+@media only screen and (max-width: 640px){
+	#header-home figure.logo{
+		width: 180px;
 	}
 }
 
@@ -197,8 +243,14 @@ article#signup{
 		text-decoration: underline;
 	}
 	#logo{
+		text-align: center;
+		//width: 50%;
+		display: inline-table;
 		position: absolute;
-		left: 45%;
+		left: 43%;
+		a{
+			display: inline-block;
+		}
 		figure{
 			float: left;
 			margin: 0;
@@ -215,23 +267,28 @@ article#signup{
 	}
 
 	div{
-		float: left;
+		//float: left;
 	}
 	.header-item{
-		/*background: -webkit-linear-gradient(top,rgba(255,255,255,.3) 0,rgba(255,255,255,.2) 100%);
-		background: linear-gradient(to bottom,rgba(255,255,255,.3) 0,rgba(255,255,255,.2) 100%);*/
 		background: rgba(255, 255, 255, 0.27);
 		height: 30px;
-		margin-left: 8px;
-		@include border-radius(4px);
-		padding: 0px 0px;
+		/*margin-left: 8px;*/
+		@include border-radius(2px);
+		padding: 0px 0px 0px 0px;
 		cursor: pointer;
+		display: inline-flex;
+		float: none;
+		vertical-align: top;
+	}
+	.header-item:hover{
+		background: rgba(255, 255, 255, 0.17);
 	}
 	#profile{
 		float: right;
 		color: white;
-		width: 140px;
+		max-width: 140px;
 		font-size: 12pt;
+		margin-right: 5px;
 		figure{
 			margin: 0;
 			width: 30px;
@@ -242,40 +299,46 @@ article#signup{
 			margin: 0;
 			font-size: 11pt;
 			padding-left: 5px;
+			padding-right: 10px;
+			line-height: 2;
 		}
 	}
 	#notifications{
 		@include add-bg-image-color(bell,rgba(255, 255, 255, 0.27));
-		margin-right: 15px;
+		margin-right: 5px;
 		float: right;
-		width: 40px;
-		background-size: 25px;
+		width: 30px;
+		background-size: 20px;
 		background-position: center;
+	}
+	#notifications:hover{
 	}
 	#add{
 		@include add-bg-image-color(plus,rgba(255, 255, 255, 0.27));
 		float: right;
-		width: 40px;
-		background-size: 36px;
+		width: 30px;
+		background-size: 25px;
 		background-position: center;
-		margin-right: 0px;
+		margin-right: 5px;
 	}
 	#boards{
-		width: 80px;
+		width: 70px;
 		@include add-bg-image-color(icon-white,rgba(255, 255, 255, 0.27));
-		background-size: 23px;
+		background-size: 20px;
 		background-position: 6px center;
 		color: white;
-		font-size: 12pt;
-		padding-left: 34px;
+		font-size: 11pt;
+		padding-left: 30px;
 		line-height: 2;
+		margin-left: 5px;
+		display: inline-block;
 	}
 	#search{
-		width: 190px;
-		margin-left: 8px;
+		width: 15%;
+		//margin-left: 8px;
 		@include add-bg-image-color(search,rgba(255, 255, 255, 0.27));
 		background-size: 20px;
-		background-position: 160px center;
+		background-position: 95% center;
 		input{
 			width: 100%;
 			background: transparent;
@@ -294,14 +357,34 @@ article#signup{
 
 
 }
-.popup{
-	display:none;
-	position:absolute;
-	z-index:8;
+@media (max-width: 800px){
+	#header-boards #search{
+		width: 34px;
+		background-position: center;
+	}
+	#header-boards #profile span{
+		display: none;
+	}
+	#header-boards #boards{
+		font-size: 0px;
+		width: 0px;
+	}
+	#header-boards #logo{
+		left: 40%;
+		top: 25%;
+
+		figure{
+			width: 60%;
+		}
+	}
 }
+@media only sreen and (max-device-width: 500px){
+	
+}
+
 section#boards-container{
 	background: white;
- 	padding: 10px 25px;
+ 	padding: 10px 15px;
 	overflow: hidden;
 	position: relative;
 	z-index: 6;
@@ -321,11 +404,12 @@ section#boards-container{
 
 			span.overview{
 				@include add-bg-image(info);
-				padding-left: 6px;
-				background-size: 100%;
+				padding-left: 18px;
+				background-size: 13px;
+				background-position: 4px center;
 				width: 5px;
 				height: 5px;
-				background-position: 0px 0px;
+				font-size: 11px;
 			}
 		}
 	}
@@ -355,19 +439,24 @@ section#boards-container{
 	}
 	ul{
 		list-style: none;
-		margin: 5px 0px 5px 25px; 
+		//margin: 5px 0px 5px 25px; 
+		margin-left: 26px;
+		margin-right: 5px;
 	}
 	li{
-		display:inline;
-		padding: 10px;
+		display: inline-table;
+		padding: 3px 10px;
+		width: 22%;
+		//min-width: 200px;
 	}
 	a:not(#org-create){
 		background: #0E74AF;
 		@include border-radius(4px);
-		padding: 10px 0px 70px 14px;
+		padding: 10px 0px 10px 14px;
 		color: white;
-		width: 260px;
-  		display: inline-block;
+		width: 100%;
+		display: inline-table;
+		height: 90px;
 
   		span{
   			font-size:12pt;
@@ -413,11 +502,22 @@ section#boards-container{
 		font-size: 12pt;
 		color: #666;
 		text-decoration: underline;
-	margin: 20px 35px;
-	display: block;
+		margin: 20px 0px 20px 10px;
+		display: block;
 	}
 
 }
+@media (max-width: 750px){
+	section#boards-container{
+		div[id^='boards-organization-'],div#boards-starred,div#boards-my{
+			li{
+				display: block;
+				width: 96%;
+			}
+		}
+	}
+}
+
 span.starred{
 	@include add-bg-image(star-gold);
 	opacity: 1;
@@ -632,4 +732,69 @@ section#board-content{
 			}
 		}
 	}
+}
+.popup{
+	display:none;
+	position:absolute;
+	z-index:8;
+	background: white;
+	padding: 6px;
+	/*border: 1px solid #CCC;*/
+	@include border-radius(4px);
+	@include box-shadow(0px 0px 3px #999);
+	min-width: 240px;
+
+	.popup-header{
+		text-align: center;
+		font-size: 14px;
+		color: #666;
+		font-weight: bold;
+		padding: 3px 0px;
+		border-bottom: 1px solid #CCC;
+
+		.cross{
+			@include add-bg-image(cross);
+			background-size: 15px;
+			background-position: center;
+			float: right;
+		}
+	}
+	.popup-body{
+		padding: 4px;
+		font-size: 13px;
+		color: #555;
+	}
+	.popup-label{
+		font-weight: bold;
+		fonr-size: 15px;
+		padding: 2px 0px;
+		display: block;
+	}
+	input,select{
+		display: block;
+		width: 98%;
+		margin: 10px 0px;
+	}
+	.button{
+		width: 40%;
+		padding: 10px 10px;
+		margin: 15px 0px;
+	}
+}
+#create-board-popup{
+	/*display: block;*/
+	top: 40%;
+	right: 20%;	
+}
+#profile-popup{
+	/*display: block;*/
+	top: 5px;
+	right: 1%;	
+	min-width: 300px;
+}
+#boards-popup{
+	/*display: block;*/
+	top: 5px;
+	left: 1%;	
+	min-width: 300px;
 }

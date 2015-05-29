@@ -2,19 +2,18 @@
 <html>
 	<head>
 		<title> Drello </title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/style_sass.css" >
 		<link href='http://fonts.googleapis.com/css?family=Anaheim|Open+Sans:400,700|Rochester' rel='stylesheet' type='text/css'>
-		<script type="javascript" src="js/Core.js" ></script>
-		<script type="javascript" src="js/site.js" ></script>
+		<script src="js/coreJS.js" ></script>
+		<script src="js/site.js" ></script>
 		<link rel="shortcut icon" href="favicon.ico"/>
 	</head>
 	<body>
 		<header id="header-boards">
 			<div id="boards" class="header-item">
 				Boards
-				<div id="boards-popup" class="popup">
-				
-				</div>
 			</div>
 			<div id="search" class="header-item">
 				<input type="text" name="search-string" />
@@ -45,7 +44,7 @@
 				</h1>
 				<ul class="boards-wrap">	
 					<li class="board starred">
-						<a href="board1.html">
+						<a href="board-display.html">
 								<span class="bold">Website Redesign</span>
 								<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>
 						</a>
@@ -58,7 +57,7 @@
 				</h1>
 				<ul class="boards-wrap">	
 					<li class="board starred">
-						<a href="board1.html">
+						<a href="board-display.html">
 								<span class="bold">Website Redesign</span>
 								<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>
 						</a>
@@ -91,6 +90,57 @@
 				</div>
 				<a href="#" id="org-create">Create a new Organization</a>
 			</section>
+			<div id="create-board-popup" class="popup">
+				<div class="popup-header">
+					<span class="title">Create Board</span>
+					<span class="cross"></span>
+				</div>
+				<div class="popup-body">
+					<form class="popup-form">
+						<label for="bord-name" class="popup-label">Title</label>
+						<input type="text" name="board-name" />
+						<label for="bord-organization" class="popup-label">Organization</label>
+						<select name="board-organization" >
+							
+						</select>
+						<input type="submit" class="button green" value="Create"/>
+					</form>
+				</div>
+			</div>
+			<div id="profile-popup" class="popup">
+				<div class="popup-header">
+					<span class="title">Shidil Eringa (shidil)</span>
+					<span class="cross"></span>
+				</div>
+				<div class="popup-body">
+					<form class="popup-form">
+						<label for="bord-name" class="popup-label">Title</label>
+						<input type="text" name="board-name" />
+						<label for="bord-organization" class="popup-label">Organization</label>
+						<select name="board-organization" >
+							
+						</select>
+						<input type="submit" class="button green" value="Create"/>
+					</form>
+				</div>
+			</div>
+			<div id="boards-popup" class="popup">
+				<div class="popup-header">
+					<span class="title"Boards</span>
+					<span class="cross"></span>
+				</div>
+				<div class="popup-body">
+					<form class="popup-form">
+						<label for="bord-name" class="popup-label">Title</label>
+						<input type="text" name="board-name" />
+						<label for="bord-organization" class="popup-label">Organization</label>
+						<select name="board-organization" >
+							
+						</select>
+						<input type="submit" class="button green" value="Create"/>
+					</form>
+				</div>
+			</div>
 		</section>
 		<footer>
 			<a href="#">Tour</a> <a href="#"> Apps</a> <a href="#">Jobs</a> <a href="#">Blog</a> <a href="#">API</a> <a href="#">About</a> <a href="#">Help</a> <a href="#">Terms</a> <a href="#">Privacy</a>

@@ -3,6 +3,26 @@
 	{
 		"selected_items":
 		[
+			[
+				"cre",
+				"createElement"
+			],
+			[
+				"boa",
+				"boards"
+			],
+			[
+				"li",
+				"lists"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"orga",
+				"organizations"
+			]
 		]
 	},
 	"buffers":
@@ -11,7 +31,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 3055,
+				"buffer_size": 3021,
 				"line_ending": "Unix"
 			}
 		},
@@ -19,7 +39,15 @@
 			"file": "boards.html",
 			"settings":
 			{
-				"buffer_size": 3051,
+				"buffer_size": 4797,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "board-display.html",
+			"settings":
+			{
+				"buffer_size": 3336,
 				"line_ending": "Unix"
 			}
 		},
@@ -27,15 +55,23 @@
 			"file": "css/style_sass.scss",
 			"settings":
 			{
-				"buffer_size": 6734,
+				"buffer_size": 13085,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "board1.html",
+			"file": "js/coreJS.js",
 			"settings":
 			{
-				"buffer_size": 1459,
+				"buffer_size": 1866,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/site.js",
+			"settings":
+			{
+				"buffer_size": 120,
 				"line_ending": "Unix"
 			}
 		}
@@ -64,6 +100,10 @@
 	},
 	"file_history":
 	[
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/board1.html",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/coreJS.js",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/Core.js",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/css/style_sass.scss",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/site.js",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/scripts",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/css/style.scss",
@@ -87,6 +127,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"board1.html",
+			"0B5B8A",
+			"board-content",
 			"Create a board",
 			"div class=\"board\"",
 			">\n"
@@ -97,6 +140,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"board-display.html",
 			"Create new board...",
 			"li class=\"board\"",
 			"li"
@@ -118,23 +162,24 @@
 					"file": "index.html",
 					"settings":
 					{
-						"buffer_size": 3055,
+						"buffer_size": 3021,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2807,
-								2807
+								1703,
+								1703
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1207.0,
+						"translation.y": 255.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -144,15 +189,42 @@
 					"file": "boards.html",
 					"settings":
 					{
-						"buffer_size": 3051,
+						"buffer_size": 4797,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								659,
-								659
+								152,
+								152
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 306.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "board-display.html",
+					"settings":
+					{
+						"buffer_size": 3336,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -167,55 +239,82 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "css/style_sass.scss",
 					"settings":
 					{
-						"buffer_size": 6734,
+						"buffer_size": 13085,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4603,
-								4603
+								7737,
+								7737
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 3,
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3825.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "board1.html",
+					"buffer": 4,
+					"file": "js/coreJS.js",
 					"settings":
 					{
-						"buffer_size": 1459,
+						"buffer_size": 1866,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1137,
-								1137
+								1537,
+								1537
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 306.0,
+						"translation.y": 408.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "js/site.js",
+					"settings":
+					{
+						"buffer_size": 120,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								120,
+								120
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
