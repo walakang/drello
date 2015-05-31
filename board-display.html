@@ -15,7 +15,7 @@
 		<script src="js/site.js" ></script>
 		<link rel="shortcut icon" href="favicon.ico"/>
 	</head>
-	<body>
+	<body style="background: rgb(14, 116, 175)">
 		<header id="header-boards">
 			<div id="boards" class="header-item">
 				Boards
@@ -37,7 +37,7 @@
 			</div>
 			<div id="profile" class="header-item">
 				<figure class="avatar small">
-					<img src="images/avatar.png" />
+					<img src="images/shidil.png" />
 				</figure>
 				<span>Shidil Eringa</span>
 			</div>
@@ -45,9 +45,11 @@
 		</header>
 		<section id="board-ribbon" class="no-overflow">
 			<span class="title"> Website Redesign </span>
-			<span class="starred"></span>
-			<span id="privacy"> Private</span>
-			<span id="menu-toggle" class="right"  onClick="return showHideSidebarToggle()"> Show menu </span>
+			<div>
+				<span class="starred"></span>
+				<span id="privacy"> Private</span>
+				<span id="menu-toggle" class="right"  onClick="return showHideSidebarToggle()"> Show menu </span>
+			<div>
 		</section>
 		<section id="board-content">
 			<div class="list" id="list-1">
@@ -108,15 +110,16 @@
 					</ul>
 			
 				</nav>
+				<section id="board-members">
+					<h4> Members </h4>
+					<ul>
+						<li class="member"><img src="members/shidil.png" /></li>
+					</ul>
+				</section>
 				<section id="board-activity">
 
 				</section>
 			</div>
 		</aside>
-		<footer>
-			<a href="#">Tour</a> <a href="#"> Apps</a> <a href="#">Jobs</a> <a href="#">Blog</a> <a href="#">API</a> <a href="#">About</a> <a href="#">Help</a> <a href="#">Terms</a> <a href="#">Privacy</a>
-			<br/>
-			© Copyright 2015, Drello, Inc. All rights reserved.
-		</footer>
 	</body>
 	

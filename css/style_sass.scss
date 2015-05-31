@@ -54,13 +54,33 @@ $ScriptFont: 'Rochester', cursive;
 @mixin add-bg-image-color($url,$color){
 	background: url('../images/'+$url+'.png') no-repeat $color;
 }
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+	// For Google Chrome
+	::-webkit-scrollbar {
+	  width:  $size;
+	  height: $size;
+	}
+	::-webkit-scrollbar-thumb {
+	  background: $foreground-color;
+	  @include border-radius(3px);
+	}
 
+	::-webkit-scrollbar-track {
+	  background: $background-color;
+	}
 
+	// For Internet Explorer
+	body {
+	scrollbar-face-color: $foreground-color;
+	scrollbar-track-color: $background-color;
+	}
+}
+@include scrollbars(.5em, rgba(255,255,255,0.6), rgba(255, 255, 255, 0.2));
 body{
 	font-family: $primaryFont;
 	font-size: 13pt;
 	color: $primaryFontColor;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 a{
 	color: $secondaryFontColor;
@@ -587,9 +607,10 @@ span.not-starred{
 section#board-ribbon{
 	background: $bgColor;
 	height: 40px;
-	padding: 5px 10px;
-	padding-top: 10px;
-
+	padding: 10px 0px 5px 10px;
+	div{
+		display: inline;
+	}
 	span{
 		padding: 8px;
 		color: #f6f6f6;
@@ -639,10 +660,19 @@ section#board-ribbon{
 	}
 
 }
+@media only screen and (max-width: 501px){
+	#board-ribbon{
+		height: 55px !important;
+		div{
+			display: block !important;
+			margin-left: 8px !important;
+		}
+	}
+}
 section#board-content{
 	background: $bgColor;
-	min-height: 605px;
-	max-height: 700px;;
+	height: 83vh;
+	position: relative;
 	font-size: 15px;
 	font-style: normal;
 	font-weight: 400;
@@ -655,10 +685,6 @@ section#board-content{
 	display: -webkit-flex;
 	display: flex;
 	align-items: flex-start;
-	//flex-flow:row;	
-	height:100%;
-	//position:absolute;
-	//width:100%;
 
 	.list{
 		@include border-radius(4px);
@@ -723,32 +749,32 @@ section#board-content{
 	position: absolute;
 	z-index: 5;
 	top: 45px;
-	right: -50%;
+	right: -400px;
 	transform: translate(0px,0px);
 	@include border-radius(4px);
 	@include transition(0.5s,all,cubic-bezier(0.165, 0.84, 0.44, 1));
 	background: #e2e4e6;
-	width: 260px;
-	max-height: 605px;
+	width: 250px;
+	height: 88%;
 	padding: 12px;
 
 	div.container{
 		overflow-y: scroll;
-		max-height: inherit;
+		height: 100%;
 	}
 	#toggle-sidebar{
-			@include add-bg-image-color(left,#e2e4e6);
-			@include transform(rotate(180deg));
-			@include border-radius(4px);
-			@include transition(0.1s,left,ease-in-out);
-			background-size: 20px;
-			background-position: center;
-			width: 30px;
-			height: 30px;
-			position: absolute;
-			top: 15px;
-			left: -26px;
-			cursor: pointer;
+		@include add-bg-image-color(left,#e2e4e6);
+		@include transform(rotate(180deg));
+		@include border-radius(4px);
+		@include transition(0.1s,left,ease-in-out);
+		background-size: 20px;
+		background-position: center;
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		top: 15px;
+		left: -26px;
+		cursor: pointer;
 	}
 	#toggle-sidebar:hover{
 		left: -24px;
@@ -796,8 +822,33 @@ section#board-content{
 			@include transition(0.1s,height,ease-in-out);
 		}
 	}
+	#board-members{
+		h4{
+			font-size: 12pt;
+			margin: 0;
+		}
+		ul{
+			display: block;
+			
+			li.member{
+				display: block;
+				width: 30px;
+				height: 30px;
+				float: left;
+				margin: 2px 2px;
+				position: relative;
+				@include border-radius(3px);
+				-webkit-user-select: none;
+				
+				img{
+					@include img-tag();
+				}
+			}
+		}
+	}
 }
 #board-menu.show{
+
 	right: 0%;
 	@include transition(0.2s,all,cubic-bezier(0.165, 0.84, 0.44, 1));
 }
