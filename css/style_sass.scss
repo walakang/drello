@@ -60,6 +60,7 @@ body{
 	font-family: $primaryFont;
 	font-size: 13pt;
 	color: $primaryFontColor;
+	overflow: hidden;
 }
 a{
 	color: $secondaryFontColor;
@@ -70,6 +71,12 @@ a{
 }
 .right{
 	float: right;
+}
+.show{
+	
+}
+.hide{
+	display: none !important;
 }
 .bold{
 	font-weight: bold;
@@ -106,6 +113,23 @@ a{
 .border-bottom{
 	border-bottom: 1px solid #999;
 }
+
+.close{
+	@include add-bg-image(close);
+	background-size: 100%;
+	background-position: center;
+	float: right;
+	width: 20px;
+	height: 100%;
+}
+.open{
+	@include add-bg-image(open);
+	background-size: 100%;
+	background-position: center;
+	float: right;
+	width: 20px;
+	height: 100%;
+}
 header{
 	background: $primaryColor;
 }
@@ -128,6 +152,7 @@ header{
 	}
 	.logo{
 		display: inline-block;
+		
 	}
 	img{
 		@include img-tag();
@@ -197,25 +222,27 @@ article#signup{
 	section.content article{
 		summary{
 			text-align: left;
-			padding: 25px 12% 20px;
-			width: 80%;
+			padding: 25px 5% 20px;
+			width: 90%;
+			font-size: 12pt;
 		}
 		figure{
-			padding: 0px 12%;
+			padding: 0px 5%;
 			margin: 0;
 		}
 	}
 	#header-home{
+
 		summary{
 			text-align: center;
 			padding: 16px 0%;
 			width: 100%;
-			font-size: 17pt;
+			font-size: 18pt;
 		}
 		p{
 			padding: 0 4%;
-			text-align: left;
-			font-size: 14pt;
+			//text-align: left;
+			font-size: 13pt;
 			width: 90%;
 			margin: 0 auto;
 		}
@@ -226,8 +253,11 @@ article#signup{
 
 }
 @media only screen and (max-width: 640px){
+	#header-home{
+		padding: 6% 2%;
+	}
 	#header-home figure.logo{
-		width: 180px;
+		width: 200px;
 	}
 }
 
@@ -247,7 +277,7 @@ article#signup{
 		//width: 50%;
 		display: inline-table;
 		position: absolute;
-		left: 43%;
+		left: 45%;
 		a{
 			display: inline-block;
 		}
@@ -281,7 +311,8 @@ article#signup{
 		vertical-align: top;
 	}
 	.header-item:hover{
-		background: rgba(255, 255, 255, 0.17);
+		//background: rgba(255, 255, 255, 0.17);
+		opacity: 0.85;
 	}
 	#profile{
 		float: right;
@@ -337,6 +368,7 @@ article#signup{
 		width: 15%;
 		//margin-left: 8px;
 		@include add-bg-image-color(search,rgba(255, 255, 255, 0.27));
+		@include transition-all();
 		background-size: 20px;
 		background-position: 95% center;
 		input{
@@ -347,12 +379,23 @@ article#signup{
 
 		}
 		input:focus{
-			background: rgba(255, 255, 255, 0.77);
 			@include border-radius(4px);
 			border: 0;
 			width: 100%;
 			box-shadow: none;
+			-webkit-appearance: none;
+			outline: none; 
 		}
+		#search-open,#search-close{
+			  display: inline;
+			  margin: 0px 2px;
+			  opacity: 0.7;
+		}
+	}
+	#search.focused{
+		width: 24%;
+		background: white;
+		
 	}
 
 
@@ -410,6 +453,7 @@ section#boards-container{
 				width: 5px;
 				height: 5px;
 				font-size: 11px;
+				cursor: pointer;
 			}
 		}
 	}
@@ -457,29 +501,31 @@ section#boards-container{
 		width: 100%;
 		display: inline-table;
 		height: 90px;
-
+		position: relative;
   		span{
   			font-size:12pt;
   			font-weight: normal;
   		}
   		span:not(.bold){
   			@include add-bg-image(star);
-			background-size: 100%;
-			width: 18px;
-			height: 18px;
+			background-size: 16px;
+			background-position: 96% 10%;
 			display: inline-block;
   			@include transition-all();
   			opacity: 0;
   			float: right;
   			margin-right: 20px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
   		}
   		span.starred{
   			@include add-bg-image(star-gold);
   			opacity: 1;
   		}
   		span:not(.bold):hover{
-  			width: 21px;
-  			height: 21px;
   			@include transition-all();
   			opacity: 1;
   		}
@@ -541,8 +587,8 @@ span.not-starred{
 section#board-ribbon{
 	background: $bgColor;
 	height: 40px;
-	padding: 10px 15px;
-	padding-top: 16px;
+	padding: 5px 10px;
+	padding-top: 10px;
 
 	span{
 		padding: 8px;
@@ -597,19 +643,32 @@ section#board-content{
 	background: $bgColor;
 	min-height: 605px;
 	max-height: 700px;;
-	overflow-x: scroll;
-	overflow-y: hidden;
 	font-size: 15px;
 	font-style: normal;
 	font-weight: 400;
-	padding-left: 20px;
+	padding-left: 10px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: flex-start;
+	//flex-flow:row;	
+	height:100%;
+	//position:absolute;
+	//width:100%;
 
 	.list{
 		@include border-radius(4px);
 		background: #e2e4e6;
-		display: inline-table;
-		width: 270px;
-		margin: 0px 2px;
+		max-width: 270px;
+		min-width: 270px;
+		margin: 0px 5px;
+		display: flex;
+		flex-direction: column;
+		/*min-width: 244px;*/
 
 		.list-head{
 			padding: 6px 10px;
@@ -662,11 +721,12 @@ section#board-content{
 }
 #board-menu{
 	position: absolute;
+	z-index: 5;
 	top: 45px;
-	right: 0;
+	right: -50%;
 	transform: translate(0px,0px);
 	@include border-radius(4px);
-	@include transition(0.2s,transform opacity,cubic-bezier(0.165, 0.84, 0.44, 1));
+	@include transition(0.5s,all,cubic-bezier(0.165, 0.84, 0.44, 1));
 	background: #e2e4e6;
 	width: 260px;
 	max-height: 605px;
@@ -731,7 +791,15 @@ section#board-content{
 				font-size: 14px;
 			}
 		}
+		ul.show{
+			height: 380px; //change to expand the list.
+			@include transition(0.1s,height,ease-in-out);
+		}
 	}
+}
+#board-menu.show{
+	right: 0%;
+	@include transition(0.2s,all,cubic-bezier(0.165, 0.84, 0.44, 1));
 }
 .popup{
 	display:none;
