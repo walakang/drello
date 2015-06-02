@@ -12,12 +12,11 @@
 		<link rel="stylesheet" href="css/style_sass.css" >
 		<link href='http://fonts.googleapis.com/css?family=Anaheim|Open+Sans:400,700|Rochester' rel='stylesheet' type='text/css'>
 		<script src="js/coreJS.js" ></script>
-		<script src="js/site.js" ></script>
 		<link rel="shortcut icon" href="favicon.ico"/>
 	</head>
 	<body style="background: rgb(14, 116, 175)">
 		<header id="header-boards">
-			<div id="boards" class="header-item">
+			<div id="boards" class="header-item" onClick="showBoardsPopupToggle();">
 				Boards
 			</div>
 			<div id="search" class="header-item">
@@ -35,7 +34,7 @@
 			<div id="notifications" class="header-item" >
 
 			</div>
-			<div id="profile" class="header-item">
+			<div id="profile" class="header-item" onClick="showProfilePopupToggle()">
 				<figure class="avatar small">
 					<img src="images/shidil.png" />
 				</figure>
@@ -51,7 +50,7 @@
 				<span id="menu-toggle" class="right"  onClick="return showHideSidebarToggle()"> Show menu </span>
 			<div>
 		</section>
-		<section id="board-content">
+		<section id="board-content" class="container-main">
 			<div class="list" id="list-1">
 				<div class="list-item list-head">
 					<span class="title">Ideas</span>
@@ -121,5 +120,145 @@
 				</section>
 			</div>
 		</aside>
+		<div id="create-board-popup" class="popup hide">
+			<div class="popup-header">
+				<span class="title">Create Board</span>
+				<span class="cross" onClick="closePopups()"></span>
+			</div>
+			<hr/>
+			<div class="popup-body">
+				<form class="popup-form">
+					<label for="bord-name" class="popup-label">Title</label>
+					<input type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..."/>
+					<input type="hidden" name="privacy" />
+					<label for="bord-organization" class="popup-label">Organization</label>
+					<select name="board-organization" >
+						
+					</select>
+					<div id="preview" class="show">
+						<span>This board will be public.<a id="change" href="#" onclick="createBoardPrvacyToggle(this)">Change</a></span>
+					</div>
+					<div id="options" class="hide">
+						<div id="private" onclick="createBoardPrvacyToggle(this)">
+							<span class="option">Private</span>
+							<span class="detail">This board will be private. Only people added to the board can view or edit it.</span >
+						</div>
+						<div id="org" onclick="createBoardPrvacyToggle(this)">
+							<span class="option">Organization</span>
+							<span class="detail">This board is visible to the members of the organization. Only people added to the board can edit it.</span >
+						</div>
+						<div id="public" onclick="createBoardPrvacyToggle(this)" class="disabled">
+							<span class="option">public</span>
+							<span class="detail">This board will be public. It is visible to anyone with the link to this board and it will be visible to search engines like Google and Yahoo. Only people added to the board can view or edit it.</span >
+						</div>
+					</div>
+					<input type="submit" class="button green" value="Create"/>
+				</form>
+			</div>
+		</div>
+		<div id="profile-popup" class="popup hide">
+			<div class="popup-header">
+				<span class="title">Shidil Eringa (shidil)</span>
+				<span class="cross" onClick="closePopups()"></span>
+			</div>
+			<hr/>
+			<div class="popup-body">
+				<a href="profile.html">Profile</a>
+				<a href="cards.html">Cards</a>
+				<a href="settings.html">Settings</a>
+				<hr/>
+				<a href="help.html">Help</a>
+				<a href="apps.html">Apps</a>
+				<a href="shortcuts.html">Shortcuts</a>
+				<a href="share.html">Share Drello (For free Drello goald)</a>
+				<hr/>
+				<a href="guide.html">Getting started guide</a>
+				<a href="blog.html">Drello Blog</a>
+				<hr/>
+				<a href="changelang.html">Change language</a>
+				<a href="logout.html">Logout</a>
+			</div>
+		</div>
+		<div id="boards-popup" class="popup hide">
+			<div class="popup-body">
+				<form class="popup-form">
+					<input type="text" name="board-name" placeholder="Find boards by name..." autofocus="true"/>
+				</form>
+				<div id="popup-starred" class="popup-box">
+					<div>
+						<span class="star cat">Starred Boards</span>
+						<span class="accordition"></span>
+					</div>
+					<ul class="boards-list">
+						<li class="board">
+							<a href="board-display.html">
+								<span class="color"></span>
+								<span class="board-name" >Website Redesign </span>
+								<span class="starred"></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div id="popup-recent" class="popup-box">
+					<div>
+
+						<span class="recent cat">Recent Boards</span>
+						<span class="accordition"></span>
+					</div>
+					<ul class="boards-list">
+						<li class="board">
+							<a href="board-display.html">
+								<span class="color"></span>
+								<span class="board-name" >Website Redesign </span>
+								<span class="starred"></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div id="popup-recent" class="popup-box">
+					<div>
+						<span class="my cat">My Boards</span>
+						<span class="accordition"></span>
+					</div>
+					<ul class="boards-list">
+						<li class="board">
+							<a href="board-display.html">
+								<span class="color"></span>
+								<span class="board-name" >Website Redesign </span>
+								<span class="starred"></span>
+							</a>
+						</li>
+						<li class="board">
+							<a href="board-display.html">
+								<span class="color"></span>
+								<span class="board-name" >Website Setup </span>
+								<span class="star"></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div id="popup-org-1" class="popup-box">
+					<div>
+						<span class="org cat"><a href="organization.html">RasterBrain</a></span>
+						<span class="accordition"></span>
+					</div>
+					<ul class="boards-list">
+						<li class="board">
+							<a href="board-display.html">
+								<span class="color"></span>
+								<span class="board-name" >Website Mockup </span>
+								<span class="star"></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div id="popup-options" class="popup-box">
+					<a href="#" onClick="showCreateBoardPopup(event)">Create new board </a>
+					<a href="#" onClick="boardsPopupDockToggle()">Always keep this menu open </a>
+					<a href="#" onClick="showClosedBoardsPopup()">Show closed boards</a>
+				</div>
+			</div>
+		<script src="js/site.js" ></script>
 	</body>
+</html>
 	

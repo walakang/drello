@@ -14,7 +14,7 @@ function closePopups(){
 	return true;
 }
 // Hide all popusps when clicked outside the popup 
-document.getElementById("boards-container").onclick = closePopups;
+document.getElementsByClassName("container-main")[0].onclick = closePopups;
 
 function hideToggle(node){
 	if(node.className === "show"){
@@ -53,13 +53,15 @@ function showHideSidebarMenuToggle(){
 }
 function createBoardPrvacyToggle(node){
 	if(node.id === "change"){
-		hideToggle(node);
-		hideToggle(node.parentNode.getElementById("options"));
+		
+		hideToggle(document.getElementById("preview"));
+		hideToggle(document.getElementById("options"));
 	}
 	else{
 		//change the value on the privacy form
-		hideToggle(node);
-		hideToggle(node.parentNode.getElementById("options"));
+		
+		hideToggle(document.getElementById("preview"));
+		hideToggle(document.getElementById("options"));
 	}
 }
 function showPopup(name,position){
@@ -97,6 +99,12 @@ function showCreateBoardPopup(e){
 function showBoardsPopupToggle(){
 
 	showPopup("boards-popup");
+
+	return false;
+}
+function showProfilePopupToggle(){
+
+	showPopup("profile-popup");
 
 	return false;
 }

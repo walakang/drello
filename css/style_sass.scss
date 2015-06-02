@@ -8,7 +8,10 @@ $primaryColor: #026aa7;
 $secondaryColor: #cdd2d4;
 $primaryFontColor: #555;
 $secondaryFontColor: #5e98ba;
-$primaryFont: 'Open Sans', sans-serif;
+
+/* Comes from google fonts. */
+//$primaryFont: 'Open Sans', sans-serif;
+$primaryFont: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 $secondaryFont: 'Anaheim', sans-serif;
 $ScriptFont: 'Rochester', cursive;
 
@@ -98,10 +101,14 @@ a{
 	float: right;
 }
 .show{
-	
+	display: block !important;
 }
 .hide{
 	display: none !important;
+}
+.disabled{
+	opacity: 0.7;
+	cursor: auto;
 }
 .bold{
 	font-weight: bold;
@@ -119,6 +126,10 @@ a{
 	@include border-radius(6px);
 	padding: 12px 18px;
 	text-align: center;
+	cursor: pointer;
+}
+.button:hover{
+	@include box-shadow(0px 1px 3px #999);
 }
 .button.green{
 	background: linear-gradient(to bottom, #70b500 0, #64a200 100%);
@@ -134,6 +145,9 @@ a{
 	background: transparent;
 	border: 1px solid white;
 	color: white;
+}
+.button:hover{
+	@include box-shadow(0px 1px 3px #999);
 }
 .border-bottom{
 	border-bottom: 1px solid #999;
@@ -872,13 +886,18 @@ section#board-content{
 	@include box-shadow(0px 0px 3px #999);
 	min-width: 240px;
 
+	hr{
+		border: 0;
+		height: 1px;
+		background: #ddd;
+		margin: 7px 5px;
+	}
 	.popup-header{
 		text-align: center;
 		font-size: 14px;
 		color: #666;
 		font-weight: bold;
 		padding: 3px 0px;
-		border-bottom: 1px solid #CCC;
 
 		.cross{
 			@include add-bg-image(close);
@@ -888,6 +907,7 @@ section#board-content{
 			width: 10px;
 			height: 10px;
 			margin-right: 5px;
+			margin-top: 7px;
 			cursor: pointer;
 		}
 		.cross:hover{
@@ -931,12 +951,15 @@ section#board-content{
 }
 #create-board-popup{
 	width: 300px;
+
 	#preview{
 		font-size: 14px;
-		display: block;
+		overflow: hidden;
+		height: 0;
 	}
 	#options{
-		display: block;
+		overflow: hidden;
+		height: 0;
 
 		div{
 			display: block;
@@ -965,11 +988,41 @@ section#board-content{
 
 		}
 	}
+	.show{
+		height: auto !important;
+	}
+	.hide{
+		height: 0 !important;
+		display: block !important;
+	}
+
 }
 #profile-popup{
 	top: 6%;
 	right: 1%;	
 	min-width: 300px;
+	padding: 0;
+
+	.popup-header{
+		padding: 10px 6px 6px;
+	}
+	.popup-body{
+		padding: 0;
+		margin: 5px 0px;
+	}
+	a{
+		display: block;
+		padding: 5px 10px;
+		font-size: 10pt;
+		margin: 0px 0px;
+		color: #444;
+		font-weight: bold;
+	}
+	a:hover{
+		color: white;
+		background: $bgColor;
+	}
+
 }
 #boards-popup{
 	top: 6%;

@@ -6,6 +6,7 @@ ol {
   margin: 0;
   padding: 0; }
 
+/* Comes from google fonts. */
 ::-webkit-scrollbar {
   width: 0.5em;
   height: 0.5em; }
@@ -30,7 +31,7 @@ body {
   box-sizing: border-box; }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 13pt;
   color: #555;
   overflow-x: hidden; }
@@ -45,8 +46,15 @@ a {
 .right {
   float: right; }
 
+.show {
+  display: block !important; }
+
 .hide {
   display: none !important; }
+
+.disabled {
+  opacity: 0.7;
+  cursor: auto; }
 
 .bold {
   font-weight: bold; }
@@ -66,7 +74,14 @@ a {
   -ms-border-radius: 6px;
   border-radius: 6px;
   padding: 12px 18px;
-  text-align: center; }
+  text-align: center;
+  cursor: pointer; }
+
+.button:hover {
+  -webkit-box-shadow: 0px 1px 3px #999;
+  -moz-box-shadow: 0px 1px 3px #999;
+  -ms-box-shadow: 0px 1px 3px #999;
+  box-shadow: 0px 1px 3px #999; }
 
 .button.green {
   background: linear-gradient(to bottom, #70b500 0, #64a200 100%);
@@ -86,6 +101,12 @@ a {
   background: transparent;
   border: 1px solid white;
   color: white; }
+
+.button:hover {
+  -webkit-box-shadow: 0px 1px 3px #999;
+  -moz-box-shadow: 0px 1px 3px #999;
+  -ms-box-shadow: 0px 1px 3px #999;
+  box-shadow: 0px 1px 3px #999; }
 
 .border-bottom {
   border-bottom: 1px solid #999; }
@@ -735,13 +756,17 @@ section#board-content {
   -ms-box-shadow: 0px 0px 3px #999;
   box-shadow: 0px 0px 3px #999;
   min-width: 240px; }
+  .popup hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 7px 5px; }
   .popup .popup-header {
     text-align: center;
     font-size: 14px;
     color: #666;
     font-weight: bold;
-    padding: 3px 0px;
-    border-bottom: 1px solid #CCC; }
+    padding: 3px 0px; }
     .popup .popup-header .cross {
       background: url("../images/close.png") no-repeat;
       background-size: 15px;
@@ -750,6 +775,7 @@ section#board-content {
       width: 10px;
       height: 10px;
       margin-right: 5px;
+      margin-top: 7px;
       cursor: pointer; }
     .popup .popup-header .cross:hover {
       background-size: 17px; }
@@ -789,9 +815,11 @@ section#board-content {
   width: 300px; }
   #create-board-popup #preview {
     font-size: 14px;
-    display: block; }
+    overflow: hidden;
+    height: 0; }
   #create-board-popup #options {
-    display: block; }
+    overflow: hidden;
+    height: 0; }
     #create-board-popup #options div {
       display: block;
       padding: 4px 0px; }
@@ -804,11 +832,32 @@ section#board-content {
       #create-board-popup #options div .detail {
         font-size: 11px;
         color: #666; }
+  #create-board-popup .show {
+    height: auto !important; }
+  #create-board-popup .hide {
+    height: 0 !important;
+    display: block !important; }
 
 #profile-popup {
   top: 6%;
   right: 1%;
-  min-width: 300px; }
+  min-width: 300px;
+  padding: 0; }
+  #profile-popup .popup-header {
+    padding: 10px 6px 6px; }
+  #profile-popup .popup-body {
+    padding: 0;
+    margin: 5px 0px; }
+  #profile-popup a {
+    display: block;
+    padding: 5px 10px;
+    font-size: 10pt;
+    margin: 0px 0px;
+    color: #444;
+    font-weight: bold; }
+  #profile-popup a:hover {
+    color: white;
+    background: #0e74af; }
 
 #boards-popup {
   top: 6%;
