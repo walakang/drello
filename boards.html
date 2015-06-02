@@ -41,7 +41,7 @@
 				</figure>
 				<span>Shidil Eringa</span>
 			</div>
-			<div id="add" class="button header-item"></div>
+			<div id="add" class="button header-item" onClick="showCreateNewPopupToggle()"></div>
 		</header>
 		<section id="boards-container" class="container-main">
 			<div id="boards-starred">
@@ -234,6 +234,35 @@
 					<a href="#" onClick="boardsPopupDockToggle()">Always keep this menu open </a>
 					<a href="#" onClick="showClosedBoardsPopup()">Show closed boards</a>
 				</div>
+			</div>
+		</div>
+		<div id="create-new-popup" class="popup hide">
+			<div class="popup-header">
+				<span class="title">Create</span>
+				<span class="cross" onClick="closePopups()"></span>
+			</div>
+			<hr/>
+			<div class="popup-body">
+				<a href="#" id="new-board">
+					<div class="title">Create Board...</div>
+					<div class="detail">
+						A board is a collection of cards ordered in a list of lists. Use it to manage a project, track a collection, or organize anything.
+					</div>
+				</a>
+				<hr/>
+				<a href="#" id="new-personal-org">
+					<div class="title">Create Personal Organization...</div>
+					<div class="detail">
+						An organization is a group of boards and people. Use it to group boards in your company, team, or family.
+					</div>
+				</a>
+				<hr/>
+				<a href="#" id="new-buisiness-org">
+					<div class="title">Create Buisiness Organization...</div>
+					<div class="detail">
+						With Business Class, your team has more security, administrative controls and superpowers.
+					</div>
+				</a>
 			</div>
 		</div>
 		<footer>

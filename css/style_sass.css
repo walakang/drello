@@ -741,6 +741,15 @@ section#board-content {
   -ms-transition: 0.2s all cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: 0.2s all cubic-bezier(0.165, 0.84, 0.44, 1); }
 
+.option {
+  font-weight: bold;
+  font-size: 13px; }
+
+.detail {
+  font-size: 11px;
+  color: #666;
+  font-weight: normal; }
+
 .popup {
   position: absolute;
   z-index: 8;
@@ -826,36 +835,30 @@ section#board-content {
       #create-board-popup #options div span {
         display: block;
         margin: 2px 0px; }
-      #create-board-popup #options div .option {
-        font-weight: bold;
-        font-size: 13px; }
-      #create-board-popup #options div .detail {
-        font-size: 11px;
-        color: #666; }
   #create-board-popup .show {
     height: auto !important; }
   #create-board-popup .hide {
     height: 0 !important;
     display: block !important; }
 
-#profile-popup {
+#profile-popup, #create-new-popup {
   top: 6%;
   right: 1%;
   min-width: 300px;
   padding: 0; }
-  #profile-popup .popup-header {
+  #profile-popup .popup-header, #create-new-popup .popup-header {
     padding: 10px 6px 6px; }
-  #profile-popup .popup-body {
+  #profile-popup .popup-body, #create-new-popup .popup-body {
     padding: 0;
     margin: 5px 0px; }
-  #profile-popup a {
+  #profile-popup a, #create-new-popup a {
     display: block;
-    padding: 5px 10px;
-    font-size: 10pt;
+    padding: 8px 10px;
+    font-size: 11pt;
     margin: 0px 0px;
     color: #444;
     font-weight: bold; }
-  #profile-popup a:hover {
+  #profile-popup a:hover, #create-new-popup a:hover {
     color: white;
     background: #0e74af; }
 
@@ -972,5 +975,12 @@ section#board-content {
   #boards-popup ul.boards-list li:hover {
     background: #BCD9EA;
     opacity: 1; }
+
+#create-new-popup {
+  max-width: 300px; }
+  #create-new-popup a div {
+    padding: 4px; }
+  #create-new-popup a:hover div {
+    color: white !important; }
 
 /*# sourceMappingURL=style_sass.css.map */

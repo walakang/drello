@@ -108,3 +108,11 @@ function showProfilePopupToggle(){
 
 	return false;
 }
+function showCreateNewPopupToggle(){
+
+	showPopup("create-new-popup");
+
+	return false;
+}
+
+

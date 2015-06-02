@@ -876,6 +876,15 @@ section#board-content{
 	right: 0%;
 	@include transition(0.2s,all,cubic-bezier(0.165, 0.84, 0.44, 1));
 }
+.option{
+	font-weight: bold;
+	font-size: 13px;
+}
+.detail{
+	font-size: 11px;
+	color: #666;
+	font-weight: normal;
+}
 .popup{
 	position:absolute;
 	z-index:8;
@@ -969,14 +978,6 @@ section#board-content{
 				display: block;
 				margin: 2px 0px;
 			}
-			.option{
-				font-weight: bold;
-				font-size: 13px;
-			}
-			.detail{
-				font-size: 11px;
-				color: #666;
-			}
 		}
 		.private{
 
@@ -1012,8 +1013,8 @@ section#board-content{
 	}
 	a{
 		display: block;
-		padding: 5px 10px;
-		font-size: 10pt;
+		padding: 8px 10px;
+		font-size: 11pt;
 		margin: 0px 0px;
 		color: #444;
 		font-weight: bold;
@@ -1152,4 +1153,18 @@ section#board-content{
 		}
 	}
 
+}
+#create-new-popup{
+	@extend #profile-popup;
+	max-width: 300px;
+
+	a div{
+		padding: 4px;
+	}
+	a:hover{
+
+		div{
+			color: white !important;
+		}
+	}
 }
