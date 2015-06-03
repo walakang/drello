@@ -30,6 +30,9 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+html {
+  background: #0e74af; }
+
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 13pt;
@@ -64,6 +67,34 @@ a {
 
 .white {
   color: white; }
+
+#overlay {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -5;
+  background: rgba(1, 1, 1, 0.5);
+  opacity: 0; }
+
+#overlay.visible {
+  z-index: 15;
+  opacity: 1; }
+
+/*	Specify the colors for the card labels
+*/
+span.green {
+  background: green; }
+
+span.blue {
+  background: #0e74af; }
+
+span.red {
+  background: red; }
+
+span.orange {
+  background: orange; }
 
 .no-overflow {
   overflow: hidden; }
@@ -362,9 +393,8 @@ text-indent: 18%;*/
 
   #header-boards #logo {
     left: 40%;
-    top: 25%; }
-    #header-boards #logo figure {
-      width: 60%; } }
+    top: 25%;
+    width: 70px; } }
 section#boards-container {
   background: white;
   padding: 10px 15px;
@@ -607,7 +637,27 @@ section#board-content {
       -moz-border-radius: 4px;
       -ms-border-radius: 4px;
       border-radius: 4px;
-      cursor: pointer; }
+      cursor: pointer;
+      position: relative; }
+      section#board-content .list .card .card-edit {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        opacity: 0; }
+        section#board-content .list .card .card-edit .edit {
+          display: block;
+          width: 30px;
+          height: 30px;
+          float: right;
+          margin: 0;
+          background: rgba(0, 0, 0, 0.05);
+          text-align: center;
+          vertical-align: middle;
+          padding-top: 5px; }
+      section#board-content .list .card .card-edit:hover {
+        opacity: 1; }
       section#board-content .list .card figure {
         margin: 0;
         padding: 0; }
@@ -615,10 +665,47 @@ section#board-content {
           max-width: 100%;
           box-sizing: border-box;
           height: auto; }
+      section#board-content .list .card figure.hide {
+        height: 0; }
       section#board-content .list .card .card-detail {
         padding: 8px;
         font-size: 13px; }
-    section#board-content .list #add-card:hover, section#board-content .list .card-detail:hover {
+        section#board-content .list .card .card-detail .card-exerpt {
+          font-size: 14px;
+          color: #666;
+          padding: 5px 0px;
+          text-align: justify; }
+        section#board-content .list .card .card-detail .card-flags span {
+          color: #888; }
+        section#board-content .list .card .card-detail .card-labels span {
+          width: 45px;
+          height: 8px;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          -ms-border-radius: 4px;
+          border-radius: 4px;
+          display: inline-block; }
+        section#board-content .list .card .card-detail .card-members {
+          display: block;
+          float: right;
+          margin: 2px 0px; }
+          section#board-content .list .card .card-detail .card-members span {
+            float: left;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 0px 2px; }
+            section#board-content .list .card .card-detail .card-members span img {
+              margin: 0;
+              padding: 0;
+              max-width: 100%;
+              box-sizing: border-box;
+              height: auto;
+              -webkit-border-radius: 4px;
+              -moz-border-radius: 4px;
+              -ms-border-radius: 4px;
+              border-radius: 4px; }
+    section#board-content .list #add-card:hover, section#board-content .list .card:hover {
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
       -ms-border-radius: 4px;
@@ -777,17 +864,13 @@ section#board-content {
     font-weight: bold;
     padding: 3px 0px; }
     .popup .popup-header .cross {
-      background: url("../images/close.png") no-repeat;
-      background-size: 15px;
-      background-position: center;
-      float: right;
-      width: 10px;
-      height: 10px;
-      margin-right: 5px;
-      margin-top: 7px;
-      cursor: pointer; }
+      position: absolute;
+      top: 10px;
+      right: 6px;
+      cursor: pointer;
+      font-size: 16px; }
     .popup .popup-header .cross:hover {
-      background-size: 17px; }
+      color: #111; }
   .popup .popup-body {
     padding: 1px;
     font-size: 13px;
@@ -842,7 +925,7 @@ section#board-content {
     display: block !important; }
 
 #profile-popup, #create-new-popup {
-  top: 6%;
+  top: 40px;
   right: 1%;
   min-width: 300px;
   padding: 0; }
@@ -863,7 +946,7 @@ section#board-content {
     background: #0e74af; }
 
 #boards-popup {
-  top: 6%;
+  top: 40px;
   left: 0%;
   min-width: 270px;
   font-size: 14px;
@@ -982,5 +1065,122 @@ section#board-content {
     padding: 4px; }
   #create-new-popup a:hover div {
     color: white !important; }
+
+#card-display-popup {
+  top: 10%;
+  left: 20%;
+  width: 60%;
+  height: auto;
+  z-index: 16;
+  background: #edeff0;
+  padding: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  border-radius: 2px; }
+  #card-display-popup .popup-header {
+    padding: 0; }
+  #card-display-popup #card-image-header {
+    width: 100%;
+    height: auto;
+    background: #fafafa;
+    cursor: pointer; }
+    #card-display-popup #card-image-header img {
+      max-width: 100%;
+      box-sizing: border-box;
+      height: auto;
+      max-width: 35%; }
+  #card-display-popup #card-image-header:hover {
+    opacity: 0.8;
+    -webkit-transition: 0.1s all ease-in-out;
+    -moz-transition: 0.1s all ease-in-out;
+    -ms-transition: 0.1s all ease-in-out;
+    transition: 0.1s all ease-in-out; }
+  #card-display-popup .popup-body {
+    position: relative; }
+    #card-display-popup .popup-body #card-information {
+      float: left;
+      width: 78%;
+      display: block;
+      padding: 10px;
+      font-size: 14px; }
+      #card-display-popup .popup-body #card-information .card-information-title {
+        display: block; }
+        #card-display-popup .popup-body #card-information .card-information-title span {
+          display: inline-block;
+          vertical-align: middle;
+          color: #777; }
+        #card-display-popup .popup-body #card-information .card-information-title .icon {
+          font-size: 18pt;
+          color: #888; }
+        #card-display-popup .popup-body #card-information .card-information-title .title {
+          color: #444;
+          font-size: 14pt;
+          font-weight: bold; }
+        #card-display-popup .popup-body #card-information .card-information-title .title-extra a {
+          color: #555;
+          font-size: 15px;
+          text-decoration: underline; }
+      #card-display-popup .popup-body #card-information .card-information-detail {
+        margin: 10px 0px;
+        padding: 10px 40px; }
+        #card-display-popup .popup-body #card-information .card-information-detail .label {
+          color: #777;
+          display: block;
+          margin-bottom: 6px; }
+        #card-display-popup .popup-body #card-information .card-information-detail .members, #card-display-popup .popup-body #card-information .card-information-detail labels {
+          margin: 0px 25px 0px 0px;
+          float: left;
+          display: inline-block;
+          position: relative;
+          vertical-align: middle; }
+        #card-display-popup .popup-body #card-information .card-information-detail .avatar {
+          display: inline-block;
+          vertical-align: middle;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          -ms-border-radius: 4px;
+          border-radius: 4px; }
+        #card-display-popup .popup-body #card-information .card-information-detail .avatar img {
+          max-width: 100%;
+          box-sizing: border-box;
+          height: auto;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          -ms-border-radius: 4px;
+          border-radius: 4px; }
+        #card-display-popup .popup-body #card-information .card-information-detail .labels span {
+          width: 50px;
+          height: 30px;
+          display: inline-block;
+          vertical-align: middle;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          -ms-border-radius: 4px;
+          border-radius: 4px; }
+        #card-display-popup .popup-body #card-information .card-information-detail .icon-plus {
+          width: 30px !important;
+          height: 30px;
+          background: #dadada;
+          display: inline-block;
+          vertical-align: middle;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          -ms-border-radius: 4px;
+          border-radius: 4px;
+          text-align: center;
+          line-height: 2;
+          color: #555;
+          cursor: pointer; }
+        #card-display-popup .popup-body #card-information .card-information-detail .icon-plus:hover {
+          color: #222; }
+        #card-display-popup .popup-body #card-information .card-information-detail .description {
+          clear: both;
+          margin-top: 10px; }
+    #card-display-popup .popup-body #card-actions {
+      float: right;
+      width: 20%; }
+      #card-display-popup .popup-body #card-actions ul {
+        list-style: none; }
 
 /*# sourceMappingURL=style_sass.css.map */

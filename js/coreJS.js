@@ -57,7 +57,6 @@ function Board(name){
 		a.appendChild(star);
 		this.node.appendChild(a);
 
-
 	}
 }
 function List(name){

@@ -11,7 +11,13 @@ function closePopups(){
 		_currentPopup.classList.add("hide");
 		_currentPopup = null;
 	}
+	if(document.getElementById("overlay").className==="visible")
+		document.getElementById("overlay").className = "";
 	return true;
+}
+
+function showOverlay(){
+	document.getElementById("overlay").className="visible"
 }
 // Hide all popusps when clicked outside the popup 
 document.getElementsByClassName("container-main")[0].onclick = closePopups;
@@ -69,7 +75,8 @@ function showPopup(name,position){
 	var popup = document.getElementById(name);
 	if(typeof(position)==='object'){
 		popup.style.left = position.left+"px";
-		popup.style.top = (position.top-80)+"px";
+		//popup.style.top = (position.top-80)+"px";
+		popup.style.bottom = (document.body.getBoundingClientRect().height-(position.bottom+100)+"px");
 	}
 
 	if(_currentPopup!=null){
@@ -91,7 +98,8 @@ function showCreateBoardPopup(e){
 	/* get the position of event target to calculate the position of the popup */
 	var position = {};
 	position.left = e.target.getBoundingClientRect().left;
-	position.top = e.target.getBoundingClientRect().top;
+	//position.top = e.target.getBoundingClientRect().top;
+	position.bottom = e.target.getBoundingClientRect().bottom;
 	showPopup("create-board-popup",position);
 
 	return false;
@@ -112,6 +120,16 @@ function showCreateNewPopupToggle(){
 
 	showPopup("create-new-popup");
 
+	return false;
+}
+function showCardPopupToggle(e){
+	/* the default behaviour of click on content is to hide the popups 
+	 * We need to override that.
+	*/
+	e = e || window.event
+	e.stopPropagation();
+	showOverlay();
+	showPopup('card-display-popup');
 	return false;
 }
 
