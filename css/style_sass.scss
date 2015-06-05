@@ -124,13 +124,14 @@ a{
 }
 #overlay{
 	width: 100%;
-	position: absolute;
+	position: fixed;
 	height: 100%;
 	top: 0;
 	left: 0;
 	z-index: -5;
 	background: rgba(1,1,1,0.5);
 	opacity: 0;
+	overflow: auto;
 }
 #overlay.visible{
 	z-index: 15;
@@ -158,33 +159,58 @@ span.orange{
 .no-overflow{
 	overflow: hidden;
 }
-.button{
-	@include border-radius(6px);
-	padding: 12px 18px;
-	text-align: center;
+///////////////// Button styles - OOCSS model ////////////
+.btn{
+	@include border-radius(4px);
+	display:inline-block;
+	zoom:1;
+	vertical-align:bottom;
+	text-align:center;
+	margin:5px 5px;
+	text-decoration:none;
+	font-weight:900;
 	cursor: pointer;
+	//text-shadow:0 1px 1px rgba(0,0,0,0.5);
+	@include box-shadow(0 1px 3px rgba(0,0,0,0.1));
+	color: #555;
 }
-.button:hover{
-	@include box-shadow(0px 1px 3px #999);
-}
-.button.green{
-	background: linear-gradient(to bottom, #70b500 0, #64a200 100%);
+.btn:hover{
+	//opacity: 0.7;
 	color: white;
-	border: none;
-	@include box-shadow(0px 0px 3px #AAA);
+	background: $bgColor !important;
 }
-.button.basic.blue{
+.btn-small{
+	padding: 5px;
+}
+.btn-normal{
+	padding: 10px;
+}
+.btn-big{
+	padding: 15px;
+}
+.btn-green{
+	background: linear-gradient(to bottom, #70b500 0, #64a200 100%) !important;
+	color: white;
+}
+.btn-gray{
+	background: linear-gradient(to bottom,#fff 0,#f8f9f9 100%);
+	color: #555;
+}
+.btn-outline{
 	background: transparent;
+}
+.btn-outline-blue{
 	border: 1px solid rgb(94, 152, 186);
 	color: rgb(94, 152, 186);
-}.button.basic.white{
+}
+.btn-outline-white{
 	background: transparent;
 	border: 1px solid white;
 	color: white;
 }
-.button:hover{
-	@include box-shadow(0px 1px 3px #999);
-}
+
+////////////////////////////////////////////////////////
+
 .border-bottom{
 	border-bottom: 1px solid #999;
 }
@@ -1049,10 +1075,10 @@ section#board-content{
 		border: 1px solid #76B5D1;
 		box-shadow: 0px 1px 3px #37B6EE;
 	} 
-	.button{
-		width: 40%;
-		padding: 10px 10px;
-		margin: 15px 0px;
+	.btn{
+		//width: 40%;
+		//padding: 10px 10px;
+		//margin: 15px 0px;
 	}
 }
 #create-board-popup{
@@ -1092,6 +1118,9 @@ section#board-content{
 	.hide{
 		height: 0 !important;
 		display: block !important;
+	}
+	.btn{
+		width: 100px;
 	}
 
 }
@@ -1382,10 +1411,20 @@ section#board-content{
 			float: right;
 			width: 20%;
 			h3{
-
+				 margin: 6px 0;
 			}
 			ul{
 				list-style: none;
+			}
+			.icon{
+				color: #999;	
+			}
+			.btn-gray{
+				display: block;
+				text-align: left;
+				width: 90%;
+				padding: 10px 5px;
+			
 			}
 		}
 	}

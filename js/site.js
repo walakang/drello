@@ -1,44 +1,45 @@
 // Make cJS global. This object holds the core methods and properties.
 // defined in coreJS.js
-var cJS = new coreJS();
+var cJS = new CoreJS();
 
-/* The _currentPopup variable holds the node of the popup displayed currently. 
+/* The CURRENT_POPUP variable holds the node of the popup displayed currently. 
 	It is used to hide the popup when another event occured.
 */
-_currentPopup = null;
-function closePopups(){
-	if(_currentPopup!=null){
-		_currentPopup.classList.add("hide");
-		_currentPopup = null;
+var CURRENT_POPUP = null;
+function closePopups() {
+    'use strict';
+	if (CURRENT_POPUP !== null) {
+		CURRENT_POPUP.classList.add("hide");
+		CURRENT_POPUP = null;
 	}
-	if(document.getElementById("overlay").className==="visible")
+	if (document.getElementById("overlay").className === "visible") {
 		document.getElementById("overlay").className = "";
+    }
 	return true;
 }
 
-function showOverlay(){
-	document.getElementById("overlay").className="visible"
+function showOverlay() {
+	document.getElementById("overlay").className = "visible";
 }
 // Hide all popusps when clicked outside the popup 
 document.getElementsByClassName("container-main")[0].onclick = closePopups;
 
-function hideToggle(node){
-	if(node.className === "show"){
+function hideToggle(node) {
+	if (node.className === "show") {
 		node.className = "";
-	}
-	else{
+	} else {
 		node.className = "show";
 	}
 }
 // behaviour for the search box on header.
-function focusSearch(node){
+function focusSearch(node) {
 	node.parentNode.classList.add("focused");
 	node.parentNode.children[1].classList.remove("hide");
 	node.parentNode.children[2].classList.remove("hide");
 
 	return;
 }
-function blurSearch(node){
+function blurSearch(node) {
 	node.parentNode.classList.remove("focused");
 	node.parentNode.children[0].value = "";
 	node.parentNode.children[1].classList.add("hide");
@@ -46,53 +47,52 @@ function blurSearch(node){
 
 	return;
 }
-function showHideSidebarToggle(){
+function showHideSidebarToggle() {
 	var menu = document.getElementById("board-menu");
 	hideToggle(menu);
 	return;
 }
-function showHideSidebarMenuToggle(){
+function showHideSidebarMenuToggle() {
 	var menu = document.querySelectorAll("#board-menu ul")[0];
 	hideToggle(menu);
 
 	return;
 }
-function createBoardPrvacyToggle(node){
-	if(node.id === "change"){
+function createBoardPrvacyToggle(node) {
+	if (node.id === "change") {
 		
 		hideToggle(document.getElementById("preview"));
 		hideToggle(document.getElementById("options"));
-	}
-	else{
+	} else {
 		//change the value on the privacy form
 		
 		hideToggle(document.getElementById("preview"));
 		hideToggle(document.getElementById("options"));
 	}
 }
-function showPopup(name,position){
+function showPopup(name, position) {
 	position = position || undefined;
 	var popup = document.getElementById(name);
-	if(typeof(position)==='object'){
-		popup.style.left = position.left+"px";
+	if (typeof (position) === 'object') {
+		popup.style.left = position.left + "px";
 		//popup.style.top = (position.top-80)+"px";
-		popup.style.bottom = (document.body.getBoundingClientRect().height-(position.bottom+100)+"px");
+		popup.style.bottom = (document.body.getBoundingClientRect().height - (position.bottom + 100) + "px");
 	}
 
-	if(_currentPopup!=null){
-		_currentPopup.classList.add("hide");
-		_currentPopup = null;
+	if (CURRENT_POPUP !== null) {
+		CURRENT_POPUP.classList.add("hide");
+		CURRENT_POPUP = null;
 	}
-	if(popup.classList.contains("hide")){
+	if (popup.classList.contains("hide")) {
 		popup.classList.remove("hide");
-		_currentPopup = popup;
+		CURRENT_POPUP = popup;
 	}
 }
-function showCreateBoardPopup(e){
+function showCreateBoardPopup(e) {
 	/* the default behaviour of click on content is to hide the popups 
 	 * We need to override that.
 	*/
-	e = e || window.event
+	e = e || window.event;
 	e.stopPropagation();
 	console.log(e.target);
 	/* get the position of event target to calculate the position of the popup */
@@ -100,33 +100,33 @@ function showCreateBoardPopup(e){
 	position.left = e.target.getBoundingClientRect().left;
 	//position.top = e.target.getBoundingClientRect().top;
 	position.bottom = e.target.getBoundingClientRect().bottom;
-	showPopup("create-board-popup",position);
+	showPopup("create-board-popup", position);
 
 	return false;
 }
-function showBoardsPopupToggle(){
+function showBoardsPopupToggle() {
 
 	showPopup("boards-popup");
 
 	return false;
 }
-function showProfilePopupToggle(){
+function showProfilePopupToggle() {
 
 	showPopup("profile-popup");
 
 	return false;
 }
-function showCreateNewPopupToggle(){
+function showCreateNewPopupToggle() {
 
 	showPopup("create-new-popup");
 
 	return false;
 }
-function showCardPopupToggle(e){
+function showCardPopupToggle(e) {
 	/* the default behaviour of click on content is to hide the popups 
 	 * We need to override that.
 	*/
-	e = e || window.event
+	e = e || window.event;
 	e.stopPropagation();
 	showOverlay();
 	showPopup('card-display-popup');

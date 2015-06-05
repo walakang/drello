@@ -1,4 +1,4 @@
-function coreJS(){
+function CoreJS(){
 
 	this.boards = [];
 	this.organizations = [];

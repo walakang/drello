@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="css/style_sass.css" >
 		<link rel="stylesheet" href="css/icons.css">
 		<link href='http://fonts.googleapis.com/css?family=Anaheim|Open+Sans:400,700|Rochester' rel='stylesheet' type='text/css'>
-		<script src="js/coreJS.js" ></script>
+		<script src="js/CoreJS.js" ></script>
 
 		<link rel="shortcut icon" href="favicon.ico"/>
 	</head>
@@ -22,7 +22,7 @@
 				Boards
 			</div>
 			<div id="search" class="header-item">
-				<input type="text" name="search-string" onFocus="return focusSearch(this);" onBlur="return blurSearch(this);"/>
+				<input type="search" name="search-string" onFocus="return focusSearch(this);" onBlur="return blurSearch(this);"/>
 				<div id="search-open" class="open hide"></div>
 				<div id="search-close" class="close hide"></div>
 			</div>
@@ -42,7 +42,7 @@
 				</figure>
 				<span>Shidil Eringa</span>
 			</div>
-			<div id="add" class="button header-item" onClick="showCreateNewPopupToggle()"></div>
+			<div id="add" class="header-item" onClick="showCreateNewPopupToggle()"></div>
 		</header>
 		<section id="boards-container" class="container-main">
 			<div id="boards-starred">
@@ -130,7 +130,7 @@
 							<span class="detail">This board will be public. It is visible to anyone with the link to this board and it will be visible to search engines like Google and Yahoo. Only people added to the board can view or edit it.</span >
 						</div>
 					</div>
-					<input type="submit" class="button green" value="Create"/>
+					<input type="submit" class="btn btn-normal btn-green" value="Create"/>
 				</form>
 			</div>
 		</div>

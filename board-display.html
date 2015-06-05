@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="css/style_sass.css" >
 		<link rel="stylesheet" href="css/icons.css">
 		<link href='http://fonts.googleapis.com/css?family=Anaheim|Open+Sans:400,700|Rochester' rel='stylesheet' type='text/css'>
-		<script src="js/coreJS.js" ></script>
+		<script src="js/CoreJS.js" ></script>
 
 		<link rel="shortcut icon" href="favicon.ico"/>
 	</head>
@@ -42,7 +42,7 @@
 				</figure>
 				<span>Shidil Eringa</span>
 			</div>
-			<div id="add" class="button header-item" onClick="showCreateNewPopupToggle()"></div>
+			<div id="add" class="header-item" onClick="showCreateNewPopupToggle()"></div>
 		</header>
 		<section id="board-ribbon" class="no-overflow">
 			<span class="title"> Website Redesign </span>
@@ -172,7 +172,7 @@
 							<span class="detail">This board will be public. It is visible to anyone with the link to this board and it will be visible to search engines like Google and Yahoo. Only people added to the board can view or edit it.</span >
 						</div>
 					</div>
-					<input type="submit" class="button green" value="Create"/>
+					<input type="submit" class="btn btn-normal btn-green" value="Create"/>
 				</form>
 			</div>
 		</div>
@@ -308,95 +308,115 @@
 				</a>
 			</div>
 		</div>
-		<div id="card-display-popup" class="popup hide">
-			<div class="popup-header">
-				<div id="card-image-header">
-					<a href="images/taco.png"><img src="images/taco.png" /></a>
-				</div>
-				<span class="cross icon-cancel" onClick="closePopups()"></span>
-			</div>
-			<div class="popup-body">
-				<section id="card-information">
-					<div class="card-information-title">
-						<span class="icon icon-credit-card"></span>
-						<span class="title">Card Name</span>
-						<span class="title-extra">In list <a href="#" >List Name</a></span>
-						<span id="card-subscribed" class="icon-eye-outline"></span>
+		
+		<div id="overlay" class="" onClick="closePopups()">
+			<div id="card-display-popup" class="popup hide">
+				<div class="popup-header">
+					<div id="card-image-header">
+						<a href="images/taco.png"><img src="images/taco.png" /></a>
 					</div>
-					<div class="card-information-detail">
-						<div class="members">
-							<div class="label">Members</div>
-							<span class="avatar"><img src="members/shidil.png" /></span>
-							<span class="icon-plus" id="card-add-member"></span>
+					<span class="cross icon-cancel" onClick="closePopups()"></span>
+				</div>
+				<div class="popup-body">
+					<section id="card-information">
+						<div class="card-information-title">
+							<span class="icon icon-credit-card"></span>
+							<span class="title">Card Name</span>
+							<span class="title-extra">In list <a href="#" >List Name</a></span>
+							<span id="card-subscribed" class="icon-eye-outline"></span>
 						</div>
-						<div class="labels">
-							<div class="label">Labels</div>
-							<span class="blue"></span>
-							<span class="green"></span>
-							<span class="icon-plus" id="card-add-label"></span>
-						</div>
-						<div class="description">
-							<div class="label">Description</div>
-							<div class="card-description">
-								<p>
-									Click Edit if you'd like to add or edit a card's description. You can also change the card's title (just click it!).
+						<div class="card-information-detail">
+							<div class="members">
+								<div class="label">Members</div>
+								<span class="avatar"><img src="members/shidil.png" /></span>
+								<span class="icon-plus" id="card-add-member"></span>
+							</div>
+							<div class="labels">
+								<div class="label">Labels</div>
+								<span class="blue"></span>
+								<span class="green"></span>
+								<span class="icon-plus" id="card-add-label"></span>
+							</div>
+							<div class="description">
+								<div class="label">Description</div>
+								<div class="card-description">
+									<p>
+										Click Edit if you'd like to add or edit a card's description. You can also change the card's title (just click it!).
 
-									Use the buttons on the right to add pictures, labels, checklists and more.
+										Use the buttons on the right to add pictures, labels, checklists and more.
 
-									The attached picture is Taco, the most famous Siberian Husky in New York City, and official spokes-mascot for Trello. You might see him around Trello introducing new features and whatnot.
+										The attached picture is Taco, the most famous Siberian Husky in New York City, and official spokes-mascot for Trello. You might see him around Trello introducing new features and whatnot.
 
-								</p>
+									</p>
+								</div>
 							</div>
 						</div>
-					</div>
-				</section>
-				<section id="card-actions">
-					<h3>Add</h3>
-					<ul>
-						<li>
-							<span class="icon icon-user"></span>
-							<span class="name">Members</span>
-						</li>
-						<li>
-							<span class="icon icon-user"></span>
-							<span class="name">Labels</span>
-						</li>
-						<li>
-							<span class="icon icon-user"></span>
-							<span class="name">Checklist</span>
-						</li>
-						<li>
-							<span class="icon icon-user"></span>
-							<span class="name">Due Date</span>
-						</li>
-						<li>
-							<span class="icon icon-attach"></span>
-							<span class="name">Attachment</span>
-						</li>
-					</ul>
-					<h3>Actions</h3>
-					<ul>
-						<li>
-							<span class="icon icon-right-open"></span>
-							<span class="name">Move</span>
-						</li>
-						<li>
-							<span class="icon icon-credit-card"></span>
-							<span class="name">Copy</span>
-						</li>
-						<li>
-							<span class="icon icon-user"></span>
-							<span class="name">Subscribe</span>
-						</li>
-						<li>
-							<span class="icon icon-user"></span>
-							<span class="name">Archive</span>
-						</li>
-					</ul>
-				</section>
+					</section>
+					<section id="card-actions">
+						<h3>Add</h3>
+						<ul>
+							<li>
+								 <a href="#" class="btn btn-normal btn-gray">
+									 <span class="icon icon-user"></span>
+									 <span class="name">Members</span>
+								 </a>
+							</li>
+							<li>
+								<a href="#" class="btn btn-normal btn-gray">
+									<span class="icon icon-user"></span>
+									<span class="name">Labels</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="btn btn-normal btn-gray">
+									<span class="icon icon-user"></span>
+									<span class="name">Checklist</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="btn btn-normal btn-gray">
+									<span class="icon icon-user"></span>
+									<span class="name">Due Date</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="btn btn-normal btn-gray">
+									<span class="icon icon-attach"></span>
+									<span class="name">Attachment</span>
+								</a>
+							</li>
+						</ul>
+						<h3>Actions</h3>
+						<ul>
+							<li>
+								<a href="#" class="btn btn-normal btn-gray">
+									<span class="icon icon-right-open"></span>
+									<span class="name">Move</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="btn btn-normal btn-gray">
+									<span class="icon icon-credit-card"></span>
+									<span class="name">Copy</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="btn btn-normal btn-gray">
+									<span class="icon icon-user"></span>
+									<span class="name">Subscribe</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="btn btn-normal btn-gray">
+									<span class="icon icon-user"></span>
+									<span class="name">Archive</span>
+								</a>
+							</li>
+						</ul>
+					</section>
+				</div>
 			</div>
 		</div>
-		<div id="overlay" class="" onClick="closePopups()"></div>
 		<script src="js/site.js" ></script>
 	</body>
 </html>

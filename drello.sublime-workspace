@@ -1,8 +1,428 @@
 {
-	"folders":
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"class",
+				"className"
+			],
+			[
+				"show",
+				"showPopup"
+			],
+			[
+				"sho",
+				"showPopup"
+			],
+			[
+				"sh",
+				"showPopup"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"boa",
+				"boardsPopup"
+			],
+			[
+				"bo",
+				"boardsPopup"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"cre",
+				"createElement"
+			],
+			[
+				"li",
+				"lists"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"orga",
+				"organizations"
+			]
+		]
+	},
+	"buffers":
 	[
 		{
-			"path": "/home/shidil/monkey/monkey-1.5.6/htdocs/Drello"
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 3403,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "boards.html",
+			"settings":
+			{
+				"buffer_size": 9834,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "board-display.html",
+			"settings":
+			{
+				"buffer_size": 13615,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/style_sass.scss",
+			"settings":
+			{
+				"buffer_size": 23970,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/coreJS.js",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "// Make cJS global. This object holds the core methods and properties.\n// defined in coreJS.js\nvar cJS = new coreJS();\n\n/* The _currentPopup variable holds the node of the popup displayed currently. \n	It is used to hide the popup when another event occured.\n*/\n_currentPopup = null;\nfunction closePopups(){\n	if(_currentPopup!=null){\n		_currentPopup.classList.add(\"hide\");\n		_currentPopup = null;\n	}\n	if(document.getElementById(\"overlay\").className===\"visible\")\n		document.getElementById(\"overlay\").className = \"\";\n	return true;\n}\n\nfunction showOverlay(){\n	document.getElementById(\"overlay\").className=\"visible\"\n}\n// Hide all popusps when clicked outside the popup \ndocument.getElementsByClassName(\"container-main\")[0].onclick = closePopups;\n\nfunction hideToggle(node){\n	if(node.className === \"show\"){\n		node.className = \"\";\n	}\n	else{\n		node.className = \"show\";\n	}\n}\n// behaviour for the search box on header.\nfunction focusSearch(node){\n	node.parentNode.classList.add(\"focused\");\n	node.parentNode.children[1].classList.remove(\"hide\");\n	node.parentNode.children[2].classList.remove(\"hide\");\n\n	return;\n}\nfunction blurSearch(node){\n	node.parentNode.classList.remove(\"focused\");\n	node.parentNode.children[0].value = \"\";\n	node.parentNode.children[1].classList.add(\"hide\");\n	node.parentNode.children[2].classList.add(\"hide\");\n\n	return;\n}\nfunction showHideSidebarToggle(){\n	var menu = document.getElementById(\"board-menu\");\n	hideToggle(menu);\n	return;\n}\nfunction showHideSidebarMenuToggle(){\n	var menu = document.querySelectorAll(\"#board-menu ul\")[0];\n	hideToggle(menu);\n\n	return;\n}\nfunction createBoardPrvacyToggle(node){\n	if(node.id === \"change\"){\n		\n		hideToggle(document.getElementById(\"preview\"));\n		hideToggle(document.getElementById(\"options\"));\n	}\n	else{\n		//change the value on the privacy form\n		\n		hideToggle(document.getElementById(\"preview\"));\n		hideToggle(document.getElementById(\"options\"));\n	}\n}\nfunction showPopup(name,position){\n	position = position || undefined;\n	var popup = document.getElementById(name);\n	if(typeof(position)==='object'){\n		popup.style.left = position.left+\"px\";\n		//popup.style.top = (position.top-80)+\"px\";\n		popup.style.bottom = (document.body.getBoundingClientRect().height-(position.bottom+100)+\"px\");\n	}\n\n	if(_currentPopup!=null){\n		_currentPopup.classList.add(\"hide\");\n		_currentPopup = null;\n	}\n	if(popup.classList.contains(\"hide\")){\n		popup.classList.remove(\"hide\");\n		_currentPopup = popup;\n	}\n}\nfunction showCreateBoardPopup(e){\n	/* the default behaviour of click on content is to hide the popups \n	 * We need to override that.\n	*/\n	e = e || window.event\n	e.stopPropagation();\n	console.log(e.target);\n	/* get the position of event target to calculate the position of the popup */\n	var position = {};\n	position.left = e.target.getBoundingClientRect().left;\n	//position.top = e.target.getBoundingClientRect().top;\n	position.bottom = e.target.getBoundingClientRect().bottom;\n	showPopup(\"create-board-popup\",position);\n\n	return false;\n}\nfunction showBoardsPopupToggle(){\n\n	showPopup(\"boards-popup\");\n\n	return false;\n}\nfunction showProfilePopupToggle(){\n\n	showPopup(\"profile-popup\");\n\n	return false;\n}\nfunction showCreateNewPopupToggle(){\n\n	showPopup(\"create-new-popup\");\n\n	return false;\n}\nfunction showCardPopupToggle(e){\n	/* the default behaviour of click on content is to hide the popups \n	 * We need to override that.\n	*/\n	e = e || window.event\n	e.stopPropagation();\n	showOverlay();\n	showPopup('card-display-popup');\n	return false;\n}\n\n\n",
+			"file": "js/site.js",
+			"file_size": 3477,
+			"file_write_time": 1433324818000000,
+			"settings":
+			{
+				"buffer_size": 3477,
+				"line_ending": "Unix"
+			}
 		}
-	]
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/login.html",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/index.html",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/boards.html",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/board-display.html",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/css/style_sass.scss",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/coreJS.js",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/site.js",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/board1.html",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/Core.js",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/scripts",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/css/style.scss",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/css/style.css",
+		"/home/shidil/training/js/scripts.js",
+		"/home/shidil/training/js/basics.sublime-project"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			";\n",
+			"cross",
+			"width: 20px",
+			"20px",
+			";\n",
+			"							\n",
+			"content",
+			"board1.html",
+			"0B5B8A",
+			"board-content",
+			"Create a board",
+			"div class=\"board\"",
+			">\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"cross icon-cancel",
+			"board-display.html",
+			"Create new board...",
+			"li class=\"board\"",
+			"li"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"settings":
+					{
+						"buffer_size": 3403,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3403,
+								3403
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 993.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "boards.html",
+					"settings":
+					{
+						"buffer_size": 9834,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9482,
+								9482
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4122.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "board-display.html",
+					"settings":
+					{
+						"buffer_size": 13615,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13552,
+								13552
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5211.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "css/style_sass.scss",
+					"settings":
+					{
+						"buffer_size": 23970,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 21369.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "js/coreJS.js",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 510.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "js/site.js",
+					"settings":
+					{
+						"buffer_size": 3477,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3477,
+								3477
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1896.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
 }
