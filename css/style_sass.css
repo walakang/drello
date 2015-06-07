@@ -1219,4 +1219,20 @@ section#board-content {
         width: 90%;
         padding: 10px 5px; }
 
+@media only screen and (max-width: 750px) {
+  #card-display-popup {
+    top: 5%;
+    left: 3%;
+    width: 94%; }
+
+  /** Display the actions menu below information sections */
+  #card-display-popup .popup-body #card-actions {
+    float: none;
+    width: 50%;
+    margin-left: 5%; }
+
+  #card-display-popup .popup-body #card-information {
+    float: none;
+    width: 100%; } }
+
 /*# sourceMappingURL=style_sass.css.map */

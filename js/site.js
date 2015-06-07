@@ -14,6 +14,8 @@ function closePopups() {
 	}
 	if (document.getElementById("overlay").className === "visible") {
 		document.getElementById("overlay").className = "";
+		// for mobile devices
+		document.getElementById("board-menu").style.display="block";
     }
 	return true;
 }
@@ -128,6 +130,8 @@ function showCardPopupToggle(e) {
 	*/
 	e = e || window.event;
 	e.stopPropagation();
+	// Hack for mobile devices
+	document.getElementById("board-menu").style.display="none";
 	showOverlay();
 	showPopup('card-display-popup');
 	return false;
