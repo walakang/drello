@@ -6,7 +6,9 @@ ol {
   margin: 0;
   padding: 0; }
 
-/* Comes from google fonts. */
+/* Replaces the ugly default scrollbar of chrome.
+ * forground is white with 60% opacity and background with 20% opacity.
+*/
 ::-webkit-scrollbar {
   width: 0.5em;
   height: 0.5em; }
@@ -25,6 +27,7 @@ body {
   scrollbar-face-color: rgba(255, 255, 255, 0.6);
   scrollbar-track-color: rgba(255, 255, 255, 0.2); }
 
+/* Change the box model. Recommended for resposive websites. */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -41,7 +44,7 @@ body {
 
 a {
   color: #5e98ba;
-  text-decoration: none; }
+  text-decoration: underline; }
 
 .left {
   float: left; }
@@ -68,38 +71,53 @@ a {
 .white {
   color: white; }
 
-#overlay {
-  width: 100%;
-  position: fixed;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: -5;
-  background: rgba(1, 1, 1, 0.5);
-  opacity: 0;
-  overflow: auto; }
-
-#overlay.visible {
-  z-index: 15;
-  opacity: 1; }
-
-/*	Specify the colors for the card labels
-*/
-span.green {
-  background: green; }
-
-span.blue {
-  background: #0e74af; }
-
-span.red {
-  background: red; }
-
-span.orange {
-  background: orange; }
-
 .no-overflow {
   overflow: hidden; }
 
+.border-bottom {
+  border-bottom: 1px solid #999; }
+
+.close {
+  background: url("../images/close.png") no-repeat;
+  background-size: 100%;
+  background-position: center;
+  float: right;
+  width: 20px;
+  height: 100%; }
+
+.open {
+  background: url("../images/open.png") no-repeat;
+  background-size: 100%;
+  background-position: center;
+  float: right;
+  width: 20px;
+  height: 100%; }
+
+.wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  clear: both; }
+
+.center {
+  text-align: center !important; }
+
+/********** Style for labels **************************/
+.green {
+  background: green; }
+
+.blue {
+  background: #0e74af; }
+
+.red {
+  background: red; }
+
+.orange {
+  background: orange; }
+
+/******************************************************/
+/*********** Button styles - OOCSS model **************/
 .btn {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -111,7 +129,7 @@ span.orange {
   text-align: center;
   margin: 5px 5px;
   text-decoration: none;
-  font-weight: 900;
+  font-weight: bold;
   cursor: pointer;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -152,48 +170,24 @@ span.orange {
   border: 1px solid white;
   color: white; }
 
-.border-bottom {
-  border-bottom: 1px solid #999; }
+/**************** End Button styles ***************/
+#overlay {
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -5;
+  background: rgba(1, 1, 1, 0.5);
+  opacity: 0;
+  overflow: auto; }
 
-.close {
-  background: url("../images/close.png") no-repeat;
-  background-size: 100%;
-  background-position: center;
-  float: right;
-  width: 20px;
-  height: 100%; }
-
-.open {
-  background: url("../images/open.png") no-repeat;
-  background-size: 100%;
-  background-position: center;
-  float: right;
-  width: 20px;
-  height: 100%; }
+#overlay.visible {
+  z-index: 15;
+  opacity: 1; }
 
 header {
   background: #026aa7; }
-
-#header-home {
-  background: white;
-  text-align: center !important;
-  padding: 6%;
-  margin: 0 auto;
-  font-size: 16pt; }
-  #header-home summary {
-    padding: 2% 15%;
-    text-align: center !important;
-    display: block; }
-  #header-home p {
-    padding: 0% 22%; }
-  #header-home a {
-    text-decoration: underline; }
-  #header-home .logo {
-    display: inline-block; }
-  #header-home img {
-    max-width: 100%;
-    box-sizing: border-box;
-    height: auto; }
 
 footer {
   text-align: center;
@@ -204,70 +198,90 @@ footer {
     padding-left: 8px;
     text-decoration: underline; }
 
+/***** Remove footer for devices with less width ******/
 @media only screen and (max-width: 400px) {
   footer {
     display: none; } }
-section.content article summary {
-  text-align: left;
-  padding: 80px 0% 40px;
-  width: 60%;
-  margin: 0 auto;
-  display: block; }
-section.content article figure {
-  padding: 0px 60px; }
-  section.content article figure img {
-    max-width: 100%;
-    box-sizing: border-box; }
-
-article#screenshot {
-  color: white;
-  background: #0e74af;
-  text-align: center;
-  font-size: 15pt; }
-
-article#abilities {
-  color: black;
+/*********** Style for Index Page *********************/
+#hero {
   background: white;
+  padding: 6%;
+  margin: 0 auto;
+  font-size: 16pt; }
+  #hero h1 {
+    padding: 2% 15%; }
+  #hero p {
+    padding: 0% 22%; }
+  #hero .logo {
+    display: inline-block; }
+  #hero img {
+    max-width: 100%;
+    box-sizing: border-box;
+    height: auto; }
+
+#screenshot, #abilities, #signup {
   text-align: center;
   font-size: 15pt; }
+  #screenshot p, #abilities p, #signup p {
+    text-align: left;
+    padding: 80px 0% 40px;
+    width: 60%;
+    margin: 0 auto;
+    display: block; }
+  #screenshot figure, #abilities figure, #signup figure {
+    padding: 0px 60px; }
+    #screenshot figure img, #abilities figure img, #signup figure img {
+      max-width: 100%;
+      box-sizing: border-box; }
 
-article#signup {
+#screenshot {
   color: white;
-  background: #0e74af;
-  text-align: center;
-  font-size: 15pt; }
+  background: #0e74af; }
 
- /*text-align: left;
-padding: 80px 0% 40px;
-text-indent: 18%;*/
+#abilities {
+  color: black;
+  background: white; }
+
+#signup {
+  color: white;
+  background: #0e74af; }
+
+/* CSS for resposiveness on Index page
+ * Style for Tablets
+ */
 @media only screen and (max-width: 950px) {
-  section.content article summary {
+  #screenshot p, #abilities p, #signup p {
     text-align: left;
     padding: 25px 2% 20px;
     width: 90%;
     font-size: 12pt; }
-  section.content article figure {
+  #screenshot figure, #abilities figure, #signup figure {
     padding: 0px 5%;
     margin: 0; }
 
-  #header-home summary {
+  #hero h1 {
     text-align: center;
     padding: 16px 0%;
     width: 100%;
     font-size: 18pt; }
-  #header-home p {
+  #hero p {
     padding: 0 4%;
     font-size: 13pt;
     width: 90%;
     margin: 0 auto; }
-  #header-home figure.logo {
+  #hero .logo {
     width: 200px; } }
+/* CSS for resposiveness on Index page
+ * Style for Phones
+ */
 @media only screen and (max-width: 640px) {
-  #header-home {
+  #hero {
     padding: 6% 2%; }
 
-  #header-home figure.logo {
+  #hero .logo {
     width: 200px; } }
+/************ End stles for Index ******************/
+/************ Styles for Boards Page ***************/
 #header-boards {
   background: #0B5B8A;
   height: 39px;
@@ -463,6 +477,7 @@ section#boards-container {
     margin-right: 10px;
     margin-bottom: 5px; }
   section#boards-container a:not(#org-create) {
+    text-decoration: none;
     background: #0E74AF;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -548,6 +563,7 @@ span.not-starred {
   -ms-transition: 0.1s all ease-in-out;
   transition: 0.1s all ease-in-out; }
 
+/********* Styles for the board and lists page ************/
 section#board-ribbon {
   background: #0e74af;
   height: 40px;
@@ -623,8 +639,7 @@ section#board-content {
     min-width: 270px;
     margin: 0px 5px;
     display: flex;
-    flex-direction: column;
-    /*min-width: 244px;*/ }
+    flex-direction: column; }
     section#board-content .list .list-head {
       padding: 6px 10px;
       font-weight: bold;
@@ -855,7 +870,6 @@ section#board-content {
   z-index: 8;
   background: white;
   padding: 6px;
-  /*border: 1px solid #CCC;*/
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -865,6 +879,8 @@ section#board-content {
   -ms-box-shadow: 0px 0px 3px #999;
   box-shadow: 0px 0px 3px #999;
   min-width: 240px; }
+  .popup a {
+    text-decoration: none; }
   .popup hr {
     border: 0;
     height: 1px;
