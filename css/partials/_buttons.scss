@@ -1,0 +1,48 @@
+/*********** Button styles - OOCSS model **************/
+.btn{
+	@include border-radius(4px);
+	display: inline-block;
+	zoom: 1;
+	vertical-align: bottom;
+	text-align: center;
+	margin: 5px 5px;
+	text-decoration: none;
+	font-weight: bold;
+	cursor: pointer;
+	@include box-shadow(0 1px 3px rgba(0,0,0,0.1));
+	color: #555;
+}
+.btn:hover{
+	color: white;
+	background: $bgColor !important;
+}
+.btn-small{
+	padding: 5px;
+}
+.btn-normal{
+	padding: 10px;
+}
+.btn-big{
+	padding: 15px;
+}
+.btn-green{
+	background: linear-gradient(to bottom, #70b500 0, #64a200 100%) !important;
+	color: white;
+}
+.btn-gray{
+	background: linear-gradient(to bottom,#fff 0,#f8f9f9 100%);
+	color: #555;
+}
+.btn-outline{
+	background: transparent;
+}
+.btn-outline-blue{
+	border: 1px solid rgb(94, 152, 186);
+	color: rgb(94, 152, 186);
+}
+.btn-outline-white{
+	background: transparent;
+	border: 1px solid white;
+	color: white;
+}
+/**************** End Button styles ***************/

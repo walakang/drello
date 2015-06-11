@@ -1,0 +1,33 @@
+
+sprites.png
+format: RGBA8888
+filter: MipMapLinearLinear,Linear
+repeat: none
+logo-white
+  rotate: false
+  xy: 2, 36
+  size: 274, 74
+  orig: 274, 74
+  offset: 0, 0
+  index: -1
+logo
+  rotate: false
+  xy: 280, 41
+  size: 252, 69
+  orig: 252, 69
+  offset: 0, 0
+  index: -1
+icon
+  rotate: false
+  xy: 536, 30
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+logo-small
+  rotate: false
+  xy: 2, 2
+  size: 108, 30
+  orig: 108, 30
+  offset: 0, 0
+  index: -1

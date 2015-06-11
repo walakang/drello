@@ -90,7 +90,7 @@ $ScriptFont: 'Rochester', cursive;
 @include scrollbars(.5em, rgba(255,255,255,0.6), rgba(255, 255, 255, 0.2));
 
 /* Change the box model. Recommended for resposive websites. */
-*{
+*, *:before, *:after{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -286,6 +286,9 @@ section{
 	}
 	.logo{
 		display: inline-block;		
+		/*background-position: 761px -41px;
+		width: 274px;
+		height: 74px;*/
 	}
 	img{
 		@include img-tag();
@@ -416,7 +419,7 @@ section{
 		@include border-radius(2px);
 		padding: 0px 0px 0px 0px;
 		cursor: pointer;
-		display: inline-flex;
+		display: inline-block;
 		float: none;
 		vertical-align: top;
 	}
@@ -591,7 +594,7 @@ section#boards-container{
 		list-style: none;
 		margin-left: 35px;
 		margin-right: 0px;
-		display: box;
+		display: block;
 		overflow: auto;
 	}
 	li{
@@ -1062,7 +1065,7 @@ section#board-content{
 	}
 	.popup-label{
 		font-weight: bold;
-		fonr-size: 15px;
+		font-size: 15px;
 		padding: 2px 0px;
 		display: block;
 	}
