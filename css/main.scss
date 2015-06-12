@@ -5,3 +5,16 @@
 @import "partials/reset";
 @import "partials/buttons";
 
+// Types and links
+html{
+	background: $bgColor;
+}
+body{
+	font-family: $primaryFont;
+	font-size: 13pt;
+	color: $primaryFontColor;
+}
+a{
+	color: $secondaryFontColor;
+	text-decoration: underline;
+}
