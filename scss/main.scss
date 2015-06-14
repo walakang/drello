@@ -1,0 +1,143 @@
+// *
+// * Version: 0.0.1
+// * Created by: Shidil Eringa <shidil@qburst.com>,
+// *
+// * Stylesheet for desktop computers. Responsive components at the end of the sheet.
+// *
+
+// * Import Modules and Variables
+@import "modules/base";
+
+// * Import partials
+@import "partials/reset";
+@import "partials/buttons";
+
+// * Types and links
+html{
+	background: $bg-color;
+}
+body{
+	font-family: $body-font;
+	font-size: 13pt;
+	color: $text-color;
+}
+a{
+	color: $link-color;
+	text-decoration: none;
+}
+footer{
+	text-align: center;
+	font-size: 13pt;
+	padding: 30px 0px;
+	background: white;
+	
+	a{
+		padding-left: 8px;
+		text-decoration: underline;
+	}
+}
+
+// * Change the box model. Recommended for resposive websites.
+*, *:before, *:after{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+// * Replaces the ugly default scrollbar of chrome.
+// * forground is white with 60% opacity and background with 20% opacity.
+// *
+@include scrollbars(.5em, rgba(255,255,255,0.6), rgba(255, 255, 255, 0.2));
+
+// Common styles
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.center{
+	float: none;
+	margin: 0 auto;
+}
+.absolute-center{
+	// Width must be specified inorder to work.
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0 auto;
+}
+.no-display{
+	display: none !important;
+}
+.hidden{
+	visibiliy: hidden;
+}
+.disabled{
+	opacity: 0.7;
+	cursor: auto;
+}
+.bold{
+	font-weight: bold;
+}
+.big{
+	font-size: 26pt;
+}
+.white-text{
+	color: white;
+}
+.no-overflow{
+	overflow: hidden;
+}
+.border-bottom{
+	border-bottom: 1px solid #999;
+}
+.underline{
+	text-decoration: underline;
+}
+.text-center{
+	text-align: center;
+}
+/********** Style for labels **************************/
+.green{
+	background: green;
+}
+.blue{
+	background: $bgColor;
+}
+.red{
+	background: red;
+}
+.orange{
+	background: orange;
+}
+/******************************************************/
+.overlay{
+	width: 100%;
+	position: fixed;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: $z-overlay;
+	background: rgba(1,1,1,0.5);
+	opacity: 0;
+	overflow: auto;
+}
+.overlay.visible{
+	z-index: $z-overlay-visible;
+	opacity: 1;
+}
+
+// * Include responsive styles
+@media (min-width: $breakpoint-medium) and (max-width: ($breakpoint-large - 1)) {
+
+  @import 'partials/_tablet';
+
+}
+@media (min-width: $breakpoint-small) and (max-width: ($breakpoint-medium - 1)) {
+
+  @import 'partials/_phone';
+
+}
