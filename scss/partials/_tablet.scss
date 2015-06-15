@@ -1,0 +1,48 @@
+/* CSS for resposiveness on Index page
+ * Style for Tablets
+ */
+.home-article{
+
+}
+.home-article-text{
+	padding: 25px 2% 20px;
+	width: 90%;
+	font-size: 12pt;
+}
+.home-article-image{
+	padding: 0px 5%;
+	margin: 0;
+}
+
+#hero{
+	h1{
+		padding: 16px 0%;
+		width: 100%;
+		font-size: 18pt;
+	}
+	p{
+		padding: 0 4%;
+		font-size: 13pt;
+		width: 90%;
+	}
+}
+.logo-big{
+	width: 200px;
+	height: 55px;
+}
+
+// Header items
+#header-boards #search{
+	width: 34px;
+	background-position: center;
+}
+#header-boards #profile span{
+	display: none;
+}
+#header-boards #boards{
+	font-size: 0px;
+	width: 0px;
+}
+#header-boards #logo{
+	width: 70px;
+}

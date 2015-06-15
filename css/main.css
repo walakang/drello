@@ -165,6 +165,9 @@ body {
 .orange {
   background: orange; }
 
+.white {
+  background: white; }
+
 /******************************************************/
 .overlay {
   width: 100%;
@@ -253,8 +256,11 @@ body {
   height: 55px; }
 
 .logo-small {
-  width: 180px;
-  height: 49px; }
+  background: url("../images/logo-small.png") no-repeat;
+  background-position: center;
+  background-size: 100%;
+  width: 108px;
+  height: 30px; }
 
 .alt-bg:nth-child(even) {
   color: white;
@@ -282,8 +288,205 @@ body {
 .home-article-image {
   padding: 0px 60px; }
 
+.header-item {
+  background: rgba(255, 255, 255, 0.27);
+  height: 30px;
+  /*margin-left: 8px;*/
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  border-radius: 2px;
+  padding: 0px 0px 0px 0px;
+  cursor: pointer;
+  display: inline-block;
+  float: none;
+  vertical-align: top; }
+
+.header-item:hover {
+  opacity: 0.85; }
+
+#header-boards {
+  background: #0B5B8A;
+  height: 39px;
+  padding: 4px;
+  position: relative;
+  z-index: 10; }
+  #header-boards #logo {
+    height: 39px;
+    -webkit-transition: 0.1s all ease-in-out;
+    -moz-transition: 0.1s all ease-in-out;
+    -ms-transition: 0.1s all ease-in-out;
+    transition: 0.1s all ease-in-out;
+    opacity: 0.8; }
+  #header-boards #logo:hover {
+    -webkit-transition: 0.1s all ease-in-out;
+    -moz-transition: 0.1s all ease-in-out;
+    -ms-transition: 0.1s all ease-in-out;
+    transition: 0.1s all ease-in-out;
+    opacity: 1; }
+
+#profile {
+  float: right;
+  color: white;
+  max-width: 140px;
+  font-size: 12pt;
+  margin-right: 5px; }
+  #profile figure {
+    margin: 0;
+    width: 30px;
+    display: inline-block;
+    vertical-align: middle; }
+  #profile span {
+    margin: 0;
+    font-size: 11pt;
+    padding-left: 5px;
+    padding-right: 10px;
+    line-height: 2; }
+
+#notifications {
+  background: url("../images/bell.png") no-repeat rgba(255, 255, 255, 0.27);
+  margin-right: 5px;
+  float: right;
+  width: 30px;
+  background-size: 20px;
+  background-position: center; }
+
+#add {
+  background: url("../images/plus.png") no-repeat rgba(255, 255, 255, 0.27);
+  float: right;
+  width: 30px;
+  background-size: 25px;
+  background-position: center;
+  margin-right: 5px; }
+
+#boards {
+  width: 90px;
+  background: url("../images/icon-white.png") no-repeat rgba(255, 255, 255, 0.27);
+  background-size: 17px;
+  background-position: 6px center;
+  color: white;
+  font-size: 11pt;
+  padding-left: 30px;
+  line-height: 2;
+  margin-left: 5px;
+  display: inline-block; }
+
+#search {
+  width: 15%;
+  background: url("../images/search.png") no-repeat rgba(255, 255, 255, 0.27);
+  -webkit-transition: 0.1s all ease-in-out;
+  -moz-transition: 0.1s all ease-in-out;
+  -ms-transition: 0.1s all ease-in-out;
+  transition: 0.1s all ease-in-out;
+  background-size: 20px;
+  background-position: 95% center; }
+  #search input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    height: 100%; }
+  #search input:focus {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    border: 0;
+    width: 100%;
+    box-shadow: none;
+    -webkit-appearance: none;
+    outline: none; }
+  #search #search-open, #search #search-close {
+    display: inline;
+    margin: 0px 2px;
+    opacity: 0.7; }
+
+#search.focused {
+  width: 24%;
+  background: white; }
+
+@media (min-width: 680px) and (max-width: 1023px) {
+  /* CSS for resposiveness on Index page
+   * Style for Tablets
+   */
+  .home-article-text {
+    padding: 25px 2% 20px;
+    width: 90%;
+    font-size: 12pt; }
+
+  .home-article-image {
+    padding: 0px 5%;
+    margin: 0; }
+
+  #hero h1 {
+    padding: 16px 0%;
+    width: 100%;
+    font-size: 18pt; }
+  #hero p {
+    padding: 0 4%;
+    font-size: 13pt;
+    width: 90%; }
+
+  .logo-big {
+    width: 200px;
+    height: 55px; }
+
+  #header-boards #search {
+    width: 34px;
+    background-position: center; }
+
+  #header-boards #profile span {
+    display: none; }
+
+  #header-boards #boards {
+    font-size: 0px;
+    width: 0px; }
+
+  #header-boards #logo {
+    width: 70px; } }
 @media (min-width: 120px) and (max-width: 679px) {
   footer {
-    display: none; } }
+    display: none; }
+
+  /* CSS for resposiveness on Index page
+   * Style for Phones
+   */
+  .home-article-text {
+    padding: 25px 2% 20px;
+    width: 90%;
+    font-size: 12pt; }
+
+  .home-article-image {
+    padding: 0px 5%;
+    margin: 0; }
+
+  #hero h1 {
+    padding: 16px 0%;
+    width: 100%;
+    font-size: 18pt; }
+  #hero p {
+    padding: 0 4%;
+    font-size: 13pt;
+    width: 90%; }
+
+  #hero {
+    padding: 6% 2%; }
+
+  .logo-big {
+    width: 200px;
+    height: 55px; }
+
+  #header-boards #search {
+    width: 34px;
+    background-position: center; }
+
+  #header-boards #profile span {
+    display: none; }
+
+  #header-boards #boards {
+    font-size: 0px;
+    width: 0px; }
+
+  #header-boards #logo {
+    width: 70px; } }
 
 /*# sourceMappingURL=main.css.map */

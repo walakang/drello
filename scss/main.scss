@@ -98,6 +98,9 @@ p{
 .orange{
 	background: orange;
 }
+.white{
+	background: white;
+}
 /******************************************************/
 .overlay{
 	width: 100%;
@@ -194,8 +197,11 @@ p{
 	height: 55px;
 }
 .logo-small{
-	width: 180px;
-	height: 49px;
+	@include add-bg-image(logo-small);
+	background-position: center;
+	background-size: 100%;
+	width: 108px;
+	height: 30px;
 }
 // Index page sections have alternating background and text color
 .alt-bg:nth-child(even){
@@ -228,7 +234,123 @@ p{
 	padding: 0px 60px;	
 }
 
+// Boards page
+.header-item{
+	background: rgba(255, 255, 255, 0.27);
+	height: 30px;
+	/*margin-left: 8px;*/
+	@include border-radius(2px);
+	padding: 0px 0px 0px 0px;
+	cursor: pointer;
+	display: inline-block;
+	float: none;
+	vertical-align: top;
+}
+.header-item:hover{
+	//background: rgba(255, 255, 255, 0.17);
+	opacity: 0.85;
+}
+#header-boards{
+	background: $highlight-color;
+	height: $header-height;
+	padding: 4px;
+	position: relative;
+	z-index: $z-header;
+	
+	#logo{
+		height: $header-height;	
+		@include transition-all();
+		opacity: 0.8;
+	}
+	#logo:hover{
+		@include transition-all();
+		opacity: 1;
+	}
+}
+// The following styles for individiual header items are very specific.
+// TODO: make them classes.
+#profile{
+		float: right;
+		color: white;
+		max-width: 140px;
+		font-size: 12pt;
+		margin-right: 5px;
+		figure{
+			margin: 0;
+			width: 30px;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		span{
+			margin: 0;
+			font-size: 11pt;
+			padding-left: 5px;
+			padding-right: 10px;
+			line-height: 2;
+		}
+	}
+	#notifications{
+		@include add-bg-image-color(bell,rgba(255, 255, 255, 0.27));
+		margin-right: 5px;
+		float: right;
+		width: 30px;
+		background-size: 20px;
+		background-position: center;
+	}
+	#notifications:hover{
+	}
+	#add{
+		@include add-bg-image-color(plus,rgba(255, 255, 255, 0.27));
+		float: right;
+		width: 30px;
+		background-size: 25px;
+		background-position: center;
+		margin-right: 5px;
+	}
+	#boards{
+		width: 90px;
+		@include add-bg-image-color(icon-white,rgba(255, 255, 255, 0.27));
+		background-size: 17px;
+		background-position: 6px center;
+		color: white;
+		font-size: 11pt;
+		padding-left: 30px;
+		line-height: 2;
+		margin-left: 5px;
+		display: inline-block;
+	}
+	#search{
+		width: 15%;
+		@include add-bg-image-color(search,rgba(255, 255, 255, 0.27));
+		@include transition-all();
+		background-size: 20px;
+		background-position: 95% center;
+		input{
+			width: 100%;
+			background: transparent;
+			border: none;
+			height: 100%;
 
+		}
+		input:focus{
+			@include border-radius(4px);
+			border: 0;
+			width: 100%;
+			box-shadow: none;
+			-webkit-appearance: none;
+			outline: none; 
+		}
+		#search-open,#search-close{
+			  display: inline;
+			  margin: 0px 2px;
+			  opacity: 0.7;
+		}
+	}
+	#search.focused{
+		width: 24%;
+		background: white;
+		
+	}
 
 
 

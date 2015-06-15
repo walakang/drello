@@ -11,7 +11,7 @@ $fonts: 		    	'../font/';
 
 // Colors
 $bg-color: rgb(14, 116, 175);
-$highlight-color: #000;
+$highlight-color: #0B5B8A;
 $error-color: red;
 $error-bg-color: white;
 $success-color: #390;
@@ -31,3 +31,7 @@ $title-font: 'Anaheim', sans-serif;
 // Z-INDEX
 $z-overlay: -5;
 $z-overlay-visible: 15;
+$z-header: 10;
+
+// Layout
+$header-height: 39px;

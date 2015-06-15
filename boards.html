@@ -17,7 +17,7 @@
 		<link rel="shortcut icon" href="favicon.ico"/>
 	</head>
 	<body>
-		<header id="header-boards">
+		<header id="header-boards" class="no-overflow">
 			<div id="boards" class="header-item" onClick="showBoardsPopupToggle();">
 				Boards
 			</div>
@@ -26,13 +26,9 @@
 				<div id="search-open" class="open hide"></div>
 				<div id="search-close" class="close hide"></div>
 			</div>
-			<div id="logo">
-				<a href="boards.html">
-					<figure class="logo">
-						<img src="images/logo-small.png" alt="Drello" />
-					</figure>
-				</a>
-			</div>
+			<a href="boards.html">
+				<div id="logo" class="logo logo-small absolute-center"></div>
+			</a>
 			<div id="notifications" class="header-item" >
 
 			</div>
@@ -44,7 +40,7 @@
 			</div>
 			<div id="add" class="header-item" onClick="showCreateNewPopupToggle()"></div>
 		</header>
-		<section id="boards-container" class="container-main">
+		<section id="boards-container" class="container-main white no-overflow">
 			<div id="boards-starred">
 				<h1 bg="star">
 					Starred Boards
