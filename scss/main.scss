@@ -25,6 +25,12 @@ a{
 	color: $link-color;
 	text-decoration: none;
 }
+a:hover{
+	color: darkslateblue;
+}
+img{
+	@include img-tag();
+}
 footer{
 	text-align: center;
 	font-size: 13pt;
@@ -35,6 +41,9 @@ footer{
 		padding-left: 8px;
 		text-decoration: underline;
 	}
+}
+p{
+	text-align: left;
 }
 
 // * Change the box model. Recommended for resposive websites.
@@ -50,25 +59,6 @@ footer{
 @include scrollbars(.5em, rgba(255,255,255,0.6), rgba(255, 255, 255, 0.2));
 
 // Common styles
-.left{
-	float: left;
-}
-.right{
-	float: right;
-}
-.center{
-	float: none;
-	margin: 0 auto;
-}
-.absolute-center{
-	// Width must be specified inorder to work.
-	position: absolute;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	margin: 0 auto;
-}
 .no-display{
 	display: none !important;
 }
@@ -88,24 +78,19 @@ footer{
 .white-text{
 	color: white;
 }
-.no-overflow{
-	overflow: hidden;
-}
 .border-bottom{
 	border-bottom: 1px solid #999;
 }
 .underline{
 	text-decoration: underline;
 }
-.text-center{
-	text-align: center;
-}
+
 /********** Style for labels **************************/
 .green{
 	background: green;
 }
 .blue{
-	background: $bgColor;
+	background: $bg-color;
 }
 .red{
 	background: red;
@@ -129,6 +114,124 @@ footer{
 	z-index: $z-overlay-visible;
 	opacity: 1;
 }
+
+// Layouts
+.no-overflow{
+	overflow: hidden;
+}
+.wrapper{
+	position: relative;
+	display: block;
+	width: 100%;
+	height: auto;
+	clear: both;
+}
+.width-90{
+	width: 90%;
+}
+.width-80{
+	width: 80%;
+}
+.width-60{
+	width: 60%;
+}
+.width-50{
+	width: 50%;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.center{
+	float: none;
+	margin: 0 auto;
+}
+.block{
+	display: block;
+}
+.absolute-center{
+	// Width must be specified inorder to work.
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0 auto;
+}
+.text-center{
+	text-align: center;
+}
+.break{
+	display: block;
+}
+.break-1{
+	@extend .break;
+	margin: 5px 0px;
+}
+.break-2{
+	@extend .break;
+	margin: 10px 0px;
+}
+.break-4{
+	@extend .break;
+	margin: 20px 0px;
+}
+// Page Styles
+.logo{
+	@include add-bg-image(logo);
+	//background-position: -271px -38px;
+	background-position: center;
+	background-size: 100%;
+}
+.logo-big{
+	width: 266px;
+	height: 74px;
+}
+.logo-medium{
+	width: 200px;
+	height: 55px;
+}
+.logo-small{
+	width: 180px;
+	height: 49px;
+}
+// Index page sections have alternating background and text color
+.alt-bg:nth-child(even){
+	color: white;
+	background: $bg-color;
+}
+.alt-bg:nth-child(odd){
+	color: $text-color;
+	background: white;
+}
+#hero{
+	padding: 6%;
+	font-size: 16pt;
+	
+	h1{
+		padding: 2% 15%;
+	}
+	p{
+		padding: 0% 22%;
+		color: #555;
+	}
+}
+.home-article{
+	font-size: 15pt;
+}
+.home-article-text{
+	padding: 80px 0% 40px;
+}
+.home-article-image{
+	padding: 0px 60px;	
+}
+
+
+
+
+
 
 // * Include responsive styles
 @media (min-width: $breakpoint-medium) and (max-width: ($breakpoint-large - 1)) {

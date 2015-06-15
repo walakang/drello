@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* begin scss */
 html,
 body,
@@ -5,6 +6,18 @@ ul,
 ol {
   margin: 0;
   padding: 0; }
+
+/* When we use Firefox, links are surrounded by a rated box once you’ve pressed them.
+ * To solve this problem, we must use the property outline in the following way:
+ */
+a:active, a:focus {
+  outline: none; }
+
+/* Change the box model. Recommended for resposive websites. */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
 
 /* Replaces the ugly default scrollbar of chrome.
  * forground is white with 60% opacity and background with 20% opacity.
@@ -28,7 +41,7 @@ body {
   scrollbar-track-color: rgba(255, 255, 255, 0.2); }
 
 /* Change the box model. Recommended for resposive websites. */
-* {
+*, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
@@ -213,7 +226,10 @@ footer {
   #hero p {
     padding: 0% 22%; }
   #hero .logo {
-    display: inline-block; }
+    display: inline-block;
+    /*background-position: 761px -41px;
+    width: 274px;
+    height: 74px;*/ }
   #hero img {
     max-width: 100%;
     box-sizing: border-box;
@@ -327,7 +343,7 @@ footer {
     border-radius: 2px;
     padding: 0px 0px 0px 0px;
     cursor: pointer;
-    display: inline-flex;
+    display: inline-block;
     float: none;
     vertical-align: top; }
   #header-boards .header-item:hover {
@@ -467,7 +483,7 @@ section#boards-container {
     list-style: none;
     margin-left: 35px;
     margin-right: 0px;
-    display: box;
+    display: block;
     overflow: auto; }
   section#boards-container li {
     display: block;
@@ -908,7 +924,7 @@ section#board-content {
     margin: 8px 0px; }
   .popup .popup-label {
     font-weight: bold;
-    fonr-size: 15px;
+    font-size: 15px;
     padding: 2px 0px;
     display: block; }
   .popup input, .popup select {

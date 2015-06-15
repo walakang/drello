@@ -1,0 +1,289 @@
+@charset "UTF-8";
+html,
+body,
+ul,
+ol {
+  margin: 0;
+  padding: 0; }
+
+/* When we use Firefox, links are surrounded by a rated box once you’ve pressed them.
+ * To solve this problem, we must use the property outline in the following way:
+ */
+a:active, a:focus {
+  outline: none; }
+
+/* Change the box model. Recommended for resposive websites. */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/*********** Button styles - OOCSS model **************/
+.btn {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  display: inline-block;
+  zoom: 1;
+  vertical-align: bottom;
+  text-align: center;
+  margin: 5px 5px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: #555; }
+
+.btn:hover {
+  color: white;
+  background: #0e74af !important; }
+
+.btn-small {
+  padding: 5px; }
+
+.btn-normal {
+  padding: 10px; }
+
+.btn-big {
+  padding: 15px; }
+
+.btn-green {
+  background: linear-gradient(to bottom, #70b500 0, #64a200 100%) !important;
+  color: white; }
+
+.btn-gray {
+  background: linear-gradient(to bottom, #fff 0, #f8f9f9 100%);
+  color: #555; }
+
+.btn-outline {
+  background: transparent; }
+
+.btn-outline-blue {
+  border: 1px solid #5e98ba;
+  color: #5e98ba; }
+
+.btn-outline-white {
+  background: transparent;
+  border: 1px solid white;
+  color: white; }
+
+/**************** End Button styles ***************/
+html {
+  background: #0e74af; }
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 13pt;
+  color: #444; }
+
+a {
+  color: #5E98BA;
+  text-decoration: none; }
+
+a:hover {
+  color: darkslateblue; }
+
+img {
+  max-width: 100%;
+  box-sizing: border-box;
+  height: auto; }
+
+footer {
+  text-align: center;
+  font-size: 13pt;
+  padding: 30px 0px;
+  background: white; }
+  footer a {
+    padding-left: 8px;
+    text-decoration: underline; }
+
+p {
+  text-align: left; }
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em; }
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px; }
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2); }
+
+body {
+  scrollbar-face-color: rgba(255, 255, 255, 0.6);
+  scrollbar-track-color: rgba(255, 255, 255, 0.2); }
+
+.no-display {
+  display: none !important; }
+
+.hidden {
+  visibiliy: hidden; }
+
+.disabled {
+  opacity: 0.7;
+  cursor: auto; }
+
+.bold {
+  font-weight: bold; }
+
+.big {
+  font-size: 26pt; }
+
+.white-text {
+  color: white; }
+
+.border-bottom {
+  border-bottom: 1px solid #999; }
+
+.underline {
+  text-decoration: underline; }
+
+/********** Style for labels **************************/
+.green {
+  background: green; }
+
+.blue {
+  background: #0e74af; }
+
+.red {
+  background: red; }
+
+.orange {
+  background: orange; }
+
+/******************************************************/
+.overlay {
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -5;
+  background: rgba(1, 1, 1, 0.5);
+  opacity: 0;
+  overflow: auto; }
+
+.overlay.visible {
+  z-index: 15;
+  opacity: 1; }
+
+.no-overflow {
+  overflow: hidden; }
+
+.wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  clear: both; }
+
+.width-90 {
+  width: 90%; }
+
+.width-80 {
+  width: 80%; }
+
+.width-60 {
+  width: 60%; }
+
+.width-50 {
+  width: 50%; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.center {
+  float: none;
+  margin: 0 auto; }
+
+.block {
+  display: block; }
+
+.absolute-center {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto; }
+
+.text-center {
+  text-align: center; }
+
+.break, .break-1, .break-2, .break-4 {
+  display: block; }
+
+.break-1 {
+  margin: 5px 0px; }
+
+.break-2 {
+  margin: 10px 0px; }
+
+.break-4 {
+  margin: 20px 0px; }
+
+.logo {
+  background: url("../images/logo.png") no-repeat;
+  background-position: center;
+  background-size: 100%; }
+
+.logo-big {
+  width: 266px;
+  height: 74px; }
+
+.logo-medium {
+  width: 200px;
+  height: 55px; }
+
+.logo-small {
+  width: 180px;
+  height: 49px; }
+
+.alt-bg:nth-child(even) {
+  color: white;
+  background: #0e74af; }
+
+.alt-bg:nth-child(odd) {
+  color: #444;
+  background: white; }
+
+#hero {
+  padding: 6%;
+  font-size: 16pt; }
+  #hero h1 {
+    padding: 2% 15%; }
+  #hero p {
+    padding: 0% 22%;
+    color: #555; }
+
+.home-article {
+  font-size: 15pt; }
+
+.home-article-text {
+  padding: 80px 0% 40px; }
+
+.home-article-image {
+  padding: 0px 60px; }
+
+@media (min-width: 120px) and (max-width: 679px) {
+  footer {
+    display: none; } }
+
+/*# sourceMappingURL=main.css.map */
