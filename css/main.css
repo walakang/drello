@@ -18,6 +18,9 @@ a:active, a:focus {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+ul {
+  list-style: none; }
+
 /*********** Button styles - OOCSS model **************/
 .btn {
   -webkit-border-radius: 4px;
@@ -87,6 +90,11 @@ a {
 a:hover {
   color: darkslateblue; }
 
+h1 {
+  font-size: 17px;
+  font-weight: 600;
+  display: block; }
+
 img {
   max-width: 100%;
   box-sizing: border-box;
@@ -137,13 +145,19 @@ body {
   opacity: 0.7;
   cursor: auto; }
 
+.pointer {
+  cursor: pointer; }
+
 .bold {
-  font-weight: bold; }
+  font-weight: 700; }
 
 .big {
   font-size: 26pt; }
 
-.white-text {
+.small {
+  font-size: 12px; }
+
+.white-text, .board {
   color: white; }
 
 .border-bottom {
@@ -151,6 +165,12 @@ body {
 
 .underline {
   text-decoration: underline; }
+
+.round {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px; }
 
 /********** Style for labels **************************/
 .green {
@@ -183,6 +203,9 @@ body {
 .overlay.visible {
   z-index: 15;
   opacity: 1; }
+
+.clear {
+  clear: both; }
 
 .no-overflow {
   overflow: hidden; }
@@ -219,6 +242,9 @@ body {
 .block {
   display: block; }
 
+.i-block {
+  display: inline-block; }
+
 .absolute-center {
   position: absolute;
   left: 0;
@@ -227,7 +253,7 @@ body {
   bottom: 0;
   margin: 0 auto; }
 
-.text-center {
+.text-center, .board-add {
   text-align: center; }
 
 .break, .break-1, .break-2, .break-4 {
@@ -251,16 +277,16 @@ body {
   width: 266px;
   height: 74px; }
 
-.logo-medium {
-  width: 200px;
-  height: 55px; }
-
 .logo-small {
   background: url("../images/logo-small.png") no-repeat;
   background-position: center;
   background-size: 100%;
   width: 108px;
   height: 30px; }
+
+.logo-medium {
+  width: 200px;
+  height: 55px; }
 
 .alt-bg:nth-child(even) {
   color: white;
@@ -404,6 +430,80 @@ body {
   width: 24%;
   background: white; }
 
+#boards_container {
+  padding: 10px 15px;
+  z-index: 6; }
+
+.boards-list-container {
+  clear: both; }
+
+.boards-list-container > h1 {
+  padding: 4px 0px;
+  margin-bottom: 16px;
+  margin-top: 20px; }
+  .boards-list-container > h1 a {
+    font-size: 11px;
+    color: #666; }
+
+.boards-list-container > h1:before {
+  color: #999;
+  padding-right: 10px;
+  margin-right: 10px;
+  font-size: 20px; }
+
+.boards-list {
+  margin-left: 35px;
+  margin-right: 0px; }
+
+.board {
+  -webkit-transition: 0.1s all ease-in-out;
+  -moz-transition: 0.1s all ease-in-out;
+  -ms-transition: 0.1s all ease-in-out;
+  transition: 0.1s all ease-in-out;
+  position: relative;
+  width: 24%;
+  height: 105px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background: #0E74AF;
+  padding: 10px 0px 10px 14px;
+  font-size: 16px; }
+
+.board:hover {
+  background: #0B5B8A;
+  color: white;
+  -webkit-transition: 0.1s all ease-in-out;
+  -moz-transition: 0.1s all ease-in-out;
+  -ms-transition: 0.1s all ease-in-out;
+  transition: 0.1s all ease-in-out; }
+
+.board-add {
+  background: #d6dadc;
+  color: #444; }
+
+.board-add > span {
+  vertical-align: sub; }
+
+.board-add:hover {
+  background: #CCD0D3;
+  color: #444; }
+
+#board-ribbon {
+  padding: 15px; }
+  #board-ribbon .icon-star {
+    color: gold;
+    padding: 6px;
+    background: rgba(1, 1, 1, 0.1);
+    font-size: 14px; }
+  #board-ribbon .icon-star:hover {
+    background: rgba(1, 1, 1, 0.2); }
+
+#board-ribbon > h1 {
+  margin: 0; }
+
+#board-ribbon #menu_toggle {
+  margin-top: 4px; }
+
 @media (min-width: 680px) and (max-width: 1023px) {
   /* CSS for resposiveness on Index page
    * Style for Tablets
@@ -487,6 +587,9 @@ body {
     width: 0px; }
 
   #header-boards #logo {
-    width: 70px; } }
+    width: 70px; }
+
+  .board {
+    width: 100%; } }
 
 /*# sourceMappingURL=main.css.map */

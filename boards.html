@@ -17,6 +17,7 @@
 		<link rel="shortcut icon" href="favicon.ico"/>
 	</head>
 	<body>
+		<!-- Header -->
 		<header id="header-boards" class="no-overflow">
 			<div id="boards" class="header-item" onClick="showBoardsPopupToggle();">
 				Boards
@@ -40,60 +41,62 @@
 			</div>
 			<div id="add" class="header-item" onClick="showCreateNewPopupToggle()"></div>
 		</header>
-		<section id="boards-container" class="container-main white no-overflow">
-			<div id="boards-starred">
-				<h1 bg="star">
-					Starred Boards
-				</h1>
-				<ul class="boards-wrap">	
-					<li class="board starred">
-						<a href="board-display.html">
-								<span class="bold">Website Redesign</span>
-								<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div id="boards-my">
-				<h1 bg="user">
-					My Boards
-				</h1>
-				<ul class="boards-wrap">	
-					<li class="board starred">
-						<a href="board-display.html">
-								<span class="bold">Website Redesign</span>
-								<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>
-						</a>
-					</li>
-					<li class="board">
-						<a href="#">
-								<span class="bold">Welcome Board</span>
-								<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>
-						</a>
-					</li>
-					<li class="board add-board">
-						<a href="#" id="add-board" onClick="showCreateBoardPopup(event)">
-								<span class="bold"><br>Create new board...</span>
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div id="organizations">
-				<div id="boards-organization-1" name="RasterBrain">
-					<h1 bg="organization">
-						RasterBrain <span class="overview" onClick="">Overview</span>
-					</h1>
-					<ul class="boards-wrap">	
-						<li class="board add-board">
-							<a href="#" id="add-board" onClick="showCreateBoardPopup(event)">
-									<span class="bold"><br>Create new board...</span>
-							</a>
-						</li>
-					</ul>
+		<!-- Main container -->
+		<main id="boards_container" class="wrapper white no-overflow">
+			<!-- Section containing a number of board items -->
+			<section id="boards_starred" class="boards-list-container">
+				<h1 class="icon-star">Starred Boards</h1>
+				<!-- styling container for a number of boards -->
+				<div class="boards-list">	
+					<a href="board-display.html" class="board left block round starred">
+							<span class="bold">Board 1</span>
+							<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>					
+					</a>
 				</div>
-				<a href="#" id="org-create">Create a new Organization</a>
-			</div>	
-		</section>
+			</section>
+			
+			<!-- Section containing a number of board items -->
+			<section id="boards_my" class="boards-list-container">
+				<h1 class="icon-user">My Boards</h1>
+				<!-- styling container for a number of boards -->
+				<div class="boards-list">	
+					<a href="board-display.html" class="board left block round starred">
+							<span class="bold">Board 1</span>
+							<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>					
+					</a>
+					<a href="board-display.html" class="board left block round">
+							<span class="bold">Board 2</span>
+							<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>					
+					</a>
+					<a href="#" class="board left block round board-add" onClick="showCreateBoardPopup(event)">
+						<span class=""><br>Create new board...</span>
+					</a>
+				</div>
+			</section>
+			
+			<!-- styling container for boards from organizations -->
+			<div id="organizations">
+				<!-- Section containing a number of board items -->
+				<section id="boards_organization_1" class="boards-list-container" data-name="RasterBrain">
+					<h1 class="icon-users">
+						RasterBrain <a href="#" class="icon-info-circled-alt">Overview</a>
+					</h1>
+					<!-- styling container for a number of boards -->
+					<div class="boards-list">	
+						<a href="#" class="board left block round board-add" onClick="showCreateBoardPopup(event)">
+							<span class=""><br>Create new board...</span>
+						</a>
+					</div>
+				</section>
+				<div class="break-2 clear"></div>
+				<a class="clear" href="#" id="org-create">Create a new Organization</a>
+			</div>
+			<!-- end of styling container for organizations -->
+			
+		</main>
+		<!-- End of the main container -->
+		
+		<!-- Popup containers goes here -->
 		<div id="create-board-popup" class="popup hide">
 			<div class="popup-header">
 				<span class="title">Create Board</span>
@@ -163,7 +166,7 @@
 						<span class="star cat">Starred Boards</span>
 						<span class="accordition"></span>
 					</div>
-					<ul class="boards-list">
+					<ul class="boards-list block">
 						<li class="board">
 							<a href="board-display.html">
 								<span class="color"></span>
@@ -179,7 +182,7 @@
 						<span class="recent cat">Recent Boards</span>
 						<span class="accordition"></span>
 					</div>
-					<ul class="boards-list">
+					<ul class="boards-list block">
 						<li class="board">
 							<a href="board-display.html">
 								<span class="color"></span>
@@ -194,7 +197,7 @@
 						<span class="my cat">My Boards</span>
 						<span class="accordition"></span>
 					</div>
-					<ul class="boards-list">
+					<ul class="boards-list block">
 						<li class="board">
 							<a href="board-display.html">
 								<span class="color"></span>
@@ -216,7 +219,7 @@
 						<span class="org cat"><a href="organization.html">RasterBrain</a></span>
 						<span class="accordition"></span>
 					</div>
-					<ul class="boards-list">
+					<ul class="boards-list block">
 						<li class="board">
 							<a href="board-display.html">
 								<span class="color"></span>

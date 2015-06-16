@@ -28,6 +28,11 @@ a{
 a:hover{
 	color: darkslateblue;
 }
+h1{
+	font-size: $size-h1;
+	font-weight: 600;
+	display: block;
+}
 img{
 	@include img-tag();
 }
@@ -69,11 +74,17 @@ p{
 	opacity: 0.7;
 	cursor: auto;
 }
+.pointer{
+	cursor: pointer;
+}
 .bold{
-	font-weight: bold;
+	font-weight: 700;
 }
 .big{
 	font-size: 26pt;
+}
+.small{
+	font-size: $size-small;
 }
 .white-text{
 	color: white;
@@ -84,7 +95,9 @@ p{
 .underline{
 	text-decoration: underline;
 }
-
+.round{
+	@include border-radius(4px);
+}
 /********** Style for labels **************************/
 .green{
 	background: green;
@@ -119,6 +132,9 @@ p{
 }
 
 // Layouts
+.clear{
+	clear: both;
+}
 .no-overflow{
 	overflow: hidden;
 }
@@ -153,6 +169,9 @@ p{
 }
 .block{
 	display: block;
+}
+.i-block{
+	display: inline-block;
 }
 .absolute-center{
 	// Width must be specified inorder to work.
@@ -192,16 +211,16 @@ p{
 	width: 266px;
 	height: 74px;
 }
-.logo-medium{
-	width: 200px;
-	height: 55px;
-}
 .logo-small{
 	@include add-bg-image(logo-small);
 	background-position: center;
 	background-size: 100%;
 	width: 108px;
 	height: 30px;
+}
+.logo-medium{
+	width: 200px;
+	height: 55px;
 }
 // Index page sections have alternating background and text color
 .alt-bg:nth-child(even){
@@ -352,7 +371,88 @@ p{
 		
 	}
 
+// Styles for boards page
+#boards_container{
+	padding: 10px 15px;
+	z-index: $z-boards-container;
+}
+.boards-list-container{
+	clear: both;
+}
+.boards-list-container > h1{
+	padding: 4px 0px;
+	margin-bottom: 16px;
+	margin-top: 20px;
+	
+	a{
+		font-size: 11px;
+		color: $text-color-light;
+	}
+}
+.boards-list-container > h1:before{
+	color: $text-color-extralight;
+	padding-right: 10px;
+	margin-right: 10px;
+	font-size: 20px;
+}
+// the styling container
+.boards-list{
+	margin-left: 35px;
+	margin-right: 0px;
+}
+// 'a' child of the container
+.board{
+	@extend .white-text;
+	@include transition-all();
+	position: relative;
+	width: 24%;
+	height: 105px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	background: $accent-color;
+	padding: 10px 0px 10px 14px;
+	font-size: 16px;
+}
+.board:hover{
+	background: $highlight-color;
+	color: white;
+	@include transition-all();
+}
+.board-add{
+	@extend .text-center;
+	background: #d6dadc;
+	color: $text-color;
+}
+.board-add > span{
+	vertical-align: sub;
+}
+.board-add:hover{
+	background: #CCD0D3;	
+	color: $text-color;
+}
 
+// Styles for board list page
+
+#board-ribbon{
+	//height: 40px;
+	padding: 15px;
+	
+	.icon-star{
+		color: gold;
+		padding: 6px;
+		background: rgba(1,1,1,0.1);
+		font-size: 14px;
+	}
+	.icon-star:hover{
+		background: rgba(1,1,1,0.2);
+	}
+}
+#board-ribbon > h1{
+	margin: 0;
+}
+#board-ribbon #menu_toggle{
+	margin-top: 4px;
+}
 
 
 // * Include responsive styles
@@ -365,4 +465,11 @@ p{
 
   @import 'partials/_phone';
 
+}
+.icon-user {
+	
+}
+
+.visible {
+	
 }

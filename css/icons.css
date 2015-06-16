@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icons';
-  src: url('../font/icons.eot?23329900');
-  src: url('../font/icons.eot?23329900#iefix') format('embedded-opentype'),
-       url('../font/icons.woff?23329900') format('woff'),
-       url('../font/icons.ttf?23329900') format('truetype'),
-       url('../font/icons.svg?23329900#icons') format('svg');
+  src: url('../font/icons.eot?73502918');
+  src: url('../font/icons.eot?73502918#iefix') format('embedded-opentype'),
+       url('../font/icons.woff?73502918') format('woff'),
+       url('../font/icons.ttf?73502918') format('truetype'),
+       url('../font/icons.svg?73502918#icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,7 +14,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'icons';
-    src: url('../font/icons.svg?23329900#icons') format('svg');
+    src: url('../font/icons.svg?73502918#icons') format('svg');
   }
 }
 */
@@ -70,3 +70,5 @@
 .icon-comment:before { content: '\e80d'; } /* '' */
 .icon-credit-card:before { content: '\e80e'; } /* '' */
 .icon-plus:before { content: '\e80f'; } /* '' */
+.icon-info-circled-alt:before { content: '\e810'; } /* '' */
+.icon-link-ext:before { content: '\e811'; } /* '' */
