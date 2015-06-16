@@ -45,64 +45,60 @@
 		
 		<!-- Main container -->
 		<main id="board_list_container" class="wrapper no-overflow">
-			<div id="board-ribbon" class="block no-overflow white-text">
+			<div id="board_ribbon" class="block no-overflow white-text">
 				<h1 class="title i-block"> Website Redesign </h1>
 				<span class="icon-star round pointer"></span>
 				<span id="privacy" class="icon-lock small pointer">Private</span>
-				<span id="menu_toggle" class="icon-left-open right small pointer"  onClick="return showHideSidebarToggle()"> Show menu </span>
+				<span id="menu_toggle" class="icon-left-open right small pointer"  onClick="return showHideSidebarToggle()"> 
+					Show menu 
+				</span>
 			</div>
-			<section id="board-content" class="container-main">
-				<div class="list" id="list-1">
-					<div class="list-item list-head">
+			<!-- container fo lists - scrolls horizontally -->
+			<section id="board_content" class="wrapper">
+				<!-- Single list. Scrolls vertivally-->
+				<div class="list round" id="list-1">
+					<div class="list-item list-head bold pointer">
 						<span class="title">Ideas</span>
-						<span><a class="right" id="list-actions-toggle"></a></span>
+						<a class="right" id="list-actions-toggle"><span class="icon-download"></span></a>
 					</div>
-					<div class="list-item card" onClick="showCardPopupToggle(event)">
+					<!-- start cards -->
+					<div class="list-item card round pointer" onClick="showCardPopupToggle(event)">
 						<div class="card-edit">
-							<span class="edit icon-pencil-alt"></span>
+							<span class="icon-pencil-alt block text-center right"></span>
 						</div>
 						<figure class="card-image">
 							<img src="images/taco.png" />
 						</figure>
 						<div class="card-detail">
-							<div class="card-labels">
+							<div class="card-detail-labels">
 								<span class="blue"></span>
 								<span class="green"></span>
 							</div>
-							<div class="card-exerpt">
+							<div class="card-detail-exerpt">
 								Develop Drello using pure JavaScript
 							</div>
-							<div class="card-flags">
+							<div class="card-detail-flags">
 								<span class="icon-eye-outline"></span>
 								<span class="icon-menu"></span>
 								<span class="icon-comment"></span>
 								<span class="icon-attach"></span>
 							</div>
-							<div class="card-members">
-								<span class="avatar"><img src="members/shidil.png" /></span>
-							</div>
+							<!--<div class="card-detail-members block right">
+								<span class="avatar left i-block"><img src="members/shidil.png" class="round"></span>
+							</div>-->
 						</div>
 					</div>
-					<div class="list-item" id="add-card">
+					<!-- end cards -->
+					<div class="list-item clear pointer" id="add-card">
 						Add a card...
 					</div>
 				</div>
-				<div class="list" id="list-2">
-					<div class="list-item list-head">
-						<span class="title">To Do</span>
-						</span>
-							<a class="right" id="list-actions-toggle"></a>
-						</span>
-					</div>
-					<div class="list-item card">
-
-					</div>
-					<div class="list-item" id="add-card">
-						<span>Add a card...</span>
-					</div>
-				</div>
+				<!-- end of a single list -->
 			</section>
+			<!-- end of container for lists. -->
+			
 		</main>
+		<!-- End of main container -->
 		<aside id="board-menu">
 			<div id="toggle-sidebar" onClick="return showHideSidebarToggle()"></div>
 			<div class="container">

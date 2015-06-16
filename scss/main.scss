@@ -98,6 +98,14 @@ p{
 .round{
 	@include border-radius(4px);
 }
+.avatar{
+	display: inline-block;
+	vertical-align: middle;
+	width: 30px;
+	height: 30px;
+	@extend .round;
+}
+
 /********** Style for labels **************************/
 .green{
 	background: green;
@@ -433,7 +441,7 @@ p{
 
 // Styles for board list page
 
-#board-ribbon{
+#board_ribbon{
 	//height: 40px;
 	padding: 15px;
 	
@@ -443,16 +451,134 @@ p{
 		background: rgba(1,1,1,0.1);
 		font-size: 14px;
 	}
-	.icon-star:hover{
+	.icon-star,#menu_toggle,#privacy{
+		padding: 6px;
+		@extend .round;
+	}
+	.icon-star:hover,#menu_toggle:hover,#privacy:hover{
 		background: rgba(1,1,1,0.2);
 	}
 }
-#board-ribbon > h1{
+#board_ribbon > h1{
 	margin: 0;
 }
-#board-ribbon #menu_toggle{
-	margin-top: 4px;
+#board_ribbon #menu_toggle{
+	//margin-top: 4px;
 }
+// The flex box
+#board_content{
+	overflow-x: auto;
+	overflow-y: hidden;
+	height: 80vh;
+	padding-left: 10px;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex: auto;
+	align-items: flex-start;
+	flex-direction: row;
+}
+// List is not html list.
+// Flex item
+.list{
+	background: #e2e4e6;
+	max-width: 270px;
+	min-width: 270px;
+	margin: 0px 5px;
+	max-height: 80vh;
+	// scroll horizontally.
+	overflow-x: hidden;
+	overflow-y: auto;
+	
+}
+.list-head{
+	padding: 6px 10px;
+	font-size: 16px;
+	
+	.icon-download{
+		opacity: 0.7;	
+		font-weight: normal;
+		color: $text-color-light;
+	}
+	.icon-download:hover{
+		opacity: 1;	
+	}
+}
+.list-item{
+	@extend .block;
+}
+.card{
+	margin: 4px 8px;
+	background: #FFFFFF;
+	position: relative;
+}
+#add-card{
+	padding: 6px 10px;
+	color: $text-color-extralight;
+}
+#add-card:hover,.card:hover{
+	@include border-radius(4px);
+	background: rgba(0,0,0,0.05);
+}
+.card-edit{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+	
+	.icon-pencil-alt{
+		width: 30px;
+		height: 30px;
+		margin: 0;
+		background: rgba(0,0,0,0.05);
+		vertical-align: middle;
+		padding-top: 5px;
+	}
+}
+.card-edit:hover{
+	opacity: 1;
+}
+.card-image{
+	margin: 0;
+	padding: 0;	
+}
+.card-image.hide{
+	height: 0;
+}
+.card-detail{
+	padding: 8px;
+	font-size: 13px;
+}
+.card-detail-exerpt{
+	font-size: 14px;
+	color: $text-color-light;
+	padding: 5px 0px;
+	text-align: justify;
+}
+.card-detail-flags{
+	span{
+		color: #888;
+	}
+}
+.card-detail-labels{
+	span{
+		width: 45px;
+		height: 8px;
+		@include border-radius(4px);
+		display: inline-block;
+	}
+}
+.card-detail-members{
+	margin: 2px 0px;
+	.avatar{
+		margin: 0px 2px;		
+	}
+}
+
 
 
 // * Include responsive styles
@@ -466,10 +592,4 @@ p{
   @import 'partials/_phone';
 
 }
-.icon-user {
-	
-}
 
-.visible {
-	
-}

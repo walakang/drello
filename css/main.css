@@ -166,11 +166,17 @@ body {
 .underline {
   text-decoration: underline; }
 
-.round {
+.round, .avatar, #board_ribbon .icon-star, #board_ribbon #menu_toggle, #board_ribbon #privacy {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   border-radius: 4px; }
+
+.avatar {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px; }
 
 /********** Style for labels **************************/
 .green {
@@ -239,7 +245,7 @@ body {
   float: none;
   margin: 0 auto; }
 
-.block {
+.block, .list-item {
   display: block; }
 
 .i-block {
@@ -488,21 +494,121 @@ body {
   background: #CCD0D3;
   color: #444; }
 
-#board-ribbon {
+#board_ribbon {
   padding: 15px; }
-  #board-ribbon .icon-star {
+  #board_ribbon .icon-star {
     color: gold;
     padding: 6px;
     background: rgba(1, 1, 1, 0.1);
     font-size: 14px; }
-  #board-ribbon .icon-star:hover {
+  #board_ribbon .icon-star, #board_ribbon #menu_toggle, #board_ribbon #privacy {
+    padding: 6px; }
+  #board_ribbon .icon-star:hover, #board_ribbon #menu_toggle:hover, #board_ribbon #privacy:hover {
     background: rgba(1, 1, 1, 0.2); }
 
-#board-ribbon > h1 {
+#board_ribbon > h1 {
   margin: 0; }
 
-#board-ribbon #menu_toggle {
-  margin-top: 4px; }
+#board_content {
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 80vh;
+  padding-left: 10px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex: auto;
+  align-items: flex-start;
+  flex-direction: row; }
+
+.list {
+  background: #e2e4e6;
+  max-width: 270px;
+  min-width: 270px;
+  margin: 0px 5px;
+  max-height: 80vh;
+  overflow-x: hidden;
+  overflow-y: auto; }
+
+.list-head {
+  padding: 6px 10px;
+  font-size: 16px; }
+  .list-head .icon-download {
+    opacity: 0.7;
+    font-weight: normal;
+    color: #666; }
+  .list-head .icon-download:hover {
+    opacity: 1; }
+
+.card {
+  margin: 4px 8px;
+  background: #FFFFFF;
+  position: relative; }
+
+#add-card {
+  padding: 6px 10px;
+  color: #999; }
+
+#add-card:hover, .card:hover {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05); }
+
+.card-edit {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  opacity: 0; }
+  .card-edit .icon-pencil-alt {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.05);
+    vertical-align: middle;
+    padding-top: 5px; }
+
+.card-edit:hover {
+  opacity: 1; }
+
+.card-image {
+  margin: 0;
+  padding: 0; }
+
+.card-image.hide {
+  height: 0; }
+
+.card-detail {
+  padding: 8px;
+  font-size: 13px; }
+
+.card-detail-exerpt {
+  font-size: 14px;
+  color: #666;
+  padding: 5px 0px;
+  text-align: justify; }
+
+.card-detail-flags span {
+  color: #888; }
+
+.card-detail-labels span {
+  width: 45px;
+  height: 8px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  display: inline-block; }
+
+.card-detail-members {
+  margin: 2px 0px; }
+  .card-detail-members .avatar {
+    margin: 0px 2px; }
 
 @media (min-width: 680px) and (max-width: 1023px) {
   /* CSS for resposiveness on Index page
@@ -590,6 +696,13 @@ body {
     width: 70px; }
 
   .board {
-    width: 100%; } }
+    width: 100%; }
+
+  #board-ribbon {
+    /*height: 55px !important;
+    div{
+    	display: block !important;
+    	margin-left: 8px !important;
+    }*/ } }
 
 /*# sourceMappingURL=main.css.map */

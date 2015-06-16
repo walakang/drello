@@ -661,6 +661,10 @@ section#board-content {
       font-weight: bold;
       font-size: 16px;
       cursor: pointer; }
+      section#board-content .list .list-head #add-card {
+        padding: 6px 10px;
+        cursor: pointer;
+        color: #888; }
       section#board-content .list .list-head a {
         background: url("../images/down.png") no-repeat;
         width: 18px;
@@ -1180,6 +1184,8 @@ section#board-content {
         #card-display-popup .popup-body #card-information .card-information-detail .avatar {
           display: inline-block;
           vertical-align: middle;
+          width: 30px;
+          height: 30px;
           -webkit-border-radius: 4px;
           -moz-border-radius: 4px;
           -ms-border-radius: 4px;

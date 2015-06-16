@@ -24,7 +24,7 @@ function showOverlay() {
 	document.getElementById("overlay").className = "visible";
 }
 // Hide all popusps when clicked outside the popup 
-document.getElementsByClassName("container-main")[0].onclick = closePopups;
+document.getElementsByTagName("main")[0].onclick = closePopups;
 
 function hideToggle(node) {
 	if (node.className === "show") {
