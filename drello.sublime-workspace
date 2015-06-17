@@ -59,7 +59,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 3403,
+				"buffer_size": 3868,
 				"line_ending": "Unix"
 			}
 		},
@@ -67,7 +67,7 @@
 			"file": "boards.html",
 			"settings":
 			{
-				"buffer_size": 9834,
+				"buffer_size": 12313,
 				"line_ending": "Unix"
 			}
 		},
@@ -75,7 +75,7 @@
 			"file": "board-display.html",
 			"settings":
 			{
-				"buffer_size": 13615,
+				"buffer_size": 16395,
 				"line_ending": "Unix"
 			}
 		},
@@ -83,7 +83,15 @@
 			"file": "css/style_sass.scss",
 			"settings":
 			{
-				"buffer_size": 23970,
+				"buffer_size": 25319,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "scss/main.scss",
+			"settings":
+			{
+				"buffer_size": 12082,
 				"line_ending": "Unix"
 			}
 		},
@@ -162,6 +170,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"text-light",
 			";\n",
 			"cross",
 			"width: 20px",
@@ -197,7 +206,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -205,15 +214,15 @@
 					"file": "index.html",
 					"settings":
 					{
-						"buffer_size": 3403,
+						"buffer_size": 3868,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3403,
-								3403
+								0,
+								0
 							]
 						],
 						"settings":
@@ -232,15 +241,15 @@
 					"file": "boards.html",
 					"settings":
 					{
-						"buffer_size": 9834,
+						"buffer_size": 12313,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								9482,
-								9482
+								4027,
+								4027
 							]
 						],
 						"settings":
@@ -250,7 +259,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4122.0,
+						"translation.y": 1445.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -260,15 +269,15 @@
 					"file": "board-display.html",
 					"settings":
 					{
-						"buffer_size": 13615,
+						"buffer_size": 16395,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								13552,
-								13552
+								12754,
+								12754
 							]
 						],
 						"settings":
@@ -278,7 +287,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5211.0,
+						"translation.y": 4616.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -288,15 +297,15 @@
 					"file": "css/style_sass.scss",
 					"settings":
 					{
-						"buffer_size": 23970,
+						"buffer_size": 25319,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								22550,
+								22550
 							]
 						],
 						"settings":
@@ -305,13 +314,40 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 21369.0,
+						"translation.y": 21675.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
+					"file": "scss/main.scss",
+					"settings":
+					{
+						"buffer_size": 12082,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11729,
+								11729
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 12381.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "js/coreJS.js",
 					"settings":
 					{
@@ -338,7 +374,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"file": "js/site.js",
 					"settings":
 					{

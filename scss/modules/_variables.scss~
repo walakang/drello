@@ -35,7 +35,6 @@ $size-h1: 17px;
 $size-small: 12px;
 $size-medium: 16px;
 $size-big: 35px;
-$size-large: 22px;
 
 // Z-INDEX
 $z-overlay: -5;

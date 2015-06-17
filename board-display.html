@@ -96,39 +96,37 @@
 				<!-- end of a single list -->
 			</section>
 			<!-- end of container for lists. -->
-			
-		</main>
-		<!-- End of main container -->
-		<aside id="board-menu">
-			<div id="toggle-sidebar" onClick="return showHideSidebarToggle()"></div>
-			<div class="container">
-				<nav>
-					<div id="board-menu-nav-toggle" class="border-bottom" onClick="return showHideSidebarMenuToggle();">
-						<span class="title">
+					<aside id="board_menu" class="sidemenu wrapper round block">
+			<!-- -->
+			<div id="toggle_sidebar" class="icon-right-open pointer avatar" onClick="return showHideSidebarToggle()"></div>
+			<div class="wrapper y-scroll height-100">
+				<nav class="sidemenu-actions wrapper">
+					<div id="board_menu_nav_toggle" class="border-bottom pointer" onClick="return showHideSidebarMenuToggle();">
+						<span class="title bold medium">
 							Menu
 						</span>
-						<span class="right"></span>
+						<span class="right icon-download"></span>
 					</div>
-					<ul>
-						<li>Power-Ups</li>
-						<li>Labels</li>
-						<li>Stickers</li>
-						<li>Filter Cards</li>
-						<li class="border-bottom">Archived Items</li>
-						<li> Change Background </li>
-						<li> Email-to-board settings </li>
-						<li> Subscribe </li>
-						<li> Copy Board... </li>
-						<li class="border-bottom"> Share, Print, and Export </li>
-						<li> Additional Settings </li>
-						<li> Close Board </li>
+					<ul class="sidemenu-actions-list no-overflow">
+						<li class="sidemenu-actions-list-item normal">Power-Ups</li>
+						<li class="sidemenu-actions-list-item normal">Labels</li>
+						<li class="sidemenu-actions-list-item normal">Stickers</li>
+						<li class="sidemenu-actions-list-item normal">Filter Cards</li>
+						<li class="sidemenu-actions-list-item normal border-bottom">Archived Items</li>
+						<li class="sidemenu-actions-list-item normal"> Change Background </li>
+						<li class="sidemenu-actions-list-item normal"> Email-to-board settings </li>
+						<li class="sidemenu-actions-list-item normal"> Subscribe </li>
+						<li class="sidemenu-actions-list-item normal"> Copy Board... </li>
+						<li class="sidemenu-actions-list-item normal border-bottom"> Share, Print, and Export </li>
+						<li class="sidemenu-actions-list-item normal"> Additional Settings </li>
+						<li class="sidemenu-actions-list-item normal"> Close Board </li>
 					</ul>
 			
 				</nav>
-				<section id="board-members">
-					<h4> Members </h4>
-					<ul>
-						<li class="member"><img src="members/shidil.png" /></li>
+				<section id="board_members">
+					<h1> Members </h1>
+					<ul class="board-members-list block">
+						<li class="block left avatar round"><img src="members/shidil.png" /></li>
 					</ul>
 				</section>
 				<section id="board-activity">
@@ -136,34 +134,42 @@
 				</section>
 			</div>
 		</aside>
-		<div id="create-board-popup" class="popup hide">
-			<div class="popup-header">
-				<span class="title">Create Board</span>
-				<span class="cross icon-cancel" onClick="closePopups()"></span>
+		</main>
+		<!-- End of main container -->
+		
+
+		
+		<!-- Popup containers goes here -->
+		<!-- Dialog box for creating a board -->
+		<div id="create_board_popup" class="popup round white no-display">
+			<div class="popup-header text-center bold">
+				<span class="popup-header-title">Create Board</span>
+				<span id="popup_close" class="icon-cancel pointer" onClick="closePopups()"></span>
 			</div>
-			<hr/>
+			<hr class="thin-line">
 			<div class="popup-body">
 				<form class="popup-form">
-					<label for="bord-name" class="popup-label">Title</label>
-					<input type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..."/>
-					<input type="hidden" name="privacy" />
-					<label for="bord-organization" class="popup-label">Organization</label>
-					<select name="board-organization" >
+					<label for="bord-name" class="popup-form-label medium bold block">Title</label>
+					<input  class="block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..."/>
+					<input type="hidden" name="board-privacy"/>
+					<label for="bord-org" class="popup-form-label medium bold block">Organization</label>
+					<!-- The options are filled with names of oraganizations in DB. -->
+					<select name="board-org" class="block width-100 round" >
 						
 					</select>
-					<div id="preview" class="show">
+					<div id="privacy_preview" class="no-overflow block">
 						<span>This board will be public.<a id="change" href="#" onclick="createBoardPrvacyToggle(this)">Change</a></span>
 					</div>
-					<div id="options" class="hide">
-						<div id="private" onclick="createBoardPrvacyToggle(this)">
+					<div id="privacy_options" class="no-overflow no-height block">
+						<div id="private" class="privacy-option block" onclick="createBoardPrvacyToggle(this)">
 							<span class="option">Private</span>
 							<span class="detail">This board will be private. Only people added to the board can view or edit it.</span >
 						</div>
-						<div id="org" onclick="createBoardPrvacyToggle(this)">
+						<div id="org" class="privacy-option block" onclick="createBoardPrvacyToggle(this)">
 							<span class="option">Organization</span>
 							<span class="detail">This board is visible to the members of the organization. Only people added to the board can edit it.</span >
 						</div>
-						<div id="public" onclick="createBoardPrvacyToggle(this)" class="disabled">
+						<div id="public" class="privacy-option block" onclick="createBoardPrvacyToggle(this)" class="disabled">
 							<span class="option">public</span>
 							<span class="detail">This board will be public. It is visible to anyone with the link to this board and it will be visible to search engines like Google and Yahoo. Only people added to the board can view or edit it.</span >
 						</div>
@@ -172,168 +178,167 @@
 				</form>
 			</div>
 		</div>
-		<div id="profile-popup" class="popup hide">
-			<div class="popup-header">
-				<span class="title">Shidil Eringa (shidil)</span>
-				<span class="cross icon-cancel" onClick="closePopups()"></span>
+		<div id="profile_popup" class="popup round white no-display">
+			<div class="popup-header text-center bold">
+				<span class="popup-header-title title">Shidil Eringa (shidil)</span>
+				<span id="popup_close" class="icon-cancel pointer" onClick="closePopups()"></span>
 			</div>
-			<hr/>
+			<hr class="thin-line">
 			<div class="popup-body">
-				<a href="profile.html">Profile</a>
-				<a href="cards.html">Cards</a>
-				<a href="settings.html">Settings</a>
-				<hr/>
-				<a href="help.html">Help</a>
-				<a href="apps.html">Apps</a>
-				<a href="shortcuts.html">Shortcuts</a>
-				<a href="share.html">Share Drello (For free Drello goald)</a>
-				<hr/>
-				<a href="guide.html">Getting started guide</a>
-				<a href="blog.html">Drello Blog</a>
-				<hr/>
-				<a href="changelang.html">Change language</a>
-				<a href="logout.html">Logout</a>
+				<a href="profile.html" class="profile-option bold block">Profile</a>
+				<a href="cards.html" class="profile-option bold block">Cards</a>
+				<a href="settings.html" class="profile-option bold block">Settings</a>
+				<hr class="thin-line" class="profile-option bold block">
+				<a href="help.html" class="profile-option bold block">Help</a>
+				<a href="apps.html" class="profile-option bold block">Apps</a>
+				<a href="shortcuts.html" class="profile-option bold block">Shortcuts</a>
+				<a href="share.html" class="profile-option bold block">Share Drello (For free Drello goald)</a>
+				<hr class="thin-line" class="profile-option bold block">
+				<a href="guide.html" class="profile-option bold block">Getting started guide</a>
+				<a href="blog.html" class="profile-option bold block">Drello Blog</a>
+				<hr class="thin-line" class="profile-option bold block">
+				<a href="changelang.html" class="profile-option bold block">Change language</a>
+				<a href="logout.html" class="profile-option bold block">Logout</a>
 			</div>
 		</div>
-		<div id="boards-popup" class="popup hide">
+		<div id="boards_popup" class="popup round white no-display">
 			<div class="popup-body">
 				<form class="popup-form">
-					<input type="text" name="board-name" placeholder="Find boards by name..." autofocus="true"/>
+					<input class="block width-100 round" type="text" name="board-name" placeholder="Find boards by name..." autofocus="true"/>
 				</form>
-				<div id="popup-starred" class="popup-box">
-					<div>
-						<span class="star cat">Starred Boards</span>
-						<span class="accordition"></span>
+				<div id="boards_popup_starred" class="popup-box">
+					<div class="popup-box-title">
+						<span class="icon-star">Starred Boards</span>
+						<span class="icon-plus"></span>
 					</div>
-					<ul class="boards-list">
-						<li class="board">
+					<ul class="boards-list block">
+						<li class="boards-list-item round">
 							<a href="board-display.html">
 								<span class="color"></span>
-								<span class="board-name" >Website Redesign </span>
+								<span class="board-name width-100 bold" >Website Redesign </span>
 								<span class="starred"></span>
 							</a>
 						</li>
 					</ul>
 				</div>
-				<div id="popup-recent" class="popup-box">
-					<div>
-
-						<span class="recent cat">Recent Boards</span>
-						<span class="accordition"></span>
+				<div id="boards_popup_recent" class="popup-box">
+					<div class="popup-box-title">
+						<span class="icon-clock">Recent Boards</span>
+						<span class="icon-plus"></span>
 					</div>
-					<ul class="boards-list">
-						<li class="board">
+					<ul class="boards-list block">
+						<li class="boards-list-item round">
 							<a href="board-display.html">
 								<span class="color"></span>
-								<span class="board-name" >Website Redesign </span>
+								<span class="board-name width-100 bold" >Website Redesign </span>
 								<span class="starred"></span>
 							</a>
 						</li>
 					</ul>
 				</div>
-				<div id="popup-recent" class="popup-box">
-					<div>
-						<span class="my cat">My Boards</span>
-						<span class="accordition"></span>
+				<div id="boards_popup_recent" class="popup-box">
+					<div class="popup-box-title">
+						<span class="icon-user">My Boards</span>
+						<span class="icon-plus"></span>
 					</div>
-					<ul class="boards-list">
-						<li class="board">
+					<ul class="boards-list block">
+						<li class="boards-list-item round">
 							<a href="board-display.html">
 								<span class="color"></span>
-								<span class="board-name" >Website Redesign </span>
+								<span class="board-name width-100 bold" >Website Redesign </span>
 								<span class="starred"></span>
 							</a>
 						</li>
-						<li class="board">
+						<li class="boards-list-item round">
 							<a href="board-display.html">
 								<span class="color"></span>
-								<span class="board-name" >Website Setup </span>
+								<span class="board-name width-100 bold" >Website Setup </span>
 								<span class="star"></span>
 							</a>
 						</li>
 					</ul>
 				</div>
-				<div id="popup-org-1" class="popup-box">
-					<div>
-						<span class="org cat"><a href="organization.html">RasterBrain</a></span>
-						<span class="accordition"></span>
+				<div id="boards_popup_org_1" class="popup-box">
+					<div class="popup-box-title">
+						<span class="icon-users"><a href="organization.html">RasterBrain</a></span>
+						<span class="icon-plus"></span>
 					</div>
-					<ul class="boards-list">
-						<li class="board">
+					<ul class="boards-list block">
+						<li class="boards-list-item round">
 							<a href="board-display.html">
 								<span class="color"></span>
-								<span class="board-name" >Website Mockup </span>
+								<span class="board-name width-100 bold" >Website Mockup </span>
 								<span class="star"></span>
 							</a>
 						</li>
 					</ul>
 				</div>
-				<div id="popup-options" class="popup-box">
-					<a href="#" onClick="showCreateBoardPopup(event)">Create new board </a>
-					<a href="#" onClick="boardsPopupDockToggle()">Always keep this menu open </a>
-					<a href="#" onClick="showClosedBoardsPopup()">Show closed boards</a>
+				<div id="boards_popup_options" class="popup-box">
+					<a class="board-popup-option block underline" href="#" onClick="showCreateBoardPopup(event)">Create new board </a>
+					<a class="board-popup-option block underline" href="#" onClick="boardsPopupDockToggle()">Always keep this menu open </a>
+					<a class="board-popup-option block underline" href="#" onClick="showClosedBoardsPopup()">Show closed boards</a>
 				</div>
 			</div>
 		</div>
-		<div id="create-new-popup" class="popup hide">
-			<div class="popup-header">
-				<span class="title">Create</span>
-				<span class="cross icon-cancel" onClick="closePopups()"></span>
+		<div id="create_new_popup" class="popup white round no-display">
+			<div class="popup-header text-center bold">
+				<span class="popup-header-title title">Create</span>
+				<span id="popup_close" class="icon-cancel pointer" onClick="closePopups()"></span>
 			</div>
-			<hr/>
+			<hr class="thin-line">
 			<div class="popup-body">
-				<a href="#" id="new-board">
-					<div class="title">Create Board...</div>
-					<div class="detail">
+				<a href="#" id="new_board" class="create-option block normal-text">
+					<div class="block break-1">Create Board...</div>
+					<div class="block small">
 						A board is a collection of cards ordered in a list of lists. Use it to manage a project, track a collection, or organize anything.
 					</div>
 				</a>
-				<hr/>
-				<a href="#" id="new-personal-org">
-					<div class="title">Create Personal Organization...</div>
-					<div class="detail">
+				<hr class="thin-line">
+				<a href="#" id="new_personal_org" class="create-option block normal-text">
+					<div class="block break-1">Create Personal Organization...</div>
+					<div class="block small">
 						An organization is a group of boards and people. Use it to group boards in your company, team, or family.
 					</div>
 				</a>
-				<hr/>
-				<a href="#" id="new-buisiness-org">
-					<div class="title">Create Buisiness Organization...</div>
-					<div class="detail">
+				<hr class="thin-line">
+				<a href="#" id="new_buisiness_org" class="create-option block normal-text">
+					<div class="block break-1">Create Buisiness Organization...</div>
+					<div class="block small">
 						With Business Class, your team has more security, administrative controls and superpowers.
 					</div>
 				</a>
 			</div>
 		</div>
 		
-		<div id="overlay" class="" onClick="closePopups()">
-			<div id="card-display-popup" class="popup hide">
-				<div class="popup-header">
-					<div id="card-image-header">
+		<div id="overlay" class="overlay" onClick="closePopups()">
+			<div id="card_display_popup" class="popup round block absolute-center no-display">
+				<div class="popup-header text-center">
+					<div class="card-cover pointer">
 						<a href="images/taco.png"><img src="images/taco.png" /></a>
 					</div>
-					<span class="cross icon-cancel" onClick="closePopups()"></span>
+					<span id="popup_close" class="icon-cancel pointer" onClick="closePopups()"></span>
 				</div>
-				<div class="popup-body">
-					<section id="card-information">
-						<div class="card-information-title">
-							<span class="icon icon-credit-card"></span>
-							<span class="title">Card Name</span>
-							<span class="title-extra">In list <a href="#" >List Name</a></span>
-							<span id="card-subscribed" class="icon-eye-outline"></span>
+				<div class="popup-body wrapper">
+					<section id="card_info" class="card-info left width-80 padding-10 block">
+						<div class="card-info-title">
+							<span class="card-info-title-icon i-block large icon-credit-card"></span>
+							<span class="card-info-title-name i-block medium">Card Name</span>
+							<span class="card-info-title-extra i-block small">In list <a href="#" class="normal underline">List Name</a></span>
+							<span id="card-subscribed" class="card-info-title-sub icon-eye-outline i-block normal"></span>
 						</div>
-						<div class="card-information-detail">
-							<div class="members">
+						<div class="card-info-detail">
+							<div class="card-info-detail-members middle i-block left">
 								<div class="label">Members</div>
-								<span class="avatar"><img src="members/shidil.png" /></span>
-								<span class="icon-plus" id="card-add-member"></span>
+								<span class="avatar round"><img src="members/shidil.png" /></span>
+								<span class="icon-plus btn-add avatar text-center pointer i-block" id="card_add_member"></span>
 							</div>
-							<div class="labels">
+							<div class="card-info-detail-labels middle i-block left">
 								<div class="label">Labels</div>
-								<span class="blue"></span>
-								<span class="green"></span>
-								<span class="icon-plus" id="card-add-label"></span>
+								<span class="blue round"></span>
+								<span class="green round"></span>
+								<span class="icon-plus btn-add avatar text-center pointer i-block" id="card_add_label"></span>
 							</div>
-							<div class="description">
+							<div class="card-info-detail-description clear break-1">
 								<div class="label">Description</div>
 								<div class="card-description">
 									<p>
@@ -348,8 +353,8 @@
 							</div>
 						</div>
 					</section>
-					<section id="card-actions">
-						<h3>Add</h3>
+					<section id="card_actions" class="card-actions right width-20">
+						<h1>Add</h1>
 						<ul>
 							<li>
 								 <a href="#" class="btn btn-normal btn-gray">
@@ -382,7 +387,7 @@
 								</a>
 							</li>
 						</ul>
-						<h3>Actions</h3>
+						<h1>Actions</h1>
 						<ul>
 							<li>
 								<a href="#" class="btn btn-normal btn-gray">
