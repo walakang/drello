@@ -76,12 +76,12 @@ footer{
 	width: 94%;
 }
 /** Display the actions menu below information sections */
-#card_display_popup .popup-body #card_actions {
+#card-display-popup .popup-body #card_actions {
 	float: none;
 	width: 50%;
 	margin-left: 5%;
 }
-#card_display_popup .popup-body #card_info {
+#card-display-popup .popup-body #card_info {
 	float: none;
 	width: 100%;
 }

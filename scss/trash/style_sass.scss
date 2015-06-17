@@ -1,0 +1,1461 @@
+/* begin scss */
+
+@import 'reset';
+
+////// Variables ////////////
+$bgColor:  rgb(14, 116, 175);
+$primaryColor: #026aa7;
+$secondaryColor: #cdd2d4;
+$primaryFontColor: #555;
+$secondaryFontColor: #5e98ba;
+
+/// Fonts /////////
+$primaryFont: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$secondaryFont: 'Anaheim', sans-serif;
+$ScriptFont: 'Rochester', cursive;
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
+@mixin box-shadow($shadow) {
+	-webkit-box-shadow: $shadow;
+	-moz-box-shadow: $shadow;
+	-ms-box-shadow: $shadow;
+	box-shadow: $shadow;
+}
+// For resposive design, image must fit in container automatically.
+@mixin img-tag(){
+	max-width: 100%;
+	box-sizing: border-box;
+	height: auto;
+}
+// Applies transition for the specified property only.
+@mixin transition($time,$prop,$ease){
+	-webkit-transition: $time $prop $ease;
+	-moz-transition: $time $prop $ease;
+	-ms-transition: $time $prop $ease;
+	transition: $time $prop $ease;
+}
+// gives transition effect for all properties. time and easing are fixed.
+@mixin transition-all(){
+	-webkit-transition: 0.1s all ease-in-out;
+	-moz-transition: 0.1s all ease-in-out;
+	-ms-transition: 0.1s all ease-in-out;
+	transition: 0.1s all ease-in-out;
+	
+}
+@mixin transform($function){
+	-webkit-transform: $function;
+	-moz-transform: $function;
+	-ms-transform: $function;
+	transform: $function;
+}
+@mixin add-bg-image($url){
+	background: url('../images/'+$url+'.png') no-repeat;
+}
+@mixin add-bg-image-color($url,$color){
+	background: url('../images/'+$url+'.png') no-repeat $color;
+}
+//
+// Produces nice scrollbars on chrome browser given the foreground-color and background-color. ///
+//
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+	// For Google Chrome
+	::-webkit-scrollbar {
+	  width:  $size;
+	  height: $size;
+	}
+	::-webkit-scrollbar-thumb {
+	  background: $foreground-color;
+	  @include border-radius(3px);
+	}
+
+	::-webkit-scrollbar-track {
+	  background: $background-color;
+	}
+
+	// For Internet Explorer
+	body {
+	scrollbar-face-color: $foreground-color;
+	scrollbar-track-color: $background-color;
+	}
+}
+
+/* Replaces the ugly default scrollbar of chrome.
+ * forground is white with 60% opacity and background with 20% opacity.
+*/
+@include scrollbars(.5em, rgba(255,255,255,0.6), rgba(255, 255, 255, 0.2));
+
+/* Change the box model. Recommended for resposive websites. */
+*, *:before, *:after{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+html{
+	background: $bgColor;
+}
+body{
+	font-family: $primaryFont;
+	font-size: 13pt;
+	color: $primaryFontColor;
+	overflow-x: hidden;
+}
+a{
+	color: $secondaryFontColor;
+	text-decoration: underline;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.show{
+	display: block !important;
+}
+.hide{
+	display: none !important;
+}
+.disabled{
+	opacity: 0.7;
+	cursor: auto;
+}
+.bold{
+	font-weight: bold;
+}
+.big{
+	font-size: 26pt;
+}
+.white{
+	color: white;
+}
+
+.no-overflow{
+	overflow: hidden;
+}
+.border-bottom{
+	border-bottom: 1px solid #999;
+}
+.close{
+	@include add-bg-image(close);
+	background-size: 100%;
+	background-position: center;
+	float: right;
+	width: 20px;
+	height: 100%;
+}
+.open{
+	@include add-bg-image(open);
+	background-size: 100%;
+	background-position: center;
+	float: right;
+	width: 20px;
+	height: 100%;
+}
+
+.wrapper{
+	position: relative;
+	display: block;
+	width: 100%;
+	height: auto;
+	clear: both;
+}
+.center{
+	text-align: center !important;
+}
+
+/********** Style for labels **************************/
+.green{
+	background: green;
+}
+.blue{
+	background: $bgColor;
+}
+.red{
+	background: red;
+}
+.orange{
+	background: orange;
+}
+/******************************************************/
+
+/*********** Button styles - OOCSS model **************/
+.btn{
+	@include border-radius(4px);
+	display: inline-block;
+	zoom: 1;
+	vertical-align: bottom;
+	text-align: center;
+	margin: 5px 5px;
+	text-decoration: none;
+	font-weight: bold;
+	cursor: pointer;
+	@include box-shadow(0 1px 3px rgba(0,0,0,0.1));
+	color: #555;
+}
+.btn:hover{
+	color: white;
+	background: $bgColor !important;
+}
+.btn-small{
+	padding: 5px;
+}
+.btn-normal{
+	padding: 10px;
+}
+.btn-big{
+	padding: 15px;
+}
+.btn-green{
+	background: linear-gradient(to bottom, #70b500 0, #64a200 100%) !important;
+	color: white;
+}
+.btn-gray{
+	background: linear-gradient(to bottom,#fff 0,#f8f9f9 100%);
+	color: #555;
+}
+.btn-outline{
+	background: transparent;
+}
+.btn-outline-blue{
+	border: 1px solid rgb(94, 152, 186);
+	color: rgb(94, 152, 186);
+}
+.btn-outline-white{
+	background: transparent;
+	border: 1px solid white;
+	color: white;
+}
+/**************** End Button styles ***************/
+#overlay{
+	width: 100%;
+	position: fixed;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: -5;
+	background: rgba(1,1,1,0.5);
+	opacity: 0;
+	overflow: auto;
+}
+#overlay.visible{
+	z-index: 15;
+	opacity: 1;
+
+}
+header{
+	background: $primaryColor;
+}
+footer{
+	text-align: center;
+	font-size: 13pt;
+	padding: 30px 0px;
+	background: white;
+	
+	a{
+		padding-left: 8px;
+		text-decoration: underline;
+	}
+}
+/***** Remove footer for devices with less width ******/
+@media only screen and (max-width: 400px){
+	footer{
+		display: none;
+	}
+}
+section{
+
+}
+.content{
+	
+}
+/*********** Style for Index Page *********************/
+#hero{
+	background: white;
+	padding: 6%;
+	margin: 0 auto;
+	font-size: 16pt;
+	h1{
+		padding: 2% 15%;
+	}
+	p{
+		padding: 0% 22%;
+	}
+	.logo{
+		display: inline-block;		
+		/*background-position: 761px -41px;
+		width: 274px;
+		height: 74px;*/
+	}
+	img{
+		@include img-tag();
+	}
+}
+
+#screenshot,#abilities,#signup{
+	text-align:center;
+	font-size: 15pt;
+	p{
+		text-align: left;
+		padding: 80px 0% 40px;
+		width: 60%;
+		margin: 0 auto;
+		display: block;
+	}	
+	figure{
+		padding: 0px 60px;
+		img{
+			max-width: 100%;
+			box-sizing: border-box;
+		}
+	}
+}
+#screenshot{
+	color: white;
+	background: $bgColor;
+}
+#abilities{
+	color: black;
+	background: white;
+}
+#signup{
+	color: white;
+	background: $bgColor;
+}
+/* CSS for resposiveness on Index page
+ * Style for Tablets
+ */
+@media only screen and (max-width: 950px){
+	#screenshot,#abilities,#signup{
+		p{
+			text-align: left;
+			padding: 25px 2% 20px;
+			width: 90%;
+			font-size: 12pt;
+		}
+		figure{
+			padding: 0px 5%;
+			margin: 0;
+		}
+	}
+	#hero{
+		h1{
+			text-align: center;
+			padding: 16px 0%;
+			width: 100%;
+			font-size: 18pt;
+		}
+		p{
+			padding: 0 4%;
+			font-size: 13pt;
+			width: 90%;
+			margin: 0 auto;
+		}
+		.logo{
+				width: 200px;
+		}
+	}
+
+}
+/* CSS for resposiveness on Index page
+ * Style for Phones
+ */
+@media only screen and (max-width: 640px){
+	#hero{
+		padding: 6% 2%;
+	}
+	#hero .logo{
+		width: 200px;
+	}
+}
+/************ End stles for Index ******************/
+
+/************ Styles for Boards Page ***************/
+#header-boards{
+	background: #0B5B8A;
+	height: 39px;
+	overflow: hidden;
+	padding: 4px;
+	position: relative;
+	z-index: 10;
+	a{
+		text-decoration: underline;
+	}
+	#logo{
+		text-align: center;
+		//width: 50%;
+		display: inline-table;
+		position: absolute;
+		left: 45%;
+		top: 5px;
+		a{
+			display: inline-block;
+		}
+		figure{
+			float: left;
+			margin: 0;
+			opacity: 0.8;
+			@include transition-all();
+			img{
+				@include img-tag();
+			}
+		}
+		figure:hover{
+			@include transition-all();
+			opacity: 1;
+		}
+	}
+
+	div{
+		//float: left;
+	}
+	.header-item{
+		background: rgba(255, 255, 255, 0.27);
+		height: 30px;
+		/*margin-left: 8px;*/
+		@include border-radius(2px);
+		padding: 0px 0px 0px 0px;
+		cursor: pointer;
+		display: inline-block;
+		float: none;
+		vertical-align: top;
+	}
+	.header-item:hover{
+		//background: rgba(255, 255, 255, 0.17);
+		opacity: 0.85;
+	}
+	#profile{
+		float: right;
+		color: white;
+		max-width: 140px;
+		font-size: 12pt;
+		margin-right: 5px;
+		figure{
+			margin: 0;
+			width: 30px;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		span{
+			margin: 0;
+			font-size: 11pt;
+			padding-left: 5px;
+			padding-right: 10px;
+			line-height: 2;
+		}
+	}
+	#notifications{
+		@include add-bg-image-color(bell,rgba(255, 255, 255, 0.27));
+		margin-right: 5px;
+		float: right;
+		width: 30px;
+		background-size: 20px;
+		background-position: center;
+	}
+	#notifications:hover{
+	}
+	#add{
+		@include add-bg-image-color(plus,rgba(255, 255, 255, 0.27));
+		float: right;
+		width: 30px;
+		background-size: 25px;
+		background-position: center;
+		margin-right: 5px;
+	}
+	#boards{
+		width: 90px;
+		@include add-bg-image-color(icon-white,rgba(255, 255, 255, 0.27));
+		background-size: 17px;
+		background-position: 6px center;
+		color: white;
+		font-size: 11pt;
+		padding-left: 30px;
+		line-height: 2;
+		margin-left: 5px;
+		display: inline-block;
+	}
+	#search{
+		width: 15%;
+		@include add-bg-image-color(search,rgba(255, 255, 255, 0.27));
+		@include transition-all();
+		background-size: 20px;
+		background-position: 95% center;
+		input{
+			width: 100%;
+			background: transparent;
+			border: none;
+			height: 100%;
+
+		}
+		input:focus{
+			@include border-radius(4px);
+			border: 0;
+			width: 100%;
+			box-shadow: none;
+			-webkit-appearance: none;
+			outline: none; 
+		}
+		#search-open,#search-close{
+			  display: inline;
+			  margin: 0px 2px;
+			  opacity: 0.7;
+		}
+	}
+	#search.focused{
+		width: 24%;
+		background: white;
+		
+	}
+
+
+}
+@media (max-width: 800px){
+	#header-boards #search{
+		width: 34px;
+		background-position: center;
+	}
+	#header-boards #profile span{
+		display: none;
+	}
+	#header-boards #boards{
+		font-size: 0px;
+		width: 0px;
+	}
+	#header-boards #logo{
+		left: 40%;
+		top: 25%;
+		width: 70px;
+	}
+}
+
+section#boards-container{
+	background: white;
+ 	padding: 10px 15px;
+	overflow: hidden;
+	position: relative;
+	z-index: 6;
+
+	div[id^='boards-organization-'],div#boards-starred,div#boards-my{
+		h1{
+			font-size: 12pt;
+			font-weight: 500;
+			padding: 2px 6px;
+			display:block;
+			margin-bottom: 16px;
+  			margin-top: 20px;
+  			font-weight: 600;
+			padding-left: 36px;
+			background-position: 0px 2px;
+			background-size: 22px;
+
+			span.overview{
+				@include add-bg-image(info);
+				padding-left: 18px;
+				background-size: 13px;
+				background-position: 4px center;
+				width: 5px;
+				height: 5px;
+				font-size: 11px;
+				cursor: pointer;
+			}
+		}
+	}
+	div#boards-starred{
+		h1{
+			@include add-bg-image(star);
+			padding-left: 36px;
+			background-position: 0px 2px;
+			background-size: 22px;
+		}
+	}
+	div#boards-my{
+		h1{
+			@include add-bg-image(user);
+			padding-left: 36px;
+			background-position: 0px 2px;
+			background-size: 22px;
+		}
+	}
+	div[id^='boards-organization-']{
+   	h1{
+			@include add-bg-image(organization);
+			padding-left: 36px;
+			background-position: 0px 2px;
+			background-size: 22px;
+		}
+	}
+	ul{
+		list-style: none;
+		margin-left: 35px;
+		margin-right: 0px;
+		display: block;
+		overflow: auto;
+	}
+	li{
+		display: block;
+		float: left;
+		padding: 3px 0px;
+		width: 24%;
+		margin-right: 10px;
+		margin-bottom: 5px;
+	}
+	a:not(#org-create){
+		text-decoration: none;
+		background: #0E74AF;
+		@include border-radius(4px);
+		padding: 10px 0px 10px 14px;
+		color: white;
+		width: 100%;
+		display: inline-table;
+		height: 105px;
+		position: relative;
+  		span{
+  			font-size:12pt;
+  			font-weight: normal;
+  		}
+  		span:not(.bold){
+  			@include add-bg-image(star);
+			background-size: 16px;
+			background-position: 96% 10%;
+			display: inline-block;
+  			@include transition-all();
+  			opacity: 0;
+  			float: right;
+  			margin-right: 20px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+  		}
+  		span.starred{
+  			@include add-bg-image(star-gold);
+  			opacity: 1;
+  		}
+  		span:not(.bold):hover{
+  			@include transition-all();
+  			opacity: 1;
+  		}
+	}
+	a:not(#org-create):hover{
+		background: #0F6CA2;
+	}
+	a#add-board{
+		background: #d6dadc;
+		text-align: center;
+		color: #444;
+		span{
+			font-size: 12pt;
+		}
+	}
+	a#add-board:hover{
+		background: #CCD0D3;
+	}
+	a#org-create{
+		font-size: 12pt;
+		color: #666;
+		text-decoration: underline;
+		margin: 20px 0px 20px 10px;
+		display: block;
+	}
+
+}
+@media (max-width: 750px){
+	section#boards-container{
+		div[id^='boards-organization-'],div#boards-starred,div#boards-my{
+			li{
+				display: block;
+				width: 100%;
+				margin: 0;
+			}
+		}
+	}
+}
+
+span.starred{
+	@include add-bg-image(star-gold);
+	opacity: 1;
+	background-size: 100%;
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+	@include transition-all();
+}
+span.not-starred{
+	@include add-bg-image(star);
+	background-size: 100%;
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+	@include transition-all();
+}
+
+/********* Styles for the board and lists page ************/
+
+section#board-ribbon{
+	background: $bgColor;
+	height: 40px;
+	padding: 10px 0px 5px 10px;
+	div{
+		display: inline;
+	}
+	span{
+		padding: 8px;
+		color: #f6f6f6;
+		border-radius: 4px;
+		font-size: 10pt;
+		display: inline;
+		margin-right: 10px;
+		cursor: pointer;
+	}
+	span:hover:not(.starred):not(.not-starred){
+		background: rgba(0,0,0,0.1);
+	}
+	span.title{
+		font-weight: bold;
+		font-size: 12pt;
+	}
+	span.starred,span.not-starred{
+		background-position: center;
+	}
+	span.starred:hover,span.not-starred:hover{
+		background-size: 120%;
+	}
+	span#privacy{
+		@include add-bg-image(lock);
+		background-size: 18px;
+		background-position: 4px center;
+		padding-left: 25px;
+
+	}
+	span#privacy:hover{
+		@include add-bg-image-color(lock,rgba(0,0,0,0.1));
+		background-size: 18px;
+		background-position: 4px center;
+	}
+	span#menu-toggle{
+		@include add-bg-image(left);
+		background-size: 18px;
+		background-position: 4px center;
+		padding-left: 25px;
+		text-decoration: underline;
+
+	}
+	span#menu-toggle:hover{
+		@include add-bg-image-color(left,rgba(0,0,0,0.1));
+		background-size: 18px;
+		background-position: 4px center;
+	}
+
+}
+@media only screen and (max-width: 501px){
+	#board-ribbon{
+		height: 55px !important;
+		div{
+			display: block !important;
+			margin-left: 8px !important;
+		}
+	}
+}
+section#board-content{
+	background: $bgColor;
+	height: 80vh;
+	position: relative;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	padding-left: 10px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: flex-start;
+
+	.list{
+		@include border-radius(4px);
+		background: #e2e4e6;
+		max-width: 270px;
+		min-width: 270px;
+		margin: 0px 5px;
+		display: flex;
+		flex-direction: column;
+
+		.list-head{
+			padding: 6px 10px;
+			font-weight: bold;
+			font-size: 16px;
+			cursor: pointer;
+		#add-card{
+			padding: 6px 10px;
+			cursor: pointer;
+			color: #888;
+		}
+			a{
+				@include add-bg-image(down);
+				width: 18px;
+				height: 18px;
+				background-size: 14px;
+				opacity: 0.7;
+				margin-top: 3px;
+			}
+			a:hover{
+				opacity: 1;
+			}
+		}
+		#add-card{
+			padding: 6px 10px;
+			cursor: pointer;
+			color: #888;
+		}
+		.card{
+			margin: 4px 8px;
+			background: #FFFFFF;
+			@include border-radius(4px);
+			cursor: pointer;
+			position: relative;
+
+			.card-edit{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				margin: 0;
+				padding: 0;
+				opacity: 0;
+				.edit{
+					display: block;
+					width: 30px;
+					height: 30px;
+					float: right;
+					margin: 0;
+					background: rgba(0,0,0,0.05);
+					text-align: center;
+					vertical-align: middle;
+					padding-top: 5px;
+				}
+			}
+			.card-edit:hover{
+				opacity: 1;
+			}
+			figure{
+				margin: 0;
+				padding: 0;
+
+				img{
+					@include img-tag();
+				}
+			}
+			figure.hide{
+				height: 0;
+			}
+			.card-detail{
+				padding: 8px;
+				font-size: 13px;
+
+				.card-exerpt{
+					font-size: 14px;
+					color: #666;
+					padding: 5px 0px;
+					text-align: justify;
+				}
+				.card-flags{
+					span{
+						color: #888;
+					}
+				}
+				.card-labels{
+					span{
+						width: 45px;
+						height: 8px;
+						@include border-radius(4px);
+						display: inline-block;
+					}
+				}
+				.card-members{
+					display: block;
+					float: right;
+					margin: 2px 0px;
+					span{
+						float: left;
+						display: inline-block;
+						width: 30px;
+						height: 30px;
+						margin: 0px 2px;
+
+						img{
+							margin: 0;
+							padding: 0;
+							@include img-tag();
+							@include border-radius(4px);
+						}				
+					}
+				}
+			}
+		}
+		#add-card:hover,.card:hover{
+			@include border-radius(4px);
+			background: rgba(0,0,0,0.05);
+		}
+
+	}
+}
+#board-menu{
+	position: absolute;
+	z-index: 5;
+	top: 45px;
+	right: -400px;
+	transform: translate(0px,0px);
+	@include border-radius(4px);
+	@include transition(0.5s,all,cubic-bezier(0.165, 0.84, 0.44, 1));
+	background: #e2e4e6;
+	width: 250px;
+	height: 88%;
+	padding: 12px;
+
+	div.container{
+		overflow-y: scroll;
+		height: 100%;
+	}
+	#toggle-sidebar{
+		@include add-bg-image-color(left,#e2e4e6);
+		@include transform(rotate(180deg));
+		@include border-radius(4px);
+		@include transition(0.1s,left,ease-in-out);
+		background-size: 20px;
+		background-position: center;
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		top: 15px;
+		left: -26px;
+		cursor: pointer;
+	}
+	#toggle-sidebar:hover{
+		left: -24px;
+		@include transition(0.1s,left,ease-in-out);
+	}
+	nav{
+		margin-bottom: 8px;		
+		position: relative;
+		#board-menu-nav-toggle{
+			font-weight: bold;
+			font-size: 16px;
+			padding: 6px 9px;
+			color: #777;
+			cursor: pointer;
+			background: rgba(0,0,0,0.05);
+
+			span.right{
+				@include add-bg-image(down);
+				width: 18px;
+				height: 18px;
+				background-size: 14px;
+				opacity: 0.7;
+				margin-top: 3px;
+			}
+		}
+		#board-menu-nav-toggle:hover{
+			background: rgba(0,0,0,0.1);
+		}
+		ul{
+			list-style: none;
+			background: rgba(0,0,0,0.05);
+			height: 0;
+			//height: 380px; //change to expand the list.
+			overflow: hidden;
+			@include transition(0.1s,height,ease-in-out);
+
+			li{
+				padding: 6px 6px 6px 20px;
+				color: #444;
+				font-size: 14px;
+			}
+		}
+		ul.show{
+			height: 380px; //change to expand the list.
+			@include transition(0.1s,height,ease-in-out);
+		}
+	}
+	#board-members{
+		h4{
+			font-size: 12pt;
+			margin: 0;
+		}
+		ul{
+			display: block;
+			
+			li.member{
+				display: block;
+				width: 30px;
+				height: 30px;
+				float: left;
+				margin: 2px 2px;
+				position: relative;
+				@include border-radius(3px);
+				-webkit-user-select: none;
+				
+				img{
+					@include img-tag();
+				}
+			}
+		}
+	}
+}
+#board-menu.show{
+
+	right: 0%;
+	@include transition(0.2s,all,cubic-bezier(0.165, 0.84, 0.44, 1));
+}
+.option{
+	font-weight: bold;
+	font-size: 13px;
+}
+.detail{
+	font-size: 11px;
+	color: #666;
+	font-weight: normal;
+}
+.popup{
+	position:absolute;
+	z-index:8;
+	background: white;
+	padding: 6px;
+	@include border-radius(4px);
+	@include box-shadow(0px 0px 3px #999);
+	min-width: 240px;
+
+	a{
+		text-decoration: none;
+	}
+	hr{
+		border: 0;
+		height: 1px;
+		background: #ddd;
+		margin: 7px 5px;
+	}
+	.popup-header{
+		text-align: center;
+		font-size: 14px;
+		color: #666;
+		font-weight: bold;
+		padding: 3px 0px;
+
+		.cross{
+			position: absolute;
+			top: 10px;
+			right: 6px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+		.cross:hover{
+			color: #111;
+		}
+	}
+	.popup-body{
+		padding: 1px;
+		font-size: 13px;
+		color: #555;
+	}
+	.popup-box{
+		margin: 8px 0px;
+	}
+	.popup-label{
+		font-weight: bold;
+		font-size: 15px;
+		padding: 2px 0px;
+		display: block;
+	}
+	input,select{
+		display: block;
+		width: 100%;
+		margin: 10px 0px;
+		padding: 8px 5px;
+		outline: none;
+		border: 1px solid #D7D7D7;
+		@include border-radius(4px);
+		background: #e6e6e6;
+	}
+	input:focus{
+		background: white;
+		border: 1px solid #76B5D1;
+		box-shadow: 0px 1px 3px #37B6EE;
+	} 
+	.btn{
+		//width: 40%;
+		//padding: 10px 10px;
+		//margin: 15px 0px;
+	}
+}
+#create-board-popup{
+	width: 300px;
+
+	#preview{
+		font-size: 14px;
+		overflow: hidden;
+		height: 0;
+	}
+	#options{
+		overflow: hidden;
+		height: 0;
+
+		div{
+			display: block;
+			padding: 4px 0px;
+
+			span{
+				display: block;
+				margin: 2px 0px;
+			}
+		}
+		.private{
+
+		}
+		.public{
+
+		}
+		.org{
+
+		}
+	}
+	.show{
+		height: auto !important;
+	}
+	.hide{
+		height: 0 !important;
+		display: block !important;
+	}
+	.btn{
+		width: 100px;
+	}
+
+}
+#profile-popup{
+	top: 40px;
+	right: 1%;	
+	min-width: 300px;
+	padding: 0;
+
+	.popup-header{
+		padding: 10px 6px 6px;
+	}
+	.popup-body{
+		padding: 0;
+		margin: 5px 0px;
+	}
+	a{
+		display: block;
+		padding: 8px 10px;
+		font-size: 11pt;
+		margin: 0px 0px;
+		color: #444;
+		font-weight: bold;
+	}
+	a:hover{
+		color: white;
+		background: $bgColor;
+	}
+
+}
+#boards-popup{
+	top: 40px;
+	left: 0%;	
+	min-width: 270px;
+	font-size: 14px;
+	height: 90%;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	input{
+		margin: 2px 0px;
+	}
+	a{
+		background: none;
+		padding: 7px 5px;
+		color: #777;
+		display: block;
+		text-decoration: underline;
+	}
+	a:hover:not(.org){
+		color: #555;
+		background: #e9e9e9;
+		@include border-radius(3px);
+	}
+	a.org{
+		display: inline-block;
+
+	}
+	#popup-options a{
+		margin: 3px 0px;
+	}
+	span.cat{
+		font-size: 14px;
+		color: #777;
+		padding-left: 20px;
+		margin: 5px 3px;
+		display: inline-block;
+	}
+	span.cat.star{
+		@include add-bg-image(star);
+		background-size: 15px;
+		background-position: left center;
+	}
+	span.cat.my{
+		@include add-bg-image(user);
+		background-size: 15px;
+		background-position: left center;
+	}
+	span.cat.recent{
+		@include add-bg-image(recent);
+		background-size: 15px;
+		background-position: left center;
+	}
+	span.cat.org{
+		@include add-bg-image(organization);
+		background-size: 15px;
+		background-position: left center;
+	}
+	span.cat.org a{
+		padding: 0;
+	}
+
+	ul.boards-list{
+		li{
+			position: relative;
+			padding: 10px;
+			background: #CCE5F4;
+			opacity: 0.95;
+			display: block;
+			margin: 4px 0px;
+			@include border-radius(4px);
+			a{
+				padding: 0;
+			}
+			a:hover{
+				background: none;
+			}
+			span{
+				display: inline-block;
+			}
+			span.color{
+				width: 15%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: #0079BF;
+				@include border-radius(4px);
+			}
+			span.color:hover{
+				background: #2A7098;
+			}
+			span.board-name{
+				font-weight: bold;
+				font-size: 14px;
+				color: #444;
+				width: 100%;
+				padding-left: 16%;
+			}
+			span.star,span.starred{
+				@include add-bg-image(star);
+				background-size: 16px;
+				background-position: 96% center;
+				display: inline-block;
+	  			@include transition-all();
+	  			opacity: 0;
+	  			float: right;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+			}
+			span.starred{
+				@include add-bg-image(star-gold);
+				background-size: 16px;
+				background-position: 96% center;
+				opacity: 1;
+			}
+			span.star:hover,span.starred:hover{
+				opacity: 1;
+			}
+		}
+		li:hover{
+			background: #BCD9EA;
+			opacity: 1;
+		}
+	}
+
+}
+#create-new-popup{
+	@extend #profile-popup;
+	max-width: 300px;
+
+	a div{
+		padding: 4px;
+	}
+	a:hover{
+
+		div{
+			color: white !important;
+		}
+	}
+}
+#card-display-popup{
+	top: 10%;
+	left: 20%;
+	width: 60%;
+	height: auto;
+	z-index: 16;
+	background: #edeff0;
+	padding: 0;
+	@include border-radius(2px);
+	.popup-header{
+		padding: 0;
+	}
+	#card-image-header{
+		width: 100%;
+		height: auto;
+		background: rgb(250, 250, 250);
+		cursor: pointer;
+		img{
+			@include img-tag();
+			max-width: 35%;
+		}
+	}
+	#card-image-header:hover{
+		opacity: 0.8;
+		@include transition-all();
+	}
+	.popup-body{
+		position: relative;
+		#card-information{
+			float: left;
+			width: 78%;
+			display: block;
+			padding: 10px;
+			font-size: 14px;
+
+			.card-information-title{
+				display: block;
+				span{
+					display: inline-block;
+					vertical-align: middle;
+					color: #777;
+				}
+				.icon{
+					font-size: 18pt;
+					color: #888;
+				}
+				.title{
+					color: #444;
+					font-size: 14pt;
+					font-weight: bold;
+				}
+				.title-extra{
+
+					a{
+						color: #555;
+						font-size: 15px;
+						text-decoration: underline;
+					}
+				}
+			}
+			.card-information-detail{
+				margin: 10px 0px;
+				padding: 10px 40px;
+
+				.label{
+					color: #777;
+					display: block;
+					margin-bottom: 6px;
+				}
+				.members,labels{
+					margin: 0px 25px 0px 0px;
+					float: left;
+					display: inline-block;
+					position: relative;
+					vertical-align: middle;
+				}
+				.avatar{
+					display: inline-block;
+					vertical-align: middle;
+					width: 30px;
+					height: 30px;
+					@include border-radius(4px);
+				}
+				.avatar img{
+					@include img-tag();
+					@include border-radius(4px);
+				}
+				.labels span{
+					width: 50px;
+					height: 30px;
+					display: inline-block;
+					vertical-align: middle;
+					@include border-radius(4px);
+				}
+				.icon-plus{
+					width: 30px !important;
+					height: 30px;
+					background: #dadada;
+					display: inline-block;
+					vertical-align: middle;
+					@include border-radius(4px);
+					text-align: center;
+					line-height: 2;
+					color: #555;
+					cursor: pointer;
+				}
+				.icon-plus:hover{
+					color: #222;
+				}
+				.description{
+					clear: both;
+					margin-top: 10px;
+				}
+			}
+		}
+		#card-actions{
+			float: right;
+			width: 20%;
+			h3{
+				 margin: 6px 0;
+			}
+			ul{
+				list-style: none;
+			}
+			.icon{
+				color: #999;	
+			}
+			.btn-gray{
+				display: block;
+				text-align: left;
+				width: 90%;
+				padding: 10px 5px;
+			
+			}
+		}
+	}
+}
+@media only screen and (max-width: 750px){
+	#card-display-popup{
+		top: 5%;
+		left: 3%;
+		width: 94%;
+	}
+	/** Display the actions menu below information sections */
+	#card-display-popup .popup-body #card-actions {
+		float: none;
+		width: 50%;
+		margin-left: 5%;
+	}
+	#card-display-popup .popup-body #card-information {
+		float: none;
+		width: 100%;
+	}
+}

@@ -1007,6 +1007,21 @@ input:focus {
     div{
     	display: block !important;
     	margin-left: 8px !important;
-    }*/ } }
+    }*/ }
+
+  #card_display_popup {
+    top: 5%;
+    left: 3%;
+    width: 94%; }
+
+  /** Display the actions menu below information sections */
+  #card_display_popup .popup-body #card_actions {
+    float: none;
+    width: 50%;
+    margin-left: 5%; }
+
+  #card_display_popup .popup-body #card_info {
+    float: none;
+    width: 100%; } }
 
 /*# sourceMappingURL=main.css.map */
