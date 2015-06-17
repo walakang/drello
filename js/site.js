@@ -61,7 +61,7 @@ function createBoardPrvacyToggle(node){
 	if(node.id === "change"){
 		
 		hideToggle(document.getElementById("privacy_preview"));
-		hideToggle(document.getElementById("privacy-options"));
+		hideToggle(document.getElementById("privacy_options"));
 	}
 	else{
 		//change the value on the privacy form

@@ -677,7 +677,7 @@ input:focus{
 	box-shadow: 0px 1px 3px #37B6EE;
 } 
 #privacy_preview,#privacy_options{
-	height: auto;
+	height: 0;
 }
 .privacy-option{
 	padding: 4px 0px;	
@@ -700,6 +700,10 @@ input:focus{
 }
 #create_board_popup{
 	width: $dialog-create-board-width;
+
+	.show{
+		height: auto;
+	}
 }
 .profile-option{
 	color: $text-color;
@@ -865,7 +869,7 @@ input:focus{
 	background: #edeff0;
 	padding: 0;
 	top: 10%;
-	
+
 	.popup-header{
 		padding: 0;
 	}
