@@ -211,11 +211,12 @@ input{
 }
 // Layout width specific columns
 // using sass while loop step from 100 to 20
+
 $iterator: 100;
 $step: 10;
 @while $iterator > 10{
 	.width-#{$iterator} {
-		width: $iterator+'%';
+		width: 1% * $iterator;
 		$iterator: $iterator - $step;
 	}
 }

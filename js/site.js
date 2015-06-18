@@ -1,6 +1,10 @@
 // Make cJS global. This object holds the core methods and properties.
 // defined in coreJS.js
-var drello = new drello();
+var drello = new Drello();
+
+drello.fromLocal();
+drello.populateBoards();
+
 
 /* The _currentPopup variable holds the node of the popup displayed currently. 
 	It is used to hide the popup when another event occured.

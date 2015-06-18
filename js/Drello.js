@@ -30,7 +30,7 @@ Drello.prototype.fromLocal = function (){
 		/* Call the fromData method to set the own properties from the
 		 * data parsed from localstorage
 		 */
-		this.boards[len-1].fromData(boardData(i));
+		this.boards[len-1].fromData(boardData[key]);
 	}
 	this.organizations = JSON.parse(localStorage.organizations);
 }
@@ -129,5 +129,6 @@ function Card(name){
 	this.attachments = [];
 	this.colors = [];
 	this.node = null;
+	this.image = null;
 
 }
