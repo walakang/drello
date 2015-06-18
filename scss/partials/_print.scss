@@ -1,0 +1,98 @@
+@page {
+	margin: 0.5cm;
+}
+*{
+	background: white !important; // remove all backgrounds.
+	color: $print-color !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+html{
+	background: none;
+}
+body {
+	font-family: $body-font;
+	font-size: $size-normal;
+}
+p, h2, h3{
+	orphans: 3;
+	widows: 3;
+}
+header,nav, footer, aside {
+	display: none !important;
+}
+.home-article a:after{
+	content: " ("attr(href)")";
+}
+// remove background in indexpage
+.home-article,#hero{
+	background: none !important;
+}
+.home-article *,#hero *{
+	background: none !important;
+}
+header#hero{
+	display: block;
+	p{
+		width: 100%;
+	}
+}
+.logo{
+	display: block;
+}
+.home-article > .wrapper{
+	max-width: 600px;
+	margin: 0 auto;
+}
+#hero > .wrapper{
+	max-width: 600px;
+	margin: 0 auto;
+}
+.home-article-text{
+	width: 95%;
+	padding-top: 40px;
+}
+.home-article-image,.home-article-text{
+	margin: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+.btn{
+	border: 1px solid $print-color;
+	font-weight: normal;
+}
+.board .bold{
+	color: #ddd !important;
+}
+// Board display:  page
+#board_content{
+	display: block;
+	flex: none;
+	overflow: auto;
+	height: 100%;
+}
+.list{
+	max-height: none;
+	height: auto;
+	overflow: auto;
+	display: block;
+}
+.card{
+	border: 1px solid $print-color;
+	margin-top: 5px;
+}
+.card-image{
+	margin-top: 4px;
+}
+.card-detail-flags{
+	display: none;
+}
+#menu_toggle{
+	display: none;
+}
+#add_card{
+	display: none;
+}
+#list_actions_toggle{
+	display: none;
+}

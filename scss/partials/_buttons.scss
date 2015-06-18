@@ -14,7 +14,7 @@
 }
 .btn:hover{
 	color: white;
-	background: $bg-color !important;
+	background: $bg-color;
 }
 .btn-small{
 	padding: 5px;
@@ -26,7 +26,7 @@
 	padding: 15px;
 }
 .btn-green{
-	background: linear-gradient(to bottom, #70b500 0, #64a200 100%) !important;
+	background: linear-gradient(to bottom, #70b500 0, #64a200 100%);
 	color: white;
 }
 .btn-gray{

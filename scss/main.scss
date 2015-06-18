@@ -13,46 +13,46 @@
 @import "partials/buttons";
 
 // * Types and links
-html{
+html {
 	background: $bg-color;
 }
-body{
+body {
 	font-family: $body-font;
 	font-size: $size-normal;
 	color: $text-color;
 }
-a{
+a {
 	color: $link-color;
 	text-decoration: none;
 }
-a:hover{
+a:hover {
 	color: darkslateblue;
 }
-h1{
+h1 {
 	font-size: $size-h1;
 	font-weight: 600;
 	display: block;
 }
-img{
+img {
 	@include img-tag();
 }
-footer{
+footer {
 	text-align: center;
 	font-size: 13pt;
 	padding: 30px 0px;
 	background: white;
 	
-	a{
+	a {
 		padding-left: 8px;
 		text-decoration: underline;
 	}
 }
-p{
+p {
 	text-align: left;
 }
 
 // * Change the box model. Recommended for resposive websites.
-*, *:before, *:after{
+*, *:before, *:after {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -64,65 +64,65 @@ p{
 @include scrollbars(.5em, rgba(255,255,255,0.6), rgba(255, 255, 255, 0.2));
 
 // Common styles
-.no-display{
+.no-display {
 	display: none !important;
 }
-.no-height{
+.no-height {
 	height: 0;
 }
-.hidden{
+.hidden {
 	visibiliy: hidden;
 }
-.disabled{
+.disabled {
 	opacity: 0.7;
 	cursor: auto;
 }
-.pointer{
+.pointer {
 	cursor: pointer;
 }
-.bold{
+.bold {
 	font-weight: 700;
 }
-.big{
+.big {
 	font-size: $size-big;
 }
-.small{
+.small {
 	font-size: $size-small;
 }
-.medium{
+.medium {
 	font-size: $size-medium;
 }
-.large{
+.large {
 	font-size: $size-large;
 }
-.normal{
+.normal {
 	font-size: $size-normal;
 }
-.white-text{
+.white-text {
 	color: white;
 }
-.normal-text{
+.normal-text {
 	color: $text-color;
 }
-.light-text{
+.light-text {
 	color: $text-color-light;
 }
-.border-bottom{
+.border-bottom {
 	border-bottom: 1px solid #999;
 }
-.thin-line{
+.thin-line {
 	border: 0;
 	height: 1px;
 	background: #ddd;
 	margin: 7px 5px;
 }
-.underline{
+.underline {
 	text-decoration: underline;
 }
-.round{
+.round {
 	@include border-radius(4px);
 }
-.avatar{
+.avatar {
 	display: inline-block;
 	vertical-align: middle;
 	width: 30px;
@@ -132,23 +132,23 @@ p{
 }
 
 /********** Style for labels **************************/
-.green{
+.green {
 	background: green;
 }
-.blue{
+.blue {
 	background: $bg-color;
 }
-.red{
+.red {
 	background: red;
 }
-.orange{
+.orange {
 	background: orange;
 }
-.white{
+.white {
 	background: white;
 }
 /******************************************************/
-.overlay{
+.overlay {
 	width: 100%;
 	position: fixed;
 	height: 100%;
@@ -159,77 +159,95 @@ p{
 	opacity: 0;
 	overflow: auto;
 }
-.overlay.visible{
+.overlay.visible {
 	z-index: $z-overlay-visible;
 	opacity: 1;
 }
 
 // Layouts
-.clear{
+.clear {
 	clear: both;
 }
-.no-overflow{
+.no-overflow {
 	overflow: hidden;
 }
-.y-scroll{
+.y-scroll {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
-.x-scroll{
+.x-scroll {
 	overflow-x: auto;
 	overflow-y: hidden;
 }
-.wrapper{
+.wrapper {
 	position: relative;
 	display: block;
 	width: 100%;
 	height: auto;
 	clear: both;
 }
-.padding-10{
+.padding-10 {
 	padding: 10px;
 }
-.padding-20{
+.padding-20 {
 	padding: 20px;
 }
-.width-100{
+.pre-10 {
+	margin-left: 10px;
+}
+.pre-15 {
+	margin-left: 15px;
+}
+.pre-20 {
+	margin-left: 20px;
+}
+.pre-25 {
+	margin-left: 25px;
+}
+.pre-30 {
+	margin-left: 30px;
+}
+.width-100 {
 	width: 100%;
 }
-.width-90{
+.width-90 {
 	width: 90%;
 }
-.width-80{
+.width-80 {
 	width: 80%;
 }
-.width-60{
+.width-70 {
+	width: 70%;
+}
+.width-60 {
 	width: 60%;
 }
-.width-50{
+.width-50 {
 	width: 50%;
 }
-.width-20{
+.width-20 {
 	width: 20%;
 }
-.height-100{
+.height-100 {
 	height: 100%;
 }
-.left{
+.left {
 	float: left;
 }
-.right{
+.right {
 	float: right;
 }
-.center{
+.center {
 	float: none;
 	margin: 0 auto;
 }
-.block{
+.block {
 	display: block;
 }
-.i-block{
+.i-block {
 	display: inline-block;
 }
-.absolute-center{
+.absolute-center {
 	// Width must be specified inorder to work.
 	position: absolute;
 	left: 0;
@@ -238,79 +256,96 @@ p{
 	bottom: 0;
 	margin: 0 auto;
 }
-.text-center{
+.text-center {
 	text-align: center;
 }
-.break{
+.break {
 	display: block;
+	overflow: hidden; // margin collapse hotfix
 }
-.break-1{
+.break-1 {
 	@extend .break;
-	margin: 5px 0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
-.break-2{
+.break-2 {
 	@extend .break;
-	margin: 10px 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
-.break-4{
+.break-4 {
 	@extend .break;
-	margin: 20px 0px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.no-bg {
+	background: none;
 }
 // Page Styles
-.logo{
+.logo {
 	@include add-bg-image(logo);
 	//background-position: -271px -38px;
 	background-position: center;
 	background-size: 100%;
 }
-.logo-big{
+.logo-big {
 	width: 266px;
 	height: 74px;
 }
-.logo-small{
+.logo.no-bg {
+	@extend .no-bg;
+}
+.logo-small {
 	@include add-bg-image(logo-small);
 	background-position: center;
 	background-size: 100%;
 	width: 108px;
 	height: 30px;
 }
-.logo-medium{
+.logo-medium {
 	width: 200px;
 	height: 55px;
 }
+.block-input {
+	margin: 10px 0px;
+	padding: 8px 5px;
+	outline: none;
+	border: 1px solid #D7D7D7;
+	background: #e6e6e6;
+}
 // Index page sections have alternating background and text color
-.alt-bg:nth-child(even){
+.alt-bg:nth-child(even) {
 	color: white;
 	background: $bg-color;
 }
-.alt-bg:nth-child(odd){
+.alt-bg:nth-child(odd) {
 	color: $text-color;
 	background: white;
 }
-#hero{
+#hero {
 	padding: 6%;
-	font-size: 16pt;
+	//font-size: 16pt;
 	
-	h1{
-		padding: 2% 15%;
+	h1 {
+		//padding: 2% 15%;
 	}
-	p{
-		padding: 0% 22%;
-		color: #555;
+	p {
+		//padding: 0% 22%;
+		//color: #555;
 	}
 }
-.home-article{
+.home-article {
 	font-size: 15pt;
 }
-.home-article-text{
+.home-article-text {
 	padding: 80px 0% 40px;
 }
-.home-article-image{
+.home-article-image {
 	padding: 0px 60px;	
 }
 
 // Boards page
-.header-item{
+.header-item {
 	background: rgba(255, 255, 255, 0.27);
 	height: 30px;
 	/*margin-left: 8px;*/
@@ -321,42 +356,42 @@ p{
 	float: none;
 	vertical-align: top;
 }
-.header-item:hover{
+.header-item:hover {
 	//background: rgba(255, 255, 255, 0.17);
 	opacity: 0.85;
 }
-#header-boards{
+#header-boards {
 	background: $highlight-color;
 	height: $header-height;
 	padding: 4px;
 	position: relative;
 	z-index: $z-header;
 	
-	#logo{
+	#logo {
 		height: $header-height;	
 		@include transition-all();
 		opacity: 0.8;
 	}
-	#logo:hover{
+	#logo:hover {
 		@include transition-all();
 		opacity: 1;
 	}
 }
 // The following styles for individiual header items are very specific.
 // TODO: make them classes.
-#profile{
+#profile {
 	float: right;
 	color: white;
 	max-width: 140px;
 	font-size: 12pt;
 	margin-right: 5px;
-	figure{
+	figure {
 		margin: 0;
 		width: 30px;
 		display: inline-block;
 		vertical-align: middle;
 	}
-	span{
+	span {
 		margin: 0;
 		font-size: 11pt;
 		padding-left: 5px;
@@ -364,7 +399,7 @@ p{
 		line-height: 2;
 	}
 }
-#notifications{
+#notifications {
 	@include add-bg-image-color(bell,rgba(255, 255, 255, 0.27));
 	margin-right: 5px;
 	float: right;
@@ -372,9 +407,9 @@ p{
 	background-size: 20px;
 	background-position: center;
 }
-#notifications:hover{
+#notifications:hover {
 }
-#add{
+#add {
 	@include add-bg-image-color(plus,rgba(255, 255, 255, 0.27));
 	float: right;
 	width: 30px;
@@ -382,7 +417,7 @@ p{
 	background-position: center;
 	margin-right: 5px;
 }
-#boards{
+#boards {
 	width: 90px;
 	@include add-bg-image-color(icon-white,rgba(255, 255, 255, 0.27));
 	background-size: 17px;
@@ -394,19 +429,19 @@ p{
 	margin-left: 5px;
 	display: inline-block;
 }
-#search{
+#search {
 	width: 15%;
 	@include add-bg-image-color(search,rgba(255, 255, 255, 0.27));
 	@include transition-all();
 	background-size: 20px;
 	background-position: 95% center;
-	input{
+	input {
 		background: transparent;
 		border: none;
 		height: 100%;
 
 	}
-	input:focus{
+	input:focus {
 		@include border-radius(4px);
 		border: 0;
 		width: 100%;
@@ -414,49 +449,49 @@ p{
 		-webkit-appearance: none;
 		outline: none; 
 	}
-	#search-open,#search-close{
+	#search-open,#search-close {
 		  display: inline;
 		  margin: 0px 2px;
 		  opacity: 0.7;
 	}
 }
-#search.focused{
+#search.focused {
 	width: 24%;
 	background: white;
 
 }
 
 // Styles for boards page
-#boards_container{
+#boards_container {
 	padding: 10px 15px;
 	z-index: $z-boards-container;
 }
-.boards-list-container{
+.boards-list-container {
 	clear: both;
 }
-.boards-list-container > h1{
+.boards-list-container > h1 {
 	padding: 4px 0px;
 	margin-bottom: 16px;
 	margin-top: 20px;
 	
-	a{
+	a {
 		font-size: 11px;
 		color: $text-color-light;
 	}
 }
-.boards-list-container > h1:before{
+.boards-list-container > h1:before {
 	color: $text-color-extralight;
 	padding-right: 10px;
 	margin-right: 10px;
 	font-size: 20px;
 }
 // the styling container
-.boards-list{
+.boards-list {
 	margin-left: 35px;
 	margin-right: 0px;
 }
 // 'a' child of the container
-.board{
+.board {
 	@extend .white-text;
 	@include transition-all();
 	position: relative;
@@ -468,52 +503,52 @@ p{
 	padding: 10px 0px 10px 14px;
 	font-size: 16px;
 }
-.board:hover{
+.board:hover {
 	background: $highlight-color;
 	color: white;
 	@include transition-all();
 }
-.board-add{
+.board-add {
 	@extend .text-center;
 	background: #d6dadc;
 	color: $text-color;
 }
-.board-add > span{
+.board-add > span {
 	vertical-align: sub;
 }
-.board-add:hover{
+.board-add:hover {
 	background: #CCD0D3;	
 	color: $text-color;
 }
 
 // Styles for board list page
 
-#board_ribbon{
+#board_ribbon {
 	//height: 40px;
 	padding: 15px;
 	
-	.icon-star{
+	.icon-star {
 		color: gold;
 		padding: 6px;
 		background: rgba(1,1,1,0.1);
 		font-size: 14px;
 	}
-	.icon-star,#menu_toggle,#privacy{
+	.icon-star,#menu_toggle,#privacy {
 		padding: 6px;
 		@extend .round;
 	}
-	.icon-star:hover,#menu_toggle:hover,#privacy:hover{
+	.icon-star:hover,#menu_toggle:hover,#privacy:hover {
 		background: rgba(1,1,1,0.2);
 	}
 }
-#board_ribbon > h1{
+#board_ribbon > h1 {
 	margin: 0;
 }
-#board_ribbon #menu_toggle{
+#board_ribbon #menu_toggle {
 	//margin-top: 4px;
 }
 // The flex box
-#board_content{
+#board_content {
 	overflow-x: auto;
 	overflow-y: hidden;
 	height: 80vh;
@@ -529,7 +564,7 @@ p{
 }
 // List is not html list.
 // Flex item
-.list{
+.list {
 	background: #e2e4e6;
 	max-width: 270px;
 	min-width: 270px;
@@ -540,36 +575,36 @@ p{
 	overflow-y: auto;
 	
 }
-.list-head{
+.list-head {
 	padding: 6px 10px;
 	font-size: 16px;
 	
-	.icon-download{
+	.icon-download {
 		opacity: 0.7;	
 		font-weight: normal;
 		color: $text-color-light;
 	}
-	.icon-download:hover{
+	.icon-download:hover {
 		opacity: 1;	
 	}
 }
-.list-item{
+.list-item {
 	@extend .block;
 }
-.card{
+.card {
 	margin: 4px 8px;
 	background: #FFFFFF;
 	position: relative;
 }
-#add-card{
+#add_card {
 	padding: 6px 10px;
 	color: $text-color-extralight;
 }
-#add-card:hover,.card:hover{
+#add_card:hover,.card:hover {
 	@include border-radius(4px);
 	background: rgba(0,0,0,0.05);
 }
-.card-edit{
+.card-edit {
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -577,7 +612,7 @@ p{
 	padding: 0;
 	opacity: 0;
 	
-	.icon-pencil-alt{
+	.icon-pencil-alt {
 		width: 30px;
 		height: 30px;
 		margin: 0;
@@ -586,135 +621,127 @@ p{
 		padding-top: 5px;
 	}
 }
-.card-edit:hover{
+.card-edit:hover {
 	opacity: 1;
 }
-.card-image{
+.card-image {
 	margin: 0;
 	padding: 0;	
 }
-.card-image.hide{
+.card-image.hide {
 	height: 0;
 }
-.card-detail{
+.card-detail {
 	padding: 8px;
 	font-size: 13px;
 }
-.card-detail-exerpt{
+.card-detail-exerpt {
 	font-size: 14px;
 	color: $text-color-light;
 	padding: 5px 0px;
 	text-align: justify;
 }
-.card-detail-flags{
-	span{
+.card-detail-flags {
+	span {
 		color: #888;
 	}
 }
-.card-detail-labels{
-	span{
+.card-detail-labels {
+	span {
 		width: 45px;
 		height: 8px;
 		@include border-radius(4px);
 		display: inline-block;
 	}
 }
-.card-detail-members{
+.card-detail-members {
 	margin: 2px 0px;
-	.avatar{
+	.avatar {
 		margin: 0px 2px;		
 	}
 }
 
 // Styles for popup dialogs.
-.popup{
+.popup {
 	position: absolute;
 	z-index: $z-dialog;
 	padding: 6px;
 	@include box-shadow(0px 0px 3px #999);
 	min-width: $dialog-min-width;
-	
-	input,select{
-		margin: 10px 0px;
-		padding: 8px 5px;
-		outline: none;
-		border: 1px solid #D7D7D7;
-		background: #e6e6e6;
-	}
 }
-.popup-header{
+.popup-header {
 	color: $text-color-light;
 	padding: 3px 0px;
 	margin-top: 5px;
 		
-	.icon-cancel{
+	.icon-cancel {
 		position: absolute;
 		top: 10px;
 		right: 6px;
 	}
-	.icon-cancel:hover{
+	.icon-cancel:hover {
 		color: $text-color;
 	}
 }
-.popup-header-title{
+.popup-header-title {
 ;
 }
-.popup-body{
+.popup-body {
 	padding: 1px;
 }
-.popup-box{
+.popup-box {
 	margin: 8px 0px;
 }
-.popup-form{
+.popup-form {
 	
 }
-.popup-form-label{
+.popup-form-label {
 	padding: 2px 0px;
 }
-input:focus{
+input:focus {
 	background: white;
 	border: 1px solid #76B5D1;
 	box-shadow: 0px 1px 3px #37B6EE;
 } 
-#privacy_preview,#privacy_options{
+#privacy_preview,#privacy_options {
 	height: 0;
 }
-.privacy-option{
+.privacy-option {
 	padding: 4px 0px;	
 	
-	span{
+	span {
 		display: block;
 		margin: 2px 0px;
 	}
 }
-#profile_popup{
+#profile_popup {
 	top: 40px;
 	right: 1%;	
 	min-width: 300px;
 	padding: 0;
 	
-	.popup-body{
+	.popup-body {
 		padding: 0;
 		margin: 5px 0px;
 	}
 }
-#create_board_popup{
+#create_board_popup {
 	width: $dialog-create-board-width;
 
-	.show{
+	.show {
 		height: auto;
 	}
 }
-.profile-option{
+.profile-option {
 	color: $text-color;
 	padding: 8px 10px;
 	margin: 0px 0px;
 }
-.profile-option:hover{
+.profile-option:hover {
 	@extend .white-text;
 	background: $highlight-color;
 }
-#boards_popup{
+#boards_popup {
 	top: 40px;
 	left: 0%;	
 	min-width: 270px;
@@ -723,31 +750,31 @@ input:focus{
 	overflow-x: hidden;
 	overflow-y: scroll;
 	
-	input{
+	input {
 		margin: 2px 0px;	
 	}
-	.popup-box-title{
+	.popup-box-title {
 		margin: 10px 0px;
 		color: $text-color-light;
 	}
-	.icon-plus{
+	.icon-plus {
 		float: right;
 		color: $text-color-extralight;
 	}
-	.icon-plus:hover{
+	.icon-plus:hover {
 		color: $text-color-light;
 	}
-	.boards-list{
+	.boards-list {
 		margin-left: 0;	
 	}
-	.boards-list-item{
+	.boards-list-item {
 		position: relative;
 		padding: 10px;
 		background: #CCE5F4;
 		opacity: 0.95;
 		margin: 4px 0px;
 		
-		.color{
+		.color {
 			width: 15%;
 			height: 100%;
 			position: absolute;
@@ -759,41 +786,41 @@ input:focus{
 			border-top-left-radius: 4px;
 			border-bottom-left-radius: 4px;
 		}
-		.color:hover{
+		.color:hover {
 			background: #2A7098;
 		}
-		.board-name{
+		.board-name {
 			padding-left: 16%;
 			color: $text-color;
 		}
 	}
 }
-.board-popup-option{
+.board-popup-option {
 	margin: 3px 0px;
 	color: $text-color-light;
 	padding: 7px 5px;
 	background: none;
 }
-.board-popup-option:hover{
+.board-popup-option:hover {
 	color: $text-color;
 	background: #e9e9e9;
 	@extend .round;	
 }
 
-#create_new_popup{
+#create_new_popup {
 	@extend #profile_popup;
 	max-width: 300px;
 }
-.create-option{
+.create-option {
 	padding: 5px 10px;
 }
-.create-option:hover{
+.create-option:hover {
 	background: $highlight-color;
 	color: white;
 }
 
 // Styles for Sidebar menu
-.sidemenu{
+.sidemenu {
 	position: absolute;	
 	z-index: $z-side-menu;
 	 top: 0px;
@@ -805,48 +832,48 @@ input:focus{
 	height: 88%;
 	padding: 12px;
 }
-#toggle_sidebar{
+#toggle_sidebar {
 	position: absolute;
 	top: 15px;
 	left: -26px;
 	background: #e2e4e6;
 	line-height: 2;
 }
-#toggle_sidebar:before{
+#toggle_sidebar:before {
 	margin-left: 25%;
 }
-.sidemenu.show{
+.sidemenu.show {
 	right: 0%;
 	@include transition(0.2s,all,cubic-bezier(0.165, 0.84, 0.44, 1));
 }
-.sidemenu-actions{
+.sidemenu-actions {
 	margin-bottom: 8px;
 	
-	#board_menu_nav_toggle{
+	#board_menu_nav_toggle {
 		padding: 6px 9px;
 		color: $text-color-light;
 		background: rgba(0,0,0,0.05);		
 	}
-	#board-menu-nav-toggle:hover{
+	#board-menu-nav-toggle:hover {
 		background: rgba(0,0,0,0.1);
 	}
 }
-.sidemenu-actions-list{
+.sidemenu-actions-list {
 	list-style: none;
 	background: rgba(0,0,0,0.05);
 	height: 0;
 	//height: 380px; //change to expand the list.
 	@include transition(0.1s,height,ease-in-out);
 }
-.sidemenu-actions-list.show{
+.sidemenu-actions-list.show {
 	height: 380px; //change to expand the list.
 	@include transition(0.1s,height,ease-in-out);
 }
-.sidemenu-actions-list-item{
+.sidemenu-actions-list-item {
 	padding: 6px 6px 6px 20px;
 	color: $text-color;
 }
-#toggle-sidebar{
+#toggle-sidebar {
 	@include transition(0.1s,left,ease-in-out);
 	width: 30px;
 	height: 30px;
@@ -854,14 +881,14 @@ input:focus{
 	top: 15px;
 	left: -26px;
 }
-#toggle-sidebar:hover{
+#toggle-sidebar:hover {
 	left: -24px;
 	@include transition(0.1s,left,ease-in-out);
 }
 
 
 // Styles for card display popup
-#card_display_popup{
+#card_display_popup {
 	width: 60%;
 	min-height: 20%;
 	height: auto;
@@ -870,63 +897,62 @@ input:focus{
 	padding: 0;
 	top: 10%;
 
-	.popup-header{
+	.popup-header {
 		padding: 0;
 	}
 }
-.card-cover{
+.card-cover {
 	width: 100%;
 	height: auto;
 	background: rgb(250, 250, 250);
 	@include transition-all();
 }
-.card-cover > img{
+.card-cover > img {
 	max-width: 35%;
 }
-.card-cover:hover{
+.card-cover:hover {
 	opacity: 0.8;
 	@include transition-all();
 }
-.card-info{
+.card-info {
 	
 }
-.card-info-title{
+.card-info-title {
 
 }
-.card-info-detail{
+.card-info-detail {
 
-	.label{
+	.label {
 		color: $text-color-light;
 		display: block;
 		margin-bottom: 6px;
 	}
-	.btn-add{
+	.btn-add {
 		line-height: 2;
 		background: #dadada;
 		@extend .round;
 	}
-	.btn-add:hover{
+	.btn-add:hover {
 		color: #222;
 	}
 }
-.card-info-detail-members,.card-info-detail-labels{
+.card-info-detail-members,.card-info-detail-labels {
 	margin: 0px 25px 0px 0px;
 }
 
 
 // * Include responsive styles
-@media (min-width: $breakpoint-medium) and (max-width: ($breakpoint-large - 1)) {
+@media (min-width: $breakpoint-medium) and (max-width: ($breakpoint-large - 1))  {
 
   @import 'partials/_tablet';
 
 }
-@media (min-width: $breakpoint-small) and (max-width: ($breakpoint-medium - 1)) {
+@media (min-width: $breakpoint-small) and (max-width: ($breakpoint-medium - 1))  {
 
   @import 'partials/_phone';
 
 }
-
-
-#search-open {
-	
+// * Print media styles
+@media print  {
+	@import 'partials/_print'
 }
