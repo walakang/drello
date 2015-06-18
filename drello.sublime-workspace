@@ -4,8 +4,80 @@
 		"selected_items":
 		[
 			[
+				"bo",
+				"boardData"
+			],
+			[
+				"se",
+				"selfAppend"
+			],
+			[
+				"crea",
+				"createNode"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"from",
+				"fromLocal"
+			],
+			[
+				"pr",
+				"prototype"
+			],
+			[
+				"le",
+				"len"
+			],
+			[
+				"specif",
+				"specific"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"margi",
+				"margin-left"
+			],
+			[
+				"hi",
+				"hide"
+			],
+			[
+				"no",
+				"no-height"
+			],
+			[
+				"re",
+				"remove"
+			],
+			[
 				"class",
-				"className"
+				"classList"
+			],
+			[
+				"text-color",
+				"text-color-light"
+			],
+			[
+				"fon",
+				"font-size"
 			],
 			[
 				"show",
@@ -25,10 +97,6 @@
 			],
 			[
 				"boa",
-				"boardsPopup"
-			],
-			[
-				"bo",
 				"boardsPopup"
 			],
 			[
@@ -59,7 +127,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 3868,
+				"buffer_size": 4059,
 				"line_ending": "Unix"
 			}
 		},
@@ -67,7 +135,7 @@
 			"file": "boards.html",
 			"settings":
 			{
-				"buffer_size": 12313,
+				"buffer_size": 12525,
 				"line_ending": "Unix"
 			}
 		},
@@ -75,15 +143,7 @@
 			"file": "board-display.html",
 			"settings":
 			{
-				"buffer_size": 16395,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "css/style_sass.scss",
-			"settings":
-			{
-				"buffer_size": 25319,
+				"buffer_size": 17689,
 				"line_ending": "Unix"
 			}
 		},
@@ -91,26 +151,47 @@
 			"file": "scss/main.scss",
 			"settings":
 			{
-				"buffer_size": 12082,
+				"buffer_size": 15133,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "js/coreJS.js",
+			"file": "scss/partials/_print.scss",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 1426,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "// Make cJS global. This object holds the core methods and properties.\n// defined in coreJS.js\nvar cJS = new coreJS();\n\n/* The _currentPopup variable holds the node of the popup displayed currently. \n	It is used to hide the popup when another event occured.\n*/\n_currentPopup = null;\nfunction closePopups(){\n	if(_currentPopup!=null){\n		_currentPopup.classList.add(\"hide\");\n		_currentPopup = null;\n	}\n	if(document.getElementById(\"overlay\").className===\"visible\")\n		document.getElementById(\"overlay\").className = \"\";\n	return true;\n}\n\nfunction showOverlay(){\n	document.getElementById(\"overlay\").className=\"visible\"\n}\n// Hide all popusps when clicked outside the popup \ndocument.getElementsByClassName(\"container-main\")[0].onclick = closePopups;\n\nfunction hideToggle(node){\n	if(node.className === \"show\"){\n		node.className = \"\";\n	}\n	else{\n		node.className = \"show\";\n	}\n}\n// behaviour for the search box on header.\nfunction focusSearch(node){\n	node.parentNode.classList.add(\"focused\");\n	node.parentNode.children[1].classList.remove(\"hide\");\n	node.parentNode.children[2].classList.remove(\"hide\");\n\n	return;\n}\nfunction blurSearch(node){\n	node.parentNode.classList.remove(\"focused\");\n	node.parentNode.children[0].value = \"\";\n	node.parentNode.children[1].classList.add(\"hide\");\n	node.parentNode.children[2].classList.add(\"hide\");\n\n	return;\n}\nfunction showHideSidebarToggle(){\n	var menu = document.getElementById(\"board-menu\");\n	hideToggle(menu);\n	return;\n}\nfunction showHideSidebarMenuToggle(){\n	var menu = document.querySelectorAll(\"#board-menu ul\")[0];\n	hideToggle(menu);\n\n	return;\n}\nfunction createBoardPrvacyToggle(node){\n	if(node.id === \"change\"){\n		\n		hideToggle(document.getElementById(\"preview\"));\n		hideToggle(document.getElementById(\"options\"));\n	}\n	else{\n		//change the value on the privacy form\n		\n		hideToggle(document.getElementById(\"preview\"));\n		hideToggle(document.getElementById(\"options\"));\n	}\n}\nfunction showPopup(name,position){\n	position = position || undefined;\n	var popup = document.getElementById(name);\n	if(typeof(position)==='object'){\n		popup.style.left = position.left+\"px\";\n		//popup.style.top = (position.top-80)+\"px\";\n		popup.style.bottom = (document.body.getBoundingClientRect().height-(position.bottom+100)+\"px\");\n	}\n\n	if(_currentPopup!=null){\n		_currentPopup.classList.add(\"hide\");\n		_currentPopup = null;\n	}\n	if(popup.classList.contains(\"hide\")){\n		popup.classList.remove(\"hide\");\n		_currentPopup = popup;\n	}\n}\nfunction showCreateBoardPopup(e){\n	/* the default behaviour of click on content is to hide the popups \n	 * We need to override that.\n	*/\n	e = e || window.event\n	e.stopPropagation();\n	console.log(e.target);\n	/* get the position of event target to calculate the position of the popup */\n	var position = {};\n	position.left = e.target.getBoundingClientRect().left;\n	//position.top = e.target.getBoundingClientRect().top;\n	position.bottom = e.target.getBoundingClientRect().bottom;\n	showPopup(\"create-board-popup\",position);\n\n	return false;\n}\nfunction showBoardsPopupToggle(){\n\n	showPopup(\"boards-popup\");\n\n	return false;\n}\nfunction showProfilePopupToggle(){\n\n	showPopup(\"profile-popup\");\n\n	return false;\n}\nfunction showCreateNewPopupToggle(){\n\n	showPopup(\"create-new-popup\");\n\n	return false;\n}\nfunction showCardPopupToggle(e){\n	/* the default behaviour of click on content is to hide the popups \n	 * We need to override that.\n	*/\n	e = e || window.event\n	e.stopPropagation();\n	showOverlay();\n	showPopup('card-display-popup');\n	return false;\n}\n\n\n",
+			"file": "scss/partials/_buttons.scss",
+			"settings":
+			{
+				"buffer_size": 911,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "scss/modules/_variables.scss",
+			"settings":
+			{
+				"buffer_size": 1280,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/shidil/training/Drello/js/Drello.js",
+			"settings":
+			{
+				"buffer_size": 3294,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "js/site.js",
-			"file_size": 3477,
-			"file_write_time": 1433324818000000,
 			"settings":
 			{
-				"buffer_size": 3477,
+				"buffer_size": 3594,
 				"line_ending": "Unix"
 			}
 		}
@@ -139,12 +220,13 @@
 	},
 	"file_history":
 	[
+		"/home/shidil/training/Drello/js/CoreJS.js",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/css/style_sass.scss",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/coreJS.js",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/login.html",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/index.html",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/boards.html",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/board-display.html",
-		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/css/style_sass.scss",
-		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/coreJS.js",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/site.js",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/board1.html",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/Core.js",
@@ -170,6 +252,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"{",
+			"bottom",
+			"important",
+			"list-actions-toggle",
+			"add-card",
+			"shortcut",
+			"{\n",
+			">\n",
+			".show",
 			"text-light",
 			";\n",
 			"cross",
@@ -191,6 +282,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			" {",
+			"list_actions_toggle",
+			"add_card",
 			"cross icon-cancel",
 			"board-display.html",
 			"Create new board...",
@@ -206,7 +300,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 7,
 			"sheets":
 			[
 				{
@@ -214,157 +308,20 @@
 					"file": "index.html",
 					"settings":
 					{
-						"buffer_size": 3868,
+						"buffer_size": 4059,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1589,
+								1589
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 993.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "boards.html",
-					"settings":
-					{
-						"buffer_size": 12313,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4027,
-								4027
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1445.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "board-display.html",
-					"settings":
-					{
-						"buffer_size": 16395,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								12754,
-								12754
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4616.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "css/style_sass.scss",
-					"settings":
-					{
-						"buffer_size": 25319,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								22550,
-								22550
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 21675.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "scss/main.scss",
-					"settings":
-					{
-						"buffer_size": 12082,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11729,
-								11729
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 12381.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "js/coreJS.js",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -374,19 +331,181 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "js/site.js",
+					"buffer": 1,
+					"file": "boards.html",
 					"settings":
 					{
-						"buffer_size": 3477,
+						"buffer_size": 12525,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3477,
-								3477
+								2697,
+								2697
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 765.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "board-display.html",
+					"settings":
+					{
+						"buffer_size": 17689,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3129,
+								3129
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 884.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "scss/main.scss",
+					"settings":
+					{
+						"buffer_size": 15133,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3402,
+								3402
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 7557.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "scss/partials/_print.scss",
+					"settings":
+					{
+						"buffer_size": 1426,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								615,
+								615
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "scss/partials/_buttons.scss",
+					"settings":
+					{
+						"buffer_size": 911,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								535,
+								535
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 51.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "scss/modules/_variables.scss",
+					"settings":
+					{
+						"buffer_size": 1280,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								582,
+								582
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 153.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/home/shidil/training/Drello/js/Drello.js",
+					"settings":
+					{
+						"buffer_size": 3294,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								351,
+								351
 							]
 						],
 						"settings":
@@ -395,7 +514,34 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1896.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "js/site.js",
+					"settings":
+					{
+						"buffer_size": 3594,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								118,
+								118
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

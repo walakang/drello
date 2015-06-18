@@ -50,7 +50,9 @@ footer {
 p {
 	text-align: left;
 }
-
+input{
+	border: none;
+}
 // * Change the box model. Recommended for resposive websites.
 *, *:before, *:after {
 	-webkit-box-sizing: border-box;
@@ -207,26 +209,15 @@ p {
 .pre-30 {
 	margin-left: 30px;
 }
-.width-100 {
-	width: 100%;
-}
-.width-90 {
-	width: 90%;
-}
-.width-80 {
-	width: 80%;
-}
-.width-70 {
-	width: 70%;
-}
-.width-60 {
-	width: 60%;
-}
-.width-50 {
-	width: 50%;
-}
-.width-20 {
-	width: 20%;
+// Layout width specific columns
+// using sass while loop step from 100 to 20
+$iterator: 100;
+$step: 10;
+@while $iterator > 10{
+	.width-#{$iterator} {
+		width: $iterator+'%';
+		$iterator: $iterator - $step;
+	}
 }
 .height-100 {
 	height: 100%;
