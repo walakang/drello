@@ -11,7 +11,7 @@
 		<meta http-equiv="pragma" content="no-cache" />
 		<link rel="stylesheet" href="css/main.css" >
 		<link rel="stylesheet" href="css/icons.css">
-		<link href='http://fonts.googleapis.com/css?family=Anaheim|Open+Sans:400,700|Rochester' rel='stylesheet' type='text/css'>
+		<!--<link href='http://fonts.googleapis.com/css?family=Anaheim|Open+Sans:400,700|Rochester' rel='stylesheet' type='text/css'>-->
 		<script src="js/Drello.js" ></script>
 
 		<link rel="shortcut icon" href="favicon.ico"/>
@@ -48,10 +48,7 @@
 				<h1 class="icon-star">Starred Boards</h1>
 				<!-- styling container for a number of boards -->
 				<div class="boards-list">	
-					<a href="board-display.html" class="board left block round starred">
-							<span class="bold">Board 1</span>
-							<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>					
-					</a>
+					<!-- This list is populated using JavaScript -->
 				</div>
 			</section>
 			
@@ -61,16 +58,6 @@
 				<!-- styling container for a number of boards -->
 				<div class="boards-list">
 					<!-- This list is populated using JavaScript -->
-				   <!--	
-					<a href="board-display.html" class="board left block round starred">
-							<span class="bold">Board 1</span>
-							<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>					
-					</a>
-					<a href="board-display.html" class="board left block round">
-							<span class="bold">Board 2</span>
-							<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>					
-					</a>
-					-->
 					<a href="#" class="board left block round board-add" onClick="showCreateBoardPopup(event)">
 						<span class=""><br>Create new board...</span>
 					</a>
@@ -87,6 +74,7 @@
 					</h1>
 					<!-- styling container for a number of boards -->
 					<div class="boards-list">	
+						<!-- This list is populated using JavaScript -->
 						<a href="#" class="board left block round board-add" onClick="showCreateBoardPopup(event)">
 							<span class=""><br>Create new board...</span>
 						</a>
@@ -109,9 +97,9 @@
 			</div>
 			<hr class="thin-line">
 			<div class="popup-body">
-				<form class="popup-form">
+				<form class="popup-form" id="create_board_form" method="POST" action="board-display.html">
 					<label for="bord-name" class="popup-form-label medium bold block">Title</label>
-					<input  class="block-input block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..."/>
+					<input  class="block-input block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..." required />
 					<input type="hidden" name="board-privacy"/>
 					<label for="bord-org" class="popup-form-label medium bold block">Organization</label>
 					<!-- The options are filled with names of oraganizations in DB. -->
@@ -135,7 +123,7 @@
 							<span class="detail">This board will be public. It is visible to anyone with the link to this board and it will be visible to search engines like Google and Yahoo. Only people added to the board can view or edit it.</span >
 						</div>
 					</div>
-					<input type="submit" class="btn btn-normal btn-green" value="Create"/>
+					<input type="submit" class="btn btn-normal btn-green" value="Create" onClick="closePopups()"/>
 				</form>
 			</div>
 		</div>
@@ -165,7 +153,7 @@
 		<div id="boards_popup" class="popup round white no-display">
 			<div class="popup-body">
 				<form class="popup-form">
-					<input class="block width-100 round" type="text" name="board-name" placeholder="Find boards by name..." autofocus="true"/>
+					<input class="block-input block width-100 round" type="text" name="board-name" placeholder="Find boards by name..." autofocus="true"/>
 				</form>
 				<div id="boards_popup_starred" class="popup-box">
 					<div class="popup-box-title">
@@ -248,7 +236,7 @@
 			</div>
 			<hr class="thin-line">
 			<div class="popup-body">
-				<a href="#" id="new_board" class="create-option block normal-text">
+				<a href="#" id="new_board" class="create-option block normal-text" onclick="showCreateBoardPopup()">
 					<div class="block break-1">Create Board...</div>
 					<div class="block small">
 						A board is a collection of cards ordered in a list of lists. Use it to manage a project, track a collection, or organize anything.

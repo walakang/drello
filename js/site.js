@@ -2,6 +2,7 @@
 // defined in coreJS.js
 var drello = new Drello();
 
+/* Populate DOM form the data stored in localStorage */
 drello.fromLocal();
 drello.populateBoards();
 
@@ -98,7 +99,7 @@ function showCreateBoardPopup(e){
 	*/
 	e = e || window.event
 	e.stopPropagation();
-	console.log(e.target);
+	drello.log(e.target);
 	/* get the position of event target to calculate the position of the popup */
 	var position = {};
 	position.left = e.target.getBoundingClientRect().left;
@@ -137,4 +138,37 @@ function showCardPopupToggle(e){
 	return false;
 }
 
+/* Bind an event when a user submit the create board form create a new Board and put it to
+ * boards list of drello object and then save to  local storage.
+ */
+function createBoard(event) {
+	var _form = event.target;
+	var name = _form.getElementsByTagName("input")[0].value;
+	// Create a new Board node and add to DOM
+	var board = new Board(name);
+	board.createNode();
+	board.selfAppend();
+	// Save the node to local storage
+	drello.boards.push(board);
+	drello.saveToLocal();
 
+	return false;
+}
+
+/* Call to bind all known events to various elements in the DOM */
+(function bindAllEvents(){
+	// Bind createBoard function to submit event of the create_board_form in the create_board-popup
+	document.getElementById("create_board_form").addEventListener("submit",createBoard,false);
+
+	/* When user clicks on a board in boards list page set the data-id attribute value as a reference for
+	 * boards-display to load that board.
+	 */
+	 var boards = document.querySelectorAll(".board");
+	 for (var i = boards.length - 1; i >= 0; i--) {
+	 	boards[i].addEventListener("click",function(e){
+	 		drello.log("Loading board - "+ this.dataset.id);
+	 		localStorage.setItem("currentBoard",this.dataset.id);
+	 	},false);
+	 };
+
+})();

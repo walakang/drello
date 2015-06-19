@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="css/main.css" >
 		<link rel="stylesheet" href="css/icons.css">
 		<!--<link href='http://fonts.googleapis.com/css?family=Anaheim|Open+Sans:400,700|Rochester' rel='stylesheet' type='text/css'>-->
-		<script src="js/CoreJS.js" ></script>
+		<script src="js/Drello.js" ></script>
 
 		<link rel="shortcut icon" href="favicon.ico"/>
 	</head>
@@ -23,9 +23,9 @@
 				Boards
 			</div>
 			<div id="search" class="header-item">
-				<input type="search" name="search-string" onFocus="return focusSearch(this);" onBlur="return blurSearch(this);"/>
-				<div id="search-open" class="open hide"></div>
-				<div id="search-close" class="close hide"></div>
+				<input class="width-80" type="search" name="search-string" onFocus="return focusSearch(this);" onBlur="return blurSearch(this);"/>
+				<span id="search-open" class="icon-link-ext right no-display"></span>
+				<span id="search-close" class="icon-cancel right no-display"></span>
 			</div>
 			<a href="boards.html">
 				<div id="logo" class="logo logo-small absolute-center"></div>
@@ -148,16 +148,16 @@
 			</div>
 			<hr class="thin-line">
 			<div class="popup-body">
-				<form class="popup-form">
+				<form class="popup-form" id="create_board_form" method="POST" action="board-display.html">
 					<label for="bord-name" class="popup-form-label medium bold block">Title</label>
-					<input  class="block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..."/>
+					<input  class="block-input block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..." required />
 					<input type="hidden" name="board-privacy"/>
 					<label for="bord-org" class="popup-form-label medium bold block">Organization</label>
 					<!-- The options are filled with names of oraganizations in DB. -->
-					<select name="board-org" class="block width-100 round" >
+					<select name="board-org" class="block-input block width-100 round" >
 						
 					</select>
-					<div id="privacy_preview" class="no-overflow block">
+					<div id="privacy_preview" class="no-overflow show block">
 						<span>This board will be public.<a id="change" href="#" onclick="createBoardPrvacyToggle(this)">Change</a></span>
 					</div>
 					<div id="privacy_options" class="no-overflow no-height block">
@@ -174,7 +174,7 @@
 							<span class="detail">This board will be public. It is visible to anyone with the link to this board and it will be visible to search engines like Google and Yahoo. Only people added to the board can view or edit it.</span >
 						</div>
 					</div>
-					<input type="submit" class="btn btn-normal btn-green" value="Create"/>
+					<input type="submit" class="btn btn-normal btn-green" value="Create" onClick="closePopups()"/>
 				</form>
 			</div>
 		</div>
@@ -204,7 +204,7 @@
 		<div id="boards_popup" class="popup round white no-display">
 			<div class="popup-body">
 				<form class="popup-form">
-					<input class="block width-100 round" type="text" name="board-name" placeholder="Find boards by name..." autofocus="true"/>
+					<input class="block-input block width-100 round" type="text" name="board-name" placeholder="Find boards by name..." autofocus="true"/>
 				</form>
 				<div id="boards_popup_starred" class="popup-box">
 					<div class="popup-box-title">
@@ -287,7 +287,7 @@
 			</div>
 			<hr class="thin-line">
 			<div class="popup-body">
-				<a href="#" id="new_board" class="create-option block normal-text">
+				<a href="#" id="new_board" class="create-option block normal-text" onclick="showCreateBoardPopup()">
 					<div class="block break-1">Create Board...</div>
 					<div class="block small">
 						A board is a collection of cards ordered in a list of lists. Use it to manage a project, track a collection, or organize anything.
