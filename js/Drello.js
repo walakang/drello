@@ -13,16 +13,6 @@ Drello.prototype.log = function(msg) {
 	}
 };
 
-/* Abstraction for document.querySelectorAll method */
-Drello.prototype.getAll = function (selectors) {
-	return document.querySelectorAll(selectors);
-}
-
-/* Abstraction for document.getElementByID */
-Drello.prototype.getElement = function(id) {
-	return document.getElementByID(id);
-}
-
 /* Save all data on localstorage as JSON*/
 Drello.prototype.saveToLocal = function () {
 	localStorage.setItem("boards", JSON.stringify(this.boards));
@@ -64,28 +54,44 @@ Drello.prototype.populateBoards = function() {
 		this.boards[key].selfAppend();
 	}
 }
+
+/* returns a random string (base36) */
 Drello.prototype.getRandomId = function() {
 	return Math.random().toString(36).substr(2, 9);
+};
+
+Drello.prototype.getUniqueBoardId = function() {
+	if (this.boards.length != null)
+		return this.boards.length;
+	return 0;
+};
+
+/* Returns the board object from this.boards array if an object has id = provided id
+ * @param id: String reperesenting unique id of a board
+ */
+Drello.prototype.getBoard = function(id) {
+
+	for (key in this.boards) {
+		//( this.boards[key].id === id ) ? (return this.boards[key]) : continue;
+	}
 };
 
 
 
 
 
-
-
-function Board(name){
+function Board(name, id) {
 	this.name = name;
-	this.id = Drello.prototype.getRandomId(); 	// generate unique id
+	this.id = id; 	// unique id
 	this.node =  null;
 	this.lists = [];
 	this.star = false;
 	this.closed = false;
 	//this.organization = null;
-	//this.isPublic = false;
+	//this.public = false;
 
 	this.isPublic = function(){
-		return this.isPublic;
+		return this.public;
 	}
 }
 

@@ -10,7 +10,7 @@ drello.populateBoards();
 /* The _currentPopup variable holds the node of the popup displayed currently. 
 	It is used to hide the popup when another event occured.
 */
-_currentPopup = null;
+var _currentPopup = null;
 function closePopups(){
 	if(_currentPopup!=null){
 		_currentPopup.classList.add("no-display");
@@ -78,7 +78,7 @@ function createBoardPrvacyToggle(node){
 function showPopup(name,position){
 	position = position || undefined;
 	var popup = document.getElementById(name);
-	if(typeof(position)==='object'){
+	if(typeof(position) ==='object'){
 		popup.style.left = position.left+"px";
 		//popup.style.top = (position.top-80)+"px";
 		popup.style.bottom = (document.body.getBoundingClientRect().height-(position.bottom+100)+"px");
@@ -145,7 +145,7 @@ function createBoard(event) {
 	var _form = event.target;
 	var name = _form.getElementsByTagName("input")[0].value;
 	// Create a new Board node and add to DOM
-	var board = new Board(name);
+	var board = new Board(name,drello.getUniqueBoardId());
 	board.createNode();
 	board.selfAppend();
 	// Save the node to local storage
