@@ -182,6 +182,28 @@ function List(name){
 		this.cards.push(card);
 	}
 }
+List.prototype.createNode = function() {
+	this.node = document.createElement("div");
+	this.node.className = "list round";
+	this.node.dataset.id = this.id;
+	var listHead = document.createElement("div");
+	listHead.className = "list-item list-head bold pointer";
+	listHead.innerHTML = "<span class="title">Ideas</span>
+						<a class="right" id="list_actions_toggle"><span class="icon-download"></span></a>";
+	this.node.appendChild(listHead);
+	// generate cards
+	var len = this.cards.length;
+	for (var i = 0; i< len; i++) {
+		this.cards[i].createNode();
+		this.node.appendChild(this.cards[i].node);
+	}
+	// Add card button
+	var listTail = document.createElement("div");
+	listTail.className = "list-item clear pointer";
+	listTail.id = "add_card";
+	listTail.innerHTML = "Add card...";
+	this.node.appendChild(listTail);
+};
 
 function Card(name){
 
@@ -194,3 +216,10 @@ function Card(name){
 	this.image = null;
 
 }
+Card.prototype.createNode = function() {
+	this.node = document.createElement("div");
+	this.node.className = "list-item card round pointer";
+	this.node.onclick = "showCardPopupToggle(event)";
+	this.node.innerHTML = "Card";
+
+};
