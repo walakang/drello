@@ -214,6 +214,6 @@ Card.prototype.createNode = function() {
 	this.node = document.createElement("div");
 	this.node.className = "list-item card round pointer";
 	this.node.onclick = "showCardPopupToggle(event)";
-	this.node.innerHTML = "Card";
+	this.node.innerHTML = this.name;
 
 };

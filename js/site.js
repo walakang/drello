@@ -167,8 +167,8 @@ function createBoard(event) {
 	return false;
 }
 
-/* Call to bind all known events to various elements in the DOM */
-(function bindAllEvents(){
+/* bind all known events to various elements in the DOM */
+(function(){
 	// Hide all pop-ups when clicked outside the pop-up 
 	//document.getElementsByTagName("main")[0].addEventListener("click",closePopups,false);
 	document.body.addEventListener("click",closePopups,false);
