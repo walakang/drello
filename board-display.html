@@ -144,7 +144,7 @@
 		<div id="create_board_popup" class="popup round white no-display">
 			<div class="popup-header text-center bold">
 				<span class="popup-header-title">Create Board</span>
-				<span id="popup_close" class="icon-cancel pointer" onClick="closePopups()"></span>
+				<span id="popup_close" class="icon-cancel pointer" onClick="closePopups(event,true)"></span>
 			</div>
 			<hr class="thin-line">
 			<div class="popup-body">
@@ -174,14 +174,14 @@
 							<span class="detail">This board will be public. It is visible to anyone with the link to this board and it will be visible to search engines like Google and Yahoo. Only people added to the board can view or edit it.</span >
 						</div>
 					</div>
-					<input type="submit" class="btn btn-normal btn-green" value="Create" onClick="closePopups()"/>
+					<input type="submit" class="btn btn-normal btn-green" value="Create" onClick="closePopups(event,true)"/>
 				</form>
 			</div>
 		</div>
 		<div id="profile_popup" class="popup round white no-display">
 			<div class="popup-header text-center bold">
 				<span class="popup-header-title title">Shidil Eringa (shidil)</span>
-				<span id="popup_close" class="icon-cancel pointer" onClick="closePopups()"></span>
+				<span id="popup_close" class="icon-cancel pointer" onClick="closePopups(event,true)"></span>
 			</div>
 			<hr class="thin-line">
 			<div class="popup-body">
@@ -283,7 +283,7 @@
 		<div id="create_new_popup" class="popup white round no-display">
 			<div class="popup-header text-center bold">
 				<span class="popup-header-title title">Create</span>
-				<span id="popup_close" class="icon-cancel pointer" onClick="closePopups()"></span>
+				<span id="popup_close" class="icon-cancel pointer" onClick="closePopups(event,true)"></span>
 			</div>
 			<hr class="thin-line">
 			<div class="popup-body">
@@ -310,13 +310,13 @@
 			</div>
 		</div>
 		
-		<div id="overlay" class="overlay" onClick="closePopups()">
+		<div id="overlay" class="overlay" onClick="closePopups(event)">
 			<div id="card_display_popup" class="popup round block absolute-center no-display">
 				<div class="popup-header text-center">
 					<div class="card-cover pointer">
 						<a href="images/taco.png"><img src="images/taco.png" /></a>
 					</div>
-					<span id="popup_close" class="icon-cancel pointer" onClick="closePopups()"></span>
+					<span id="popup_close" class="icon-cancel pointer" onClick="closePopups(event,true)"></span>
 				</div>
 				<div class="popup-body wrapper">
 					<section id="card_info" class="card-info left width-80 padding-10 block">

@@ -7,14 +7,27 @@ drello.fromLocal();
 drello.populateBoards();
 
 
-/* The _currentPopup variable holds the node of the popup displayed currently. 
-	It is used to hide the popup when another event occured.
+/* The __currentPopup variable holds the node of the pop-up displayed currently. 
+	It is used to hide the pop-up when another event occurred.
 */
-var _currentPopup = null;
-function closePopups(){
-	if(_currentPopup!=null){
-		_currentPopup.classList.add("no-display");
-		_currentPopup = null;
+var __currentPopup = null;
+function closePopups(e, forceClose){
+	forceClose = forceClose || false;
+	if(!__currentPopup) return;
+	
+	// check if clicked inside a pop-up box. pop-up should not be closed if clicked inside it self.
+	if(!forceClose && __currentPopup.isEqualNode(e.target)){
+		console.log("clicked inside pop-up container ");
+		return true;
+	}
+	else if(!forceClose && __currentPopup.contains(e.target)){
+		console.log("clicked inside some child of pop-up ");
+		return true;
+	}
+	if(__currentPopup!=null){
+		console.log("closing all pop-ups");
+		__currentPopup.classList.add("no-display");
+		__currentPopup = null;
 	}
 	if(document.getElementById("overlay").classList.contains("visible"))
 		document.getElementById("overlay").classList.remove("visible");
@@ -24,8 +37,7 @@ function closePopups(){
 function showOverlay(){
 	document.getElementById("overlay").classList.add("visible");
 }
-// Hide all popusps when clicked outside the popup 
-document.getElementsByTagName("main")[0].onclick = closePopups;
+
 
 function hideToggle(node){
 	if(node.classList.contains("show")){
@@ -84,23 +96,22 @@ function showPopup(name,position){
 		popup.style.bottom = (document.body.getBoundingClientRect().height-(position.bottom+100)+"px");
 	}
 
-	if(_currentPopup!=null){
-		_currentPopup.classList.add("no-display");
-		_currentPopup = null;
+	if(__currentPopup!=null){
+		__currentPopup.classList.add("no-display");
+		__currentPopup = null;
 	}
 	if(popup.classList.contains("no-display")){
 		popup.classList.remove("no-display");
-		_currentPopup = popup;
+		__currentPopup = popup;
 	}
 }
 function showCreateBoardPopup(e){
-	/* the default behaviour of click on content is to hide the popups 
+	/* the default behaviour of click on content is to hide the po pups 
 	 * We need to override that.
 	*/
 	e = e || window.event
 	e.stopPropagation();
-	drello.log(e.target);
-	/* get the position of event target to calculate the position of the popup */
+	/* get the position of event target to calculate the position of the pop-up */
 	var position = {};
 	position.left = e.target.getBoundingClientRect().left;
 	//position.top = e.target.getBoundingClientRect().top;
@@ -109,8 +120,9 @@ function showCreateBoardPopup(e){
 
 	return false;
 }
-function showBoardsPopupToggle(){
-
+function showBoardsPopupToggle(e){
+	event.stopPropagation();
+	console.log("showing boards pop-up");
 	showPopup("boards_popup");
 
 	return false;
@@ -128,7 +140,7 @@ function showCreateNewPopupToggle(){
 	return false;
 }
 function showCardPopupToggle(e){
-	/* the default behaviour of click on content is to hide the popups 
+	/* the default behaviour of click on content is to hide the pop-ups 
 	 * We need to override that.
 	*/
 	e = e || window.event
@@ -157,6 +169,13 @@ function createBoard(event) {
 
 /* Call to bind all known events to various elements in the DOM */
 (function bindAllEvents(){
+	// Hide all pop-ups when clicked outside the pop-up 
+	//document.getElementsByTagName("main")[0].addEventListener("click",closePopups,false);
+	document.body.addEventListener("click",closePopups,false);
+
+	// When a user clicks on the boards link on header show the boards pop-up menu.
+	document.getElementById("boards").addEventListener("click",showBoardsPopupToggle,false);
+	
 	// Bind createBoard function to submit event of the create_board_form in the create_board-popup
 	document.getElementById("create_board_form").addEventListener("submit",createBoard,false);
 
@@ -166,7 +185,7 @@ function createBoard(event) {
 	 var boards = document.querySelectorAll(".board");
 	 for (var i = boards.length - 1; i >= 0; i--) {
 	 	boards[i].addEventListener("click",function(e){
-	 		drello.log("Loading board - "+ this.dataset.id);
+	 		console.log("Loading board - "+ this.dataset.id);
 	 		localStorage.setItem("currentBoard",this.dataset.id);
 	 	},false);
 	 };

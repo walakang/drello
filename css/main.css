@@ -6,7 +6,7 @@ ol {
   margin: 0;
   padding: 0; }
 
-/* When we use Firefox, links are surrounded by a rated box once you’ve pressed them.
+/* When we use Firefox, links are surrounded by a rated box once youΓÇÖve pressed them.
  * To solve this problem, we must use the property outline in the following way:
  */
 a:active, a:focus {
@@ -81,7 +81,8 @@ html {
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 14px;
-  color: #444; }
+  color: #444;
+  z-index: 0; }
 
 a {
   color: #5E98BA;
@@ -520,7 +521,8 @@ body {
 
 #boards_container {
   padding: 10px 15px;
-  z-index: 6; }
+  z-index: 6;
+  height: 79vh; }
 
 .boards-list-container {
   clear: both; }

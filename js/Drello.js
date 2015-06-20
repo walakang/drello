@@ -6,12 +6,6 @@ function Drello() {
 	this.organizations = [];
 	this.debug = true;
 }
-/* Abstraction for console.log */
-Drello.prototype.log = function(msg) {
-	if (this.debug == true) {
-		console.log(msg);
-	}
-};
 
 /* Save all data on localstorage as JSON*/
 Drello.prototype.saveToLocal = function () {
@@ -188,8 +182,8 @@ List.prototype.createNode = function() {
 	this.node.dataset.id = this.id;
 	var listHead = document.createElement("div");
 	listHead.className = "list-item list-head bold pointer";
-	listHead.innerHTML = "<span class="title">Ideas</span>
-						<a class="right" id="list_actions_toggle"><span class="icon-download"></span></a>";
+	listHead.innerHTML = '<span class="title">Ideas</span> \
+						<a class="right" id="list_actions_toggle"><span class="icon-download"></span></a>';
 	this.node.appendChild(listHead);
 	// generate cards
 	var len = this.cards.length;
