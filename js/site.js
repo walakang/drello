@@ -75,15 +75,17 @@ function showBoardsPopup(e){
 
 	return false;
 }
-function showProfilePopup(){
+function showProfilePopup(e){
 	// Prevent event propogation.
 	e = e || window.event
 	e.stopPropagation();
 	showPopup("profile_popup");
 	return false;
 }
-function showCreateNewPopup(){
-	event.stopPropagation();
+function showCreateNewPopup(e){
+	// Prevent event propogation.
+	e = e || window.event
+	e.stopPropagation();
 	showPopup("create_new_popup");
 
 	return false;
