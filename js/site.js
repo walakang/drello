@@ -130,14 +130,14 @@ function SidebarMenuToggle(){
  * boards list of drello object and then save to  local storage.
  */
 function createBoard(event) {
-	var _form = event.target;
-	var name = _form.getElementsByTagName("input")[0].value;
+	var __form = event.target;
+	var __name = __form.getElementsByTagName("input")[0].value;
 	// Create a new Board node and add to DOM
-	var board = new Board(name,drello.getUniqueBoardId());
+	var board = new Board({name: __name, id: drello.getNextBoardId() });
 	board.createNode();
 	board.selfAppend();
 	// Save the node to local storage
-	drello.boards.push(board);
+	drello.addBoard(board);
 	drello.saveToLocalStorage();
 
 	return false;
@@ -161,7 +161,8 @@ function createBoard(event) {
 	profileButton.addEventListener("click",showProfilePopup,false);
 
 	// Bind createBoard function to submit event of the create_board_form in the create_board-popup
-	document.getElementById("create_board_form") && document.getElementById("create_board_form").addEventListener("submit",createBoard,false);
+	var createBoardForm = document.getElementById("create_board_form");
+	createBoardForm && createBoardForm.addEventListener("submit",createBoard,false);
 
 	// Header search
 	var searchBox = document.getElementById("header_search_box");

@@ -2,15 +2,18 @@
  * also responsible to store and restore data to and from localStorage.
  */
 function Drello() {
-	this.boards = [];
-	this.organizations = [];
+	var _boards = [];
+
 	this.debug = true;
+
+	this._getBoards = function() {
+		return _boards;
+	}
 }
 
 /* Save all data on localstorage as JSON*/
 Drello.prototype.saveToLocalStorage = function () {
-	localStorage.setItem("boards", JSON.stringify(this.boards));
-	localStorage.setItem("orgz", JSON.stringify(this.organizations));
+	localStorage.setItem("boards", JSON.stringify( this._getBoards() ));
 }
 
 /* Read localstorage and populate the boards list by parsing data from json text
@@ -20,20 +23,16 @@ Drello.prototype.fromLocalStorage = function (){
 	// Check if data is available in localStorage
 	if (localStorage.hasOwnProperty("boards")) {
 		var boardData = JSON.parse(localStorage.getItem("boards"));
-		var len = boardData.length;
 
 		for (key in boardData) {
 			// Push a new board and get length.
-			var len = this.boards.push(new Board());
+			var len = this.addBoard(new Board(boardData[key]));
 
 			/* Call the fromData method to set the own properties from the
 			 * data parsed from localstorage
 			 */
-			this.boards[len-1].fromData(boardData[key]);
+			//this._getBoards()[len-1].fromData(boardData[key]);
 		}
-	}
-	if (localStorage.hasOwnProperty("orgz")) {
-		this.organizations = JSON.parse(localStorage.getItem("orgz"));
 	}
 }
 
@@ -42,22 +41,25 @@ Drello.prototype.fromLocalStorage = function (){
  * Create and append nodes for each board.
  */
 Drello.prototype.populateBoards = function() {
-	for (key in this.boards) {
+	var boards = this._getBoards();
+	for (key in boards) {
 		// Create the DOM node first.
-		this.boards[key].createNode();
-		this.boards[key].selfAppend();
+		boards[key].createNode();
+		boards[key].selfAppend();
 	}
 }
 
-/* returns a random string (base36) 
-Drello.prototype.getRandomId = function() {
-	return Math.random().toString(36).substr(2, 9);
-};*/
-
-Drello.prototype.getUniqueBoardId = function() {
-	if (this.boards.length != null)
-		return this.boards.length;
+Drello.prototype.getNextBoardId = function() {
+	if (this._getBoards().length != null)
+		return this._getBoards().lengt;
 	return 0;
+};
+
+Drello.prototype.addBoard = function(board) {
+	board = board || null;
+	if(board !=null && board instanceof Board){
+		return this._getBoards().push(board);
+	}
 };
 
 /* Returns the board object from this.boards array if an object mathched the key
@@ -77,36 +79,98 @@ Drello.prototype.getBoard = function(key) {
 	console.log("Drello.getBoard: key is neither a number or a string");
 };
 
+Drello.prototype.searchBoards = function(key) {
+	if(typeof key != "string") return [];
 
+	// filter boards list using custom search function
+	return this._getBoards().filter(function(){
+		return true;
+	});
+};
 
+/* @param data is an object
+ * { name: "NAME", id: NUMBER, .... }
+ */
+function Board(data) {
+	// private
+	var _name = data.name || null;
+	var _lists = data.lists || [];
+	var _closed = data.closed || false;
+	var _star = data.star || false;
+	var _id = data.id || null;
 
+	// public
 
-function Board(name, id) {
-	this.name = name;
-	this.id = id; 	// unique id
-	this.node =  null;
-	this.lists = [];
-	this.star = false;
-	this.closed = false;
+	// privilaged
+	this._getName = function() {
+		return _name;
+	}
+	this._getLists = function() {
+		return _lists;
+	}
+	this._getId = function() {
+		return _id;
+	}
+	this._setStar = function(star) {
+		_star = star;
+	}
+	this._isStarred = function() {
+		return _star;
+	}
+	this._setClosed = function() {
+		_closed = true;
+	}
+	this._isClosed = function() {
+		return _closed;
+	}
 }
 
+Board.prototype.toJSON = function() {
+	return {
+		name: this._getName(),
+		id: this._getId(),
+		lists: this._getLists(),
+		star: this._isStarred(),
+		_closed: this._isClosed()
+	};
+};
+
+/* function fromData
+ * @param data: Object received after parsing locally stored data using JSON.
+ * 				copy values to self.
+ */
+/*Board.prototype.fromJData = function(data){
+	for ( prop in data ) {
+        if ( data.hasOwnProperty(prop) ) {
+        	// copy as own property.
+            this[prop] = data[prop];
+        }
+    }
+}*/
+
 Board.prototype.addList = function(list) {
-	// be modular
-	this.lists.push(list);
+	list = list || null;
+	if(list != null && list instanceof List)
+		return this.getLists().push(list);
 };
 
 /* Function to remove a list from a board.
  * @param item: This can be the list object itself or a number
  *   			representing index of list in array.
+ * returns success.
  */
 Board.prototype.removeList = function(item) {
-	if(typeof(item)=="object" && item instanceof List){
+	item = item || null;
+	if (item != null && typeof item === "object" && item instanceof List) {
 		var index = this.lists.indexOf(item);
 		this.lists.splice(index,1);
+		return true;
 	}
-	else if(typeof(item)=="number"){
+	else if (item != null && typeof item === "number") {
 		this.lists.splice(index,1);
+		return true;
 	}
+	return false;
 };
 
 /* Called to create a DOM Node object from data
@@ -124,7 +188,7 @@ Board.prototype.createNode = function() {
 	// create children
 	var title = document.createElement("span");
 	title.className = "bold";
-	title.innerHTML = this.name;
+	title.innerHTML = this._getName();
 	var star = document.createElement("span");
 	star.className = "star";
 	star.title = "Click to star this board. It will be shown at the top of the list";
@@ -149,18 +213,7 @@ Board.prototype.selfAppend = function() {
 	myList.appendChild(addBoardNode);
 };
 
-/* function fromData
- * @param data: Object received after parsing locally stored data using JSON.
- * 				copy values to self.
- */
-Board.prototype.fromData = function(data){
-	for ( prop in data ) {
-        if ( data.hasOwnProperty(prop) ) {
-        	// copy as own property.
-            this[prop] = data[prop];
-        }
-    }
-}
+
 
 
 
