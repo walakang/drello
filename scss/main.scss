@@ -151,7 +151,7 @@ input{
 	background: white;
 }
 /******************************************************/
-.overlay {
+#overlay {
 	width: 100%;
 	position: fixed;
 	height: 100%;
@@ -162,7 +162,7 @@ input{
 	opacity: 0;
 	overflow: auto;
 }
-.overlay.visible {
+#overlay.visible {
 	z-index: $z-overlay-visible;
 	opacity: 1;
 }
@@ -455,10 +455,10 @@ $step: 10;
 }
 
 // Styles for boards page
-#boards_container {
+#boards_view_container {
 	padding: 10px 15px;
 	z-index: $z-boards-container;
-	height: 79vh;
+	min-height: 94vh;
 }
 .boards-list-container {
 	clear: both;
@@ -817,7 +817,7 @@ input:focus {
 .sidemenu {
 	position: absolute;	
 	z-index: $z-side-menu;
-	 top: 0px;
+	top: 5px;
 	right: -400px;
 	transform: translate(0px,0px);
 	@include transition(0.5s,all,cubic-bezier(0.165, 0.84, 0.44, 1));

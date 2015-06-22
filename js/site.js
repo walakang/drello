@@ -1,27 +1,48 @@
-// Make cJS global. This object holds the core methods and properties.
-// defined in coreJS.js
+// This object holds the core methods and properties.
 var drello = new Drello();
 
 /* Populate DOM form the data stored in localStorage */
-drello.fromLocal();
+drello.fromLocalStorage();
 drello.populateBoards();
 
-
-/* The __currentPopup variable holds the node of the pop-up displayed currently. 
-	It is used to hide the pop-up when another event occurred.
-*/
+// The __currentPopup variable holds the node of the pop-up displayed currently. 
 var __currentPopup = null;
+
+/* Call to show any popup box
+ * @param name: ID of the popup box node.
+ * @param position: position of the popup box - not required.
+ */
+function showPopup(name,position){
+	position = position || undefined;
+	var popup = document.getElementById(name);
+	if(typeof(position) ==='object'){
+		popup.style.left = position.left+"px";
+		popup.style.top = (position.top-80)+"px";
+		//popup.style.bottom = (document.body.getBoundingClientRect().height-(position.bottom+100)+"px");
+	}
+
+	if(__currentPopup!=null){
+		__currentPopup.classList.add("no-display");
+		__currentPopup = null;
+	}
+	popup.classList.remove("no-display");
+	__currentPopup = popup;
+
+	// Bind an event to document.body for closing the popup when clicked outside the popup
+	document.body.addEventListener("click",closePopups,false);
+}
+
+/* Call to close all displayed popup boxes.
+ * this function will exit immediately if clicked inside the popup itself for safety.
+ * @param forceClose: boolean parameter to force closing of any popups.
+ */
 function closePopups(e, forceClose){
 	forceClose = forceClose || false;
 	if(!__currentPopup) return;
 	
 	// check if clicked inside a pop-up box. pop-up should not be closed if clicked inside it self.
-	if(!forceClose && __currentPopup.isEqualNode(e.target)){
-		console.log("clicked inside pop-up container ");
-		return true;
-	}
-	else if(!forceClose && __currentPopup.contains(e.target)){
-		console.log("clicked inside some child of pop-up ");
+	if(!forceClose && ( __currentPopup.isEqualNode(e.target) || __currentPopup.contains(e.target) )){
+		console.log("clicked inside pop-up container or its child");
 		return true;
 	}
 	if(__currentPopup!=null){
@@ -29,12 +50,56 @@ function closePopups(e, forceClose){
 		__currentPopup.classList.add("no-display");
 		__currentPopup = null;
 	}
-	if(document.getElementById("overlay").classList.contains("visible"))
-		document.getElementById("overlay").classList.remove("visible");
+	document.getElementById("overlay").classList.remove("visible");
+
+	// remove event listner attached to body
+	document.body.removeEventListener("click",closePopups,false);
 	return true;
 }
+// TO DO: use addEventListner
+function showCreateBoardPopup(e){
+	// Prevent event propogation.
+	e = e || window.event
+	e.stopPropagation();
+	// get the position of event target to calculate the position of the pop-up 
+	showPopup("create_board_popup",e.target.getBoundingClientRect());
 
-function showOverlay(){
+	return false;
+}
+function showBoardsPopup(e){
+	// Prevent event propogation.
+	e = e || window.event
+	e.stopPropagation();
+	console.log("showing boards pop-up");
+	showPopup("boards_popup");
+
+	return false;
+}
+function showProfilePopup(){
+	// Prevent event propogation.
+	e = e || window.event
+	e.stopPropagation();
+	showPopup("profile_popup");
+	return false;
+}
+function showCreateNewPopup(){
+	event.stopPropagation();
+	showPopup("create_new_popup");
+
+	return false;
+}
+function showCardPopup(e){
+	/* the default behaviour of click on content is to hide the pop-ups 
+	 * We need to override that.
+	*/
+	e = e || window.event
+	e.stopPropagation();
+	showOverlay();
+	showPopup('card_display_popup',null);
+	return false;
+}
+
+function showOverlay(noBg){
 	document.getElementById("overlay").classList.add("visible");
 }
 
@@ -47,110 +112,19 @@ function hideToggle(node){
 		node.classList.add("show");
 	}
 }
-// behaviour for the search box on header.
-function focusSearch(node){
-	node.parentNode.classList.add("focused");
-	node.parentNode.children[1].classList.remove("no-display");
-	node.parentNode.children[2].classList.remove("no-display");
 
-	return;
-}
-function blurSearch(node){
-	node.parentNode.classList.remove("focused");
-	node.parentNode.children[0].value = "";
-	node.parentNode.children[1].classList.add("no-display");
-	node.parentNode.children[2].classList.add("no-display");
-
-	return;
-}
-function showHideSidebarToggle(){
+function SidebarToggle(){
 	var menu = document.getElementById("board_menu");
 	hideToggle(menu);
 	return;
 }
-function showHideSidebarMenuToggle(){
+function SidebarMenuToggle(){
 	var menu = document.querySelectorAll("#board_menu ul")[0];
 	hideToggle(menu);
-
 	return;
 }
-function createBoardPrvacyToggle(node){
-	if(node.id === "change"){
-		
-		hideToggle(document.getElementById("privacy_preview"));
-		hideToggle(document.getElementById("privacy_options"));
-	}
-	else{
-		//change the value on the privacy form
-		
-		hideToggle(document.getElementById("privacy_preview"));
-		hideToggle(document.getElementById("privacy_options"));
-	}
-}
-function showPopup(name,position){
-	position = position || undefined;
-	var popup = document.getElementById(name);
-	if(typeof(position) ==='object'){
-		popup.style.left = position.left+"px";
-		//popup.style.top = (position.top-80)+"px";
-		popup.style.bottom = (document.body.getBoundingClientRect().height-(position.bottom+100)+"px");
-	}
 
-	if(__currentPopup!=null){
-		__currentPopup.classList.add("no-display");
-		__currentPopup = null;
-	}
-	if(popup.classList.contains("no-display")){
-		popup.classList.remove("no-display");
-		__currentPopup = popup;
-	}
-}
-function showCreateBoardPopup(e){
-	/* the default behaviour of click on content is to hide the po pups 
-	 * We need to override that.
-	*/
-	e = e || window.event
-	e.stopPropagation();
-	/* get the position of event target to calculate the position of the pop-up */
-	var position = {};
-	position.left = e.target.getBoundingClientRect().left;
-	//position.top = e.target.getBoundingClientRect().top;
-	position.bottom = e.target.getBoundingClientRect().bottom;
-	showPopup("create_board_popup",position);
-
-	return false;
-}
-function showBoardsPopupToggle(e){
-	event.stopPropagation();
-	console.log("showing boards pop-up");
-	showPopup("boards_popup");
-
-	return false;
-}
-function showProfilePopupToggle(){
-
-	showPopup("profile_popup");
-
-	return false;
-}
-function showCreateNewPopupToggle(){
-
-	showPopup("create_new_popup");
-
-	return false;
-}
-function showCardPopupToggle(e){
-	/* the default behaviour of click on content is to hide the pop-ups 
-	 * We need to override that.
-	*/
-	e = e || window.event
-	e.stopPropagation();
-	showOverlay();
-	showPopup('card_display_popup');
-	return false;
-}
-
-/* Bind an event when a user submit the create board form create a new Board and put it to
+/* calls when a user submit the create board form create a new Board and put it to
  * boards list of drello object and then save to  local storage.
  */
 function createBoard(event) {
@@ -162,7 +136,7 @@ function createBoard(event) {
 	board.selfAppend();
 	// Save the node to local storage
 	drello.boards.push(board);
-	drello.saveToLocal();
+	drello.saveToLocalStorage();
 
 	return false;
 }
@@ -170,14 +144,32 @@ function createBoard(event) {
 /* bind all known events to various elements in the DOM */
 (function(){
 	// Hide all pop-ups when clicked outside the pop-up 
-	//document.getElementsByTagName("main")[0].addEventListener("click",closePopups,false);
-	document.body.addEventListener("click",closePopups,false);
+	document.getElementById("overlay").addEventListener("click",closePopups,false);
 
 	// When a user clicks on the boards link on header show the boards pop-up menu.
-	document.getElementById("boards").addEventListener("click",showBoardsPopupToggle,false);
+	var boardsButton = document.getElementById("boards");
+	boardsButton && boardsButton.addEventListener("click",showBoardsPopup,false);
 	
+	// Create new popup
+	var addButton = document.getElementById("add");
+	addButton && addButton.addEventListener("click",showCreateNewPopup,false);
+
+	// Profile popup
+	var profileButton = document.getElementById("profile");
+	profileButton.addEventListener("click",showProfilePopup,false);
+
 	// Bind createBoard function to submit event of the create_board_form in the create_board-popup
-	document.getElementById("create_board_form").addEventListener("submit",createBoard,false);
+	document.getElementById("create_board_form") && document.getElementById("create_board_form").addEventListener("submit",createBoard,false);
+
+	// Header search
+	var searchBox = document.getElementById("header_search_box");
+	searchBox.addEventListener("focus",function(e) {
+		this.parentNode.classList.add("focused");
+	},false);
+	searchBox.addEventListener("blur",function(e) {
+		this.parentNode.classList.remove("focused");
+	},false);
+
 
 	/* When user clicks on a board in boards list page set the data-id attribute value as a reference for
 	 * boards-display to load that board.

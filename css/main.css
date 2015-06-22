@@ -6,7 +6,7 @@ ol {
   margin: 0;
   padding: 0; }
 
-/* When we use Firefox, links are surrounded by a rated box once youΓÇÖve pressed them.
+/* When we use Firefox, links are surrounded by a rated box once you’ve pressed them.
  * To solve this problem, we must use the property outline in the following way:
  */
 a:active, a:focus {
@@ -224,7 +224,7 @@ body {
   background: white; }
 
 /******************************************************/
-.overlay {
+#overlay {
   width: 100%;
   position: fixed;
   height: 100%;
@@ -235,7 +235,7 @@ body {
   opacity: 0;
   overflow: auto; }
 
-.overlay.visible {
+#overlay.visible {
   z-index: 15;
   opacity: 1; }
 
@@ -519,10 +519,10 @@ body {
   width: 24%;
   background: white; }
 
-#boards_container {
+#boards_view_container {
   padding: 10px 15px;
   z-index: 6;
-  height: 79vh; }
+  min-height: 94vh; }
 
 .boards-list-container {
   clear: both; }
@@ -826,7 +826,7 @@ input:focus {
 .sidemenu {
   position: absolute;
   z-index: 5;
-  top: 0px;
+  top: 5px;
   right: -400px;
   transform: translate(0px, 0px);
   -webkit-transition: 0.5s all cubic-bezier(0.165, 0.84, 0.44, 1);

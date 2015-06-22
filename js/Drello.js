@@ -8,7 +8,7 @@ function Drello() {
 }
 
 /* Save all data on localstorage as JSON*/
-Drello.prototype.saveToLocal = function () {
+Drello.prototype.saveToLocalStorage = function () {
 	localStorage.setItem("boards", JSON.stringify(this.boards));
 	localStorage.setItem("orgz", JSON.stringify(this.organizations));
 }
@@ -16,7 +16,7 @@ Drello.prototype.saveToLocal = function () {
 /* Read localstorage and populate the boards list by parsing data from json text
  * For each object parsed add prototype of the 'Board' to it.
  */
-Drello.prototype.fromLocal = function (){
+Drello.prototype.fromLocalStorage = function (){
 	// Check if data is available in localStorage
 	if (localStorage.hasOwnProperty("boards")) {
 		var boardData = JSON.parse(localStorage.getItem("boards"));
@@ -49,10 +49,10 @@ Drello.prototype.populateBoards = function() {
 	}
 }
 
-/* returns a random string (base36) */
+/* returns a random string (base36) 
 Drello.prototype.getRandomId = function() {
 	return Math.random().toString(36).substr(2, 9);
-};
+};*/
 
 Drello.prototype.getUniqueBoardId = function() {
 	if (this.boards.length != null)
@@ -60,14 +60,21 @@ Drello.prototype.getUniqueBoardId = function() {
 	return 0;
 };
 
-/* Returns the board object from this.boards array if an object has id = provided id
- * @param id: String reperesenting unique id of a board
+/* Returns the board object from this.boards array if an object mathched the key
+ * @param key: 1. key is a name of board.
+ 			   2. key is id of board.
  */
-Drello.prototype.getBoard = function(id) {
-
-	for (key in this.boards) {
-		//( this.boards[key].id === id ) ? (return this.boards[key]) : continue;
+Drello.prototype.getBoard = function(key) {
+	key = key || false;
+	if (typeof key === 'number') {
+		return this.boards[key];
 	}
+	else if (typeof key === 'string') {
+		for (var i = this.boards.length - 1; i >= 0; i--) {
+			if (this.boards[i].name === key) return this.boards[i];
+		};
+	}
+	console.log("Drello.getBoard: key is neither a number or a string");
 };
 
 
@@ -81,12 +88,6 @@ function Board(name, id) {
 	this.lists = [];
 	this.star = false;
 	this.closed = false;
-	//this.organization = null;
-	//this.public = false;
-
-	this.isPublic = function(){
-		return this.public;
-	}
 }
 
 Board.prototype.addList = function(list) {
@@ -110,7 +111,7 @@ Board.prototype.removeList = function(item) {
 
 /* Called to create a DOM Node object from data
  * Template: 
- *			<a href="board-display.html" class="board left block round starred">
+ *			<a href="main.html" class="board left block round starred">
 				<span class="bold">Board 1</span>
 				<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>					
 			</a>
@@ -118,7 +119,7 @@ Board.prototype.removeList = function(item) {
 Board.prototype.createNode = function() {
 	this.node = document.createElement("a");
 	this.node.className = "board left block round";
-	this.node.href="board-display.html";
+	this.node.href="main.html";
 	this.node.dataset.id = this.id;
 	// create children
 	var title = document.createElement("span");

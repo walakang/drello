@@ -4,8 +4,96 @@
 		"selected_items":
 		[
 			[
+				"lis",
+				"listTail"
+			],
+			[
+				"cre",
+				"createElement"
+			],
+			[
+				"for",
+				"for	for (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"app",
+				"appendChild"
+			],
+			[
+				"class",
+				"className"
+			],
+			[
+				"b",
+				"boards"
+			],
+			[
+				"leng",
+				"length"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"boa",
+				"boards"
+			],
+			[
+				"pr",
+				"proto	Prototype"
+			],
+			[
+				"boar",
+				"boards"
+			],
+			[
+				"fo",
+				"for	for (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"add",
+				"addEventListener"
+			],
+			[
+				"get",
+				"getRandomId"
+			],
+			[
+				"f",
+				"f	Anonymous Function"
+			],
+			[
+				"pro",
+				"proto	Prototype"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"Boa",
+				"Board"
+			],
+			[
+				"getEl",
+				"getElementsByTagName"
+			],
+			[
+				"create_board",
+				"create_board_form"
+			],
+			[
+				"st",
+				"starList"
+			],
+			[
+				"lo",
+				"localStorage"
+			],
+			[
 				"bo",
-				"boardData"
+				"boards"
 			],
 			[
 				"se",
@@ -16,20 +104,8 @@
 				"createNode"
 			],
 			[
-				"for",
-				"for	for (…) {…}"
-			],
-			[
 				"from",
 				"fromLocal"
-			],
-			[
-				"pr",
-				"prototype"
-			],
-			[
-				"le",
-				"len"
 			],
 			[
 				"specif",
@@ -64,14 +140,6 @@
 				"no-height"
 			],
 			[
-				"re",
-				"remove"
-			],
-			[
-				"class",
-				"classList"
-			],
-			[
 				"text-color",
 				"text-color-light"
 			],
@@ -96,18 +164,6 @@
 				"position"
 			],
 			[
-				"boa",
-				"boardsPopup"
-			],
-			[
-				"get",
-				"getElementById"
-			],
-			[
-				"cre",
-				"createElement"
-			],
-			[
 				"li",
 				"lists"
 			],
@@ -127,7 +183,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 4059,
+				"buffer_size": 4098,
 				"line_ending": "Unix"
 			}
 		},
@@ -135,7 +191,7 @@
 			"file": "boards.html",
 			"settings":
 			{
-				"buffer_size": 12525,
+				"buffer_size": 12138,
 				"line_ending": "Unix"
 			}
 		},
@@ -143,7 +199,7 @@
 			"file": "board-display.html",
 			"settings":
 			{
-				"buffer_size": 17689,
+				"buffer_size": 17922,
 				"line_ending": "Unix"
 			}
 		},
@@ -151,7 +207,7 @@
 			"file": "scss/main.scss",
 			"settings":
 			{
-				"buffer_size": 15133,
+				"buffer_size": 15135,
 				"line_ending": "Unix"
 			}
 		},
@@ -183,7 +239,7 @@
 			"file": "/home/shidil/training/Drello/js/Drello.js",
 			"settings":
 			{
-				"buffer_size": 3294,
+				"buffer_size": 6254,
 				"line_ending": "Unix"
 			}
 		},
@@ -191,7 +247,7 @@
 			"file": "js/site.js",
 			"settings":
 			{
-				"buffer_size": 3594,
+				"buffer_size": 4939,
 				"line_ending": "Unix"
 			}
 		}
@@ -199,11 +255,15 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 0.0,
+		"height": 180.0,
 		"selected_items":
 		[
+			[
+				"Snippet: f",
+				"Snippet: Function"
+			]
 		],
-		"width": 0.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -252,6 +312,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"this.organizations",
+			"this.boards",
+			"_debug",
+			"console",
+			"\n\n\nc\ncon",
+			"console\n\nconsole",
+			"\nconsole",
+			"Core",
 			"{",
 			"bottom",
 			"important",
@@ -282,6 +350,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"this._organizations",
+			"this._boards",
+			"drello",
 			" {",
 			"list_actions_toggle",
 			"add_card",
@@ -308,15 +379,15 @@
 					"file": "index.html",
 					"settings":
 					{
-						"buffer_size": 4059,
+						"buffer_size": 4098,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1589,
-								1589
+								529,
+								529
 							]
 						],
 						"settings":
@@ -325,7 +396,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 510.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -335,15 +406,15 @@
 					"file": "boards.html",
 					"settings":
 					{
-						"buffer_size": 12525,
+						"buffer_size": 12138,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2697,
-								2697
+								763,
+								763
 							]
 						],
 						"settings":
@@ -353,7 +424,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 765.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -363,15 +434,15 @@
 					"file": "board-display.html",
 					"settings":
 					{
-						"buffer_size": 17689,
+						"buffer_size": 17922,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3129,
-								3129
+								2712,
+								2686
 							]
 						],
 						"settings":
@@ -381,7 +452,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 884.0,
+						"translation.y": 816.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -391,15 +462,15 @@
 					"file": "scss/main.scss",
 					"settings":
 					{
-						"buffer_size": 15133,
+						"buffer_size": 15135,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3402,
-								3402
+								3235,
+								3235
 							]
 						],
 						"settings":
@@ -408,7 +479,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 7557.0,
+						"translation.y": 2763.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -431,7 +502,8 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -497,15 +569,15 @@
 					"file": "/home/shidil/training/Drello/js/Drello.js",
 					"settings":
 					{
-						"buffer_size": 3294,
+						"buffer_size": 6254,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								351,
-								351
+								6250,
+								6250
 							]
 						],
 						"settings":
@@ -514,7 +586,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1947.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -524,15 +596,15 @@
 					"file": "js/site.js",
 					"settings":
 					{
-						"buffer_size": 3594,
+						"buffer_size": 4939,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								118,
-								118
+								371,
+								371
 							]
 						],
 						"settings":
@@ -541,7 +613,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1836.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
