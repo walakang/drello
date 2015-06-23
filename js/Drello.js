@@ -27,11 +27,6 @@ Drello.prototype.fromLocalStorage = function (){
 		for (key in boardData) {
 			// Push a new board and get length.
 			var len = this.addBoard(new Board(boardData[key]));
-
-			/* Call the fromData method to set the own properties from the
-			 * data parsed from localstorage
-			 */
-			//this._getBoards()[len-1].fromData(boardData[key]);
 		}
 	}
 }

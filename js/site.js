@@ -1,12 +1,15 @@
 // This object holds the core methods and properties.
 var drello = new Drello();
+// The __currentPopup variable holds the node of the pop-up displayed currently. 
+var __currentPopup = null;
 
 /* Populate DOM form the data stored in localStorage */
 drello.fromLocalStorage();
-//drello.populateBoards();
 
-// The __currentPopup variable holds the node of the pop-up displayed currently. 
-var __currentPopup = null;
+boardController = new BoardController();
+boardController.populateBoards(drello._getBoards());
+
+
 
 /* Call to show any popup box
  * @param name: ID of the popup box node.
@@ -130,16 +133,18 @@ function SidebarMenuToggle(){
  * boards list of drello object and then save to  local storage.
  */
 function createBoard(event) {
+	event.preventDefault();
 	var __form = event.target;
 	var __name = __form.getElementsByTagName("input")[0].value;
 	// Create a new Board node and add to DOM
 	var board = new Board({name: __name, id: drello.getNextBoardId() });
-	board.createNode();
-	board.selfAppend();
+
 	// Save the node to local storage
 	drello.addBoard(board);
 	drello.saveToLocalStorage();
 
+	// refresh the boards container view
+	boardController.populateBoards(drello._getBoards());
 	return false;
 }
 

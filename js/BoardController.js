@@ -4,12 +4,12 @@ function BoardController(){
 
 	//public
 	this.boardClassName = "board left block round";
-	this.containerId = "boards_my .boards-list";
-	this.starredBoardsContainerId = "boards_starred .boards-list";
+	this.containerId = "#boards_my .boards-list";
+	this.starredBoardsContainerId = "#boards_starred .boards-list";
 
 	// privilaged
 	this._getBoardNodes = function() {
-		return this._boardNodes;
+		return _boardNodes;
 	}
 }
 
@@ -17,12 +17,22 @@ function BoardController(){
  * from the boards array parsed from localstorage.
  */
 BoardController.prototype.populateBoards = function(boards) {
-	// Create nodes for every board in drello and store them in _boardNodes[]
 	var list = this._getBoardNodes();
+	var container = document.querySelectorAll(this.containerId)[0];
+	// Add new noard as the second last children of the list.
+	var addBoardNode = container.removeChild(container.children[container.children.length-1]);
+
+	// remove all existing childs in container
+	container.innerHTML = "";
+	// Create nodes for every board in drello and store them in _boardNodes[] then append to container.
 	for (var i = 0; i < boards.length; i++) {
 		var node = this.createBoardNode(boards[i])
-		if (node != null) list.push(node);
+		if (node != null) {
+			list.push(node);
+			container.appendChild(node);
+		}
 	};
+	container.appendChild(addBoardNode);
 
 };
 
@@ -44,10 +54,10 @@ BoardController.prototype.createBoardNode = function(board) {
 
 	node.className = "board left block round";
 	node.href="main.html";
-	node.dataset.id = this._getId();
+	node.dataset.id = board._getId();
 
 	title.className = "bold";
-	title.innerHTML = this._getName();
+	title.innerHTML = board._getName();
 
 	star.className = "star";
 	star.title = "Click to star this board. It will be shown at the top of the list";
