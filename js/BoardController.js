@@ -4,8 +4,8 @@ function BoardController(){
 
 	//public
 	this.boardClassName = "board left block round";
-	this.containerId = "#boards_my .boards-list";
-	this.starredBoardsContainerId = "#boards_starred .boards-list";
+	this.containerId = "boards_my_list";
+	this.starredBoardsContainerId = "boards_starred_list";
 
 	// privilaged
 	this._getBoardNodes = function() {
@@ -18,7 +18,9 @@ function BoardController(){
  */
 BoardController.prototype.populateBoards = function(boards) {
 	var list = this._getBoardNodes();
-	var container = document.querySelectorAll(this.containerId)[0];
+	var container = document.getElementById(this.containerId);
+	var starredContainer = document.getElementById(this.starredBoardsContainerId);
+
 	// Add new noard as the second last children of the list.
 	var addBoardNode = container.removeChild(container.children[container.children.length-1]);
 
@@ -30,6 +32,8 @@ BoardController.prototype.populateBoards = function(boards) {
 		if (node != null) {
 			list.push(node);
 			container.appendChild(node);
+			// Append to starred list if board has star
+			if(boards[i]._isStarred()) starredContainer.appendChild(node.cloneNode(true));
 		}
 	};
 	container.appendChild(addBoardNode);
@@ -52,7 +56,7 @@ BoardController.prototype.createBoardNode = function(board) {
 	var title = document.createElement("span");
 	var star = document.createElement("span");
 
-	node.className = "board left block round";
+	node.className = this.boardClassName;
 	node.href="main.html";
 	node.dataset.id = board._getId();
 

@@ -2,13 +2,14 @@
 var drello = new Drello();
 // The __currentPopup variable holds the node of the pop-up displayed currently. 
 var __currentPopup = null;
+var boardController = new BoardController();
+var listController = new ListController();
+var cardController = new CardController();
 
-/* Populate DOM form the data stored in localStorage */
+// Load everything at startup
 drello.fromLocalStorage();
-
-boardController = new BoardController();
+// Generate DOM nodes for loadeed boards and display them.
 boardController.populateBoards(drello._getBoards());
-
 
 
 /* Call to show any popup box
@@ -119,14 +120,12 @@ function hideToggle(node){
 }
 
 function SidebarToggle(){
-	var menu = document.getElementById("board_menu");
-	hideToggle(menu);
-	return;
+	hideToggle(document.getElementById("board_menu"));
+	return false;
 }
 function SidebarMenuToggle(){
-	var menu = document.querySelectorAll("#board_menu ul")[0];
-	hideToggle(menu);
-	return;
+	hideToggle(document.querySelectorAll("#board_menu ul")[0]);
+	return false;
 }
 
 /* calls when a user submit the create board form create a new Board and put it to
@@ -148,16 +147,19 @@ function createBoard(event) {
 	return false;
 }
 
-/* loads a board by its ID
+/* Loads a board by its ID and display the lists view.
  * 
  */
- function loadBoard(id) {
+ function loadAndDisplayBoard(id) {
  	if (typeof id === 'number') {
- 		console.log("Loading board - "+ id);
  		var board = drello.getBoard(id);
  		if (board) {
- 			localStorage.setItem("currentBoard",id);
  			console.log("Found board - "+board._getName());
+ 			localStorage.setItem("currentBoard",id);
+ 			// Change to list view
+ 			listController.populateLists(board._getLists());
+ 			document.getElementById("boards_view_container").classList.add("no-display");
+ 			document.getElementById("list_view_container").classList.remove("no-display");
  		}
  		else {
  			console.log("No board found for ID: "+id);
@@ -165,6 +167,8 @@ function createBoard(event) {
  	}
  	else console.log("Failed to load board - Invalid ID.")
  }
+
+
 /* bind all known events to various elements in the DOM */
 (function(){
 	// Hide all pop-ups when clicked outside the pop-up 
@@ -198,13 +202,19 @@ function createBoard(event) {
 	/* When user clicks on a board in boards list page set the data-id attribute value as a reference for
 	 * boards-display to load that board.
 	 */
-	 var boards = document.querySelectorAll(".board");
-	 for (var i = boards.length - 1; i >= 0; i--) {
-	 	boards[i].addEventListener("click",function(e){
-	 		loadBoard(parseInt(this.dataset.id));
-	 		e.preventDefault();
-	 	},false);
-	 };
+	 var myBoardsList = document.getElementById("boards_my_list");
+	 var starredBoardsList = document.getElementById("boards_starred_list");
+
+	 myBoardsList.addEventListener("click",function(e){
+	 	if(event.target.classList.contains("board"))
+ 			loadAndDisplayBoard(parseInt(event.target.dataset.id));
+ 		e.preventDefault();
+ 	},false);
+	starredBoardsList.addEventListener("click",function(e){
+	 	if(event.target.classList.contains("board"))
+ 			loadAndDisplayBoard(parseInt(event.target.dataset.id));
+ 		e.preventDefault();
+ 	},false);
 
 })();
 
