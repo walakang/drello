@@ -3,7 +3,7 @@
  */
 function Board(data) {
 	// private
-	var _name = data.name || null;
+	var _name = data.name || "";
 	var _lists = data.lists || [];
 	var _closed = data.closed || false;
 	var _star = data.star || false;
@@ -41,7 +41,7 @@ Board.prototype.toJSON = function() {
 		id: this._getId(),
 		lists: this._getLists(),
 		star: this._isStarred(),
-		_closed: this._isClosed()
+		closed: this._isClosed()
 	};
 };
 
@@ -54,9 +54,7 @@ Board.prototype.unStar = function() {
 
 Board.prototype.addList = function(list) {
 	list = list || null;
-	if(list != null && list instanceof List)
-		return this._getLists().push(list);
-	return false;
+	return (list instanceof List) ? this._getLists().push(list) : false;
 };
 
 /* Function to remove a list from a board.
@@ -65,13 +63,14 @@ Board.prototype.addList = function(list) {
  * returns success.
  */
 Board.prototype.removeList = function(item) {
+	item = item || null;
 	var lists = this._getLists();
-	if (item != null && typeof item === "object" && item instanceof List) {
+	if (typeof item === "object" && item instanceof List) {
 		var index = lists.indexOf(item);
 		// check if item exists and if remove and return nex length of array
 		return (index >= 0) ? lists.splice(index,1).length : false;
 	}
-	else if (item != null && typeof item === "number") {
+	else if (typeof item === "number") {
 		return (item >= 0 && item < lists.length ) ?  lists.splice(item,1).length : false;
 	}
 	return false;
@@ -82,6 +81,7 @@ Board.prototype.removeList = function(item) {
  			   2. key is name of list.
  */
 Board.prototype.getList = function(key) {
+	key = key || null;
 	var lists = this._getLists();
 	if (typeof key === 'number') {
 		return lists[key];

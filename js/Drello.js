@@ -57,9 +57,7 @@ Drello.prototype.getNextBoardId = function() {
 
 Drello.prototype.addBoard = function(board) {
 	board = board || null;
-	if(board !=null && board instanceof Board){
-		return this._getBoards().push(board);
-	}
+	return (board instanceof Board) : return this._getBoards().push(board) : false;
 };
 
 /* Returns the board object from this.boards array if an object mathched the key
@@ -67,6 +65,7 @@ Drello.prototype.addBoard = function(board) {
  			   2. key is name of board.
  */
 Drello.prototype.getBoard = function(key) {
+	key = key || null;
 	var boards = this._getBoards();
 	if (typeof key === 'number') {
 		return boards[key];

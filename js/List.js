@@ -4,7 +4,7 @@
  */
 function List(data) {
 	// private
-	var _name = data.name || null;
+	var _name = data.name || "";
 	var _cards = data.cards || [];
 	var _closed = data.closed || false;
 	var _id = data.id || 0;
@@ -28,11 +28,19 @@ function List(data) {
 		return _closed;
 	}
 }
+
+List.prototype.toJSON = function() {
+	return {
+		name: this._getName(),
+		id: this._getId(),
+		cards: this._getCards(),
+		closed: this._isClosed()
+	};
+};
+
 List.prototype.addCard = function(card) {
 	card = card || null;
-	if(card != null && card instanceof Card)
-		return this._getCards().push(card);
-	return false;
+	return (card instanceof Card) ? this._getCards().push(card) : false;
 };
 
 /* Function to remove a card from a board.
@@ -41,13 +49,14 @@ List.prototype.addCard = function(card) {
  * returns success.
  */
 List.prototype.removeCard = function(item) {
+	item = item || null;
 	var cards = this._getCards();
-	if (item != null && typeof item === "object" && item instanceof Card) {
+	if (typeof item === "object" && item instanceof Card) {
 		var index = cards.indexOf(item);
 		// check if item exists and if remove and return nex length of array
 		return (index >= 0) ? cards.splice(index,1).length : false;
 	}
-	else if (item != null && typeof item === "number") {
+	else if (typeof item === "number") {
 		return (item >= 0 && item < cards.length ) ?  cards.splice(item,1).length : false;
 	}
 	return false;
@@ -58,6 +67,7 @@ List.prototype.removeCard = function(item) {
  			   2. key is name of card.
  */
 List.prototype.getCard = function(key) {
+	key = key || null;
 	var cards = this._getCards();
 	if (typeof key === "number") {
 		return cards[key];

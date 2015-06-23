@@ -1,24 +1,12 @@
-function Card(name){
-
-	this.name = name;
-	this.id = null;
-	this.description = null;
-	this.attachments = [];
-	this.colors = [];
-	this.node = null;
-	this.image = null;
-
-}
-
 /* @param data is an object
  * { name: "NAME", id: NUMBER, .... }
  */
-function List(data) {
+function Card(data) {
 	// private
-	var _name = data.name || null;
-	var _closed = data.closed || false;
+	var _name = data.name || "";
+	//var _closed = data.closed || false;
 	var _id = data.id || 0;
-	var _desc = data.desc || null;
+	var _desc = data.desc || "";
 	var _attachments = data.attachments || [];
 	var _colors = data.colors || [];
 
@@ -28,19 +16,47 @@ function List(data) {
 	this._getName = function() {
 		return _name;
 	}
-	this._getCards = function() {
-		return _lists;
-	}
 	this._getId = function() {
 		return _id;
 	}
-	this._setClosed = function() {
-		_closed = true;
+	this._getColors = function() {
+		return _colors;
 	}
-	this._isClosed = function() {
-		return _closed;
+	this._getDesc = function() {
+		return _desc;
 	}
+	this._getAttachments = function() {
+		return _attachments;
+	};
 }
+
+Card.prototype.toJSON = function() {
+	return {
+		name: this._getName(),
+		id: this._getId(),
+		desc: this._getDesc(),
+		colors: this._getColors(),
+		attachments: this._getAttachments()
+	};
+};
+
+Card.prototype.addColor = function(color) {
+	return (typeof color === "string") ? this._getColors().push(color) : false;
+};
+
+/* Remove a color item from the array.
+ * returns integer > 0 if success or
+ * returns false if unsuccessfull.
+ */
+Card.prototype.removeColor = function(color) {
+	var i = this._getColors().indexOf(color);
+	return (typeof color === "string" && i > -1) ? this._getColors().splice(i,1).length : false;
+};
+
+
+
+
+
 /*
 Card.prototype.createNode = function() {
 	this.node = document.createElement("div");
