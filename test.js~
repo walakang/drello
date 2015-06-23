@@ -1,0 +1,9 @@
+window.onload = function() {
+	var container = document.getElementById("container");
+	for (var i = 0; i<20; i++) {
+		var node = document.createElement("a");
+		node.innerHTML = "Board "+i;
+		container.appendChild(node);
+		
+	}
+}
