@@ -3,7 +3,7 @@ var drello = new Drello();
 
 /* Populate DOM form the data stored in localStorage */
 drello.fromLocalStorage();
-drello.populateBoards();
+//drello.populateBoards();
 
 // The __currentPopup variable holds the node of the pop-up displayed currently. 
 var __currentPopup = null;
@@ -143,6 +143,23 @@ function createBoard(event) {
 	return false;
 }
 
+/* loads a board by its ID
+ * 
+ */
+ function loadBoard(id) {
+ 	if (typeof id === 'number') {
+ 		console.log("Loading board - "+ id);
+ 		var board = drello.getBoard(id);
+ 		if (board) {
+ 			localStorage.setItem("currentBoard",id);
+ 			console.log("Found board - "+board._getName());
+ 		}
+ 		else {
+ 			console.log("No board found for ID: "+id);
+ 		}
+ 	}
+ 	else console.log("Failed to load board - Invalid ID.")
+ }
 /* bind all known events to various elements in the DOM */
 (function(){
 	// Hide all pop-ups when clicked outside the pop-up 
@@ -173,16 +190,19 @@ function createBoard(event) {
 		this.parentNode.classList.remove("focused");
 	},false);
 
-
 	/* When user clicks on a board in boards list page set the data-id attribute value as a reference for
 	 * boards-display to load that board.
 	 */
 	 var boards = document.querySelectorAll(".board");
 	 for (var i = boards.length - 1; i >= 0; i--) {
 	 	boards[i].addEventListener("click",function(e){
-	 		console.log("Loading board - "+ this.dataset.id);
-	 		localStorage.setItem("currentBoard",this.dataset.id);
+	 		loadBoard(parseInt(this.dataset.id));
+	 		e.preventDefault();
 	 	},false);
 	 };
 
 })();
+
+
+
+
