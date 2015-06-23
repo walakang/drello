@@ -57,7 +57,7 @@ Drello.prototype.getNextBoardId = function() {
 
 Drello.prototype.addBoard = function(board) {
 	board = board || null;
-	return (board instanceof Board) : return this._getBoards().push(board) : false;
+	return (board instanceof Board) ? this._getBoards().push(board) : false;
 };
 
 /* Returns the board object from this.boards array if an object mathched the key
@@ -79,12 +79,15 @@ Drello.prototype.getBoard = function(key) {
 	return null;
 };
 
+/* Call to get a list of boards which has names that contain the search key
+ * @param key: string
+ */
 Drello.prototype.searchBoards = function(key) {
 	if(typeof key != "string") return [];
 
 	// filter boards list using custom search function
-	return this._getBoards().filter(function(){
-		return true;
+	return this._getBoards().filter(function(board){
+		return (board._getName().toLowerCase().indexOf(key.toLowerCase()) >- 1) ? true : false;
 	});
 };
 
