@@ -65,6 +65,33 @@ function createBoard(e) {
  	boardController.saveEverything();
  }
 
+/* Called when a user types something on the search input box in the boards popup;
+ * @param e: object representing the keyup event.
+ */
+function searchAndDisplayBoards (e) {
+	var key = e.target.value || null;
+	var listContainer = document.getElementById("boards_popup_results_list");
+	var i, len, listItem;
+	listContainer.innerHTML = "";
+
+	// do not display any result if query string is empty
+	if(!key) return;
+	var boards = boardController.searchBoards(key);
+	console.log("SearchBoards: looping through "+boards.length+" results");
+	if (boards) {
+		for(i = 0, len = boards.length; i < len; i++) {
+			listItem = document.createElement("li");
+			listItem.className = "boards-list-item round";
+			listItem.innerHTML = '<a href="main.html">\
+									<span class="color"></span>\
+									<span class="board-name width-100 bold" >'+boards[i]._getName();+' </span>\
+									<span class="icon-star"></span>\
+								  </a>';
+			listContainer.appendChild(listItem);
+		}
+	}
+}
+
 /* Call to show any popup box
  * @param name: ID of the popup box node.
  * @param position: position of the popup box - not required.
@@ -249,6 +276,10 @@ function SidebarMenuToggle(){
  	// Bind the onclick of star button in list view to toggleStar 
  	var boardRibbonStar = document.getElementById("board_ribbon_star");
  	boardRibbonStar && boardRibbonStar.addEventListener("click",toggleStar,false);
+
+ 	// Boards popup: bind keystroke event to search for boards.
+ 	var searchInput = document.getElementById("search_boards_input");
+ 	searchInput.addEventListener("keyup",searchAndDisplayBoards,false);
 
 })();
 

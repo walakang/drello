@@ -246,8 +246,17 @@
 		<div id="boards_popup" class="popup round white no-display">
 			<div class="popup-body">
 				<form class="popup-form">
-					<input class="block-input block width-100 round" type="text" name="board-name" placeholder="Find boards by name..." autofocus="true"/>
+					<input id="search_boards_input" class="block-input block width-100 round" type="text" name="board-name" placeholder="Find boards by name..." autofocus="true" autocomplete="off"/>
 				</form>
+				<div id="boards_popup_results" class="popup-box">
+					<!--<div class="popup-box-title">
+						<span class="icon-clock">Search Results</span>
+						<span class="icon-plus"></span>
+					</div>-->
+					<ul id="boards_popup_results_list" class="boards-list block">
+
+					</ul>
+				</div>
 				<div id="boards_popup_starred" class="popup-box">
 					<div class="popup-box-title">
 						<span class="icon-star">Starred Boards</span>

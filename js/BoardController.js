@@ -135,10 +135,11 @@ BoardController.prototype.toggleStar = function(id) {
  */
 BoardController.prototype.searchBoards = function(key) {
 	var boards = this._getDrello().searchBoards(key);  // returns [] for invalid key also.
-	var i, len;
+	/*var i, len;
 	for (i = 0, len = boards.length; i < len; i++) {
 
-	}
+	}*/
+	return boards;
 }
 
 BoardController.prototype.getBoard = function(id) {
