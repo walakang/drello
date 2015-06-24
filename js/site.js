@@ -170,6 +170,15 @@ function createBoard(event) {
  	else console.log("Failed to load board - Invalid ID.")
  }
 
+/* Called when user clicked on the star icon on a board
+ * this function toggles star on a board.
+ */
+ function toggleStar(e) {
+ 	e.stopPropagation();
+ 	var board = drello.getBoard(parseInt(e.target.parentNode.dataset.id));
+ 	boardController.toggleStar(board);
+ 	drello.saveToLocalStorage();
+ }
 
 /* bind all known events to various elements in the DOM */
 (function(){
@@ -213,20 +222,38 @@ function createBoard(event) {
 
 	 myBoardsList.addEventListener("click",function(e){
 	 	e.preventDefault();
-	 	if(event.target.classList.contains("board"))
- 			loadAndDisplayBoard(parseInt(event.target.dataset.id));
- 		else if(event.target.parentNode.classList.contains("board"))
- 			loadAndDisplayBoard(parseInt(event.target.parentNode.dataset.id));
+	 	if(e.target.classList.contains("board")) 
+ 			loadAndDisplayBoard(parseInt(e.target.dataset.id));
+ 		else if(e.target.classList.contains("board-title"))
+ 			loadAndDisplayBoard(parseInt(e.target.parentNode.dataset.id));
+ 		else if(e.target.classList.contains("icon-star"))
+ 			toggleStar(e);
  		
  	},false);
 
-	/*starredBoardsList.addEventListener("click",function(e){
+	starredBoardsList.addEventListener("click",function(e){
 	 	e.preventDefault();
-	 	if(event.target.classList.contains("board"))
- 			loadAndDisplayBoard(parseInt(event.target.dataset.id));
- 		else if(event.target.parentNode.classList.contains("board"))
- 			loadAndDisplayBoard(parseInt(event.target.parentNode.dataset.id));
- 	},false);*/
+	 	if(e.target.classList.contains("board")) 
+ 			loadAndDisplayBoard(parseInt(e.target.dataset.id));
+ 		else if(e.target.classList.contains("board-title"))
+ 			loadAndDisplayBoard(parseInt(e.target.parentNode.dataset.id));
+ 		else if(e.target.classList.contains("icon-star"))
+ 			toggleStar(e);
+ 	},false);
+
+ 	// Show star when hovering on board
+	myBoardsList.addEventListener("mouseover",function(e){
+	 	if(e.target.classList.contains("board"))
+ 			e.target.getElementsByClassName("icon-star")[0].classList.add("opaque");
+ 		else if(e.target.parentNode.classList.contains("board"))
+ 			e.target.parentNode.getElementsByClassName("icon-star")[0].classList.add("opaque");		
+ 	},false);
+ 	myBoardsList.addEventListener("mouseout",function(e){
+	 	if(e.target.classList.contains("board"))
+ 			e.target.getElementsByClassName("icon-star")[0].classList.remove("opaque");
+ 		else if(e.target.parentNode.classList.contains("board"))
+ 			e.target.parentNode.getElementsByClassName("icon-star")[0].classList.remove("opaque");	
+ 	},false);
 
 })();
 

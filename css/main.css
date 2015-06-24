@@ -556,7 +556,7 @@ body {
   margin-right: 10px;
   margin-bottom: 10px;
   background: #0E74AF;
-  padding: 10px 0px 10px 14px;
+  padding: 10px 10px 10px 14px;
   font-size: 16px; }
 
 .board:hover {
@@ -577,6 +577,26 @@ body {
 .board-add:hover {
   background: #CCD0D3;
   color: #444; }
+
+.board > .icon-star {
+  -webkit-transition: 0.1s all ease-in-out;
+  -moz-transition: 0.1s all ease-in-out;
+  -ms-transition: 0.1s all ease-in-out;
+  transition: 0.1s all ease-in-out;
+  opacity: 0; }
+
+.board > .icon-star:hover {
+  font-size: 17px; }
+
+.board > .icon-star.starred {
+  color: gold;
+  opacity: 1; }
+
+.board > .icon-star.transparent {
+  opacity: 0; }
+
+.board > .icon-star.opaque {
+  opacity: 1; }
 
 #board_ribbon {
   padding: 15px; }

@@ -494,7 +494,7 @@ $step: 10;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	background: $accent-color;
-	padding: 10px 0px 10px 14px;
+	padding: 10px 10px 10px 14px;
 	font-size: 16px;
 }
 .board:hover {
@@ -514,7 +514,23 @@ $step: 10;
 	background: #CCD0D3;	
 	color: $text-color;
 }
-
+.board > .icon-star {
+	@include transition-all();
+	opacity: 0;
+}
+.board > .icon-star:hover {
+	font-size: 17px;
+}
+.board > .icon-star.starred {
+	color: gold;
+	opacity: 1;
+}
+.board > .icon-star.transparent {
+	opacity: 0;
+}
+.board > .icon-star.opaque {
+	opacity: 1;
+}
 // Styles for board list page
 
 #board_ribbon {

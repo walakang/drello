@@ -50,7 +50,7 @@ BoardController.prototype.populateBoards = function(boards) {
  */
 BoardController.prototype.createBoardNode = function(board) {
 	board = board || null;
-	if(!(board instanceof Board)) return null;;
+	if(!(board instanceof Board)) return null;
 
 	var node = document.createElement("a");
 	var title = document.createElement("span");
@@ -60,10 +60,11 @@ BoardController.prototype.createBoardNode = function(board) {
 	node.href="main.html";
 	node.dataset.id = board._getId();
 
-	title.className = "bold";
+	title.className = "board-title bold";
 	title.innerHTML = board._getName();
 
-	star.className = "star";
+	star.className = "icon-star right";
+	if(board._isStarred()) star.classList.add("starred");
 	star.title = "Click to star this board. It will be shown at the top of the list";
 
 	node.appendChild(title);
@@ -71,3 +72,29 @@ BoardController.prototype.createBoardNode = function(board) {
 
 	return node;
 }
+
+BoardController.prototype.toggleStar = function(board) {
+	board = board || null;
+	if(!(board instanceof Board)) return null;
+
+	var node = this._getBoardNodes()[board._getId()];
+	var starredContainer = document.getElementById(this.starredBoardsContainerId);
+	if(board._isStarred()) {
+		// modifiy view	
+		node.getElementsByClassName("icon-star")[0].classList.remove("starred");
+		// remove the node to starred list
+		node = starredContainer.querySelector("[data-id='"+node.dataset.id+"']");
+		starredContainer.removeChild(node);
+		// modify model
+		board.unStar();
+	}
+	else{
+		// modifiy view
+		node.getElementsByClassName("icon-star")[0].classList.add("starred");
+		// add the node to starred list
+		starredContainer.appendChild(node.cloneNode(true));
+		// modify model
+		board.star();
+
+	}
+};
