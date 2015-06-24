@@ -80,21 +80,28 @@ BoardController.prototype.toggleStar = function(board) {
 	var node = this._getBoardNodes()[board._getId()];
 	var starredContainer = document.getElementById(this.starredBoardsContainerId);
 	if(board._isStarred()) {
+		console.info("BoardController.toggleStar: the board was previously starred.");
 		// modifiy view	
 		node.getElementsByClassName("icon-star")[0].classList.remove("starred");
+		document.getElementById("board_ribbon_star").classList.remove("starred")
 		// remove the node to starred list
 		node = starredContainer.querySelector("[data-id='"+node.dataset.id+"']");
 		starredContainer.removeChild(node);
 		// modify model
 		board.unStar();
+
+		console.log("BoardController.toggleStar: the board was successfully unstarred.");
 	}
 	else{
+		console.info("BoardController.toggleStar: the board wasn't starred");
 		// modifiy view
 		node.getElementsByClassName("icon-star")[0].classList.add("starred");
+		document.getElementById("board_ribbon_star").classList.add("starred")
 		// add the node to starred list
 		starredContainer.appendChild(node.cloneNode(true));
 		// modify model
 		board.star();
 
+		console.log("BoardController.toggleStar: the board was successfully starred.");
 	}
 };

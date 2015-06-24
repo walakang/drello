@@ -601,10 +601,13 @@ body {
 #board_ribbon {
   padding: 15px; }
   #board_ribbon .icon-star {
-    color: gold;
+    color: white;
     padding: 6px;
     background: rgba(1, 1, 1, 0.1);
     font-size: 14px; }
+  #board_ribbon .icon-star.starred {
+    color: gold;
+    background: rgba(1, 1, 1, 0.1); }
   #board_ribbon .icon-star, #board_ribbon #menu_toggle, #board_ribbon #privacy {
     padding: 6px; }
   #board_ribbon .icon-star:hover, #board_ribbon #menu_toggle:hover, #board_ribbon #privacy:hover {

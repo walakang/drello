@@ -538,10 +538,14 @@ $step: 10;
 	padding: 15px;
 	
 	.icon-star {
-		color: gold;
+		color: white;
 		padding: 6px;
 		background: rgba(1,1,1,0.1);
 		font-size: 14px;
+	}
+	.icon-star.starred {
+		color: gold;
+		background: rgba(1,1,1,0.1);
 	}
 	.icon-star,#menu_toggle,#privacy {
 		padding: 6px;

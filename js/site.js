@@ -160,6 +160,9 @@ function createBoard(event) {
  			listController.populateLists(board._getLists());
  			document.getElementById("boards_view_container").classList.add("no-display");
  			document.getElementById("list_view_container").classList.remove("no-display");
+ 			document.getElementById("board_ribbon_star").dataset.id = id;
+ 			if(board._isStarred()) document.getElementById("board_ribbon_star").classList.add("starred");
+ 			else document.getElementById("board_ribbon_star").classList.remove("starred")
  			// change url without reloading
  			//window.history.pushState('ListViewState', 'ListView', '/boards/'+id+"/");
  		}
@@ -175,7 +178,12 @@ function createBoard(event) {
  */
  function toggleStar(e) {
  	e.stopPropagation();
- 	var board = drello.getBoard(parseInt(e.target.parentNode.dataset.id));
+ 	var id;
+ 	if(e.target.id == "board_ribbon_star")
+ 		id = parseInt(e.target.dataset.id);
+ 	else
+ 		id = parseInt(e.target.parentNode.dataset.id);
+ 	var board = drello.getBoard(id);
  	boardController.toggleStar(board);
  	drello.saveToLocalStorage();
  }
@@ -254,6 +262,10 @@ function createBoard(event) {
  		else if(e.target.parentNode.classList.contains("board"))
  			e.target.parentNode.getElementsByClassName("icon-star")[0].classList.remove("opaque");	
  	},false);
+
+ 	// Bind the onclick of star button in list view to toggleStar 
+ 	var boardRibbonStar = document.getElementById("board_ribbon_star");
+ 	boardRibbonStar && boardRibbonStar.addEventListener("click",toggleStar,false);
 
 })();
 
