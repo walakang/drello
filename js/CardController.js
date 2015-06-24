@@ -21,7 +21,7 @@ function CardController(){
 				<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>					
 			</a>
  */
-ListController.prototype.createListNode = function(card) {
+CardController.prototype.createCardNode = function(card) {
 	card = card || null;
 	if(!(card instanceof Card)) return null;;
 

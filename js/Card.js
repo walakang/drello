@@ -35,8 +35,8 @@ Card.prototype.toJSON = function() {
 		name: this._getName(),
 		id: this._getId(),
 		desc: this._getDesc(),
-		colors: this._getColors(),
-		attachments: this._getAttachments()
+		colors: this._getColors() || [],
+		attachments: this._getAttachments() || []
 	};
 };
 

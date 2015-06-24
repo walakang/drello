@@ -160,6 +160,8 @@ function createBoard(event) {
  			listController.populateLists(board._getLists());
  			document.getElementById("boards_view_container").classList.add("no-display");
  			document.getElementById("list_view_container").classList.remove("no-display");
+ 			// change url without reloading
+ 			//window.history.pushState('ListViewState', 'ListView', '/boards/'+id+"/");
  		}
  		else {
  			console.log("No board found for ID: "+id);
@@ -188,9 +190,13 @@ function createBoard(event) {
 
 	// Bind createBoard function to submit event of the create_board_form in the create_board-popup
 	var createBoardForm = document.getElementById("create_board_form");
-	createBoardForm && createBoardForm.addEventListener("submit",createBoard,false);
+	createBoardForm && createBoardForm.addEventListener("submit",function(e){
+		e.preventDefault();
+		closePopups(e,true);
+		createBoard(e);
+	},false);
 
-	// Header search
+	// Header search manage focus and blur state of input box.
 	var searchBox = document.getElementById("header_search_box");
 	searchBox.addEventListener("focus",function(e) {
 		this.parentNode.classList.add("focused");
@@ -207,16 +213,20 @@ function createBoard(event) {
 
 	 myBoardsList.addEventListener("click",function(e){
 	 	e.preventDefault();
-	 	if(event.target.classList.contains("board") || event.target.parentNode.classList.contains("board"))
+	 	if(event.target.classList.contains("board"))
  			loadAndDisplayBoard(parseInt(event.target.dataset.id));
+ 		else if(event.target.parentNode.classList.contains("board"))
+ 			loadAndDisplayBoard(parseInt(event.target.parentNode.dataset.id));
  		
  	},false);
-	starredBoardsList.addEventListener("click",function(e){
-		e.preventDefault();
-	 	if(event.target.classList.contains("board") || event.target.parentNode.classList.contains("board"))
+
+	/*starredBoardsList.addEventListener("click",function(e){
+	 	e.preventDefault();
+	 	if(event.target.classList.contains("board"))
  			loadAndDisplayBoard(parseInt(event.target.dataset.id));
- 		e.preventDefault();
- 	},false);
+ 		else if(event.target.parentNode.classList.contains("board"))
+ 			loadAndDisplayBoard(parseInt(event.target.parentNode.dataset.id));
+ 	},false);*/
 
 })();
 

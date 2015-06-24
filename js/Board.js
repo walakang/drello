@@ -4,10 +4,16 @@
 function Board(data) {
 	// private
 	var _name = data.name || "";
-	var _lists = data.lists || [];
+	var _lists = [];
 	var _closed = data.closed || false;
 	var _star = data.star || false;
 	var _id = data.id || 0;
+
+	// data.lists parsed should be converted to instances of List objects.
+	var len = (typeof data.lists != "undefined") ? data.lists.length : 0;
+	for (var i = 0; i< len; i++) {
+		_lists.push(new List(data.lists[i]));
+	};
 
 	// public
 
@@ -37,9 +43,9 @@ function Board(data) {
 
 Board.prototype.toJSON = function() {
 	return {
-		name: this._getName(),
+		name: this._getName() || "",
 		id: this._getId(),
-		lists: this._getLists(),
+		lists: this._getLists() || [],
 		star: this._isStarred(),
 		closed: this._isClosed()
 	};

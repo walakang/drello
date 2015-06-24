@@ -5,9 +5,15 @@
 function List(data) {
 	// private
 	var _name = data.name || "";
-	var _cards = data.cards || [];
+	var _cards = [];
 	var _closed = data.closed || false;
 	var _id = data.id || 0;
+
+	// data.cards parsed should be converted to instances of Card objects.
+	var len = (typeof data.cards != "undefined") ? data.cards.length : 0;
+	for (var i = 0; i< len; i++) {
+		_cards.push(new Card(data.cards[i]));
+	};
 
 	// public
 
@@ -16,7 +22,7 @@ function List(data) {
 		return _name;
 	}
 	this._getCards = function() {
-		return _lists;
+		return _cards;
 	}
 	this._getId = function() {
 		return _id;
@@ -31,9 +37,9 @@ function List(data) {
 
 List.prototype.toJSON = function() {
 	return {
-		name: this._getName(),
+		name: this._getName() || [],
 		id: this._getId(),
-		cards: this._getCards(),
+		cards: this._getCards() || [],
 		closed: this._isClosed()
 	};
 };
