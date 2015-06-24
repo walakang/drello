@@ -12,7 +12,7 @@ function Drello() {
 }
 
 /* Save all data on localstorage as JSON*/
-Drello.prototype.saveToLocalStorage = function () {
+Drello.prototype.toLocalStorage = function () {
 	localStorage.setItem("boards", JSON.stringify( this._getBoards() ));
 }
 

@@ -1,5 +1,4 @@
-// This object holds the core methods and properties.
-var drello = new Drello();
+
 // The __currentPopup variable holds the node of the pop-up displayed currently. 
 var __currentPopup = null;
 var boardController = new BoardController();
@@ -7,10 +6,64 @@ var listController = new ListController();
 var cardController = new CardController();
 
 // Load everything at startup
-drello.fromLocalStorage();
+boardController.loadEverything();
 // Generate DOM nodes for loadeed boards and display them.
-boardController.populateBoards(drello._getBoards());
+boardController.populateBoards();
 
+/* calls when a user submit the create board form create a new Board and put it to
+ * boards list of drello object and then save to  local storage.
+ */
+function createBoard(e) {
+	e.preventDefault();
+	var __form = e.target;
+	var __name = __form.getElementsByTagName("input")[0].value;
+	// Create a new Board node and add to DOM.
+	boardController.addNewBoard(name);
+	boardController.saveEverything();	// always save after a change has been committed.
+
+	// refresh the boards container view
+	boardController.populateBoards();
+	return false;
+}
+
+/* Loads a board by its ID and display the lists view.
+ */
+ function loadBoardAndDisplayListView(id) {
+ 	if (typeof id === 'number') {
+ 		var board = boardController.getBoard(id);
+ 		if (board) {
+ 			console.log("Found board - "+board._getName());
+ 			localStorage.setItem("currentBoard",id);
+ 			// Change to list view
+ 			listController.populateLists(board._getLists());
+ 			document.getElementById("boards_view_container").classList.add("no-display");
+ 			document.getElementById("list_view_container").classList.remove("no-display");
+ 			document.getElementById("board_ribbon_star").dataset.id = id;
+ 			if(board._isStarred()) document.getElementById("board_ribbon_star").classList.add("starred");
+ 			else document.getElementById("board_ribbon_star").classList.remove("starred")
+ 			// change url without reloading
+ 			//window.history.pushState('ListViewState', 'ListView', '/boards/'+id+"/");
+ 		}
+ 		else {
+ 			console.log("No board found for ID: "+id);
+ 		}
+ 	}
+ 	else console.log("Failed to load board - Invalid ID.")
+ }
+
+/* Called when user clicked on the star icon on a board
+ * this function toggles star on a board.
+ */
+ function toggleStar(e) {
+ 	e.stopPropagation();
+ 	var id;
+ 	if(e.target.id === "board_ribbon_star")
+ 		id = parseInt(e.target.dataset.id);
+ 	else
+ 		id = parseInt(e.target.parentNode.dataset.id);
+ 	boardController.toggleStar(id);
+ 	boardController.saveEverything();
+ }
 
 /* Call to show any popup box
  * @param name: ID of the popup box node.
@@ -128,65 +181,6 @@ function SidebarMenuToggle(){
 	return false;
 }
 
-/* calls when a user submit the create board form create a new Board and put it to
- * boards list of drello object and then save to  local storage.
- */
-function createBoard(event) {
-	event.preventDefault();
-	var __form = event.target;
-	var __name = __form.getElementsByTagName("input")[0].value;
-	// Create a new Board node and add to DOM
-	var board = new Board({name: __name, id: drello.getNextBoardId() });
-
-	// Save the node to local storage
-	drello.addBoard(board);
-	drello.saveToLocalStorage();
-
-	// refresh the boards container view
-	boardController.populateBoards(drello._getBoards());
-	return false;
-}
-
-/* Loads a board by its ID and display the lists view.
- * 
- */
- function loadAndDisplayBoard(id) {
- 	if (typeof id === 'number') {
- 		var board = drello.getBoard(id);
- 		if (board) {
- 			console.log("Found board - "+board._getName());
- 			localStorage.setItem("currentBoard",id);
- 			// Change to list view
- 			listController.populateLists(board._getLists());
- 			document.getElementById("boards_view_container").classList.add("no-display");
- 			document.getElementById("list_view_container").classList.remove("no-display");
- 			document.getElementById("board_ribbon_star").dataset.id = id;
- 			if(board._isStarred()) document.getElementById("board_ribbon_star").classList.add("starred");
- 			else document.getElementById("board_ribbon_star").classList.remove("starred")
- 			// change url without reloading
- 			//window.history.pushState('ListViewState', 'ListView', '/boards/'+id+"/");
- 		}
- 		else {
- 			console.log("No board found for ID: "+id);
- 		}
- 	}
- 	else console.log("Failed to load board - Invalid ID.")
- }
-
-/* Called when user clicked on the star icon on a board
- * this function toggles star on a board.
- */
- function toggleStar(e) {
- 	e.stopPropagation();
- 	var id;
- 	if(e.target.id == "board_ribbon_star")
- 		id = parseInt(e.target.dataset.id);
- 	else
- 		id = parseInt(e.target.parentNode.dataset.id);
- 	var board = drello.getBoard(id);
- 	boardController.toggleStar(board);
- 	drello.saveToLocalStorage();
- }
 
 /* bind all known events to various elements in the DOM */
 (function(){
@@ -225,38 +219,27 @@ function createBoard(event) {
 	/* When user clicks on a board in boards list page set the data-id attribute value as a reference for
 	 * boards-display to load that board.
 	 */
-	 var myBoardsList = document.getElementById("boards_my_list");
-	 var starredBoardsList = document.getElementById("boards_starred_list");
+	 var boardsContainer = document.getElementById("boards_view_container");
 
-	 myBoardsList.addEventListener("click",function(e){
+	 boardsContainer.addEventListener("click",function(e){
 	 	e.preventDefault();
 	 	if(e.target.classList.contains("board")) 
- 			loadAndDisplayBoard(parseInt(e.target.dataset.id));
+ 			loadBoardAndDisplayListView(parseInt(e.target.dataset.id));
  		else if(e.target.classList.contains("board-title"))
- 			loadAndDisplayBoard(parseInt(e.target.parentNode.dataset.id));
+ 			loadBoardAndDisplayListView(parseInt(e.target.parentNode.dataset.id));
  		else if(e.target.classList.contains("icon-star"))
  			toggleStar(e);
  		
  	},false);
 
-	starredBoardsList.addEventListener("click",function(e){
-	 	e.preventDefault();
-	 	if(e.target.classList.contains("board")) 
- 			loadAndDisplayBoard(parseInt(e.target.dataset.id));
- 		else if(e.target.classList.contains("board-title"))
- 			loadAndDisplayBoard(parseInt(e.target.parentNode.dataset.id));
- 		else if(e.target.classList.contains("icon-star"))
- 			toggleStar(e);
- 	},false);
-
  	// Show star when hovering on board
-	myBoardsList.addEventListener("mouseover",function(e){
+	boardsContainer.addEventListener("mouseover",function(e){
 	 	if(e.target.classList.contains("board"))
  			e.target.getElementsByClassName("icon-star")[0].classList.add("opaque");
  		else if(e.target.parentNode.classList.contains("board"))
  			e.target.parentNode.getElementsByClassName("icon-star")[0].classList.add("opaque");		
  	},false);
- 	myBoardsList.addEventListener("mouseout",function(e){
+ 	boardsContainer.addEventListener("mouseout",function(e){
 	 	if(e.target.classList.contains("board"))
  			e.target.getElementsByClassName("icon-star")[0].classList.remove("opaque");
  		else if(e.target.parentNode.classList.contains("board"))

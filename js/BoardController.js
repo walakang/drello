@@ -1,6 +1,8 @@
 function BoardController(){
-	// private
 	var _boardNodes = [];
+
+	// This object holds the core methods and properties.
+	var _drello = new Drello();
 
 	//public
 	this.boardClassName = "board left block round";
@@ -11,15 +13,35 @@ function BoardController(){
 	this._getBoardNodes = function() {
 		return _boardNodes;
 	}
+	this._getDrello = function() {
+		return _drello;
+	}
 }
+
+/* Load data from local storage */
+BoardController.prototype.loadEverything = function() {
+	this._getDrello().fromLocalStorage();
+};
+
+/* Save data to localstorage */
+BoardController.prototype.saveEverything = function() {
+	this._getDrello().toLocalStorage();
+};
+
+BoardController.prototype.addNewBoard = function(boardName) {
+	var board = new Board({name: boardName, id: this._getDrello().getNextBoardId() });
+	return this._getDrello().addBoard(board);
+};
 
 /* Call to populate the boards container with the nodes created
  * from the boards array parsed from localstorage.
  */
-BoardController.prototype.populateBoards = function(boards) {
+BoardController.prototype.populateBoards = function() {
+	var boards = this._getDrello()._getBoards();
 	var list = this._getBoardNodes();
 	var container = document.getElementById(this.containerId);
 	var starredContainer = document.getElementById(this.starredBoardsContainerId);
+	var node = null; var i,len;
 
 	// Add new noard as the second last children of the list.
 	var addBoardNode = container.removeChild(container.children[container.children.length-1]);
@@ -27,8 +49,8 @@ BoardController.prototype.populateBoards = function(boards) {
 	// remove all existing childs in container
 	container.innerHTML = "";
 	// Create nodes for every board in drello and store them in _boardNodes[] then append to container.
-	for (var i = 0; i < boards.length; i++) {
-		var node = this.createBoardNode(boards[i])
+	for (i = 0, len = boards.length; i < len; i++) {
+		node = this.createBoardNode(boards[i])
 		if (node != null) {
 			list.push(node);
 			container.appendChild(node);
@@ -73,9 +95,9 @@ BoardController.prototype.createBoardNode = function(board) {
 	return node;
 }
 
-BoardController.prototype.toggleStar = function(board) {
-	board = board || null;
-	if(!(board instanceof Board)) return null;
+BoardController.prototype.toggleStar = function(id) {
+	var board = this._getDrello().getBoard(id);
+	if(!board) return null;
 
 	var node = this._getBoardNodes()[board._getId()];
 	var starredContainer = document.getElementById(this.starredBoardsContainerId);
@@ -104,4 +126,19 @@ BoardController.prototype.toggleStar = function(board) {
 
 		console.log("BoardController.toggleStar: the board was successfully starred.");
 	}
-};
+}
+
+/* This function searches for boards in Drello model and returns an array of nodes made
+ * from the result.
+ */
+BoardController.prototype.searchBoards = function(key) {
+	var boards = this._getDrello().searchBoards(key);  // returns [] for invalid key also.
+	var i, len;
+	for (i = 0, len = boards.length; i < len; i++) {
+
+	}
+}
+
+BoardController.prototype.getBoard = function(id) {
+	return this._getDrello().getBoard(id);
+}
