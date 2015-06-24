@@ -48,6 +48,8 @@ BoardController.prototype.populateBoards = function() {
 
 	// remove all existing childs in container
 	container.innerHTML = "";
+	starredContainer.innerHTML = "";
+	list.length = 0;
 	// Create nodes for every board in drello and store them in _boardNodes[] then append to container.
 	for (i = 0, len = boards.length; i < len; i++) {
 		node = this.createBoardNode(boards[i])
