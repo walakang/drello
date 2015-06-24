@@ -16,7 +16,7 @@ boardController.populateBoards();
 function createBoard(e) {
 	e.preventDefault();
 	var __form = e.target;
-	var __name = __form.getElementsByTagName("input")[0].value;
+	var name = __form.getElementsByTagName("input")[0].value;
 	// Create a new Board node and add to DOM.
 	boardController.addNewBoard(name);
 	boardController.saveEverything();	// always save after a change has been committed.
