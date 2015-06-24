@@ -60,7 +60,6 @@ Drello.prototype.addBoard = function(board) {
  			   2. key is name of board.
  */
 Drello.prototype.getBoard = function(key) {
-	key = key || null;
 	var boards = this._getBoards();
 	if (typeof key === 'number') {
 		return boards[key];

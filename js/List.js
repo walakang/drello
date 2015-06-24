@@ -67,7 +67,6 @@ List.prototype.removeCard = function(item) {
  			   2. key is name of card.
  */
 List.prototype.getCard = function(key) {
-	key = key || null;
 	var cards = this._getCards();
 	if (typeof key === "number") {
 		return cards[key];

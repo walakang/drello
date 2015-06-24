@@ -81,7 +81,6 @@ Board.prototype.removeList = function(item) {
  			   2. key is name of list.
  */
 Board.prototype.getList = function(key) {
-	key = key || null;
 	var lists = this._getLists();
 	if (typeof key === 'number') {
 		return lists[key];

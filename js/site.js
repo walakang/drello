@@ -206,12 +206,14 @@ function createBoard(event) {
 	 var starredBoardsList = document.getElementById("boards_starred_list");
 
 	 myBoardsList.addEventListener("click",function(e){
-	 	if(event.target.classList.contains("board"))
+	 	e.preventDefault();
+	 	if(event.target.classList.contains("board") || event.target.parentNode.classList.contains("board"))
  			loadAndDisplayBoard(parseInt(event.target.dataset.id));
- 		e.preventDefault();
+ 		
  	},false);
 	starredBoardsList.addEventListener("click",function(e){
-	 	if(event.target.classList.contains("board"))
+		e.preventDefault();
+	 	if(event.target.classList.contains("board") || event.target.parentNode.classList.contains("board"))
  			loadAndDisplayBoard(parseInt(event.target.dataset.id));
  		e.preventDefault();
  	},false);
