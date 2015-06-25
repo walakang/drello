@@ -90,46 +90,17 @@
 
 			<!-- container fo lists - scrolls horizontally -->
 			<section id="board_content" class="wrapper">
+				<!-- This list is populated using JavaScript -->
 
-				<!-- Single list. Scrolls vertivally-->
-				<div class="list round" id="list-1">
-					<div class="list-item list-head bold pointer">
-						<span class="title">Ideas</span>
-						<a class="right" id="list_actions_toggle"><span class="icon-download"></span></a>
-					</div>
-
-					<!-- start cards -->
-					<div class="list-item card round pointer">
-						<div class="card-edit">
-							<span class="icon-pencil-alt block text-center right"></span>
-						</div>
-						<figure class="card-image">
-							<img src="images/taco.png" />
-						</figure>
-						<div class="card-detail">
-							<div class="card-detail-labels">
-								<span class="blue"></span>
-								<span class="green"></span>
-							</div>
-							<div class="card-detail-exerpt">
-								Develop Drello using pure JavaScript
-							</div>
-							<div class="card-detail-flags">
-								<span class="icon-eye-outline"></span>
-								<span class="icon-menu"></span>
-								<span class="icon-comment"></span>
-								<span class="icon-attach"></span>
-							</div>
-							<!--<div class="card-detail-members block right">
-								<span class="avatar left i-block"><img src="members/shidil.png" class="round"></span>
-							</div>-->
-						</div>
-					</div>
-					<!-- end cards -->
-
-					<div class="list-item clear pointer" id="add_card">
-						Add a card...
-					</div>
+				<div class="add-list round">
+					<div id="add_list_link" class="add-list-placeholder round noselect">Add a list...</div>
+					<form method="POST" action="main.html" class="add-list-form round no-display" id="add_list_form">
+						<input type="text" id="add_list_form_input" class="block-input width-100 round block" name="list-name" 
+						 autofocus="true" autocomplete="off"/>
+						<span type="hidden" class="block break-1" ></span>
+						<input type="submit" class="btn btn-normal btn-green" value="Save" />
+						<span class="icon-cancel middle pointer" id="add_list_form_close"></span>
+					</form>
 				</div>
 				<!-- end of a single list -->
 			</section>
@@ -188,7 +159,7 @@
 			<div class="popup-body">
 				<form class="popup-form" id="create_board_form" method="POST" action="main.html">
 					<label for="bord-name" class="popup-form-label medium bold block">Title</label>
-					<input  class="block-input block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..." required />
+					<input  class="block-input block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..." autocomplete="off" required />
 					<input type="hidden" name="board-privacy"/>
 					<label for="bord-org" class="popup-form-label medium bold block">Organization</label>
 					<!-- The options are filled with names of oraganizations in DB. -->

@@ -15,8 +15,8 @@ boardController.populateBoards();
  */
 function createBoard(e) {
 	e.preventDefault();
-	var __form = e.target;
-	var name = __form.getElementsByTagName("input")[0].value;
+	var form = e.target;
+	var name = form.getElementsByTagName("input")[0].value;
 	// Create a new Board node and add to DOM.
 	boardController.addNewBoard(name);
 	boardController.saveEverything();	// always save after a change has been committed.
@@ -24,6 +24,36 @@ function createBoard(e) {
 	// refresh the boards container view
 	boardController.populateBoards();
 	return false;
+}
+
+/* called when user submits the add list form
+ */
+function createList(e) {
+	e.preventDefault();
+	var form = e.target;
+	var name = form.getElementsByTagName("input")[0].value;
+	var boardId = parseInt(document.getElementById("board_ribbon_star").dataset.id);
+	// Create a new List node and add to DOM
+	var b = boardController.addNewList(name,boardId);
+	boardController.saveEverything();
+
+	// refresh the list container view
+	listController.populateLists(b);
+}
+
+/* called when user submits the add card form */
+function createCard(e) {
+	e.preventDefault();
+	var form = e.target;
+	var name = form.getElementsByTagName("input")[0].value;
+	var listId = parseInt(form.dataset.id);
+	var boardId = parseInt(document.getElementById("board_ribbon_star").dataset.id);
+
+	var b = boardController.addNewCard(name,listId,boardId);
+	boardController.saveEverything();
+
+	// refresh the list container view
+	listController.populateLists(b);
 }
 
 /* Loads a board by its ID and display the lists view.
@@ -35,7 +65,7 @@ function createBoard(e) {
  			console.log("Found board - "+board._getName());
  			localStorage.setItem("currentBoard",id);
  			// Change to list view
- 			listController.populateLists(board._getLists());
+ 			listController.populateLists(board);
  			document.getElementById("boards_view_container").classList.add("no-display");
  			document.getElementById("list_view_container").classList.remove("no-display");
  			document.getElementById("board_ribbon_star").dataset.id = id;
@@ -185,12 +215,12 @@ function showCardPopup(e){
 	return false;
 }
 
-function showOverlay(noBg){
+function showOverlay() {
 	document.getElementById("overlay").classList.add("visible");
 }
 
 
-function hideToggle(node){
+function hideToggle(node) {
 	if(node.classList.contains("show")){
 		node.classList.remove("show");
 	}
@@ -198,16 +228,33 @@ function hideToggle(node){
 		node.classList.add("show");
 	}
 }
+function displayToggle(node) {
+	if(node.classList.contains("no-display")){
+		node.classList.remove("no-display");
+	}
+	else{
+		node.classList.add("no-display");
+	}
+}
 
-function SidebarToggle(){
+function SidebarToggle() {
 	hideToggle(document.getElementById("board_menu"));
 	return false;
 }
-function SidebarMenuToggle(){
+function SidebarMenuToggle() {
 	hideToggle(document.querySelectorAll("#board_menu ul")[0]);
 	return false;
 }
-
+function toggleAddListForm(e) {
+	var form = document.getElementById("add_list_form");
+	displayToggle(form);
+	form.getElementsByTagName("input")[0].focus();
+}
+function toggleAddCardForm(e) {
+	var form = e.target.parentNode.parentNode.querySelector("#add_card_form");
+	displayToggle(form);
+	form.getElementsByTagName("input")[0].focus();
+}
 
 /* bind all known events to various elements in the DOM */
 (function(){
@@ -247,6 +294,7 @@ function SidebarMenuToggle(){
 	 * boards-display to load that board.
 	 */
 	 var boardsContainer = document.getElementById("boards_view_container");
+	 var listsContainer = document.getElementById("list_view_container");
 
 	 boardsContainer.addEventListener("click",function(e){
 	 	e.preventDefault();
@@ -261,15 +309,15 @@ function SidebarMenuToggle(){
 
  	// Show star when hovering on board
 	boardsContainer.addEventListener("mouseover",function(e){
-	 	if(e.target.classList.contains("board"))
+	 	if (e.target.classList.contains("board"))
  			e.target.getElementsByClassName("icon-star")[0].classList.add("opaque");
- 		else if(e.target.parentNode.classList.contains("board"))
+ 		else if (e.target.parentNode.classList.contains("board"))
  			e.target.parentNode.getElementsByClassName("icon-star")[0].classList.add("opaque");		
  	},false);
  	boardsContainer.addEventListener("mouseout",function(e){
-	 	if(e.target.classList.contains("board"))
+	 	if (e.target.classList.contains("board"))
  			e.target.getElementsByClassName("icon-star")[0].classList.remove("opaque");
- 		else if(e.target.parentNode.classList.contains("board"))
+ 		else if (e.target.parentNode.classList.contains("board"))
  			e.target.parentNode.getElementsByClassName("icon-star")[0].classList.remove("opaque");	
  	},false);
 
@@ -281,6 +329,21 @@ function SidebarMenuToggle(){
  	var searchInput = document.getElementById("search_boards_input");
  	searchInput.addEventListener("keyup",searchAndDisplayBoards,false);
 
+
+ 	// List view: display add list form upon clicking add list placeholder.
+ 	var addListLink = document.getElementById("add_list_link");
+ 	var addListInput = document.getElementById("add_list_form_input");
+ 	var addListForm = document.getElementById("add_list_form");
+ 	addListLink && addListLink.addEventListener("click", toggleAddListForm, false);	// show form
+ 	addListInput && addListInput.addEventListener("blur", toggleAddListForm, false);	// hide form on blur
+ 	addListForm && addListForm.addEventListener("submit", createList, false);
+
+ 	// List view display and manage add card form
+ 	/*listsContainer.addEventListener("click", function(e) {
+ 		if (event.target.classList.contains("add-card-placeholder")) {
+ 			toggleAddCardForm(e);
+ 		}
+ 	},false);*/
 })();
 
 

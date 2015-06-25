@@ -33,6 +33,27 @@ BoardController.prototype.addNewBoard = function(boardName) {
 	return this._getDrello().addBoard(board);
 };
 
+BoardController.prototype.addNewList = function(ListName,boardId) {
+	var board = this._getDrello().getBoard(boardId);
+	if(board) {
+		var list = new List({name: ListName, id: board.getNextListId() });
+		board.addList(list);
+		return board;
+	}
+	return null;
+};
+
+BoardController.prototype.addNewCard = function(cardName, listId, boardId) {
+	var board = this._getDrello().getBoard(boardId);
+	if (board) {
+		var list = board.getList(listId);
+		if(list)
+			list.addCard(new Card({ name: cardName, id: list.getNextCardId() }));
+		return board;
+	}
+	return null;
+};
+
 /* Call to populate the boards container with the nodes created
  * from the boards array parsed from localstorage.
  */

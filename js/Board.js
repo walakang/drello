@@ -58,6 +58,12 @@ Board.prototype.unStar = function() {
 	this._setStar(false);
 };
 
+Board.prototype.getNextListId = function() {
+	if (this._getLists().length != null)
+		return this._getLists().length;
+	return 0;
+};
+
 Board.prototype.addList = function(list) {
 	list = list || null;
 	return (list instanceof List) ? this._getLists().push(list) : false;

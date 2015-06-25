@@ -49,6 +49,12 @@ List.prototype.addCard = function(card) {
 	return (card instanceof Card) ? this._getCards().push(card) : false;
 };
 
+List.prototype.getNextCardId = function() {
+	if (this._getCards().length != null)
+		return this._getCards().length;
+	return 0;
+};
+
 /* Function to remove a card from a board.
  * @param item: This can be the card object itself or a number
  *   			representing index of _cards in array.

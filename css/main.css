@@ -145,6 +145,14 @@ body {
 .no-height {
   height: 0; }
 
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
 .hidden {
   visibiliy: hidden; }
 
@@ -641,7 +649,7 @@ body {
 
 .list-head {
   padding: 6px 10px;
-  font-size: 16px; }
+  font-size: 14px; }
   .list-head .icon-download {
     opacity: 0.7;
     font-weight: normal;
@@ -649,21 +657,69 @@ body {
   .list-head .icon-download:hover {
     opacity: 1; }
 
+.add-list {
+  background: transparent;
+  max-width: 270px;
+  min-width: 270px;
+  position: relative; }
+
+.add-list-placeholder {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  color: white;
+  width: 100%;
+  cursor: pointer; }
+
+.add-list-placeholder:hover {
+  background: rgba(0, 0, 0, 0.2); }
+
+.add-list-form {
+  background: #e2e4e6;
+  width: 100%;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.add-list-form > input {
+  margin: 0px; }
+
+.add-list-form > .icon-cancel {
+  vertical-align: middle;
+  display: inline-block;
+  height: 28px;
+  font-size: 20px; }
+
 .card {
   margin: 4px 8px;
   background: #FFFFFF;
   position: relative; }
 
 #add_card {
-  padding: 6px 10px;
-  color: #999; }
+  color: #999;
+  position: relative;
+  max-height: 100px; }
 
-#add_card:hover, .card:hover {
+#add_card .add-list-form {
+  position: relative;
+  top: -30px; }
+
+.add-card-placeholder {
+  padding: 10px;
+  color: #999;
+  cursor: pointer; }
+
+.add-card-placeholder:hover {
+  background: rgba(0, 0, 0, 0.05);
+  text-decoration: underline;
+  color: #444; }
+
+.card:hover {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   border-radius: 4px;
-  background: rgba(0, 0, 0, 0.05); }
+  background: rgba(255, 255, 255, 0.6); }
 
 .card-edit {
   width: 100%;

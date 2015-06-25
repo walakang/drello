@@ -26,9 +26,30 @@ CardController.prototype.createCardNode = function(card) {
 	if(!(card instanceof Card)) return null;;
 
 	var node = document.createElement("div");
-	node.className = this.cardClassName;
-	node.onclick = "showCardPopupToggle(event)";
-	node.innerHTML = card._getName();
+	node.innerHTML = '<div class="'+this.cardClassName+'" onclick="showCardPopup(event)">\
+						<div class="card-edit">\
+							<span class="icon-pencil-alt block text-center right"></span>\
+						</div>\
+						<!--<figure class="card-image">\
+							<img src="images/taco.png" />\
+						</figure>-->\
+						<div class="card-detail">\
+							<div class="card-detail-labels">\
+								<!--<span class="blue"></span>\
+								<span class="green"></span>-->\
+							</div>\
+							<div class="card-detail-exerpt">'+card._getName()+'</div>\
+							<div class="card-detail-flags">\
+								<span class="icon-eye-outline"></span>\
+								<span class="icon-menu"></span>\
+								<span class="icon-comment"></span>\
+								<span class="icon-attach"></span>\
+							</div>\
+							<!--<div class="card-detail-members block right">\
+								<span class="avatar left i-block"><img src="members/shidil.png" class="round"></span>\
+							</div>-->\
+						</div>\
+					  </div>';
 
 	return node;
 }
