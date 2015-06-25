@@ -103,7 +103,9 @@ function searchAndDisplayBoards (e) {
 	var listContainer = document.getElementById("boards_popup_results_list");
 	var i, len, listItem;
 	listContainer.innerHTML = "";
-
+	displayToggle(document.getElementById("boards_popup_my"));
+	displayToggle(document.getElementById("boards_popup_starred"));
+	displayToggle(document.getElementById("boards_popup_results"));
 	// do not display any result if query string is empty
 	if(!key) return;
 	var boards = boardController.searchBoards(key);
@@ -184,6 +186,27 @@ function showBoardsPopup(e){
 	// Prevent event propogation.
 	e = e || window.event
 	e.stopPropagation();
+	var boards = boardController._getDrello()._getBoards();
+	var i, len, starred = 0;
+	var myList = document.querySelector("#boards_popup_my .boards-list");
+	var starredList = document.querySelector("#boards_popup_starred .boards-list");
+	displayToggle(document.getElementById("boards_popup_my"));
+	displayToggle(document.getElementById("boards_popup_starred"));
+	displayToggle(document.getElementById("boards_popup_results"));
+	console.log("Boards popup: generating board nodes from data");
+	if (boards) {
+		for(i = 0, len = boards.length; i < len; i++) {
+			listItem = document.createElement("li");
+			listItem.className = "boards-list-item round";
+			listItem.innerHTML = '<a href="main.html">\
+									<span class="color"></span>\
+									<span class="board-name width-100 bold" >'+boards[i]._getName();+' </span>\
+									<span class="icon-star"></span>\
+								  </a>';
+			myList.appendChild(listItem);
+			if(boards[i]._isStarred()) starredList.appendChild(listItem.cloneNode(true));
+		}
+	}
 	console.log("showing boards pop-up");
 	showPopup("boards_popup");
 
