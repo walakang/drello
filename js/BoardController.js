@@ -73,6 +73,8 @@ BoardController.prototype.populateBoards = function() {
 	list.length = 0;
 	// Create nodes for every board in drello and store them in _boardNodes[] then append to container.
 	for (i = 0, len = boards.length; i < len; i++) {
+		// exclude closed boards
+		if(boards[i]._isClosed()) continue;
 		node = this.createBoardNode(boards[i])
 		if (node != null) {
 			list.push(node);

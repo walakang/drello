@@ -54,6 +54,13 @@ p {
 input{
 	border: none;
 }
+[draggable=true] {
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
 // * Change the box model. Recommended for resposive websites.
 *, *:before, *:after {
 	-webkit-box-sizing: border-box;
@@ -140,6 +147,27 @@ input{
 	height: 30px;
 	@extend .round;
 	-webkit-user-select: none;
+}
+.grab
+{
+    cursor: move;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+.dragging
+{
+	position: absolute;
+    cursor: move;
+    cursor:-moz-grabbing;
+    cursor:-webkit-grabbing;
+    cursor:grabbing;
+    box-shadow: -2px 2px 3px #666;
+    -moz-transform:rotate(2deg);
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg);
+    opacity: 1;
+    z-index: 555;
 }
 
 /********** Style for labels **************************/
@@ -573,7 +601,7 @@ $step: 10;
 #board_content {
 	overflow-x: auto;
 	overflow-y: hidden;
-	height: 80vh;
+	height: 85vh;
 	padding-left: 10px;
 	display: -webkit-box;
 	display: -moz-box;
@@ -592,9 +620,7 @@ $step: 10;
 	min-width: 270px;
 	margin: 0px 5px;
 	max-height: 80vh;
-	// scroll horizontally.
-	overflow-x: hidden;
-	overflow-y: auto;
+	overflow: auto;
 	
 }
 .list-head {
@@ -609,6 +635,9 @@ $step: 10;
 	.icon-download:hover {
 		opacity: 1;	
 	}
+}
+.list-body {
+	max-height: 70vh;
 }
 .list-item {
 	@extend .block;
@@ -650,6 +679,7 @@ $step: 10;
 	margin: 4px 8px;
 	background: #FFFFFF;
 	position: relative;
+	width: 254px;
 }
 #add_card {
 	//padding: 10px;
@@ -673,7 +703,7 @@ $step: 10;
 }
 .card:hover {
 	@include border-radius(4px);
-	background: rgba(255,255,255,0.6);
+	background: rgba(252,252,252,1);
 }
 .card-edit {
 	width: 100%;

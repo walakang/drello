@@ -9,6 +9,7 @@ function Card(data) {
 	var _desc = data.desc || "";
 	var _attachments = data.attachments || [];
 	var _colors = data.colors || [];
+	var _closed = data.closed || false;
 
 	// public
 
@@ -28,6 +29,15 @@ function Card(data) {
 	this._getAttachments = function() {
 		return _attachments;
 	};
+	this._isClosed = function() {
+		return _closed;
+	}
+	this._close = function () {
+		_close = true;
+	}
+	this._open = function() {
+		_closed = false;
+	}
 }
 
 Card.prototype.toJSON = function() {

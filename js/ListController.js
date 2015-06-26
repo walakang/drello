@@ -27,6 +27,8 @@ ListController.prototype.populateLists = function(board) {
 	listNodes.length = 0;
 	// Create nodes for every board in drello and store them in _boardNodes[] then append to container.
 	for (i = 0, len = lists.length; i < len; i++) {
+		// exclude closed lists
+		if(lists[i]._isClosed()) continue;
 		node = this.createListNode(lists[i]);
 		if (node != null) {
 			listNodes.push(node);
@@ -49,23 +51,28 @@ ListController.prototype.createListNode = function(list) {
 	var node = document.createElement("div");
 	var listHead = document.createElement("div");
 	var listTail = document.createElement("div");
+	var listBody = document.createElement("div");
 	var cardController = new CardController();
 
 	node.className = this.listClassName;
 	node.dataset.id = list._getId();
+	node.draggable = "true";
 
 	listHead.className = "list-item list-head bold pointer";
 	listHead.innerHTML = '<span class="title">'+list._getName()+'</span> \
 						  <a class="right icon-download" id="list_actions_toggle " data-id="'+list._getId()+'"></a>';
 	node.appendChild(listHead);
 
+	listBody.className = "list-body y-scroll width-100";
 	// generate cards
 	var len = list._getCards().length;
 	for (var i = 0; i< len; i++) {
+		// Exclude closed/archived cards
+		if(list._getCards()[i]._isClosed()) continue;
 		var cardNode = cardController.createCardNode(list._getCards()[i]);
-		node.appendChild(cardNode);
+		listBody.appendChild(cardNode);
 	}
-	
+	node.appendChild(listBody);
 	// Add card button
 	listTail.className = "list-item clear pointer";
 	listTail.id = "add_card";

@@ -279,6 +279,16 @@ function toggleAddCardForm(e) {
 	form.getElementsByTagName("input")[0].focus();
 }
 
+function followMouse(node) {
+	document.getElementById("board_content").onmousemove = function(e) {
+		node.style.left = e.x+"px";
+		node.style.top = (e.y-100)+"px";
+	}
+}
+function stopFollowingMouse() {
+	document.getElementById("board_content").onmousemove = null;
+}
+
 /* bind all known events to various elements in the DOM */
 (function(){
 	// Hide all pop-ups when clicked outside the pop-up 
@@ -367,6 +377,25 @@ function toggleAddCardForm(e) {
  			toggleAddCardForm(e);
  		}
  	},false);*/
+
+	// Initialize drag events
+	var dragDrop = new DragDrop({
+		container: "body",
+		handle: "card",
+		dragClass: "dragging",
+		dropZone: "list",
+
+		start: function(e) {
+			console.log("Inside my custom start function");
+		},
+		drag: function(e) {
+			//listController.populateLists(boardController.getBoard(parseInt(document.getElementById("board_ribbon_star").dataset.id)));
+		}
+	});
+	// this will bind drag events to container.
+	dragDrop.init();
+
+
 })();
 
 

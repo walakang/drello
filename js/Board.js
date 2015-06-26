@@ -33,8 +33,11 @@ function Board(data) {
 	this._isStarred = function() {
 		return _star;
 	}
-	this._setClosed = function() {
+	this._close = function() {
 		_closed = true;
+	}
+	this._open = function() {
+		_closed = false;
 	}
 	this._isClosed = function() {
 		return _closed;
