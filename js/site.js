@@ -103,9 +103,9 @@ function searchAndDisplayBoards (e) {
 	var listContainer = document.getElementById("boards_popup_results_list");
 	var i, len, listItem;
 	listContainer.innerHTML = "";
-	displayToggle(document.getElementById("boards_popup_my"));
-	displayToggle(document.getElementById("boards_popup_starred"));
-	displayToggle(document.getElementById("boards_popup_results"));
+	document.getElementById("boards_popup_my").classList.add("no-display");
+	document.getElementById("boards_popup_starred").classList.add("no-display");
+	document.getElementById("boards_popup_results").classList.remove("no-display");
 	// do not display any result if query string is empty
 	if(!key) return;
 	var boards = boardController.searchBoards(key);
@@ -191,10 +191,12 @@ function showBoardsPopup(e){
 	var i, len, starred = 0;
 	var myList = document.querySelector("#boards_popup_my .boards-list");
 	var starredList = document.querySelector("#boards_popup_starred .boards-list");
-	displayToggle(document.getElementById("boards_popup_my"));
-	displayToggle(document.getElementById("boards_popup_starred"));
-	displayToggle(document.getElementById("boards_popup_results"));
+	document.getElementById("boards_popup_my").classList.remove("no-display");
+	document.getElementById("boards_popup_starred").classList.remove("no-display");
+	document.getElementById("boards_popup_results").classList.add("no-display");
 	console.log("Boards popup: generating board nodes from data");
+	starredList.innerHTML = "";
+	myList.innerHTML = "";
 	if (boards) {
 		for(i = 0, len = boards.length; i < len; i++) {
 			listItem = document.createElement("a");
@@ -382,13 +384,6 @@ function stopFollowingMouse() {
  	addListLink && addListLink.addEventListener("click", toggleAddListForm, false);	// show form
  	addListInput && addListInput.addEventListener("blur", toggleAddListForm, false);	// hide form on blur
  	addListForm && addListForm.addEventListener("submit", createList, false);
-
- 	// List view display and manage add card form
- 	/*listsContainer.addEventListener("click", function(e) {
- 		if (event.target.classList.contains("add-card-placeholder")) {
- 			toggleAddCardForm(e);
- 		}
- 	},false);*/
 
 	// Initialize drag events
 	var dragDrop = new DragDrop({
