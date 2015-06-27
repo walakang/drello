@@ -160,10 +160,10 @@
 			<div class="popup-body">
 				<form class="popup-form" id="create_board_form" method="POST" action="main.html">
 					<label for="bord-name" class="popup-form-label medium bold block">Title</label>
-					<input  class="block-input block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..." autocomplete="off" required />
+					<input  class="block-input block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..." autocomplete="off" required="true" onblur="this.value=''" />
 					<input type="hidden" name="board-privacy"/>
-					<label for="bord-org" class="popup-form-label medium bold block">Organization</label>
-					<!-- The options are filled with names of oraganizations in DB. -->
+					<!-- The options are filled with names of oraganizations in DB.
+					<label for="bord-org" class="popup-form-label medium bold block">Organization</label>	
 					<select name="board-org" class="block-input block width-100 round" >
 						
 					</select>
@@ -183,7 +183,7 @@
 							<span class="option">public</span>
 							<span class="detail">This board will be public. It is visible to anyone with the link to this board and it will be visible to search engines like Google and Yahoo. Only people added to the board can view or edit it.</span >
 						</div>
-					</div>
+					</div> -->
 					<input type="submit" class="btn btn-normal btn-green" value="Create" onClick="//closePopups(event,true)"/>
 				</form>
 			</div>

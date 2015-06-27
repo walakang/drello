@@ -134,7 +134,7 @@ function showPopup(name,position){
 	var popup = document.getElementById(name);
 	if(typeof(position) ==='object'){
 		popup.style.left = position.left+"px";
-		popup.style.top = (position.top-80)+"px";
+		popup.style.top = (position.top)+"px";
 		//popup.style.bottom = (document.body.getBoundingClientRect().height-(position.bottom+100)+"px");
 	}
 
