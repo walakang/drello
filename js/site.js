@@ -112,13 +112,14 @@ function searchAndDisplayBoards (e) {
 	console.log("SearchBoards: looping through "+boards.length+" results");
 	if (boards) {
 		for(i = 0, len = boards.length; i < len; i++) {
-			listItem = document.createElement("li");
-			listItem.className = "boards-list-item round";
-			listItem.innerHTML = '<a href="main.html">\
-									<span class="color"></span>\
-									<span class="board-name width-100 bold" >'+boards[i]._getName();+' </span>\
-									<span class="icon-star"></span>\
-								  </a>';
+			listItem = document.createElement("a");
+			listItem.dataset.id = boards[i]._getId();
+			listItem.className = "boards-list-item round block";
+			listItem.href = "main.html";
+			listItem.innerHTML = '<span class="color"></span>\
+			<span class="board-name width-100 bold" >'+boards[i]._getName();+' </span>\
+			<span class="icon-star"></span>\
+			';
 			listContainer.appendChild(listItem);
 		}
 	}
@@ -196,13 +197,14 @@ function showBoardsPopup(e){
 	console.log("Boards popup: generating board nodes from data");
 	if (boards) {
 		for(i = 0, len = boards.length; i < len; i++) {
-			listItem = document.createElement("li");
-			listItem.className = "boards-list-item round";
-			listItem.innerHTML = '<a href="main.html">\
-									<span class="color"></span>\
-									<span class="board-name width-100 bold" >'+boards[i]._getName();+' </span>\
-									<span class="icon-star"></span>\
-								  </a>';
+			listItem = document.createElement("a");
+			listItem.dataset.id = boards[i]._getId();
+			listItem.className = "boards-list-item round block";
+			listItem.href = "main.html";
+			listItem.innerHTML = '<span class="color"></span>\
+								  <span class="board-name width-100 bold" >'+boards[i]._getName();+' </span>\
+								  <span class="icon-star"></span>\
+								 ';
 			myList.appendChild(listItem);
 			if(boards[i]._isStarred()) starredList.appendChild(listItem.cloneNode(true));
 		}
@@ -359,9 +361,19 @@ function stopFollowingMouse() {
  	boardRibbonStar && boardRibbonStar.addEventListener("click",toggleStar,false);
 
  	// Boards popup: bind keystroke event to search for boards.
+	var boardsPopup = document.getElementById("boards_popup");
  	var searchInput = document.getElementById("search_boards_input");
  	searchInput.addEventListener("keyup",searchAndDisplayBoards,false);
-
+	boardsPopup.addEventListener("click",function(e){
+	 	e.preventDefault();
+	 	if(e.target.classList.contains("boards-list-item")) 
+		loadBoardAndDisplayListView(parseInt(e.target.dataset.id));
+ 		else if(e.target.classList.contains("board-name"))
+		loadBoardAndDisplayListView(parseInt(e.target.parentNode.dataset.id));
+ 		else if(e.target.classList.contains("icon-star"))
+		toggleStar(e);
+ 		
+ 	},false);
 
  	// List view: display add list form upon clicking add list placeholder.
  	var addListLink = document.getElementById("add_list_link");
