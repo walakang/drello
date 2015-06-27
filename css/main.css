@@ -6,7 +6,7 @@ ol {
   margin: 0;
   padding: 0; }
 
-/* When we use Firefox, links are surrounded by a rated box once you’ve pressed them.
+/* When we use Firefox, links are surrounded by a rated box once youΓÇÖve pressed them.
  * To solve this problem, we must use the property outline in the following way:
  */
 a:active, a:focus {
@@ -981,15 +981,18 @@ input:focus {
   transition: 0.1s height ease-in-out; }
 
 .sidemenu-actions-list.show {
-  height: 380px;
+  height: 400px;
   -webkit-transition: 0.1s height ease-in-out;
   -moz-transition: 0.1s height ease-in-out;
   -ms-transition: 0.1s height ease-in-out;
   transition: 0.1s height ease-in-out; }
 
 .sidemenu-actions-list-item {
-  padding: 6px 6px 6px 20px;
+  padding: 8px 0px 8px 20px;
   color: #444; }
+
+.sidemenu-actions-list-item:hover {
+  background: #e2e4e6; }
 
 #toggle-sidebar {
   -webkit-transition: 0.1s left ease-in-out;

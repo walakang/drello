@@ -967,12 +967,15 @@ input:focus {
 	@include transition(0.1s,height,ease-in-out);
 }
 .sidemenu-actions-list.show {
-	height: 380px; //change to expand the list.
+	height: 400px; //change to expand the list.
 	@include transition(0.1s,height,ease-in-out);
 }
 .sidemenu-actions-list-item {
-	padding: 6px 6px 6px 20px;
+	padding: 8px 0px 8px 20px;
 	color: $text-color;
+}
+.sidemenu-actions-list-item:hover {
+	background: #e2e4e6;
 }
 #toggle-sidebar {
 	@include transition(0.1s,left,ease-in-out);
