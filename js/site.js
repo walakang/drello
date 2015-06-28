@@ -1,12 +1,11 @@
-
 // The __currentPopup variable holds the node of the pop-up displayed currently. 
 var __currentPopup = null;
 var boardController = new BoardController();
 var listController = new ListController();
 var cardController = new CardController();
 
-// Load everything at startup
 boardController.loadEverything();
+
 // Generate DOM nodes for loadeed boards and display them.
 boardController.populateBoards();
 
@@ -108,19 +107,10 @@ function searchAndDisplayBoards (e) {
 	document.getElementById("boards_popup_results").classList.remove("no-display");
 	// do not display any result if query string is empty
 	if(!key) return;
-	var boards = boardController.searchBoards(key);
-	console.log("SearchBoards: looping through "+boards.length+" results");
-	if (boards) {
-		for(i = 0, len = boards.length; i < len; i++) {
-			listItem = document.createElement("a");
-			listItem.dataset.id = boards[i]._getId();
-			listItem.className = "boards-list-item round block";
-			listItem.href = "main.html";
-			listItem.innerHTML = '<span class="color"></span>\
-			<span class="board-name width-100 bold" >'+boards[i]._getName();+' </span>\
-			<span class="icon-star"></span>\
-			';
-			listContainer.appendChild(listItem);
+	var boardNodes = boardController.searchBoards(key);
+	if (boardNodes) {
+		for(i = 0, len = boardNodes.length; i < len; i++) {
+			listContainer.appendChild(boardNodes[i].node);
 		}
 	}
 }
@@ -187,28 +177,26 @@ function showBoardsPopup(e){
 	// Prevent event propogation.
 	e = e || window.event
 	e.stopPropagation();
-	var boards = boardController._getDrello()._getBoards();
-	var i, len, starred = 0;
+	var boardNodes = boardController.searchBoards("");
+	var i, len, starred = 0, node;
 	var myList = document.querySelector("#boards_popup_my .boards-list");
 	var starredList = document.querySelector("#boards_popup_starred .boards-list");
+	
+	// hide search results and show containers for boards and starred ones
 	document.getElementById("boards_popup_my").classList.remove("no-display");
 	document.getElementById("boards_popup_starred").classList.remove("no-display");
 	document.getElementById("boards_popup_results").classList.add("no-display");
-	console.log("Boards popup: generating board nodes from data");
+	
+	// remove existing boards to avoid duplication
 	starredList.innerHTML = "";
 	myList.innerHTML = "";
-	if (boards) {
-		for(i = 0, len = boards.length; i < len; i++) {
-			listItem = document.createElement("a");
-			listItem.dataset.id = boards[i]._getId();
-			listItem.className = "boards-list-item round block";
-			listItem.href = "main.html";
-			listItem.innerHTML = '<span class="color"></span>\
-								  <span class="board-name width-100 bold" >'+boards[i]._getName();+' </span>\
-								  <span class="icon-star"></span>\
-								 ';
-			myList.appendChild(listItem);
-			if(boards[i]._isStarred()) starredList.appendChild(listItem.cloneNode(true));
+	
+	console.log("Boards popup: generating board nodes from data");
+	if (boardNodes) {
+		for(i = 0, len = boardNodes.length; i < len; i++) {
+			node = boardNodes[i].node;
+			myList.appendChild(node);
+			if(boardNodes[i].starred) starredList.appendChild(node.cloneNode(true));
 		}
 	}
 	console.log("showing boards pop-up");

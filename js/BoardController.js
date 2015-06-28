@@ -158,11 +158,22 @@ BoardController.prototype.toggleStar = function(id) {
  */
 BoardController.prototype.searchBoards = function(key) {
 	var boards = this._getDrello().searchBoards(key);  // returns [] for invalid key also.
-	/*var i, len;
-	for (i = 0, len = boards.length; i < len; i++) {
-
-	}*/
-	return boards;
+	var boardNodes = [], __node = null;
+	console.log("SearchBoards: looping through "+boards.length+" results");
+	if (boards) {
+		for(i = 0, len = boards.length; i < len; i++) {
+			__node = document.createElement("a");
+			__node.dataset.id = boards[i]._getId();
+			__node.className = "boards-list-item round block";
+			__node.href = "main.html";
+			__node.innerHTML = '<span class="color"></span>\
+			<span class="board-name width-100 bold" >'+boards[i]._getName();+' </span>\
+			<span class="icon-star"></span>\
+			';
+			boardNodes.push({node: __node, starred: boards[i]._isStarred()});
+		}
+	}
+	return boardNodes;
 }
 
 BoardController.prototype.getBoard = function(id) {
