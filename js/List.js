@@ -69,10 +69,10 @@ List.prototype.removeCard = function(item) {
 	if (typeof item === "object" && item instanceof Card) {
 		var index = cards.indexOf(item);
 		// check if item exists and if remove and return nex length of array
-		return (index >= 0) ? cards.splice(index,1).length : false;
+		return (index >= 0) ? this._getCards().splice(index,1).length : false;
 	}
 	else if (typeof item === "number") {
-		return (item >= 0 && item < cards.length ) ?  cards.splice(item,1).length : false;
+		return (item >= 0 && item < cards.length ) ?  this._getCards().splice(item,1).length : false;
 	}
 	return false;
 };

@@ -26,7 +26,7 @@ CardController.prototype.createCardNode = function(card) {
 	if(!(card instanceof Card)) return null;;
 
 	var node = document.createElement("div");
-	node.innerHTML = '<div class="'+this.cardClassName+'" onclick="showCardPopup(event)" draggable="true">\
+	node.innerHTML = '<div data-id="'+card._getId()+'" class="'+this.cardClassName+'" onclick="showCardPopup(event)" draggable="true">\
 						<div class="card-edit">\
 							<span class="icon-pencil-alt block text-center right"></span>\
 						</div>\

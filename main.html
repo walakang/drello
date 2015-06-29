@@ -81,9 +81,9 @@
 		<!-- list view container -->
 		<div id="list_view_container" class="wrapper no-overflow no-display">
 			<div id="board_ribbon" class="block no-overflow white-text">
-				<h1 class="title i-block"> Website Redesign </h1>
+				<h1 id="board_ribbon_title" class="title i-block"></h1>
 				<span id="board_ribbon_star" class="icon-star round pointer"></span>
-				<span id="privacy" class="icon-lock small pointer">Private</span>
+				<span id="privacy" class="icon-lock small pointer">Public</span>
 				<span id="menu_toggle" class="icon-left-open right small pointer"  onClick="return SidebarToggle()"> 
 					Show menu 
 				</span>
@@ -120,18 +120,18 @@
 							<span class="right icon-download"></span>
 						</div>
 						<ul class="sidemenu-actions-list show no-overflow">
-							<li class="sidemenu-actions-list-item normal pointer">Power-Ups</li>
-							<li class="sidemenu-actions-list-item normal pointer">Labels</li>
-							<li class="sidemenu-actions-list-item normal pointer">Stickers</li>
-							<li class="sidemenu-actions-list-item normal pointer">Filter Cards</li>
-							<li class="sidemenu-actions-list-item normal pointer border-bottom">Archived Items</li>
-							<li class="sidemenu-actions-list-item normal pointer"> Change Background </li>
-							<li class="sidemenu-actions-list-item normal pointer"> Email-to-board settings </li>
-							<li class="sidemenu-actions-list-item normal pointer"> Subscribe </li>
-							<li class="sidemenu-actions-list-item normal pointer"> Copy Board... </li>
-							<li class="sidemenu-actions-list-item normal pointer border-bottom"> Share, Print, and Export </li>
-							<li class="sidemenu-actions-list-item normal pointer"> Additional Settings </li>
-							<li class="sidemenu-actions-list-item normal pointer"> Close Board </li>
+							<!--<li class="sidemenu-actions-list-item normal pointer"><span class="icon-direction"></span>Power-Ups</li>-->
+							<li class="sidemenu-actions-list-item normal pointer"><span class="icon-tags"></span>Labels</li>
+							<!--<li class="sidemenu-actions-list-item normal pointer">Stickers</li>-->
+							<li class="sidemenu-actions-list-item normal pointer"><span class="icon-filter"></span>Filter Cards</li>
+							<li class="sidemenu-actions-list-item normal pointer border-bottom"><span class="icon-archive"></span>Archived Items</li>
+							<li class="sidemenu-actions-list-item small pointer"> Change Background </li>
+							<li class="sidemenu-actions-list-item small pointer"> Email-to-board settings </li>
+							<li class="sidemenu-actions-list-item small pointer"> Subscribe </li>
+							<li class="sidemenu-actions-list-item small pointer"> Copy Board... </li>
+							<li class="sidemenu-actions-list-item small pointer border-bottom"> Share, Print, and Export </li>
+							<li class="sidemenu-actions-list-item small pointer"> Additional Settings </li>
+							<li class="sidemenu-actions-list-item js-action-closeboard small pointer"> Close Board </li>
 						</ul>			
 					</nav>
 					<div id="board_members">
@@ -160,7 +160,7 @@
 			<div class="popup-body">
 				<form class="popup-form" id="create_board_form" method="POST" action="main.html">
 					<label for="bord-name" class="popup-form-label medium bold block">Title</label>
-					<input  class="block-input block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..." autocomplete="off" required="true" onblur="this.value=''" />
+					<input  class="block-input block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..." autocomplete="off" required="true" />
 					<input type="hidden" name="board-privacy"/>
 					<!-- The options are filled with names of oraganizations in DB.
 					<label for="bord-org" class="popup-form-label medium bold block">Organization</label>	

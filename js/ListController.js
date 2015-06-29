@@ -70,6 +70,7 @@ ListController.prototype.createListNode = function(list) {
 		// Exclude closed/archived cards
 		if(list._getCards()[i]._isClosed()) continue;
 		var cardNode = cardController.createCardNode(list._getCards()[i]);
+		cardNode.dataset.list = list._getId();
 		listBody.appendChild(cardNode);
 	}
 	node.appendChild(listBody);

@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Drello </title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<link rel="stylesheet" href="css/main.css" >
+		<link rel="stylesheet" href="css/icons.css">
+		<script src="js/DragDrop.js" ></script>
+		<link rel="shortcut icon" href="favicon.ico"/>
+	</head>
+	<body>
+		<!-- Header -->
+		<header id="header-boards" class="no-overflow">
+			<div id="boards" class="header-item">
+				Boards
+			</div>
+			<div id="search" class="header-item">
+				<input class="width-80" type="search" name="search-string" id="header_search_box" />
+				<span id="search-open" class="icon-link-ext right no-display"></span>
+				<span id="search-close" class="icon-cancel right no-display"></span>
+			</div>
+			<a href="main.html">
+				<div id="logo" class="logo logo-small absolute-center"></div>
+			</a>
+			<div id="notifications" class="header-item" >
+
+			</div>
+			<div id="profile" class="header-item">
+				<figure class="avatar small">
+					<img src="images/shidil.png" />
+				</figure>
+				<span>Shidil Eringa</span>
+			</div>
+			<div id="add" class="header-item"></div>
+		</header>
+
+		
+		
+		<!-- list view container -->
+		<div id="list_view_container" class="wrapper no-overflow">
+			<div id="board_ribbon" class="block no-overflow white-text">
+				<h1 id="board_ribbon_title" class="title i-block">Board 1</h1>
+				<span id="board_ribbon_star" class="icon-star round pointer starred" data-id="0"></span>
+				<span id="privacy" class="icon-lock small pointer">Public</span>
+				<span id="menu_toggle" class="icon-left-open right small pointer" onclick="return SidebarToggle()"> 
+					Show menu 
+				</span>
+			</div>
+
+			<!-- container fo lists - scrolls horizontally -->
+			<section id="board_content" class="wrapper"><div id="list1" class="list round" data-id="0" draggable="true"><div class="list-item list-head bold pointer"><span class="title">List 1</span> 						  <a class="right icon-download" id="list_actions_toggle " data-id="0"></a></div><div class="list-body y-scroll width-100"><div><div class="list-item card round pointer card1" onclick="showCardPopup(event)" draggable="true">						<div class="card-edit">							<span class="icon-pencil-alt block text-center right"></span>						</div>						<!--<figure class="card-image">							<img src="images/taco.png" />						</figure>-->						<div class="card-detail">							<div class="card-detail-labels">								<!--<span class="blue"></span>								<span class="green"></span>-->							</div>							<div class="card-detail-exerpt">Card 2</div>							<div class="card-detail-flags">								<span class="icon-eye-outline"></span>								<span class="icon-menu"></span>								<span class="icon-comment"></span>								<span class="icon-attach"></span>							</div>							<!--<div class="card-detail-members block right">								<span class="avatar left i-block"><img src="members/shidil.png" class="round"></span>							</div>-->						</div>					  </div></div><div><div class="list-item card round pointer" onclick="showCardPopup(event)" draggable="true">						<div class="card-edit">							<span class="icon-pencil-alt block text-center right"></span>						</div>						<!--<figure class="card-image">							<img src="images/taco.png" />						</figure>-->						<div class="card-detail">							<div class="card-detail-labels">								<!--<span class="blue"></span>								<span class="green"></span>-->							</div>							<div class="card-detail-exerpt">Card 3</div>							<div class="card-detail-flags">								<span class="icon-eye-outline"></span>								<span class="icon-menu"></span>								<span class="icon-comment"></span>								<span class="icon-attach"></span>							</div>							<!--<div class="card-detail-members block right">								<span class="avatar left i-block"><img src="members/shidil.png" class="round"></span>							</div>-->						</div>					  </div></div></div><div class="list-item clear pointer" id="add_card"><div id="add_card_link" class="add-card-placeholder round noselect" onclick="toggleAddCardForm(event)">Add a card...</div>							<form onsubmit="createCard(event)" data-id="0" method="POST" action="main.html" class="add-list-form round no-display" id="add_card_form">								<input onblur="toggleAddCardForm(event)" type="text" id="add_card_form_input" class="block-input width-100 round block" name="list-name" autofocus="true" autocomplete="off">								<span type="hidden" class="block break-1"></span>								<input type="submit" class="btn btn-normal btn-green" value="Save">								<span class="icon-cancel middle pointer" id="add_card_form_close"></span>							</form></div></div><div id="list2" class="list round" data-id="1" draggable="true"><div class="list-item list-head bold pointer"><span class="title">List 2</span> 						  <a class="right icon-download" id="list_actions_toggle " data-id="1"></a></div><div id="list3" class="list-body y-scroll width-100"><div><div class="list-item card round pointer" onclick="showCardPopup(event)" draggable="true">						<div class="card-edit">							<span class="icon-pencil-alt block text-center right"></span>						</div>						<!--<figure class="card-image">							<img src="images/taco.png" />						</figure>-->						<div class="card-detail">							<div class="card-detail-labels">								<!--<span class="blue"></span>								<span class="green"></span>-->							</div>							<div class="card-detail-exerpt">Card 1</div>							<div class="card-detail-flags">								<span class="icon-eye-outline"></span>								<span class="icon-menu"></span>								<span class="icon-comment"></span>								<span class="icon-attach"></span>							</div>							<!--<div class="card-detail-members block right">								<span class="avatar left i-block"><img src="members/shidil.png" class="round"></span>							</div>-->						</div>					  </div></div></div><div class="list-item clear pointer" id="add_card"><div id="add_card_link" class="add-card-placeholder round noselect" onclick="toggleAddCardForm(event)">Add a card...</div>							<form onsubmit="createCard(event)" data-id="1" method="POST" action="main.html" class="add-list-form round no-display" id="add_card_form">								<input onblur="toggleAddCardForm(event)" type="text" id="add_card_form_input" class="block-input width-100 round block" name="list-name" autofocus="true" autocomplete="off">								<span type="hidden" class="block break-1"></span>								<input type="submit" class="btn btn-normal btn-green" value="Save">								<span class="icon-cancel middle pointer" id="add_card_form_close"></span>							</form></div></div><div class="add-list round">
+					<div id="add_list_link" class="add-list-placeholder round noselect">Add a list...</div>
+					<form method="POST" action="main.html" class="add-list-form round no-display" id="add_list_form">
+						<input type="text" id="add_list_form_input" class="block-input width-100 round block" name="list-name" autofocus="true" autocomplete="off">
+						<span type="hidden" class="block break-1"></span>
+						<input type="submit" class="btn btn-normal btn-green" value="Save">
+						<span class="icon-cancel middle pointer" id="add_list_form_close"></span>
+					</form>
+				</div></section>
+			<!-- end of container for lists. -->
+
+			<!-- Sidebar -->
+			<aside id="board_menu" class="sidemenu wrapper round block">
+				<div id="toggle_sidebar" class="icon-right-open pointer avatar" onclick="return SidebarToggle()"></div>
+
+				<div class="wrapper y-scroll height-100">
+					<nav class="sidemenu-actions wrapper">
+						<div id="board_menu_nav_toggle" class="border-bottom pointer" onclick="return SidebarMenuToggle();">
+							<span class="title bold medium">
+								Menu
+							</span>
+							<span class="right icon-download"></span>
+						</div>
+						<ul class="sidemenu-actions-list show no-overflow">
+							<!--<li class="sidemenu-actions-list-item normal pointer"><span class="icon-direction"></span>Power-Ups</li>-->
+							<li class="sidemenu-actions-list-item normal pointer"><span class="icon-tags"></span>Labels</li>
+							<!--<li class="sidemenu-actions-list-item normal pointer">Stickers</li>-->
+							<li class="sidemenu-actions-list-item normal pointer"><span class="icon-filter"></span>Filter Cards</li>
+							<li class="sidemenu-actions-list-item normal pointer border-bottom"><span class="icon-archive"></span>Archived Items</li>
+							<li class="sidemenu-actions-list-item small pointer"> Change Background </li>
+							<li class="sidemenu-actions-list-item small pointer"> Email-to-board settings </li>
+							<li class="sidemenu-actions-list-item small pointer"> Subscribe </li>
+							<li class="sidemenu-actions-list-item small pointer"> Copy Board... </li>
+							<li class="sidemenu-actions-list-item small pointer border-bottom"> Share, Print, and Export </li>
+							<li class="sidemenu-actions-list-item small pointer"> Additional Settings </li>
+							<li class="sidemenu-actions-list-item js-action-closeboard small pointer"> Close Board </li>
+						</ul>			
+					</nav>
+					<div id="board_members">
+						<h1> Members </h1>
+						<ul class="board-members-list block">
+							<li class="block left avatar round"><img src="members/shidil.png"></li>
+						</ul>
+					</div>
+
+					<div id="board-activity">
+					</div>
+				</div>
+			</aside>
+			<!-- End of sidebar -->
+		</div>
+		<!-- End of popups -->
+
+	</body>
+</divdiv

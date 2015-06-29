@@ -31,19 +31,6 @@ Drello.prototype.fromLocalStorage = function (){
 	}
 }
 
-/* Populate the boards list in the boards.html page 
- * boards array was previously populated from localstorage.
- * Create and append nodes for each board.
- */
-Drello.prototype.populateBoards = function() {
-	var boards = this._getBoards();
-	for (key in boards) {
-		// Create the DOM node first.
-		boards[key].createNode();
-		boards[key].selfAppend();
-	}
-}
-
 Drello.prototype.getNextBoardId = function() {
 	if (this._getBoards().length != null)
 		return this._getBoards().length;

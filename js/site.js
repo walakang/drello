@@ -3,25 +3,58 @@ var __currentPopup = null;
 var boardController = new BoardController();
 var listController = new ListController();
 var cardController = new CardController();
-
+var dragManager = new DragManager();
 boardController.loadEverything();
 
 // Generate DOM nodes for loadeed boards and display them.
 boardController.populateBoards();
 
+function refreshListView() {
+	//boardController.populateBoards();
+	listController.populateLists(boardController.getBoard(getCurrentBoardId()));
+	dragManager.clearAll();
+
+	// Initialize drag events
+	dragManager.addDrag(new DragDrop({
+		container: "list-body",
+		handle: "card",
+		dragClass: "dragging",
+		dropZone: ".list-body",
+
+		start: function(e, data) {
+			data.card = parseInt(e.target.dataset.id);
+			data.srcList = parseInt(e.target.parentNode.dataset.list);
+			data.dstList = null;
+		},
+		hover: function(e, target, data) {		
+			data.dstList = parseInt(target.parentNode.dataset.id);
+		},
+		drop: function(e, target, data) {
+			if (data.dstList) {
+				boardController.moveCardToList(getCurrentBoardId(), data.card, data.srcList, data.dstList);
+				boardController.saveEverything();
+				refreshListView();
+			}
+		}
+	}));
+}
 /* calls when a user submit the create board form create a new Board and put it to
  * boards list of drello object and then save to  local storage.
  */
 function createBoard(e) {
 	e.preventDefault();
 	var form = e.target;
-	var name = form.getElementsByTagName("input")[0].value;
+	var nameBox = form.getElementsByTagName("input")[0];
 	// Create a new Board node and add to DOM.
-	boardController.addNewBoard(name);
+	var id = boardController.addNewBoard(nameBox.value);
 	boardController.saveEverything();	// always save after a change has been committed.
 
 	// refresh the boards container view
 	boardController.populateBoards();
+	loadBoardAndDisplayListView(id);
+
+	// Clear the text field
+	nameBox.value = "";
 	return false;
 }
 
@@ -30,46 +63,65 @@ function createBoard(e) {
 function createList(e) {
 	e.preventDefault();
 	var form = e.target;
-	var name = form.getElementsByTagName("input")[0].value;
+	var nameBox = form.getElementsByTagName("input")[0];
 	var boardId = parseInt(document.getElementById("board_ribbon_star").dataset.id);
 	// Create a new List node and add to DOM
-	var b = boardController.addNewList(name,boardId);
+	var b = boardController.addNewList(nameBox.value,boardId);
 	boardController.saveEverything();
 
 	// refresh the list container view
 	listController.populateLists(b);
+
+	// Clear the text field
+	nameBox.value = "";
 }
 
 /* called when user submits the add card form */
 function createCard(e) {
 	e.preventDefault();
 	var form = e.target;
-	var name = form.getElementsByTagName("input")[0].value;
+	var nameBox = form.getElementsByTagName("input")[0];
 	var listId = parseInt(form.dataset.id);
 	var boardId = parseInt(document.getElementById("board_ribbon_star").dataset.id);
 
-	var b = boardController.addNewCard(name,listId,boardId);
+	var b = boardController.addNewCard(nameBox.value,listId,boardId);
 	boardController.saveEverything();
 
 	// refresh the list container view
 	listController.populateLists(b);
+
+	// Clear the text field
+	nameBox.value = "";
 }
 
+/* Returns the id of the board currently displayed.
+ * The ID is storred in board_ribbon_star's dataset
 /* Loads a board by its ID and display the lists view.
  */
- function loadBoardAndDisplayListView(id) {
+ function getCurrentBoardId () {
+ 	return parseInt(localStorage.getItem("currentBoard"));
+ }
+
+function setCurrentBoardId (id) {
+	document.getElementById("board_ribbon_star").dataset.id = id;
+	localStorage.setItem("currentBoard",id);
+}
+
+function loadBoardAndDisplayListView(id) {
  	if (typeof id === 'number') {
  		var board = boardController.getBoard(id);
  		if (board) {
  			console.log("Found board - "+board._getName());
- 			localStorage.setItem("currentBoard",id);
+ 			setCurrentBoardId(id);
  			// Change to list view
- 			listController.populateLists(board);
+ 			refreshListView();
  			document.getElementById("boards_view_container").classList.add("no-display");
  			document.getElementById("list_view_container").classList.remove("no-display");
- 			document.getElementById("board_ribbon_star").dataset.id = id;
+ 			document.getElementById("board_ribbon_title").innerHTML = board._getName();
+
  			if(board._isStarred()) document.getElementById("board_ribbon_star").classList.add("starred");
- 			else document.getElementById("board_ribbon_star").classList.remove("starred")
+ 			else document.getElementById("board_ribbon_star").classList.remove("starred");
+
  			// change url without reloading
  			//window.history.pushState('ListViewState', 'ListView', '/boards/'+id+"/");
  		}
@@ -78,11 +130,9 @@ function createCard(e) {
  		}
  	}
  	else console.log("Failed to load board - Invalid ID.")
- }
+}
 
-/* Called when user clicked on the star icon on a board
- * this function toggles star on a board.
- */
+/* Called when user clicked on the star icon on a board */
  function toggleStar(e) {
  	e.stopPropagation();
  	var id;
@@ -373,23 +423,18 @@ function stopFollowingMouse() {
  	addListInput && addListInput.addEventListener("blur", toggleAddListForm, false);	// hide form on blur
  	addListForm && addListForm.addEventListener("submit", createList, false);
 
-	// Initialize drag events
-	var dragDrop = new DragDrop({
-		container: "body",
-		handle: "card",
-		dragClass: "dragging",
-		dropZone: "list",
 
-		start: function(e) {
-			console.log("Inside my custom start function");
-		},
-		drag: function(e) {
-			//listController.populateLists(boardController.getBoard(parseInt(document.getElementById("board_ribbon_star").dataset.id)));
+	// Board actions in sidemenu
+	var sidemenuActionsList = document.querySelector(".sidemenu-actions-list");
+	sidemenuActionsList && sidemenuActionsList.addEventListener("click", function (e) {
+		if (e.target.classList.contains("js-action-closeboard")) {
+			// This does not delete the board.
+			boardController.closeBoard(getCurrentBoardId());
+			boardController.saveEverything();
+			window.location = "main.html";
+			console.log("closed current board");
 		}
-	});
-	// this will bind drag events to container.
-	dragDrop.init();
-
+	}, false);
 
 })();
 

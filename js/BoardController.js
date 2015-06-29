@@ -30,7 +30,8 @@ BoardController.prototype.saveEverything = function() {
 
 BoardController.prototype.addNewBoard = function(boardName) {
 	var board = new Board({name: boardName, id: this._getDrello().getNextBoardId() });
-	return this._getDrello().addBoard(board);
+	this._getDrello().addBoard(board)
+	return board._getId();
 };
 
 BoardController.prototype.addNewList = function(ListName,boardId) {
@@ -162,6 +163,7 @@ BoardController.prototype.searchBoards = function(key) {
 	console.log("SearchBoards: looping through "+boards.length+" results");
 	if (boards) {
 		for(i = 0, len = boards.length; i < len; i++) {
+			if(boards[i]._isClosed()) continue;
 			__node = document.createElement("a");
 			__node.dataset.id = boards[i]._getId();
 			__node.className = "boards-list-item round block";
@@ -179,3 +181,23 @@ BoardController.prototype.searchBoards = function(key) {
 BoardController.prototype.getBoard = function(id) {
 	return this._getDrello().getBoard(id);
 }
+
+BoardController.prototype.closeBoard = function(id) {
+	return this._getDrello().getBoard(id)._close();
+};
+
+BoardController.prototype.moveCardToList = function(boardId, cardId, srcListId, dstListId) {
+	var board = this.getBoard(boardId);
+	if (board) {
+		var srcList = board.getList(srcListId);
+		var dstList = board.getList(dstListId);
+		if (srcList && dstList) {
+			var card = srcList.getCard(cardId);
+			if (card) {
+				srcList.removeCard(card);
+				return dstList.addCard(card);				
+			}
+		}
+	}
+	return false;
+};
