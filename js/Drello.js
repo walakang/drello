@@ -21,7 +21,7 @@ Drello.prototype.toLocalStorage = function () {
  */
 Drello.prototype.fromLocalStorage = function (){
 	this._getBoards().length = 0;
-	
+
 	// Check if data is available in localStorage
 	if (localStorage.hasOwnProperty("boards")) {
 		var boardData = JSON.parse(localStorage.getItem("boards"));
@@ -71,6 +71,12 @@ Drello.prototype.searchBoards = function(key) {
 	// filter boards list using custom search function
 	return this._getBoards().filter(function(board){
 		return (board._getName().toLowerCase().indexOf(key.toLowerCase()) >- 1) ? true : false;
+	});
+};
+
+Drello.prototype.getClosedBoards = function() {
+	return this._getBoards().filter(function(board) {
+		return board._isClosed();
 	});
 };
 

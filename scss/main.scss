@@ -225,6 +225,9 @@ input{
 	height: auto;
 	clear: both;
 }
+.padding-5 {
+	padding: 5px;
+}
 .padding-10 {
 	padding: 10px;
 }
@@ -279,11 +282,11 @@ $step: 10;
 .absolute-center {
 	// Width must be specified inorder to work.
 	position: absolute;
+	margin: 0 auto;
 	left: 0;
 	top: 0;
 	right: 0;
 	bottom: 0;
-	margin: 0 auto;
 }
 .text-center {
 	text-align: center;
@@ -842,6 +845,31 @@ input:focus {
 .profile-option:hover {
 	@extend .white-text;
 	background: $highlight-color;
+}
+
+#closed_boards_popup {
+	z-index: $z-overlay-content;
+	width: 70%;
+	max-height: 60%;
+	min-height: 200px;
+	background: #edeff0;
+	overflow: auto;
+	top: 15%;
+}
+
+.closed-boards-list {
+	height: auto;
+}
+.closed-boards-list-item {
+	height: 40px;
+	border-bottom: 1px solid $text-color-light;
+}
+.closed-boards-list-item:last-child {
+	border: none;
+}
+.closed-boards-list-item:only-child {
+	border: none;
+	border-bottom: 1px solid $text-color-light;
 }
 #boards_popup {
 	top: 40px;

@@ -61,7 +61,7 @@ BoardController.prototype.addNewCard = function(cardName, listId, boardId) {
 BoardController.prototype.populateBoards = function() {
 	// Refresh data
 	this.loadEverything();
-	
+
 	var boards = this._getDrello()._getBoards();
 	var list = this._getBoardNodes();
 	var container = document.getElementById(this.containerId);
@@ -189,6 +189,10 @@ BoardController.prototype.closeBoard = function(id) {
 	return this._getDrello().getBoard(id)._close();
 };
 
+BoardController.prototype.openBoard = function(id) {
+	return this._getDrello().getBoard(id)._open();
+};
+
 BoardController.prototype.moveCardToList = function(boardId, cardId, srcListId, dstListId) {
 	var board = this.getBoard(boardId);
 	if (board) {
@@ -203,4 +207,19 @@ BoardController.prototype.moveCardToList = function(boardId, cardId, srcListId, 
 		}
 	}
 	return false;
+};
+
+BoardController.prototype.getClosedBoards = function() {
+	var closedBoards = this._getDrello().getClosedBoards();
+	var i, len, boardNodes = [], node;
+	for(i = 0, len = closedBoards.length; i < len; i++) {
+		// Create nodes
+		node = document.createElement("div");
+		node.className = "closed-boards-list-item";
+		node.innerHTML = '<a href="#" class="normal block left padding-5">'+closedBoards[i]._getName()+'</a>\
+						  <a href="#" class="normal block btn btn-small btn-gray icon-cw right" data-id="'+closedBoards[i]._getId()+'">Re-open</a>\
+						 ';
+		boardNodes.push(node);
+	}
+	return boardNodes;
 };

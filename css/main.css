@@ -293,6 +293,9 @@ body {
   height: auto;
   clear: both; }
 
+.padding-5 {
+  padding: 5px; }
+
 .padding-10 {
   padding: 10px; }
 
@@ -362,11 +365,11 @@ body {
 
 .absolute-center {
   position: absolute;
+  margin: 0 auto;
   left: 0;
   top: 0;
   right: 0;
-  bottom: 0;
-  margin: 0 auto; }
+  bottom: 0; }
 
 .text-center, .board-add {
   text-align: center; }
@@ -867,6 +870,29 @@ input:focus {
 
 .profile-option:hover {
   background: #0B5B8A; }
+
+#closed_boards_popup {
+  z-index: 16;
+  width: 70%;
+  max-height: 60%;
+  min-height: 200px;
+  background: #edeff0;
+  overflow: auto;
+  top: 15%; }
+
+.closed-boards-list {
+  height: auto; }
+
+.closed-boards-list-item {
+  height: 40px;
+  border-bottom: 1px solid #666; }
+
+.closed-boards-list-item:last-child {
+  border: none; }
+
+.closed-boards-list-item:only-child {
+  border: none;
+  border-bottom: 1px solid #666; }
 
 #boards_popup {
   top: 40px;

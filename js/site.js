@@ -8,8 +8,11 @@ var dragManager = new DragManager();
 // Generate DOM nodes for loadeed boards and display them.
 boardController.populateBoards();
 
+function refreshBoardsView() {
+	boardController.populateBoards();
+}
 function refreshListView() {
-	//boardController.populateBoards();
+
 	listController.populateLists(boardController.getBoard(getCurrentBoardId()));
 	dragManager.clearAll();
 
@@ -49,7 +52,7 @@ function createBoard(e) {
 	boardController.saveEverything();	// always save after a change has been committed.
 
 	// refresh the boards container view
-	boardController.populateBoards();
+	refreshBoardsView();
 	loadBoardAndDisplayListView(id);
 
 	// Clear the text field
@@ -261,7 +264,6 @@ function showProfilePopup(e){
 	return false;
 }
 function showCreateNewPopup(e){
-	// Prevent event propogation.
 	e = e || window.event
 	e.stopPropagation();
 	showPopup("create_new_popup");
@@ -269,14 +271,32 @@ function showCreateNewPopup(e){
 	return false;
 }
 function showCardPopup(e){
-	/* the default behaviour of click on content is to hide the pop-ups 
-	 * We need to override that.
-	*/
 	e = e || window.event
 	e.stopPropagation();
 	showOverlay();
 	showPopup('card_display_popup',null);
 	return false;
+}
+
+function showClosedBoardsPopup (e) {
+	e = e || window.event
+	e.stopPropagation();
+	var list = document.querySelector("#closed_boards_popup .closed-boards-list");
+	var boardNodes = boardController.getClosedBoards();
+
+	console.log("ClosedBoards popup: generating board nodes from data");
+	if (boardNodes.length>0) {
+		for(i = 0, len = boardNodes.length; i < len; i++) {
+			list.appendChild(boardNodes[i]);
+		}
+	}
+	else {
+		list.innerHTML = "Nothing to see here";
+	}
+
+	// show time
+	showOverlay();
+	showPopup('closed_boards_popup');
 }
 
 function showOverlay() {
@@ -318,16 +338,6 @@ function toggleAddCardForm(e) {
 	var form = e.target.parentNode.parentNode.querySelector("#add_card_form");
 	displayToggle(form);
 	form.getElementsByTagName("input")[0].focus();
-}
-
-function followMouse(node) {
-	document.getElementById("board_content").onmousemove = function(e) {
-		node.style.left = e.x+"px";
-		node.style.top = (e.y-100)+"px";
-	}
-}
-function stopFollowingMouse() {
-	document.getElementById("board_content").onmousemove = null;
 }
 
 /* bind all known events to various elements in the DOM */
@@ -413,6 +423,17 @@ function stopFollowingMouse() {
 		toggleStar(e);
  		
  	},false);
+
+	// Closed Boards popup
+	var closedList = document.querySelector("#closed_boards_popup .closed-boards-list");
+	closedList && closedList.addEventListener("click", function (e) {
+		if (e.target.classList.contains("btn")) {
+			boardController.openBoard(parseInt(e.target.dataset.id));
+			boardController.saveEverything();
+			refreshBoardsView();
+			closePopups(e, true);
+		}
+	});
 
  	// List view: display add list form upon clicking add list placeholder.
  	var addListLink = document.getElementById("add_list_link");
