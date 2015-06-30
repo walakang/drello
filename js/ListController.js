@@ -20,7 +20,6 @@ ListController.prototype.populateLists = function(board) {
 	boardController.loadEverything();
 	
 	var lists = board._getLists();
-	console.log(lists);
 	var listNodes = this._getListNodes();
 	var container = document.getElementById(this.containerId);
 	var node = null;
@@ -77,6 +76,11 @@ ListController.prototype.createListNode = function(list) {
 		cardNode.dataset.list = list._getId();
 		listBody.appendChild(cardNode);
 	}
+	var emptyCard = document.createElement("div");
+	emptyCard.className="card";
+	emptyCard.style.height = "10px";
+	emptyCard.style.background = "transparent";
+	listBody.appendChild(emptyCard);
 	node.appendChild(listBody);
 	// Add card button
 	listTail.className = "list-item clear pointer";

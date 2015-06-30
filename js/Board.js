@@ -117,15 +117,14 @@ Board.prototype.getList = function(key) {
  * @param a: position of item 1
  * @param b: position of item 2
  */
-Board.prototype.swapLists = function(a, b) {
+Board.prototype.moveList= function(current, next) {
 	var lists = this._getLists();
 	// check upperbound and lowerbound of a and b.7
-	if(typeof a === "number" && typeof b === "number" && a >= 0 && a < lists.length && b >= 0 && b < lists.length) {
-		var temp = lists[a];
-		lists[a] = lists[b];
-		lists[b] = temp;
+	if(typeof current === "number" && typeof next === "number" && current >= 0 && current < lists.length && next >= 0 && next < lists.length) {
+		// insert the element to new position
+		lists.splice(current, 0, lists.splice(next, 1)[0] );
 		return true;
 	}
-	console.log("Board.swapLists: Invalid input");
+	console.log("Board.moveList: Invalid input");
 	return false;
 };

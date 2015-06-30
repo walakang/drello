@@ -36,7 +36,6 @@ function List(data) {
 	for (var i = 0; i< len; i++) {
 		//data.cards[i].id = this.getNextCardId();
 		_cards.push(new Card(data.cards[i]));
-		console.log(data.cards[i]);
 	};
 }
 
@@ -99,52 +98,18 @@ if (typeof key === 'number') {
 	return null;
 };
 
-/* Move s list to a new position
+/* Move a list to a new position
  * @param a: position of item 1
  * @param b: position of item 2
  */
-List.prototype.swapCards= function(a, b) {
+List.prototype.moveCard= function(current, next) {
 	var cards = this._getCards();
+	if(current === next) return;
 	// check upperbound and lowerbound of a and b.7
-	if(typeof a === "number" && typeof b === "number" && a >= 0 && a < cards.length && b >= 0 && b < cards.length) {
-		var temp = cards[a];
-		cards[a] = cards[b];
-		cards[b] = temp;
+	if(typeof current === "number" && typeof next === "number" && current >= 0 && current < cards.length && next >= 0 && next < cards.length) {
+		cards.splice(current, 0, cards.splice(next, 1)[0] );
 		return true;
 	}
-	console.log("Board.swapLists: Invalid input");
+	console.log("List.MoveCard: Invalid input");
 	return false;
 };
-
-
-
-
-
-
-
-
-
-
-
-/*List.prototype.createNode = function() {
-	this.node = document.createElement("div");
-	this.node.className = "list round";
-	this.node.dataset.id = this.id;
-	var listHead = document.createElement("div");
-	listHead.className = "list-item list-head bold pointer";
-	listHead.innerHTML = '<span class="title">Ideas</span> \
-						<a class="right" id="list_actions_toggle"><span class="icon-download"></span></a>';
-	this.node.appendChild(listHead);
-	// generate cards
-	var len = this.cards.length;
-	for (var i = 0; i< len; i++) {
-		this.cards[i].createNode();
-		this.node.appendChild(this.cards[i].node);
-	}
-	// Add card button
-	var listTail = document.createElement("div");
-	listTail.className = "list-item clear pointer";
-	listTail.id = "add_card";
-	listTail.innerHTML = "Add card...";
-	this.node.appendChild(listTail);
-};*/

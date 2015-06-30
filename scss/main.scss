@@ -540,6 +540,10 @@ $step: 10;
 	background: $highlight-color;
 	color: white;
 	@include transition-all();
+
+	.icon-star {
+		opacity: 1;
+	}
 }
 .board-add {
 	@extend .text-center;
@@ -562,12 +566,6 @@ $step: 10;
 }
 .board > .icon-star.starred {
 	color: gold;
-	opacity: 1;
-}
-.board > .icon-star.transparent {
-	opacity: 0;
-}
-.board > .icon-star.opaque {
 	opacity: 1;
 }
 // Styles for board list page
@@ -708,26 +706,19 @@ $step: 10;
 .card:hover {
 	@include border-radius(4px);
 	background: rgba(252,252,252,1);
-}
-.card-edit {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	margin: 0;
-	padding: 0;
-	opacity: 0;
-	
+
 	.icon-pencil-alt {
-		width: 30px;
-		height: 30px;
-		margin: 0;
-		background: rgba(0,0,0,0.05);
-		vertical-align: middle;
-		padding-top: 5px;
+		opacity: 1;
 	}
 }
-.card-edit:hover {
-	opacity: 1;
+.icon-pencil-alt {
+	width: 30px;
+	height: 30px;
+	margin: 0;
+	background: rgba(0,0,0,0.05);
+	vertical-align: middle;
+	padding-top: 5px;
+	opacity: 0;
 }
 .card-image {
 	margin: 0;

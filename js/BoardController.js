@@ -193,7 +193,11 @@ BoardController.prototype.openBoard = function(id) {
 	return this._getDrello().getBoard(id)._open();
 };
 
-BoardController.prototype.moveCardToList = function(boardId, cardId, srcListId, dstListId) {
+BoardController.prototype.moveList = function(boardId, current, next) {
+	this._getDrello().getBoard(boardId).moveList(current, next);
+};
+
+BoardController.prototype.moveCardToList = function(boardId, cardId, srcListId, dstListId, dstPos) {
 	var board = this.getBoard(boardId);
 	if (board) {
 		var srcList = board.getList(srcListId);
@@ -202,7 +206,10 @@ BoardController.prototype.moveCardToList = function(boardId, cardId, srcListId, 
 			var card = srcList.getCard(cardId);
 			if (card) {
 				srcList.removeCard(card);
-				return dstList.addCard(card);				
+				dstList.addCard(card);		
+				// move card to a new position	
+				dstList.moveCard(dstList._getCards().indexOf(card), dstPos);
+				return true;	
 			}
 		}
 	}

@@ -25,20 +25,42 @@ function refreshListView() {
 
 		start: function(e, data) {
 			data.card = parseInt(e.target.dataset.id);
-			data.srcList = parseInt(e.target.parentNode.dataset.list);
+			data.srcList = parseInt(e.target.dataset.list);
 			data.dstList = null;
 		},
 		hover: function(e, target, data) {		
 			data.dstList = parseInt(target.parentNode.dataset.id);
 		},
 		drop: function(e, target, data) {
-			if (data.dstList>=0) {
-				boardController.moveCardToList(getCurrentBoardId(), data.card, data.srcList, data.dstList);
+			if (data.dstList >= 0) {
+				boardController.moveCardToList(getCurrentBoardId(), data.card, data.srcList, data.dstList, data.dropPosition);
 				boardController.saveEverything();
 				refreshListView();
 			}
 		}
 	}));
+	/*dragManager.addDrag(new DragDrop({
+		container: "#board_content",
+		handle: "list",
+		dragClass: "dragging",
+		dropZone: "#board_content",
+
+		start: function(e, data) {
+			data.board = getCurrentBoardId();
+			data.src = parseInt(e.target.dataset.id);
+			data.dst = null;
+		},
+		hover: function(e, target, data) {		
+			data.dstList = parseInt(e.target.dataset.id);
+		},
+		drop: function(e, target, data) {
+			if (data.dstList >= 0) {
+				boardController.moveList(getCurrentBoardId(), data.src, data.dst);
+				boardController.saveEverything();
+				refreshListView();
+			}
+		}
+	}));*/
 }
 /* calls when a user submit the create board form create a new Board and put it to
  * boards list of drello object and then save to  local storage.
@@ -389,20 +411,6 @@ function toggleAddCardForm(e) {
  		else if(e.target.classList.contains("icon-star"))
  			toggleStar(e);
  		
- 	},false);
-
- 	// Show star when hovering on board
-	boardsContainer.addEventListener("mouseover",function(e){
-	 	if (e.target.classList.contains("board"))
- 			e.target.getElementsByClassName("icon-star")[0].classList.add("opaque");
- 		else if (e.target.parentNode.classList.contains("board"))
- 			e.target.parentNode.getElementsByClassName("icon-star")[0].classList.add("opaque");		
- 	},false);
- 	boardsContainer.addEventListener("mouseout",function(e){
-	 	if (e.target.classList.contains("board"))
- 			e.target.getElementsByClassName("icon-star")[0].classList.remove("opaque");
- 		else if (e.target.parentNode.classList.contains("board"))
- 			e.target.parentNode.getElementsByClassName("icon-star")[0].classList.remove("opaque");	
  	},false);
 
  	// Bind the onclick of star button in list view to toggleStar 

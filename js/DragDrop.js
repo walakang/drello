@@ -26,6 +26,7 @@ function DragDrop(options) {
 	this.initialMouseX = null;
 	this.initialMouseY = null;
 	this.draggedObject = null;
+	this.placeholder = null;
 	this.success = false;
 	this.dataTransfer = {};
 }
@@ -94,13 +95,26 @@ DragDrop.prototype.dragStart = function(e) {
 		this.mouseX = e.clientX;
 		this.mouseY = e.clientY;
 
-		// create a dummy
-		/*var dummy = obj.cloneNode();
-		var container = document.querySelector(this.container);
-		dummy.style.height = getComputedStyle(obj).height;
-		dummy.style.background = "rgba(0,0,0,0.1)";
-		//obj.parentNode.replaceChild(dummy, obj);
-		//container.appendChild(obj);*/
+		//create a placeholder
+		this.placeholder = obj.cloneNode();
+		var container = obj.parentNode;
+		this.placeholder.classList.add("drag-placeholder")
+		this.placeholder.style.height = getComputedStyle(obj).height;
+		this.placeholder.style.background = "rgba(0,0,0,0.1)";
+		// Insert the placeholder after the dragged element in it's parent
+		container.insertBefore(this.placeholder, obj.nextSibling);
+
+		// Make a mask in all items of the handle class
+		var mask = document.createElement("div");
+		mask.className = "drag-mask absolute-center";
+		var handles =  (this.handle && typeof this.handle === "string") ? document.querySelectorAll("."+this.handle) : [];
+		for (var i = handles.length - 1; i >= 0; i--){
+			var mask1 = mask.cloneNode(true);
+			mask1.id = i;
+			handles[i].appendChild(mask1);
+		}
+
+		// Add style
 		this.dragClass && obj.classList.add(this.dragClass);	// position: absolute and cursor changes
 		obj.style.position = "absolute";
 
@@ -139,15 +153,27 @@ DragDrop.prototype.dragStart = function(e) {
   	  e.preventDefault();
 	}
 	e.dataTransfer.dropEffect = 'move';
+	console.log(e.target.id);
+	// Re-arrange items in dropZone to make placeholder at current mouse position
+	if(e.target.classList.contains("drag-mask")) {
+		target.insertBefore(this.placeholder, e.target.parentNode);
+		var i, nodes = target.children, len = nodes.length, arr = [];
+		// convert nodelist to array
+		for (i = 0; i< nodes.length; i++) {
+			arr.push(nodes[i]);
+		};
+		this.dataTransfer.dropPosition = arr.indexOf(this.placeholder);
+	}
+
 	this.hover && this.hover(e,target, this.dataTransfer);
 	return false;
  };
 
 DragDrop.prototype.dragEnter = function(e, target) {
- 	target.style.border = "1px dashed red";
+
 }
 DragDrop.prototype.dragLeave = function(e, target) {
-	target.style.border = "";
+
 }
 
 /* Fired if the drag is a success.
@@ -163,6 +189,7 @@ DragDrop.prototype.dragLeave = function(e, target) {
 		this.success = true;
 		this.dragEnd(e);
 		e.dropZone = target.parentNode;
+
 		// call user defined drop functtion
 		this.drop && this.drop(e,target, this.dataTransfer);
  	}
@@ -177,6 +204,16 @@ DragDrop.prototype.dragLeave = function(e, target) {
 	this.draggedObject.style.removeProperty("left");
 	this.draggedObject.style.pointerEvents = "all";
 	this.dragClass && this.draggedObject.classList.remove(this.dragClass);
+
+	// remove all placeholders and masks
+	var placeholders = document.querySelectorAll(".drag-placeholder");
+	var masks = document.querySelectorAll(".drag-mask");
+	for (var i = placeholders.length - 1; i >= 0; i--) {
+		placeholders[i].parentNode.removeChild(placeholders[i]);
+	};
+	for (var i = masks.length - 1; i >= 0; i--) {
+		masks[i].parentNode.removeChild(masks[i]);
+	};
 
 	//this.draggedObject = null;
  	// call user defined end functtion
@@ -198,11 +235,15 @@ DragDrop.prototype.dragLeave = function(e, target) {
  }
 
 
+
+
+
 function DragManager() {
 	this.items = [];
 }
 DragManager.prototype.addDrag = function(drag) {
 	this.items.push(drag);
+
 	// this will bind drag events to container.
 	drag.init();
 };
