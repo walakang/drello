@@ -4,7 +4,6 @@ var boardController = new BoardController();
 var listController = new ListController();
 var cardController = new CardController();
 var dragManager = new DragManager();
-boardController.loadEverything();
 
 // Generate DOM nodes for loadeed boards and display them.
 boardController.populateBoards();
@@ -30,7 +29,7 @@ function refreshListView() {
 			data.dstList = parseInt(target.parentNode.dataset.id);
 		},
 		drop: function(e, target, data) {
-			if (data.dstList) {
+			if (data.dstList>=0) {
 				boardController.moveCardToList(getCurrentBoardId(), data.card, data.srcList, data.dstList);
 				boardController.saveEverything();
 				refreshListView();
@@ -70,7 +69,7 @@ function createList(e) {
 	boardController.saveEverything();
 
 	// refresh the list container view
-	listController.populateLists(b);
+	refreshListView();
 
 	// Clear the text field
 	nameBox.value = "";
@@ -88,7 +87,7 @@ function createCard(e) {
 	boardController.saveEverything();
 
 	// refresh the list container view
-	listController.populateLists(b);
+	refreshListView();
 
 	// Clear the text field
 	nameBox.value = "";

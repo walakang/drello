@@ -59,6 +59,9 @@ BoardController.prototype.addNewCard = function(cardName, listId, boardId) {
  * from the boards array parsed from localstorage.
  */
 BoardController.prototype.populateBoards = function() {
+	// Refresh data
+	this.loadEverything();
+	
 	var boards = this._getDrello()._getBoards();
 	var list = this._getBoardNodes();
 	var container = document.getElementById(this.containerId);

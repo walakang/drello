@@ -9,12 +9,6 @@ function Board(data) {
 	var _star = data.star || false;
 	var _id = data.id || 0;
 
-	// data.lists parsed should be converted to instances of List objects.
-	var len = (typeof data.lists != "undefined") ? data.lists.length : 0;
-	for (var i = 0; i< len; i++) {
-		_lists.push(new List(data.lists[i]));
-	};
-
 	// public
 
 	// privilaged
@@ -42,6 +36,14 @@ function Board(data) {
 	this._isClosed = function() {
 		return _closed;
 	}
+
+
+	// data.lists parsed should be converted to instances of List objects.
+	var len = (typeof data.lists != "undefined") ? data.lists.length : 0;
+	for (var i = 0; i< len; i++) {
+		//data.lists[i].id = this.getNextListId();
+		_lists.push(new List(data.lists[i]));
+	};
 }
 
 Board.prototype.toJSON = function() {
@@ -98,7 +100,9 @@ Board.prototype.removeList = function(item) {
 Board.prototype.getList = function(key) {
 	var lists = this._getLists();
 	if (typeof key === 'number') {
-		return lists[key];
+		for (var i = lists.length - 1; i >= 0; i--) {
+			if (lists[i]._getId() == key) return lists[i];
+		};
 	}
 	else if (typeof key === 'string') {
 		for (var i = lists.length - 1; i >= 0; i--) {

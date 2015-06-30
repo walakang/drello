@@ -9,12 +9,6 @@ function List(data) {
 	var _closed = data.closed || false;
 	var _id = data.id || 0;
 
-	// data.cards parsed should be converted to instances of Card objects.
-	var len = (typeof data.cards != "undefined") ? data.cards.length : 0;
-	for (var i = 0; i< len; i++) {
-		_cards.push(new Card(data.cards[i]));
-	};
-
 	// public
 
 	// privilaged
@@ -36,6 +30,14 @@ function List(data) {
 	this._isClosed = function() {
 		return _closed;
 	}
+
+	// data.cards parsed should be converted to instances of Card objects.
+	var len = (typeof data.cards != "undefined") ? data.cards.length : 0;
+	for (var i = 0; i< len; i++) {
+		//data.cards[i].id = this.getNextCardId();
+		_cards.push(new Card(data.cards[i]));
+		console.log(data.cards[i]);
+	};
 }
 
 List.prototype.toJSON = function() {
@@ -83,8 +85,10 @@ List.prototype.removeCard = function(item) {
  */
 List.prototype.getCard = function(key) {
 	var cards = this._getCards();
-	if (typeof key === "number") {
-		return cards[key];
+if (typeof key === 'number') {
+		for (var i = cards.length - 1; i >= 0; i--) {
+			if (cards[i]._getId() == key) return cards[i];
+		};
 	}
 	else if (typeof key === "string") {
 		for (var i = cards.length - 1; i >= 0; i--) {

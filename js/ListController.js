@@ -16,7 +16,11 @@ function ListController(){
  * from the list array parsed from localstorage.
  */
 ListController.prototype.populateLists = function(board) {
+	// Refresh data
+	boardController.loadEverything();
+	
 	var lists = board._getLists();
+	console.log(lists);
 	var listNodes = this._getListNodes();
 	var container = document.getElementById(this.containerId);
 	var node = null;

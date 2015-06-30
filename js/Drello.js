@@ -20,6 +20,8 @@ Drello.prototype.toLocalStorage = function () {
  * For each object parsed add prototype of the 'Board' to it.
  */
 Drello.prototype.fromLocalStorage = function (){
+	this._getBoards().length = 0;
+	
 	// Check if data is available in localStorage
 	if (localStorage.hasOwnProperty("boards")) {
 		var boardData = JSON.parse(localStorage.getItem("boards"));
