@@ -98,7 +98,7 @@ if (typeof key === 'number') {
 	return null;
 };
 
-/* Move a list to a new position
+/* Move a card to a new position
  * @param a: position of item 1
  * @param b: position of item 2
  */

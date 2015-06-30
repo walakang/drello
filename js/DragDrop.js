@@ -28,6 +28,7 @@ function DragDrop(options) {
 	this.draggedObject = null;
 	this.placeholder = null;
 	this.success = false;
+	this.dragging = false;
 	this.dataTransfer = {};
 }
 /* Called from outside. initalizes the drag and drop interation and binds events to the container
@@ -82,6 +83,7 @@ DragDrop.prototype.dragStart = function(e) {
 
 	if (obj.classList.contains(this.handle)) {
 		console.info("Starting drag");
+		this.dragging = true;
 		// manage dataTransfer
 		var img = document.createElement("div");
 		img.style.opacity = "0.1";
@@ -101,6 +103,7 @@ DragDrop.prototype.dragStart = function(e) {
 		this.placeholder.classList.add("drag-placeholder")
 		this.placeholder.style.height = getComputedStyle(obj).height;
 		this.placeholder.style.background = "rgba(0,0,0,0.1)";
+		this.placeholder.style.pointerEvents = "none";
 		// Insert the placeholder after the dragged element in it's parent
 		container.insertBefore(this.placeholder, obj.nextSibling);
 
@@ -128,6 +131,7 @@ DragDrop.prototype.dragStart = function(e) {
  * @param e: MouseEvent
  */
  DragDrop.prototype.dragMouse = function(e) {
+ 	if (!this.dragging) return false;
  	var obj = this.draggedObject;
  	if (obj.classList.contains(this.handle)) {
  		//console.info("Dragging...");
@@ -153,7 +157,7 @@ DragDrop.prototype.dragStart = function(e) {
   	  e.preventDefault();
 	}
 	e.dataTransfer.dropEffect = 'move';
-	console.log(e.target.id);
+	if (!this.dragging) return false;
 	// Re-arrange items in dropZone to make placeholder at current mouse position
 	if(e.target.classList.contains("drag-mask")) {
 		target.insertBefore(this.placeholder, e.target.parentNode);
@@ -166,14 +170,15 @@ DragDrop.prototype.dragStart = function(e) {
 	}
 
 	this.hover && this.hover(e,target, this.dataTransfer);
+	
 	return false;
  };
 
 DragDrop.prototype.dragEnter = function(e, target) {
-
+	if (!this.dragging) return false;
 }
 DragDrop.prototype.dragLeave = function(e, target) {
-
+	if (!this.dragging) return false;
 }
 
 /* Fired if the drag is a success.
@@ -183,6 +188,7 @@ DragDrop.prototype.dragLeave = function(e, target) {
 	if (e.stopPropagation) {
 		e.stopPropagation(); // stops the browser from redirecting.
 	}
+	if (!this.dragging) return false;
  	var obj = this.draggedObject;
  	if (obj.classList.contains(this.handle)) {
 		console.info("Drop object...");
@@ -190,6 +196,7 @@ DragDrop.prototype.dragLeave = function(e, target) {
 		this.dragEnd(e);
 		e.dropZone = target.parentNode;
 
+		this.dragging = false;
 		// call user defined drop functtion
 		this.drop && this.drop(e,target, this.dataTransfer);
  	}
@@ -199,6 +206,8 @@ DragDrop.prototype.dragLeave = function(e, target) {
 /* Revert the position of the element.
  */
  DragDrop.prototype.dragEnd = function(e) {
+ 	if (!this.dragging) return false;
+
 	this.draggedObject.style.removeProperty("position");
 	this.draggedObject.style.removeProperty("top");
 	this.draggedObject.style.removeProperty("left");
@@ -214,7 +223,7 @@ DragDrop.prototype.dragLeave = function(e, target) {
 	for (var i = masks.length - 1; i >= 0; i--) {
 		masks[i].parentNode.removeChild(masks[i]);
 	};
-
+	this.dragging = false;
 	//this.draggedObject = null;
  	// call user defined end functtion
 	this.end && this.end(e);
@@ -225,13 +234,23 @@ DragDrop.prototype.dragLeave = function(e, target) {
  * @param y: dy change in Y position (integer)
  */
  DragDrop.prototype.setPositon = function(dx, dy) {
+ 	if (!this.dragging) return false;
  	this.draggedObject.style.left = this.startX + dx + 'px';
  	this.draggedObject.style.top = this.startY + dy + 'px';
  };
 
  /* Releases all bound events */
  DragDrop.prototype.releaseEvents = function() {
- 	// To DO.
+	// select DOM nodes
+	var handles =  (this.handle && typeof this.handle === "string") ? document.querySelectorAll("."+this.handle) : [];
+	for (var i = handles.length - 1; i >= 0; i--) {
+		handles[i].parentNode.replaceChild(handles[i].cloneNode(true), handles[i]);
+	};
+
+	var dropZones = (this.dropZone && typeof this.dropZone === "string") ? document.querySelectorAll(this.dropZone) : [];
+	for (var i = dropZones.length - 1; i >= 0; i--) {
+		dropZones[i].parentNode.replaceChild(dropZones[i].cloneNode(true), dropZones[i]);
+	};
  }
 
 

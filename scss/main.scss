@@ -621,8 +621,7 @@ $step: 10;
 	min-width: 270px;
 	margin: 0px 5px;
 	max-height: 80vh;
-	overflow: auto;
-	
+	position: relative;
 }
 .list-head {
 	padding: 6px 10px;

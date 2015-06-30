@@ -39,7 +39,7 @@ function refreshListView() {
 			}
 		}
 	}));
-	/*dragManager.addDrag(new DragDrop({
+	dragManager.addDrag(new DragDrop({
 		container: "#board_content",
 		handle: "list",
 		dragClass: "dragging",
@@ -51,16 +51,17 @@ function refreshListView() {
 			data.dst = null;
 		},
 		hover: function(e, target, data) {		
-			data.dstList = parseInt(e.target.dataset.id);
+			if (e.target.parentNode.dataset.id >=0 )
+				data.dst = parseInt(e.target.parentNode.dataset.id);
 		},
 		drop: function(e, target, data) {
-			if (data.dstList >= 0) {
+			if (data.dst >= 0) {
 				boardController.moveList(getCurrentBoardId(), data.src, data.dst);
 				boardController.saveEverything();
 				refreshListView();
 			}
 		}
-	}));*/
+	}));
 }
 /* calls when a user submit the create board form create a new Board and put it to
  * boards list of drello object and then save to  local storage.
