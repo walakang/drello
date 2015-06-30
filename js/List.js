@@ -48,9 +48,9 @@ List.prototype.toJSON = function() {
 	};
 };
 
-List.prototype.addCard = function(card) {
+List.prototype.addCard = function(card, position) {
 	card = card || null;
-	return (card instanceof Card) ? this._getCards().push(card) : false;
+	return (card instanceof Card) ? ((typeof position === "number") ? this._getCards().splice(position, 0, card).length : this._getCards().push(card)) : false;
 };
 
 List.prototype.getNextCardId = function() {
@@ -107,7 +107,7 @@ List.prototype.moveCard= function(current, next) {
 	if(current === next) return;
 	// check upperbound and lowerbound of a and b.7
 	if(typeof current === "number" && typeof next === "number" && current >= 0 && current < cards.length && next >= 0 && next < cards.length) {
-		cards.splice(current, 0, cards.splice(next, 1)[0] );
+		cards.splice(next, 0, cards.splice(current, 1)[0] );
 		return true;
 	}
 	console.log("List.MoveCard: Invalid input");

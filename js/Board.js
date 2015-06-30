@@ -122,7 +122,7 @@ Board.prototype.moveList= function(current, next) {
 	// check upperbound and lowerbound of a and b.7
 	if(typeof current === "number" && typeof next === "number" && current >= 0 && current < lists.length && next >= 0 && next < lists.length) {
 		// insert the element to new position
-		lists.splice(current, 0, lists.splice(next, 1)[0] );
+		lists.splice(next, 0, lists.splice(current, 1)[0] );
 		return true;
 	}
 	console.log("Board.moveList: Invalid input");

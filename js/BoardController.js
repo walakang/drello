@@ -205,10 +205,15 @@ BoardController.prototype.moveCardToList = function(boardId, cardId, srcListId, 
 		if (srcList && dstList) {
 			var card = srcList.getCard(cardId);
 			if (card) {
-				srcList.removeCard(card);
-				dstList.addCard(card);		
-				// move card to a new position	
-				dstList.moveCard(dstList._getCards().indexOf(card), dstPos);
+				if (srcList === dstList) {
+					// move card to a new position inside same list
+					dstList.moveCard(dstList._getCards().indexOf(card), dstPos);
+				}
+				else { // inter list transaction
+					srcList.removeCard(card);
+					dstList.addCard(card, dstPos);	
+				}	
+				
 				return true;	
 			}
 		}
