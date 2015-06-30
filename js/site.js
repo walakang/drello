@@ -14,7 +14,7 @@ function refreshBoardsView() {
 function refreshListView() {
 
 	listController.populateLists(boardController.getBoard(getCurrentBoardId()));
-	dragManager.clearAll();
+	//dragManager.clearAll();
 
 	// Initialize drag events
 	dragManager.addDrag(new DragDrop({
