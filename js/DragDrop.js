@@ -267,8 +267,8 @@ DragManager.prototype.addDrag = function(drag) {
 	drag.init();
 };
 DragManager.prototype.clearAll = function(first_argument) {
-	for (var i = this.items.length - 1; i >= 0; i--) {
+	/*for (var i = this.items.length - 1; i >= 0; i--) {
 		this.items[i].releaseEvents();
-	};
+	};*/
 	this.items = [];
 };

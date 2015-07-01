@@ -120,9 +120,7 @@
 							<span class="right icon-download"></span>
 						</div>
 						<ul class="sidemenu-actions-list show no-overflow">
-							<!--<li class="sidemenu-actions-list-item normal pointer"><span class="icon-direction"></span>Power-Ups</li>-->
 							<li class="sidemenu-actions-list-item normal pointer"><span class="icon-tags"></span>Labels</li>
-							<!--<li class="sidemenu-actions-list-item normal pointer">Stickers</li>-->
 							<li class="sidemenu-actions-list-item normal pointer"><span class="icon-filter"></span>Filter Cards</li>
 							<li class="sidemenu-actions-list-item normal pointer border-bottom"><span class="icon-archive"></span>Archived Items</li>
 							<li class="sidemenu-actions-list-item small pointer"> Change Background </li>
@@ -162,28 +160,6 @@
 					<label for="bord-name" class="popup-form-label medium bold block">Title</label>
 					<input  class="block-input block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..." autocomplete="off" required="true" />
 					<input type="hidden" name="board-privacy"/>
-					<!-- The options are filled with names of oraganizations in DB.
-					<label for="bord-org" class="popup-form-label medium bold block">Organization</label>	
-					<select name="board-org" class="block-input block width-100 round" >
-						
-					</select>
-					<div id="privacy_preview" class="no-overflow show block">
-						<span>This board will be public.<a id="change" href="#" onclick="createBoardPrvacyToggle(this)">Change</a></span>
-					</div>
-					<div id="privacy_options" class="no-overflow no-height block">
-						<div id="private" class="privacy-option block" onclick="createBoardPrvacyToggle(this)">
-							<span class="option">Private</span>
-							<span class="detail">This board will be private. Only people added to the board can view or edit it.</span >
-						</div>
-						<div id="org" class="privacy-option block" onclick="createBoardPrvacyToggle(this)">
-							<span class="option">Organization</span>
-							<span class="detail">This board is visible to the members of the organization. Only people added to the board can edit it.</span >
-						</div>
-						<div id="public" class="privacy-option block" onclick="createBoardPrvacyToggle(this)" class="disabled">
-							<span class="option">public</span>
-							<span class="detail">This board will be public. It is visible to anyone with the link to this board and it will be visible to search engines like Google and Yahoo. Only people added to the board can view or edit it.</span >
-						</div>
-					</div> -->
 					<input type="submit" class="btn btn-normal btn-green" value="Create" onClick="//closePopups(event,true)"/>
 				</form>
 			</div>
@@ -286,7 +262,7 @@
 
 		<div id="overlay" class="">
 			<!-- overlayed popup for displaying full information of cards -->
-			<div id="card_display_popup" class="popup round block absolute-center no-display">
+			<div id="card_display_popup" class="popup round block no-display">
 				<div class="popup-header text-center">
 					<div class="card-cover pointer">
 						<a href="images/taco.png"><img src="images/taco.png" /></a>
@@ -294,25 +270,13 @@
 					<span id="popup_close" class="icon-cancel pointer" onClick="closePopups(event,true)"></span>
 				</div>
 				<div class="popup-body wrapper">
-					<section id="card_info" class="card-info left width-80 padding-10 block">
+					<div id="card_info" class="card-info left width-80 padding-10 block">
 						<div class="card-info-title">
-							<span class="card-info-title-icon i-block large icon-credit-card"></span>
-							<span class="card-info-title-name i-block medium">Card Name</span>
-							<span class="card-info-title-extra i-block small">In list <a href="#" class="normal underline">List Name</a></span>
-							<span id="card-subscribed" class="card-info-title-sub icon-eye-outline i-block normal"></span>
+							<span class="card-info-title-icon i-block middle large icon-credit-card large light-text"></span>
+							<span class="card-info-title-name i-block middle medium bold">Card Name</span>
+							<span class="card-info-title-extra i-block middle small">In list <a href="#" class="card-info-title-extra-list normal underline">List Name</a></span>						
 						</div>
 						<div class="card-info-detail">
-							<div class="card-info-detail-members middle i-block left">
-								<div class="label">Members</div>
-								<span class="avatar round"><img src="members/shidil.png" /></span>
-								<span class="icon-plus btn-add avatar text-center pointer i-block" id="card_add_member"></span>
-							</div>
-							<div class="card-info-detail-labels middle i-block left">
-								<div class="label">Labels</div>
-								<span class="blue round"></span>
-								<span class="green round"></span>
-								<span class="icon-plus btn-add avatar text-center pointer i-block" id="card_add_label"></span>
-							</div>
 							<div class="card-info-detail-description clear break-1">
 								<div class="label">Description</div>
 								<div class="card-description">
@@ -324,41 +288,38 @@
 										The attached picture is Taco, the most famous Siberian Husky in New York City, and official spokes-mascot for Trello. You might see him around Trello introducing new features and whatnot.
 
 									</p>
+									<a href="#" class=""><div class="card-description-edit round width-100 padding-5 icon-pencil-alt">Edit the description...</div></a>
+									<form id="edit_card_desc_form" class="block no-display width-100">
+										<textarea name ="card-desc" id="edit_card_desc_form_input" class="white round block width-100 block-input" placeholder="Add a comment..." style="resize: none; background: white"></textarea>
+										<input type="submit" class="no-margin i-block btn btn-normal btn-green" value="Save"/>
+										<span class="icon-cancel i-block middle pointer" id="edit_card_desc_form_close"></span>
+									</form>
 								</div>
 							</div>
 						</div>
-					</section>
-					<section id="card_actions" class="card-actions right width-20">
-						<h1>Add</h1>
+						<div class="card-info-title">
+							<span class="card-info-title-icon i-block middle large icon-attach large light-text"></span>
+							<span class="card-info-title-name i-block middle medium bold">Attachments</span>				
+						</div>
+						<div class="card-info-detail">
+							<div class="card-attachments light-text" >Add an attachment and it will be here.</div>
+							<div class="break-1"></div>
+							<a href="#" class="">
+								<div class="wrapper light-text card-add-attach round padding-5 icon-plus icon-pencil-alt">
+									Add an attachment...
+									<input id="card_add_attach_input" type="file" class="absolute-center transparent width-100" accept="image/x-png, image/gif, image/jpeg" />
+								</div>
+							</a>
+						</div>
+					</div>
+					<div id="card_actions" class="card-actions right width-20">
+						<h3>Add</h3>
 						<ul>
 							<li>
-								 <a href="#" class="btn btn-normal btn-gray">
-									 <span class="icon icon-user"></span>
-									 <span class="name">Members</span>
-								 </a>
-							</li>
-							<li>
-								<a href="#" class="btn btn-normal btn-gray">
-									<span class="icon icon-user"></span>
-									<span class="name">Labels</span>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="btn btn-normal btn-gray">
-									<span class="icon icon-user"></span>
-									<span class="name">Checklist</span>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="btn btn-normal btn-gray">
-									<span class="icon icon-user"></span>
-									<span class="name">Due Date</span>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="btn btn-normal btn-gray">
+								<a href="#" class="btn btn-normal btn-gray wrapper">
 									<span class="icon icon-attach"></span>
 									<span class="name">Attachment</span>
+									<input id="card_add_attach_input" type="file" class="absolute-center transparent width-100" accept="image/x-png, image/gif, image/jpeg" onchange="uploadAttachmentToCurrentCard(event)"/>
 								</a>
 							</li>
 						</ul>
@@ -389,7 +350,7 @@
 								</a>
 							</li>
 						</ul>
-					</section>
+					</div>
 				</div>
 			</div>
 

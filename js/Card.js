@@ -8,6 +8,7 @@ function Card(data) {
 	var _id = data.id || 0;
 	var _desc = data.desc || "";
 	var _attachments = data.attachments || [];
+	var _cover = data.cover || 0;
 	var _colors = data.colors || [];
 	var _closed = data.closed || false;
 
@@ -29,9 +30,15 @@ function Card(data) {
 	this._getDesc = function() {
 		return _desc;
 	}
+	this._setDesc = function(desc) {
+		_desc = desc;
+	};
 	this._getAttachments = function() {
 		return _attachments;
-	};
+	}
+	this._getCover = function () {
+		return _cover;
+	}
 	this._isClosed = function() {
 		return _closed;
 	}
@@ -66,9 +73,19 @@ Card.prototype.removeColor = function(color) {
 	return (typeof color === "string" && i > -1) ? this._getColors().splice(i,1).length : false;
 };
 
+Card.prototype.addAttachment = function(attach) {
+	attach = attach || 0;
+	if (typeof attach === "object") this._getAttachments().push(attach);
+};
 
+Card.prototype.removeAttachment = function(id) {
+	if (typeof id === "number") return this._getAttachments().splice(id,1).length;
+	return false;
+};
 
-
+Card.prototype.setDesc = function(desc) {
+	if (typeof desc === "string") this._setDesc(desc);
+};
 
 /*
 Card.prototype.createNode = function() {

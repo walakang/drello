@@ -166,6 +166,12 @@ body {
   opacity: 0.7;
   cursor: auto; }
 
+.transparent {
+  opacity: 0; }
+
+.middle {
+  vertical-align: middle; }
+
 .pointer {
   cursor: pointer; }
 
@@ -316,6 +322,9 @@ body {
 
 .pre-30 {
   margin-left: 30px; }
+
+.no-margin {
+  margin: 0; }
 
 .width-100 {
   width: 100%; }
@@ -722,6 +731,14 @@ body {
   background: #FFFFFF;
   position: relative;
   width: 254px; }
+  .card .icon-pencil-alt {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.05);
+    vertical-align: middle;
+    padding-top: 5px;
+    opacity: 0; }
 
 #add_card {
   color: #999;
@@ -750,15 +767,6 @@ body {
   background: #fcfcfc; }
   .card:hover .icon-pencil-alt {
     opacity: 1; }
-
-.icon-pencil-alt {
-  width: 30px;
-  height: 30px;
-  margin: 0;
-  background: rgba(0, 0, 0, 0.05);
-  vertical-align: middle;
-  padding-top: 5px;
-  opacity: 0; }
 
 .card-image {
   margin: 0;
@@ -1035,7 +1043,8 @@ input:focus {
   z-index: 16;
   background: #edeff0;
   padding: 0;
-  top: 10%; }
+  top: 10%;
+  left: 20%; }
   #card_display_popup .popup-header {
     padding: 0; }
 
@@ -1048,8 +1057,8 @@ input:focus {
   -ms-transition: 0.1s all ease-in-out;
   transition: 0.1s all ease-in-out; }
 
-.card-cover > img {
-  max-width: 35%; }
+.card-cover img {
+  max-width: 40%; }
 
 .card-cover:hover {
   opacity: 0.8;
@@ -1058,18 +1067,57 @@ input:focus {
   -ms-transition: 0.1s all ease-in-out;
   transition: 0.1s all ease-in-out; }
 
-.card-info-detail .label {
-  color: #666;
-  display: block;
-  margin-bottom: 6px; }
-.card-info-detail .btn-add {
-  line-height: 2;
-  background: #dadada; }
-.card-info-detail .btn-add:hover {
-  color: #222; }
+.card-info-title {
+  padding: 10px; }
+
+.card-info-detail {
+  margin: 0px 0px;
+  padding: 0px 40px; }
+  .card-info-detail .label {
+    color: #666;
+    display: block;
+    margin-bottom: 6px; }
+  .card-info-detail .btn-add {
+    line-height: 2;
+    background: #dadada; }
+  .card-info-detail .btn-add:hover {
+    color: #222; }
+
+.card-info-detail-description {
+  /*padding-top: 10px;*/ }
 
 .card-info-detail-members, .card-info-detail-labels {
   margin: 0px 25px 0px 0px; }
+
+.card-info-title-extra a {
+  color: #666; }
+
+.card-description-edit {
+  color: #666; }
+
+.card-description-edit.icon-pencil-alt:before {
+  margin-right: 10px;
+  color: #999; }
+
+.card-description-edit:hover, .card-add-attach:hover {
+  background: rgba(0, 0, 0, 0.1); }
+
+.card-attachments-item {
+  margin: 8px 0px; }
+
+.card-attachments-item-image {
+  max-width: 20%;
+  -webkit-box-shadow: 0px 0px 3px #555;
+  -moz-box-shadow: 0px 0px 3px #555;
+  -ms-box-shadow: 0px 0px 3px #555;
+  box-shadow: 0px 0px 3px #555;
+  margin-right: 5px; }
+
+#card_actions .btn-gray {
+  display: block;
+  text-align: left;
+  width: 90%;
+  padding: 10px 5px; }
 
 @media (min-width: 680px) and (max-width: 1023px) {
   /* CSS for resposiveness on Index page

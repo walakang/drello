@@ -14,7 +14,7 @@ function refreshBoardsView() {
 function refreshListView() {
 
 	listController.populateLists(boardController.getBoard(getCurrentBoardId()));
-	//dragManager.clearAll();
+	dragManager.clearAll();
 
 	// Initialize drag events
 	dragManager.addDrag(new DragDrop({
@@ -190,6 +190,76 @@ function searchAndDisplayBoards (e) {
 	}
 }
 
+/* Called after a user submits the edit card desc form */
+function changeCardDesc (e) {
+	e.preventDefault();
+	var form = e.target;
+	var desc = form.getElementsByTagName("textarea")[0].value;
+	var container = document.getElementById("card_display_popup");
+	var cardId = parseInt(container.dataset.card);
+	var listId = parseInt(container.dataset.list);
+	var card = boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId);
+
+	card.setDesc(desc);
+	// save things
+	boardController.saveEverything();
+
+	// refresh popup
+	showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
+	//container.querySelector(".card-description p").innerHTML = desc;
+	
+	// hide the form
+	toggleEditCardDescForm(e);
+	return false;
+}
+
+function uploadAttachmentToCurrentCard (e) {
+	e.preventDefault();
+	
+	var container = document.getElementById("card_display_popup");
+	var cardId = parseInt(container.dataset.card);
+	var listId = parseInt(container.dataset.list);
+
+	console.log("uploading attachment image");
+	var files = e.target.files;
+	for (var i = files.length - 1; i >= 0; i--) {
+		if (!files[i].type.match('image.*')) continue; // Only process image files.
+
+		var reader = new FileReader();
+		reader.onload = (function(file) {
+			return function(e) {
+				// Save attachment
+				var attch = {};
+				attch.data = e.target.result;
+				attch.name = file.name;
+				attch.date = new Date().toString();
+				boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).addAttachment(attch);
+				boardController.saveEverything();
+
+				// refresh popup
+				showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
+			};
+		})(files[i]);
+		reader.readAsDataURL(files[i]);
+	};
+}
+
+function deleteAttachmentFromCurrentCard (e) {
+	e.preventDefault();
+
+	var container = document.getElementById("card_display_popup");
+	var cardId = parseInt(container.dataset.card);
+	var listId = parseInt(container.dataset.list);
+
+	console.log("removing attachment image");
+	boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).removeAttachment(parseInt(e.target.id));
+	boardController.saveEverything();
+
+	//refresh popup
+	showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
+}
+
+
 /* Call to show any popup box
  * @param name: ID of the popup box node.
  * @param position: position of the popup box - not required.
@@ -230,12 +300,16 @@ function closePopups(e, forceClose){
 	if(__currentPopup!=null){
 		console.log("closing all pop-ups");
 		__currentPopup.classList.add("no-display");
+
+		// remove events in the popup
+		__currentPopup.parentNode.replaceChild(__currentPopup.cloneNode(true), __currentPopup);
 		__currentPopup = null;
 	}
 	document.getElementById("overlay").classList.remove("visible");
 
 	// remove event listner attached to body
 	document.body.removeEventListener("click",closePopups,false);
+
 	return true;
 }
 // TO DO: use addEventListner
@@ -243,6 +317,15 @@ function showCreateBoardPopup(e){
 	// Prevent event propogation.
 	e = e || window.event
 	e.stopPropagation();
+
+	// Bind createBoard function to submit event of the create_board_form in the create_board-popup
+	var createBoardForm = document.getElementById("create_board_form");
+	createBoardForm && createBoardForm.addEventListener("submit",function(e){
+		e.preventDefault();
+		closePopups(e,true);
+		createBoard(e);
+	},false);
+
 	// get the position of event target to calculate the position of the pop-up 
 	showPopup("create_board_popup",e.target.getBoundingClientRect());
 
@@ -274,6 +357,22 @@ function showBoardsPopup(e){
 			if(boardNodes[i].starred) starredList.appendChild(node.cloneNode(true));
 		}
 	}
+
+	// Boards popup: bind keystroke event to search for boards.
+	var boardsPopup = document.getElementById("boards_popup");
+ 	var searchInput = document.getElementById("search_boards_input");
+ 	searchInput.addEventListener("keyup",searchAndDisplayBoards,false);
+	boardsPopup.addEventListener("click",function(e){
+	 	e.preventDefault();
+	 	if(e.target.classList.contains("boards-list-item")) 
+		loadBoardAndDisplayListView(parseInt(e.target.dataset.id));
+ 		else if(e.target.classList.contains("board-name"))
+		loadBoardAndDisplayListView(parseInt(e.target.parentNode.dataset.id));
+ 		else if(e.target.classList.contains("icon-star"))
+		toggleStar(e);
+ 		
+ 	},false);
+
 	console.log("showing boards pop-up");
 	showPopup("boards_popup");
 
@@ -296,6 +395,91 @@ function showCreateNewPopup(e){
 function showCardPopup(e){
 	e = e || window.event
 	e.stopPropagation();
+
+	// get data of the clicked card and popuplate DOM
+	var container = document.getElementById("card_display_popup");
+	var cardId = parseInt(this.dataset.id);
+	var listId = parseInt(this.dataset.list);
+	var list = boardController.getBoard(getCurrentBoardId()).getList(listId);
+	var card = list.getCard(cardId);
+
+	// set current card id to container
+	container.dataset.card = cardId;
+	container.dataset.list = listId;
+
+	// attach cover image if one exists.
+	var cover = card._getAttachments()[card._getCover()];
+	var cardCover = container.querySelector(".card-cover") || null;
+	cardCover.innerHTML = "";
+	if (cover) cardCover.innerHTML = '<a href="#"><img src="'+cover.data+'" /></a>';
+
+	// set card name in popup
+	container.querySelector(".card-info-title-name").innerHTML = card._getName();
+	// set list name
+	container.querySelector(".card-info-title-extra-list").innerHTML = list._getName();
+	// set description
+	container.querySelector(".card-description p").innerHTML = card._getDesc();
+	// display attachments
+	var attachments = card._getAttachments();
+	var attachmentsList = container.querySelector(".card-attachments");
+	var i, len, attNode = null;
+	if (attachments.length) {
+		attachmentsList.innerHTML = "";
+		for (i = 0, len = attachments.length; i < len; i++) {
+			attNode = document.createElement("div");
+			attNode.className = "card-attachments-item block";
+			var text = (i == card._getCover()) ? "Remove Cover" : "Add Cover"
+			attNode.innerHTML = '\
+								<div class="card-attachments-item-image i-block middle">\
+									<a href="#"><img src="'+attachments[i].data+'" /></a>\
+								</div>\
+								<div class="card-attachments-item-desc i-block middle">\
+									<div class="light-text">'+attachments[i].name+'</div>\
+									<div class="light-text">Added on '+attachments[i].date+'</div>\
+									<div class="light-text">\
+										<span class="icon-download pointer">Download</span>\
+										<span class="icon-tags pointer">'+text+'</span>\
+										<span class="attachment-delete icon-cancel pointer" data-id="'+i+'">Delete</span>\
+									</div>\
+								</div>\
+								';
+			attachmentsList.appendChild(attNode);
+		}
+	} else attachmentsList.innerHTML = "Add an attachment and it will be here.";
+		
+
+	// Bind events
+	// card display popup
+	var editDescForm = document.getElementById("edit_card_desc_form");
+	var fileInput = document.getElementById("card_add_attach_input");
+
+	container && container.addEventListener("click", function (e) {	
+		// when clicked on edit description button, show the input textarea.
+		if (e.target.classList.contains("card-description-edit")) {
+			e.preventDefault();
+			toggleEditCardDescForm(e);
+		}
+
+		// when clicked on the cancel edit button hide form
+		if (e.target.id === "edit_card_desc_form_close") {
+			e.preventDefault();
+			toggleEditCardDescForm(e);
+		}
+
+		// when clicked on delete attachment button
+		if (e.target.classList.contains("attachment-delete")) {
+			e.preventDefault();
+			deleteAttachmentFromCurrentCard(e);
+		}
+
+	}, false);
+	// Save the data after submitting the form
+	editDescForm && editDescForm.addEventListener("submit", changeCardDesc, false);
+
+	// upload the attachment after the file input change
+	fileInput.addEventListener("change", uploadAttachmentToCurrentCard,false);
+
+	// Show time
 	showOverlay();
 	showPopup('card_display_popup',null);
 	return false;
@@ -316,6 +500,16 @@ function showClosedBoardsPopup (e) {
 	else {
 		list.innerHTML = "Nothing to see here";
 	}
+
+	// Bind events
+	list && list.addEventListener("click", function (e) {
+		if (e.target.classList.contains("btn")) {
+			boardController.openBoard(parseInt(e.target.dataset.id));
+			boardController.saveEverything();
+			refreshBoardsView();
+			closePopups(e, true);
+		}
+	});
 
 	// show time
 	showOverlay();
@@ -362,6 +556,11 @@ function toggleAddCardForm(e) {
 	displayToggle(form);
 	form.getElementsByTagName("input")[0].focus();
 }
+function toggleEditCardDescForm(e) {
+	var form = document.getElementById("edit_card_desc_form");
+	displayToggle(form);
+	form.getElementsByTagName("textarea")[0].focus();
+}
 
 /* bind all known events to various elements in the DOM */
 (function(){
@@ -379,14 +578,6 @@ function toggleAddCardForm(e) {
 	// Profile popup
 	var profileButton = document.getElementById("profile");
 	profileButton.addEventListener("click",showProfilePopup,false);
-
-	// Bind createBoard function to submit event of the create_board_form in the create_board-popup
-	var createBoardForm = document.getElementById("create_board_form");
-	createBoardForm && createBoardForm.addEventListener("submit",function(e){
-		e.preventDefault();
-		closePopups(e,true);
-		createBoard(e);
-	},false);
 
 	// Header search manage focus and blur state of input box.
 	var searchBox = document.getElementById("header_search_box");
@@ -418,32 +609,6 @@ function toggleAddCardForm(e) {
  	var boardRibbonStar = document.getElementById("board_ribbon_star");
  	boardRibbonStar && boardRibbonStar.addEventListener("click",toggleStar,false);
 
- 	// Boards popup: bind keystroke event to search for boards.
-	var boardsPopup = document.getElementById("boards_popup");
- 	var searchInput = document.getElementById("search_boards_input");
- 	searchInput.addEventListener("keyup",searchAndDisplayBoards,false);
-	boardsPopup.addEventListener("click",function(e){
-	 	e.preventDefault();
-	 	if(e.target.classList.contains("boards-list-item")) 
-		loadBoardAndDisplayListView(parseInt(e.target.dataset.id));
- 		else if(e.target.classList.contains("board-name"))
-		loadBoardAndDisplayListView(parseInt(e.target.parentNode.dataset.id));
- 		else if(e.target.classList.contains("icon-star"))
-		toggleStar(e);
- 		
- 	},false);
-
-	// Closed Boards popup
-	var closedList = document.querySelector("#closed_boards_popup .closed-boards-list");
-	closedList && closedList.addEventListener("click", function (e) {
-		if (e.target.classList.contains("btn")) {
-			boardController.openBoard(parseInt(e.target.dataset.id));
-			boardController.saveEverything();
-			refreshBoardsView();
-			closePopups(e, true);
-		}
-	});
-
  	// List view: display add list form upon clicking add list placeholder.
  	var addListLink = document.getElementById("add_list_link");
  	var addListInput = document.getElementById("add_list_form_input");
@@ -451,7 +616,6 @@ function toggleAddCardForm(e) {
  	addListLink && addListLink.addEventListener("click", toggleAddListForm, false);	// show form
  	addListInput && addListInput.addEventListener("blur", toggleAddListForm, false);	// hide form on blur
  	addListForm && addListForm.addEventListener("submit", createList, false);
-
 
 	// Board actions in sidemenu
 	var sidemenuActionsList = document.querySelector(".sidemenu-actions-list");
