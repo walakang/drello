@@ -20,6 +20,9 @@ function Card(data) {
 	this._getId = function() {
 		return _id;
 	}
+	this._setId = function (id) {
+		_id = id;
+	}
 	this._getColors = function() {
 		return _colors;
 	}

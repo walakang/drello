@@ -25,6 +25,10 @@ BoardController.prototype.loadEverything = function() {
 
 /* Save data to localstorage */
 BoardController.prototype.saveEverything = function() {
+	// save the new order of the array
+	this._getDrello()._getBoards().forEach(function (board) {
+		board.normalizeListIds();
+	})
 	this._getDrello().toLocalStorage();
 };
 
@@ -193,8 +197,10 @@ BoardController.prototype.openBoard = function(id) {
 	return this._getDrello().getBoard(id)._open();
 };
 
-BoardController.prototype.moveList = function(boardId, current, next) {
-	this._getDrello().getBoard(boardId).moveList(current, next);
+BoardController.prototype.moveList = function(boardId, id,  dstPos) {
+	// check the direction of the move
+	//dstPos = (dstPos > id) ? dstPos -1 : dstPos;
+	this._getDrello().getBoard(boardId).moveList(id,  dstPos);
 };
 
 BoardController.prototype.moveCardToList = function(boardId, cardId, srcListId, dstListId, dstPos) {
@@ -205,9 +211,10 @@ BoardController.prototype.moveCardToList = function(boardId, cardId, srcListId, 
 		if (srcList && dstList) {
 			var card = srcList.getCard(cardId);
 			if (card) {
-				if (srcList === dstList) {
-					// move card to a new position inside same list
-					dstList.moveCard(dstList._getCards().indexOf(card), dstPos);
+				if (srcList === dstList) { // move card to a new position inside same list
+					// check the direction of the move
+					dstPos = (dstPos > cardId) ? dstPos -1 : dstPos;
+					dstList.moveCard(cardId, dstPos);
 				}
 				else { // inter list transaction
 					srcList.removeCard(card);

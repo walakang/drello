@@ -21,6 +21,9 @@ function List(data) {
 	this._getId = function() {
 		return _id;
 	}
+	this._setId = function (id) {
+		_id = id;
+	}
 	this._close = function() {
 		_closed = true;
 	}
@@ -98,15 +101,30 @@ if (typeof key === 'number') {
 	return null;
 };
 
+/* This function sorts the lists by changing the id of the list to the array index */
+List.prototype.normalizeCardIds = function(first_argument) {
+	var cards = this._getCards();
+	var len = cards.length;
+	for (var i = 0; i< len; i++) {
+		// the new order of lists is the array index.
+		cards[i]._setId(i);
+	}
+};
+
 /* Move a card to a new position
  * @param a: position of item 1
  * @param b: position of item 2
  */
-List.prototype.moveCard= function(current, next) {
+List.prototype.moveCard= function(id, next) {
 	var cards = this._getCards();
 	if(current === next) return;
 	// check upperbound and lowerbound of a and b.7
-	if(typeof current === "number" && typeof next === "number" && current >= 0 && current < cards.length && next >= 0 && next < cards.length) {
+	if(typeof id === "number" && typeof next === "number" && id >= 0 && next >= 0 && next < cards.length) {
+		var card = this.getCard(id);
+		var current = cards.indexOf(card);
+		if (current < 0) return false;
+
+		// insert the element to new position
 		cards.splice(next, 0, cards.splice(current, 1)[0] );
 		return true;
 	}

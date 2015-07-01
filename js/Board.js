@@ -113,14 +113,30 @@ Board.prototype.getList = function(key) {
 	return null;
 };
 
+/* This function sorts the lists by changing the id of the list to the array index */
+Board.prototype.normalizeListIds = function(first_argument) {
+	var lists = this._getLists();
+	var len = lists.length;
+	for (var i = 0; i< len; i++) {
+		// the new order of lists is the array index.
+		lists[i]._setId(i);
+		lists[i].normalizeCardIds();
+	}
+};
+
+
 /* Move s list to a new position
  * @param a: position of item 1
  * @param b: position of item 2
  */
-Board.prototype.moveList= function(current, next) {
+Board.prototype.moveList= function(id, next) {
 	var lists = this._getLists();
 	// check upperbound and lowerbound of a and b.7
-	if(typeof current === "number" && typeof next === "number" && current >= 0 && current < lists.length && next >= 0 && next < lists.length) {
+	if(typeof id === "number" && typeof next === "number" && id >= 0 && next >= 0 && next < lists.length) {
+		var list = this.getList(id);
+		var current = lists.indexOf(list);
+		if (current < 0) return false;
+
 		// insert the element to new position
 		lists.splice(next, 0, lists.splice(current, 1)[0] );
 		return true;

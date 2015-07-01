@@ -38,6 +38,12 @@ ListController.prototype.populateLists = function(board) {
 			container.appendChild(node);
 		}
 	};
+	var emptyList = document.createElement("div");
+	emptyList.className="list";
+	emptyList.style.height = "200px";
+	emptyList.style.minWidth = "20px";
+	emptyList.style.background = "transparent";
+	container.appendChild(emptyList);
 	container.appendChild(addListNode);
 
 };
