@@ -205,6 +205,7 @@ function changeCardDesc (e) {
 	boardController.saveEverything();
 
 	// refresh popup
+	closePopups(e, true);
 	showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
 	//container.querySelector(".card-description p").innerHTML = desc;
 	
@@ -213,9 +214,9 @@ function changeCardDesc (e) {
 	return false;
 }
 
-function uploadAttachmentToCurrentCard (e) {
+function uploadAttachmentToCurrentCard(e) {
 	e.preventDefault();
-	
+
 	var container = document.getElementById("card_display_popup");
 	var cardId = parseInt(container.dataset.card);
 	var listId = parseInt(container.dataset.list);
@@ -237,6 +238,7 @@ function uploadAttachmentToCurrentCard (e) {
 				boardController.saveEverything();
 
 				// refresh popup
+				closePopups(e, true);
 				showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
 			};
 		})(files[i]);
@@ -244,7 +246,7 @@ function uploadAttachmentToCurrentCard (e) {
 	};
 }
 
-function deleteAttachmentFromCurrentCard (e) {
+function deleteAttachmentFromCurrentCard(e) {
 	e.preventDefault();
 
 	var container = document.getElementById("card_display_popup");
@@ -252,10 +254,27 @@ function deleteAttachmentFromCurrentCard (e) {
 	var listId = parseInt(container.dataset.list);
 
 	console.log("removing attachment image");
-	boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).removeAttachment(parseInt(e.target.id));
+	boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).removeAttachment(parseInt(e.target.dataset.id));
 	boardController.saveEverything();
 
 	//refresh popup
+	closePopups(e, true);
+	showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
+}
+
+function setCoverOfCurrentCard  (e) {
+	e.preventDefault();
+
+	var container = document.getElementById("card_display_popup");
+	var cardId = parseInt(container.dataset.card);
+	var listId = parseInt(container.dataset.list);
+
+	console.log("changing card cover image");
+	boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).setCover(parseInt(e.target.dataset.id));
+	boardController.saveEverything();
+
+	//refresh popup
+	closePopups(e, true);
 	showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
 }
 
@@ -428,7 +447,7 @@ function showCardPopup(e){
 		for (i = 0, len = attachments.length; i < len; i++) {
 			attNode = document.createElement("div");
 			attNode.className = "card-attachments-item block";
-			var text = (i == card._getCover()) ? "Remove Cover" : "Add Cover"
+			var text = (i == card._getCover()) ? "Remove Cover" : "Make Cover"
 			attNode.innerHTML = '\
 								<div class="card-attachments-item-image i-block middle">\
 									<a href="#"><img src="'+attachments[i].data+'" /></a>\
@@ -438,7 +457,7 @@ function showCardPopup(e){
 									<div class="light-text">Added on '+attachments[i].date+'</div>\
 									<div class="light-text">\
 										<span class="icon-download pointer">Download</span>\
-										<span class="icon-tags pointer">'+text+'</span>\
+										<span class="attachment-makecover icon-tags pointer" data-id="'+i+'">'+text+'</span>\
 										<span class="attachment-delete icon-cancel pointer" data-id="'+i+'">Delete</span>\
 									</div>\
 								</div>\
@@ -471,6 +490,11 @@ function showCardPopup(e){
 			e.preventDefault();
 			deleteAttachmentFromCurrentCard(e);
 		}
+		if (e.target.classList.contains("attachment-makecover")) {
+			e.preventDefault();
+			setCoverOfCurrentCard(e);
+		}
+
 
 	}, false);
 	// Save the data after submitting the form

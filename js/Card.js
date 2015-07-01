@@ -39,6 +39,9 @@ function Card(data) {
 	this._getCover = function () {
 		return _cover;
 	}
+	this._setCover = function (id) {
+		_cover = id;
+	}
 	this._isClosed = function() {
 		return _closed;
 	}
@@ -80,6 +83,14 @@ Card.prototype.addAttachment = function(attach) {
 
 Card.prototype.removeAttachment = function(id) {
 	if (typeof id === "number") return this._getAttachments().splice(id,1).length;
+	return false;
+};
+
+Card.prototype.setCover = function(id) {
+	if (typeof id === "number"){
+		this._setCover(id);
+		return true;
+	}
 	return false;
 };
 
