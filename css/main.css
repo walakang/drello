@@ -826,7 +826,8 @@ body {
   .popup-header .icon-cancel {
     position: absolute;
     top: 10px;
-    right: 6px; }
+    right: 6px;
+    z-index: 40; }
   .popup-header .icon-cancel:hover {
     color: #444; }
 
@@ -935,11 +936,14 @@ input:focus {
       background: #0079BF;
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px; }
-    #boards_popup .boards-list-item .color:hover {
-      background: #2A7098; }
     #boards_popup .boards-list-item .board-name {
       padding-left: 16%;
       color: #444; }
+  #boards_popup .boards-list-item:hover .color {
+    background: #2A7098; }
+
+.board-name {
+  word-break: break-word; }
 
 .board-popup-option {
   margin: 3px 0px;

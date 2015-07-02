@@ -791,6 +791,7 @@ $step: 10;
 		position: absolute;
 		top: 10px;
 		right: 6px;
+		z-index: 40;
 	}
 	.icon-cancel:hover {
 		color: $text-color;
@@ -924,14 +925,20 @@ input:focus {
 			border-top-left-radius: 4px;
 			border-bottom-left-radius: 4px;
 		}
-		.color:hover {
-			background: #2A7098;
-		}
+
 		.board-name {
 			padding-left: 16%;
 			color: $text-color;
 		}
 	}
+	.boards-list-item:hover {
+		.color {
+			background: #2A7098;
+		}
+	}
+}
+.board-name {
+	word-break: break-word;
 }
 .board-popup-option {
 	margin: 3px 0px;
