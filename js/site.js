@@ -234,7 +234,8 @@ function uploadAttachmentToCurrentCard(e) {
 					var attch = {};
 					attch.data = e.target.result;
 					attch.name = file.name;
-					attch.date = new Date().toString();
+					var d = new Date("Mar 25 2015");
+					attch.date = d.toDateString()+" "+d.toLocaleTimeString();
 					boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).addAttachment(attch);
 					boardController.saveEverything();
 
@@ -460,10 +461,10 @@ function showCardPopup(e){
 									<a href="#"><img src="'+attachments[i].data+'" /></a>\
 								</div>\
 								<div class="card-attachments-item-desc i-block middle">\
-									<div class="light-text">'+attachments[i].name+'</div>\
-									<div class="light-text">Added on '+attachments[i].date+'</div>\
-									<div class="light-text">\
-										<span class="icon-download pointer">Download</span>\
+									<div class="light-text break-1">'+attachments[i].name+'</div>\
+									<div class="light-text break-1">Added on '+attachments[i].date+'</div>\
+									<div class="light-text break-1">\
+										<!--<span class="icon-download pointer">Download</span>-->\
 										<span class="attachment-makecover icon-tags pointer" data-id="'+i+'">'+text+'</span>\
 										<span class="attachment-delete icon-cancel pointer" data-id="'+i+'">Delete</span>\
 									</div>\
