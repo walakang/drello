@@ -554,6 +554,9 @@ $step: 10;
 		opacity: 1;
 	}
 }
+.board-title {
+	word-break: break-word;
+}
 .board-add {
 	@extend .text-center;
 	background: #d6dadc;
@@ -749,6 +752,7 @@ $step: 10;
 	color: $text-color-light;
 	padding: 5px 0px;
 	text-align: justify;
+	word-wrap: break-word;
 }
 .card-detail-flags {
 	span {
@@ -1057,6 +1061,10 @@ input:focus {
 }
 .card-info-title {
 	padding: 10px;
+}
+.card-info-title-name {
+	word-wrap: break-word;
+	word-break: break-all;
 }
 .card-info-detail {
 	margin: 0px 0px;

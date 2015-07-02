@@ -93,7 +93,7 @@ ListController.prototype.createListNode = function(list) {
 	listTail.id = "add_card";
 	listTail.innerHTML = '<div id="add_card_link" class="add-card-placeholder round noselect" onclick="toggleAddCardForm(event)">Add a card...</div>\
 							<form onsubmit="createCard(event)" data-id="'+list._getId()+'" method="POST" action="main.html" class="add-list-form round no-display" id="add_card_form">\
-								<input  type="text" id="add_card_form_input" class="block-input width-100 round block" name="list-name" autofocus="true" autocomplete="off"/>\
+								<input  type="text" id="add_card_form_input" required class="block-input width-100 round block" name="list-name" autofocus="true" autocomplete="off"/>\
 								<span type="hidden" class="block break-1" ></span>\
 								<input type="submit" class="btn btn-normal btn-green" value="Save" />\
 								<span class="icon-cancel middle pointer" id="add_card_form_close" onclick="toggleAddCardForm(event)"></span>\

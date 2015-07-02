@@ -70,6 +70,10 @@ function createBoard(e) {
 	e.preventDefault();
 	var form = e.target;
 	var nameBox = form.getElementsByTagName("input")[0];
+
+	// No boards with empty name
+	if(!nameBox.value.trim()) return false;
+
 	// Create a new Board node and add to DOM.
 	var id = boardController.addNewBoard(nameBox.value);
 	boardController.saveEverything();	// always save after a change has been committed.
@@ -89,6 +93,10 @@ function createList(e) {
 	e.preventDefault();
 	var form = e.target;
 	var nameBox = form.getElementsByTagName("input")[0];
+
+	// No lists with empty name
+	if(!nameBox.value.trim()) return false;
+
 	var boardId = parseInt(document.getElementById("board_ribbon_star").dataset.id);
 	// Create a new List node and add to DOM
 	var b = boardController.addNewList(nameBox.value,boardId);
@@ -106,6 +114,10 @@ function createCard(e) {
 	e.preventDefault();
 	var form = e.target;
 	var nameBox = form.getElementsByTagName("input")[0];
+
+	// No cards with empty name
+	if(!nameBox.value.trim()) return false;
+
 	var listId = parseInt(form.dataset.id);
 	var boardId = parseInt(document.getElementById("board_ribbon_star").dataset.id);
 
@@ -285,6 +297,7 @@ function setCoverOfCurrentCard  (e) {
 	showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
 	refreshListView();
 }
+
 
 
 /* Call to show any popup box

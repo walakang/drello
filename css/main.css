@@ -614,6 +614,9 @@ body {
   .board:hover .icon-star {
     opacity: 1; }
 
+.board-title {
+  word-break: break-word; }
+
 .board-add {
   background: #d6dadc;
   color: #444; }
@@ -786,7 +789,8 @@ body {
   font-size: 14px;
   color: #666;
   padding: 5px 0px;
-  text-align: justify; }
+  text-align: justify;
+  word-wrap: break-word; }
 
 .card-detail-flags span {
   color: #888; }
@@ -1072,6 +1076,10 @@ input:focus {
 
 .card-info-title {
   padding: 10px; }
+
+.card-info-title-name {
+  word-wrap: break-word;
+  word-break: break-all; }
 
 .card-info-detail {
   margin: 0px 0px;

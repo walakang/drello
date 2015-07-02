@@ -97,7 +97,7 @@
 					<div id="add_list_link" class="add-list-placeholder round noselect">Add a list...</div>
 					<form method="POST" action="main.html" class="add-list-form round no-display" id="add_list_form">
 						<input type="text" id="add_list_form_input" class="block-input width-100 round block" name="list-name" 
-						 autofocus="true" autocomplete="off"/>
+						 autofocus="true" autocomplete="off" maxlength="25" required/>
 						<span type="hidden" class="block break-1" ></span>
 						<input type="submit" class="btn btn-normal btn-green" value="Save" />
 						<span class="icon-cancel middle pointer" id="add_list_form_close"></span>
@@ -158,7 +158,7 @@
 			<div class="popup-body">
 				<form class="popup-form" id="create_board_form" method="POST" action="main.html">
 					<label for="bord-name" class="popup-form-label medium bold block">Title</label>
-					<input  class="block-input block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..." autocomplete="off" required="true" />
+					<input  class="block-input block width-100 round" type="text" name="board-name" autofocus="true" placeholder="Example: Welcome Board..." autocomplete="off" required="true" maxlength="25"/>
 					<input type="hidden" name="board-privacy"/>
 					<input type="submit" class="btn btn-normal btn-green" value="Create" onClick="//closePopups(event,true)"/>
 				</form>
