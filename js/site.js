@@ -298,6 +298,19 @@ function setCoverOfCurrentCard  (e) {
 	refreshListView();
 }
 
+function archiveCurrentCard (e) {
+	var container = document.getElementById("card_display_popup");
+	var cardId = parseInt(container.dataset.card);
+	var listId = parseInt(container.dataset.list);
+
+	console.log("archiving card");
+	boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).archive();
+	boardController.saveEverything();
+
+	//refresh view
+	closePopups(e, true);
+	refreshListView();
+}
 
 
 /* Call to show any popup box
@@ -516,6 +529,11 @@ function showCardPopup(e){
 			setCoverOfCurrentCard(e);
 		}
 
+		// archive a card
+		if (e.target.id === "card_archive_button" || e.target.parentNode.id === "card_archive_button") {
+				e.preventDefault();
+				archiveCurrentCard(e);
+		}
 
 	}, false);
 	// Save the data after submitting the form

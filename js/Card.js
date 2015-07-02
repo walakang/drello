@@ -46,7 +46,7 @@ function Card(data) {
 		return _closed;
 	}
 	this._close = function () {
-		_close = true;
+		_closed = true;
 	}
 	this._open = function() {
 		_closed = false;
@@ -63,6 +63,14 @@ Card.prototype.toJSON = function() {
 		cover: this._getCover(),
 		closed: this._isClosed()
 	};
+};
+
+Card.prototype.archive = function() {
+	this._close();
+};
+
+Card.prototype.restore = function(first_argument) {
+	this._open();
 };
 
 Card.prototype.addColor = function(color) {
