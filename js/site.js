@@ -234,15 +234,15 @@ function uploadAttachmentToCurrentCard(e) {
 					var attch = {};
 					attch.data = e.target.result;
 					attch.name = file.name;
-					var d = new Date("Mar 25 2015");
+					var d = new Date();
 					attch.date = d.toDateString()+" "+d.toLocaleTimeString();
 					boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).addAttachment(attch);
 					boardController.saveEverything();
 
 					//refresh view
-					refreshListView();
 					closePopups(e, true);
 					showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
+					refreshListView();
 				};
 			})(files[i]);
 			reader.readAsDataURL(files[i]);
@@ -264,9 +264,9 @@ function deleteAttachmentFromCurrentCard(e) {
 	boardController.saveEverything();
 
 	//refresh view
-	refreshListView();
 	closePopups(e, true);
 	showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
+	refreshListView();
 }
 
 function setCoverOfCurrentCard  (e) {
@@ -281,9 +281,9 @@ function setCoverOfCurrentCard  (e) {
 	boardController.saveEverything();
 
 	//refresh view
-	refreshListView();
 	closePopups(e, true);
 	showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
+	refreshListView();
 }
 
 
@@ -435,10 +435,10 @@ function showCardPopup(e){
 	container.dataset.list = listId;
 
 	// attach cover image if one exists.
-	var cover = card._getAttachments()[card._getCover()];
+	var cover = card.getCoverImage();
 	var cardCover = container.querySelector(".card-cover") || null;
-	cardCover.innerHTML = "";
-	if (cover) cardCover.innerHTML = '<a href="#"><img src="'+cover.data+'" /></a>';
+	cardCover && (cardCover.innerHTML = "");
+	if (cover && cardCover) cardCover.innerHTML = '<a href="#"><img src="'+cover.data+'" /></a>';
 
 	// set card name in popup
 	container.querySelector(".card-info-title-name").innerHTML = card._getName();

@@ -59,7 +59,9 @@ Card.prototype.toJSON = function() {
 		id: this._getId(),
 		desc: this._getDesc(),
 		colors: this._getColors() || [],
-		attachments: this._getAttachments() || []
+		attachments: this._getAttachments() || [],
+		cover: this._getCover(),
+		closed: this._isClosed()
 	};
 };
 
