@@ -427,7 +427,7 @@ body {
   padding: 8px 5px;
   outline: none;
   border: 1px solid #D7D7D7;
-  background: #e6e6e6; }
+  background: #fefefe; }
 
 .alt-bg:nth-child(even) {
   color: white;
@@ -732,10 +732,13 @@ body {
   position: relative;
   width: 254px; }
   .card .icon-pencil-alt {
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 30px;
     height: 30px;
     margin: 0;
-    background: rgba(0, 0, 0, 0.05);
+    background: #f0f0f0;
     vertical-align: middle;
     padding-top: 5px;
     opacity: 0; }

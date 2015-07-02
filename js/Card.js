@@ -86,6 +86,10 @@ Card.prototype.removeAttachment = function(id) {
 	return false;
 };
 
+Card.prototype.getCoverImage = function() {
+	return this._getAttachments()[this._getCover()] || null;
+};
+
 Card.prototype.setCover = function(id) {
 	if (typeof id === "number"){
 		this._setCover(id);

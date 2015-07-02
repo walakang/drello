@@ -14,16 +14,18 @@ function CardController(){
 
 
 /* Called to create a DOM Node object from list object
- * @param board: the instance of List.
+ * @param {board} the instance of List.
  * Template: 
- *			<a href="main.html" class="board left block round starred">
-				<span class="bold">Board 1</span>
-				<span class="star" title="Click to star this board. It will be shown at the top of the list"></span>					
-			</a>
+ *			
  */
 CardController.prototype.createCardNode = function(card) {
 	card = card || null;
 	if(!(card instanceof Card)) return null;;
+
+	var coverImage = card.getCoverImage();
+	var coverHTML = (coverImage) ? '<figure class="card-image">\
+						<img src="'+coverImage.data+'" />\
+					</figure>' : '';
 
 	var node = document.createElement("div");
 	node.className = this.cardClassName;
@@ -31,9 +33,7 @@ CardController.prototype.createCardNode = function(card) {
 	node.draggable = "true";
 	node.dataset.id = card._getId();
 	node.innerHTML = '<span class="icon-pencil-alt block text-center right"></span>\
-					<!--<figure class="card-image">\
-						<img src="images/taco.png" />\
-					</figure>-->\
+					'+coverHTML+'\
 					<div class="card-detail">\
 						<div class="card-detail-labels">\
 							<!--<span class="blue"></span>\

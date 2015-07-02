@@ -226,24 +226,29 @@ function uploadAttachmentToCurrentCard(e) {
 	for (var i = files.length - 1; i >= 0; i--) {
 		if (!files[i].type.match('image.*')) continue; // Only process image files.
 
-		var reader = new FileReader();
-		reader.onload = (function(file) {
-			return function(e) {
-				// Save attachment
-				var attch = {};
-				attch.data = e.target.result;
-				attch.name = file.name;
-				attch.date = new Date().toString();
-				boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).addAttachment(attch);
-				boardController.saveEverything();
+		try {
+			var reader = new FileReader();
+			reader.onload = (function(file) {
+				return function(e) {
+					// Save attachment
+					var attch = {};
+					attch.data = e.target.result;
+					attch.name = file.name;
+					attch.date = new Date().toString();
+					boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).addAttachment(attch);
+					boardController.saveEverything();
 
-				// refresh popup
-				closePopups(e, true);
-				showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
-			};
-		})(files[i]);
-		reader.readAsDataURL(files[i]);
-	};
+					//refresh view
+					refreshListView();
+					closePopups(e, true);
+					showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
+				};
+			})(files[i]);
+			reader.readAsDataURL(files[i]);
+		} catch (e) {
+			console.error("Error while reading from file");
+		}
+	}
 }
 
 function deleteAttachmentFromCurrentCard(e) {
@@ -257,7 +262,8 @@ function deleteAttachmentFromCurrentCard(e) {
 	boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).removeAttachment(parseInt(e.target.dataset.id));
 	boardController.saveEverything();
 
-	//refresh popup
+	//refresh view
+	refreshListView();
 	closePopups(e, true);
 	showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
 }
@@ -273,7 +279,8 @@ function setCoverOfCurrentCard  (e) {
 	boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).setCover(parseInt(e.target.dataset.id));
 	boardController.saveEverything();
 
-	//refresh popup
+	//refresh view
+	refreshListView();
 	closePopups(e, true);
 	showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
 }
@@ -635,10 +642,10 @@ function toggleEditCardDescForm(e) {
 
  	// List view: display add list form upon clicking add list placeholder.
  	var addListLink = document.getElementById("add_list_link");
- 	var addListInput = document.getElementById("add_list_form_input");
+ 	var addListCloseButton = document.getElementById("add_list_form_close");
  	var addListForm = document.getElementById("add_list_form");
  	addListLink && addListLink.addEventListener("click", toggleAddListForm, false);	// show form
- 	addListInput && addListInput.addEventListener("blur", toggleAddListForm, false);	// hide form on blur
+ 	addListCloseButton && addListCloseButton.addEventListener("click", toggleAddListForm, true);	// hide form on blur
  	addListForm && addListForm.addEventListener("submit", createList, false);
 
 	// Board actions in sidemenu

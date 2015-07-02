@@ -307,7 +307,7 @@
 							<a href="#" class="">
 								<div class="wrapper light-text card-add-attach round padding-5 icon-plus icon-pencil-alt">
 									Add an attachment...
-									<input id="card_add_attach_input" type="file" class="absolute-center transparent width-100" accept="image/x-png, image/gif, image/jpeg" />
+									<input id="card_add_attach_input" type="file" class="absolute-center transparent width-100" accept="image/x-png, image/gif, image/jpeg" multiple/>
 								</div>
 							</a>
 						</div>
@@ -319,7 +319,7 @@
 								<a href="#" class="btn btn-normal btn-gray wrapper">
 									<span class="icon icon-attach"></span>
 									<span class="name">Attachment</span>
-									<input id="card_add_attach_input" type="file" class="absolute-center transparent width-100" accept="image/x-png, image/gif, image/jpeg" onchange="uploadAttachmentToCurrentCard(event)"/>
+									<input id="card_add_attach_input" type="file" class="absolute-center transparent width-100" accept="image/x-png, image/gif, image/jpeg" onchange="uploadAttachmentToCurrentCard(event)" multiple/>
 								</a>
 							</li>
 						</ul>
