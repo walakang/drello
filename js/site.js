@@ -219,6 +219,7 @@ function changeCardDesc (e) {
 	// refresh popup
 	closePopups(e, true);
 	showCardPopup.call({dataset: {id: cardId, list: listId}}, e);
+	refreshListView();
 	//container.querySelector(".card-description p").innerHTML = desc;
 	
 	// hide the form
@@ -446,7 +447,9 @@ function showCreateNewPopup(e){
 	return false;
 }
 function showCardPopup(e){
-	e = e || window.event
+	console.log("Hi");
+	e = e || window.event;
+	e.preventDefault();
 	e.stopPropagation();
 
 	// get data of the clicked card and popuplate DOM

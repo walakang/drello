@@ -43,6 +43,7 @@ DragDrop.prototype.init = function() {
 			self.dragStart(e);
 		}, false);
 		handles[i].addEventListener("drag", function (e) {
+			console.log("fsdfff");
 			e = e|| window.event;
 			self.dragMouse(e);
 		}, false);
@@ -78,6 +79,7 @@ DragDrop.prototype.init = function() {
  * @param e: MouseEvent
  */
 DragDrop.prototype.dragStart = function(e) {
+	e.dataTransfer.setData('text/plain',null)
 	this.draggedObject = e.target;
 	var obj = this.draggedObject;
 
@@ -86,9 +88,10 @@ DragDrop.prototype.dragStart = function(e) {
 		this.dragging = true;
 		// manage dataTransfer
 		var img = document.createElement("div");
-		img.style.opacity = "0.1";
+		img.style.opacity = "1";
 		e.dataTransfer.effectAllowed="move";
 		e.dataTransfer.setDragImage(img,0,0);
+
 		// Save mouse positions
 		this.startX = obj.offsetLeft;;
 		this.startY = obj.offsetTop;;
@@ -134,7 +137,7 @@ DragDrop.prototype.dragStart = function(e) {
  	if (!this.dragging) return false;
  	var obj = this.draggedObject;
  	if (obj.classList.contains(this.handle)) {
- 		//console.info("Dragging...");
+ 		console.info("Dragging...");
 
  		// Save mouse positions
 		this.mouseX = e.clientX;
@@ -157,7 +160,9 @@ DragDrop.prototype.dragStart = function(e) {
   	  e.preventDefault();
 	}
 	e.dataTransfer.dropEffect = 'move';
+	//console.log("dragging over");
 	if (!this.dragging) return false;
+
 	// Re-arrange items in dropZone to make placeholder at current mouse position
 	if(e.target.classList.contains("drag-mask")) {
 		target.insertBefore(this.placeholder, e.target.parentNode);
@@ -186,6 +191,7 @@ DragDrop.prototype.dragLeave = function(e, target) {
  */
  DragDrop.prototype.dropItem = function(e, target) {
 	if (e.stopPropagation) {
+		e.preventDefault();	 
 		e.stopPropagation(); // stops the browser from redirecting.
 	}
 	if (!this.dragging) return false;

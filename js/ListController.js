@@ -68,7 +68,7 @@ ListController.prototype.createListNode = function(list) {
 	node.draggable = "true";
 
 	listHead.className = "list-item list-head bold pointer";
-	listHead.innerHTML = '<span class="title">'+list._getName()+'</span> \
+	listHead.innerHTML = '<span class="title">'+list._getName()+'</span>\
 						  <a class="right icon-download" id="list_actions_toggle " data-id="'+list._getId()+'"></a>';
 	node.appendChild(listHead);
 

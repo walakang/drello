@@ -28,6 +28,9 @@ CardController.prototype.createCardNode = function(card) {
 					</figure>' : '';
 
 	var node = document.createElement("div");
+	var cardFlagsHTML = "";
+	if (card._getDesc().trim()) cardFlagsHTML += '<span class="icon-menu" title="This card has a description"></span>';
+	if (card._getAttachments().length > 0) cardFlagsHTML += '<span class="icon-attach" title="This card has attachments"></span>';
 	node.className = this.cardClassName;
 	node.onclick = showCardPopup;
 	node.draggable = "true";
@@ -41,10 +44,7 @@ CardController.prototype.createCardNode = function(card) {
 						</div>\
 						<div class="card-detail-exerpt">'+card._getName()+'</div>\
 						<div class="card-detail-flags">\
-							<span class="icon-eye-outline"></span>\
-							<span class="icon-menu"></span>\
-							<span class="icon-comment"></span>\
-							<span class="icon-attach"></span>\
+							'+cardFlagsHTML+'\
 						</div>\
 						<!--<div class="card-detail-members block right">\
 							<span class="avatar left i-block"><img src="members/shidil.png" class="round"></span>\
@@ -52,4 +52,5 @@ CardController.prototype.createCardNode = function(card) {
 					</div>';
 
 	return node;
+				
 }
