@@ -131,3 +131,25 @@ List.prototype.moveCard= function(id, next) {
 	console.log("List.MoveCard: Invalid input");
 	return false;
 };
+
+List.prototype.archiveAllCards = function() {
+	var cards = this._getCards()
+	for (var i = cards.length - 1; i >= 0; i--) {
+		cards[i].archive();
+	};
+};
+
+List.prototype.restoreAllCards = function() {
+	var cards = this._getCards()
+	for (var i = cards.length - 1; i >= 0; i--) {
+		cards[i].restore();
+	};
+};
+
+List.prototype.archive = function() {
+	this._close();
+};
+
+List.prototype.restore = function() {
+	this._open();
+};

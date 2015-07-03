@@ -112,7 +112,7 @@
 				<div id="toggle_sidebar" class="icon-right-open pointer avatar" onClick="return SidebarToggle()"></div>
 
 				<div class="wrapper y-scroll height-100">
-					<nav class="sidemenu-actions wrapper">
+					<div class="sidemenu-actions wrapper">
 						<div id="board_menu_nav_toggle" class="border-bottom pointer" onClick="return SidebarMenuToggle();">
 							<span class="title bold medium">
 								Menu
@@ -131,7 +131,7 @@
 							<li class="sidemenu-actions-list-item small pointer"> Additional Settings </li>
 							<li class="sidemenu-actions-list-item js-action-closeboard small pointer"> Close Board </li>
 						</ul>			
-					</nav>
+					</div>
 					<div id="board_members">
 						<h1> Members </h1>
 						<ul class="board-members-list block">
@@ -149,7 +149,7 @@
 
 		<!-- Popup containers goes here -->
 		<!-- Dialog box for creating a board -->
-		<div id="create_board_popup" class="popup round white no-display">
+		<aside id="create_board_popup" class="popup round white no-display">
 			<div class="popup-header text-center bold">
 				<span class="popup-header-title">Create Board</span>
 				<span id="popup_close" class="icon-cancel pointer" onClick="closePopups(event,true)"></span>
@@ -163,35 +163,49 @@
 					<input type="submit" class="btn btn-normal btn-green" value="Create" onClick="//closePopups(event,true)"/>
 				</form>
 			</div>
-		</div>
+		</aside>
 
 		<!-- Dialog box for profile options -->
-		<div id="profile_popup" class="popup round white no-display">
+		<aside id="profile_popup" class="popup round white no-display">
 			<div class="popup-header text-center bold">
 				<span class="popup-header-title title">Shidil Eringa (shidil)</span>
 				<span id="popup_close" class="icon-cancel pointer" onClick="closePopups(event,true)"></span>
 			</div>
 			<div class="thin-line"></div>
-			<div class="popup-body">
-				<a href="#" class="profile-option bold block">Profile</a>
-				<a href="#" class="profile-option bold block">Cards</a>
-				<a href="#" class="profile-option bold block">Settings</a>
-				<div class="thin-line" class="profile-option bold block"></div>
-				<a href="#" class="profile-option bold block">Help</a>
-				<a href="#" class="profile-option bold block">Apps</a>
-				<a href="#" class="profile-option bold block">Shortcuts</a>
-				<a href="#" class="profile-option bold block">Share Drello (For free Drello gold)</a>
-				<div class="thin-line" class="profile-option bold block"></div>
-				<a href="#" class="profile-option bold block">Getting started guide</a>
-				<a href="#" class="profile-option bold block">Drello Blog</a>
-				<div class="thin-line" class="profile-option bold block"></div>
-				<a href="#" class="profile-option bold block">Change language</a>
-				<a href="#" class="profile-option bold block">Logout</a>
+			<div class="popup-body action-menu">
+				<a href="#" class="action-menu-item bold block">Profile</a>
+				<a href="#" class="action-menu-item bold block">Cards</a>
+				<a href="#" class="action-menu-item bold block">Settings</a>
+				<div class="thin-line" class="action-menu-item bold block"></div>
+				<a href="#" class="action-menu-item bold block">Help</a>
+				<a href="#" class="action-menu-item bold block">Apps</a>
+				<a href="#" class="action-menu-item bold block">Shortcuts</a>
+				<a href="#" class="action-menu-item bold block">Share Drello (For free Drello gold)</a>
+				<div class="thin-line" class="action-menu-item bold block"></div>
+				<a href="#" class="action-menu-item bold block">Getting started guide</a>
+				<a href="#" class="action-menu-item bold block">Drello Blog</a>
+				<div class="thin-line" class="action-menu-item bold block"></div>
+				<a href="#" class="action-menu-item bold block">Change language</a>
+				<a href="#" class="action-menu-item bold block">Logout</a>
 			</div>
-		</div>
+		</aside>
+
+		<!-- Dialog box for list actions -->
+		<aside id="list_actions_popup" class="popup round white no-display">
+			<div class="popup-header text-center bold">
+				<span class="popup-header-title title">List Actions</span>
+				<span class="icon-cancel pointer" id="popup_close" onclick="closePopups(event, true)"></span>
+			</div>
+			<div class="thin-line"></div>
+			<div class="popup-body action-menu">
+				<a href="#" class="action-menu-item bold block" id="list_action_addcard">Add Card</a>
+				<a href="#" class="action-menu-item bold block" id="list_action_archive_allcards">Archive all cards in this list</a>
+				<a href="#" class="action-menu-item bold block" id="list_action_archive">Archive list</a>
+			</div>
+		</aside>
 
 		<!-- Sidebar for boards list and search actions -->
-		<div id="boards_popup" class="popup round white no-display">
+		<aside id="boards_popup" class="popup round white no-display">
 			<div class="popup-body">
 				<form class="popup-form">
 					<input id="search_boards_input" class="block-input block width-100 round" type="text" name="board-name" placeholder="Find boards by name..." autofocus="true" autocomplete="off"/>
@@ -229,10 +243,10 @@
 					<a class="board-popup-option block underline" href="#" onClick="showClosedBoardsPopup(event)">Show closed boards</a>
 				</div>
 			</div>
-		</div>
+		</aside>
 
 		<!-- Dialog box for creating anything new -->
-		<div id="create_new_popup" class="popup white round no-display">
+		<aside id="create_new_popup" class="popup white round no-display">
 			<div class="popup-header text-center bold">
 				<span class="popup-header-title title">Create</span>
 				<span id="popup_close" class="icon-cancel pointer" onClick="closePopups(event,true)"></span>
@@ -258,11 +272,11 @@
 					</div>
 				</a>
 			</div>
-		</div>
+		</aside>
 
 		<div id="overlay" class="">
 			<!-- overlayed popup for displaying full information of cards -->
-			<div id="card_display_popup" class="popup round block no-display">
+			<aside id="card_display_popup" class="popup round block no-display">
 				<div class="popup-header text-center">
 					<div class="card-cover pointer">
 						<a href="images/taco.png"><img src="images/taco.png" /></a>
@@ -352,10 +366,10 @@
 						</ul>
 					</div>
 				</div>
-			</div>
+			</aside>
 
 			<!-- overlayed popup for displaying closed boards -->
-			<div id="closed_boards_popup" class="popup round block absolute-center no-display">
+			<aside id="closed_boards_popup" class="popup round block absolute-center no-display">
 				<div class="popup-container">
 					<div class="popup-header">
 						<span class="icon-archive medium"></span>
@@ -368,7 +382,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</aside>
 		</div>
 		<!-- End of popups -->
 

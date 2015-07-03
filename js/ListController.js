@@ -69,7 +69,7 @@ ListController.prototype.createListNode = function(list) {
 
 	listHead.className = "list-item list-head bold pointer";
 	listHead.innerHTML = '<span class="title">'+list._getName()+'</span>\
-						  <a class="right icon-download" id="list_actions_toggle " data-id="'+list._getId()+'"></a>';
+						  <a onclick="showListActionsPopop(event)" class="right icon-download" id="list_actions_toggle " data-list="'+list._getId()+'"></a>';
 	node.appendChild(listHead);
 
 	listBody.className = "list-body y-scroll width-100";

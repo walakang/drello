@@ -193,7 +193,7 @@ body {
 .normal {
   font-size: 14px; }
 
-.white-text, .board, .profile-option:hover {
+.white-text, .board, .action-menu-item:hover {
   color: white; }
 
 .normal-text {
@@ -868,12 +868,16 @@ input:focus {
   #create_board_popup .show {
     height: auto; }
 
-.profile-option {
+.actio-menu {
+  display: block;
+  position: relative; }
+
+.action-menu-item {
   color: #444;
   padding: 8px 10px;
   margin: 0px 0px; }
 
-.profile-option:hover {
+.action-menu-item:hover {
   background: #0B5B8A; }
 
 #closed_boards_popup {

@@ -846,12 +846,16 @@ input:focus {
 		height: auto;
 	}
 }
-.profile-option {
+.actio-menu {
+	display: block;
+	position: relative;
+}
+.action-menu-item {
 	color: $text-color;
 	padding: 8px 10px;
 	margin: 0px 0px;
 }
-.profile-option:hover {
+.action-menu-item:hover {
 	@extend .white-text;
 	background: $highlight-color;
 }

@@ -385,6 +385,40 @@ function showCreateBoardPopup(e){
 
 	return false;
 }
+
+function showListActionsPopop(e) {
+	// Prevent event propogation.
+	e = e || window.event
+	e.stopPropagation();
+
+	// Bind events
+	var container = document.getElementById("list_actions_popup");
+	if (!container) return false;
+	var listId = parseInt(e.target.dataset.list);
+	container.addEventListener("click", function (e) {
+		
+		if (e.target.id === "list_action_addcard") {
+			// Show add card form in that list
+
+		}
+		else if (e.target.id === "list_action_archive_allcards") {
+			// loop through all cards of that list and archive them all
+			boardController.getBoard(getCurrentBoardId()).getList(listId).archiveAllCards();
+			boardController.saveEverything();
+			refreshListView();
+		}
+		else if (e.target.id == "list_action_archive") {
+			// put the list in trash
+			boardController.getBoard(getCurrentBoardId()).getList(listId).archive();
+			boardController.saveEverything();
+			refreshListView();
+		}
+	}, false);
+
+	// get the position of event target to calculate the position of the pop-up 
+	showPopup("list_actions_popup",e.target.getBoundingClientRect());
+}
+
 function showBoardsPopup(e){
 	// Prevent event propogation.
 	e = e || window.event
