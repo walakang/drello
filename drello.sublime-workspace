@@ -4,250 +4,614 @@
 		"selected_items":
 		[
 			[
-				"lis",
-				"listTail"
+				"board-l",
+				"boards-list-item"
 			],
 			[
-				"cre",
-				"createElement"
+				"_clo",
+				"_close"
 			],
 			[
-				"for",
-				"for	for (…) {…} (Improved Native For-Loop)"
+				"archive",
+				"archiveCurrentCard"
 			],
 			[
-				"app",
-				"appendChild"
+				"break",
+				"break-word"
+			],
+			[
+				"card-i",
+				"card-info-title"
+			],
+			[
+				"is",
+				"_isClosed"
+			],
+			[
+				"addL",
+				"addListCloseButton"
+			],
+			[
+				"refres",
+				"refreshListView"
+			],
+			[
+				"cov",
+				"coverHTML"
+			],
+			[
+				"_set",
+				"_setCover"
+			],
+			[
+				"cont",
+				"contains"
+			],
+			[
+				"de",
+				"deleteAttachmentFromCurrentCard"
+			],
+			[
+				"con",
+				"contains"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"conta",
+				"container"
+			],
+			[
+				"toggl",
+				"toggleEditCardDescForm"
+			],
+			[
+				"cha",
+				"changeCardDesc"
+			],
+			[
+				"sub",
+				"submit"
+			],
+			[
+				"ed",
+				"editDescForm"
+			],
+			[
+				"getEleme",
+				"getElementById"
+			],
+			[
+				"text",
+				"textarea"
+			],
+			[
+				"getE",
+				"getElementsByTagName"
 			],
 			[
 				"class",
-				"className"
+				"classList"
 			],
 			[
-				"b",
-				"boards"
+				"di",
+				"div"
 			],
 			[
-				"leng",
-				"length"
+				"_co",
+				"_cover"
 			],
 			[
-				"le",
-				"length"
+				"att",
+				"attachmentsList"
 			],
 			[
-				"boa",
-				"boards"
+				"icon-p",
+				"icon-pencil-alt"
 			],
 			[
-				"pr",
-				"proto	Prototype"
+				"margi",
+				"margin-right"
 			],
 			[
-				"boar",
-				"boards"
+				"rgb",
+				"rgba()"
 			],
 			[
-				"fo",
-				"for	for (…) {…} (Improved Native For-Loop)"
+				"q",
+				"querySelector"
 			],
 			[
-				"add",
-				"addEventListener"
+				"_get",
+				"_getName"
+			],
+			[
+				"que",
+				"querySelector"
+			],
+			[
+				"getc",
+				"getCurrentBoardId"
 			],
 			[
 				"get",
-				"getRandomId"
+				"getBoard"
 			],
 			[
-				"f",
-				"f	Anonymous Function"
+				"ds",
+				"dstPos"
+			],
+			[
+				"lis",
+				"list"
+			],
+			[
+				"inde",
+				"indexOf"
+			],
+			[
+				"dragg",
+				"dragging"
+			],
+			[
+				"han",
+				"handles"
+			],
+			[
+				"dst",
+				"dstPos"
+			],
+			[
+				"mask",
+				"mask1"
+			],
+			[
+				"getC",
+				"getCurrentBoardId"
+			],
+			[
+				"new",
+				"newMask"
+			],
+			[
+				"cla",
+				"className"
+			],
+			[
+				"drop",
+				"dropZone"
+			],
+			[
+				"pare",
+				"parentNode"
+			],
+			[
+				"text-color-",
+				"text-color-extralight"
+			],
+			[
+				"clos",
+				"closed-boards-list-item"
+			],
+			[
+				"refr",
+				"refreshBoardsView"
+			],
+			[
+				"boa",
+				"boardController"
+			],
+			[
+				"ref",
+				"refreshListView"
+			],
+			[
+				"bo",
+				"boardNodes"
+			],
+			[
+				"close",
+				"closedBoards"
+			],
+			[
+				"crea",
+				"createElement"
+			],
+			[
+				"da",
+				"dataTransfer"
+			],
+			[
+				"data",
+				"dataset"
+			],
+			[
+				"card",
+				"cardId"
+			],
+			[
+				"src",
+				"srcList"
+			],
+			[
+				"dra",
+				"draggedItem"
+			],
+			[
+				"board",
+				"boardController"
+			],
+			[
+				"loc",
+				"localStorage"
+			],
+			[
+				"tar",
+				"target"
+			],
+			[
+				"targ",
+				"target"
+			],
+			[
+				"drag",
+				"dragManager"
+			],
+			[
+				"Dra",
+				"DragManager"
+			],
+			[
+				"ge",
+				"getCurrentBoardId"
+			],
+			[
+				"pop",
+				"populateLists"
+			],
+			[
+				"boar",
+				"boardController"
+			],
+			[
+				"side",
+				"sidemenuActionsList"
+			],
+			[
+				"name",
+				"nameBox"
+			],
+			[
+				"fun",
+				"fun	Function"
+			],
+			[
+				"list",
+				"listController"
+			],
+			[
+				"co",
+				"container"
+			],
+			[
+				"p",
+				"prototype"
 			],
 			[
 				"pro",
 				"proto	Prototype"
 			],
 			[
-				"re",
-				"return"
+				"gra",
+				"grabbing"
 			],
 			[
-				"Boa",
-				"Board"
+				"star",
+				"startX"
 			],
 			[
-				"getEl",
+				"dr",
+				"dragStart"
+			],
+			[
+				"in",
+				"inittialMouseY"
+			],
+			[
+				"d",
+				"dragStart"
+			],
+			[
+				"hand",
+				"handle"
+			],
+			[
+				"boards_po",
+				"boards_popup_my"
+			],
+			[
+				"starr",
+				"starredList"
+			],
+			[
+				"qu",
+				"querySelector"
+			],
+			[
+				"lists",
+				"listsContainer"
+			],
+			[
+				"toggle",
+				"toggleAddCardForm"
+			],
+			[
+				"dis",
+				"displayToggle"
+			],
+			[
+				"getN",
+				"getNextBoardId"
+			],
+			[
+				"_ge",
+				"_getDrello"
+			],
+			[
+				"pr",
+				"proto	Prototype"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"focu",
+				"focus"
+			],
+			[
+				"do",
+				"document"
+			],
+			[
+				"add_list",
+				"add_list_form"
+			],
+			[
+				"save",
+				"saveEverything"
+			],
+			[
+				"g",
 				"getElementsByTagName"
 			],
 			[
-				"create_board",
-				"create_board_form"
+				"add",
+				"addEventListener"
 			],
 			[
-				"st",
-				"starList"
+				"addLis",
+				"addListForm"
 			],
 			[
-				"lo",
-				"localStorage"
+				"margin",
+				"margin-bottom"
 			],
 			[
-				"bo",
-				"boards"
-			],
-			[
-				"se",
-				"selfAppend"
-			],
-			[
-				"crea",
-				"createNode"
-			],
-			[
-				"from",
-				"fromLocal"
-			],
-			[
-				"specif",
-				"specific"
-			],
-			[
-				"mar",
-				"margin-top"
-			],
-			[
-				"marg",
-				"margin-top"
-			],
-			[
-				"max",
-				"max-height"
+				"text-colo",
+				"text-color"
 			],
 			[
 				"padd",
-				"padding-top"
-			],
-			[
-				"margi",
-				"margin-left"
-			],
-			[
-				"hi",
-				"hide"
-			],
-			[
-				"no",
-				"no-height"
-			],
-			[
-				"text-color",
-				"text-color-light"
-			],
-			[
-				"fon",
-				"font-size"
-			],
-			[
-				"show",
-				"showPopup"
-			],
-			[
-				"sho",
-				"showPopup"
-			],
-			[
-				"sh",
-				"showPopup"
-			],
-			[
-				"po",
-				"position"
+				"padding"
 			],
 			[
 				"li",
-				"lists"
+				"listItem"
 			],
 			[
-				"fun",
-				"function"
+				"sea",
+				"searchInput"
 			],
 			[
-				"orga",
-				"organizations"
+				"sta",
+				"starredContainer"
+			],
+			[
+				"_g",
+				"_getDrello"
+			],
+			[
+				"proto",
+				"proto	Prototype"
+			],
+			[
+				"Boar",
+				"BoardController"
+			],
+			[
+				"trans",
+				"transparent"
+			],
+			[
+				"remo",
+				"removeChild"
+			],
+			[
+				"togg",
+				"toggleStar"
+			],
+			[
+				"List",
+				"ListController"
+			],
+			[
+				"c",
+				"cardClassName"
+			],
+			[
+				"load",
+				"loadAndDisplayBoard"
+			],
+			[
+				"Boa",
+				"BoardController"
+			],
+			[
+				"contai",
+				"contains"
+			],
+			[
+				"sr",
+				"starredBoardsContainerId"
+			],
+			[
+				"Bo",
+				"BoardController"
+			],
+			[
+				"to",
+				"toLowerCase"
+			],
+			[
+				"f",
+				"f	Anonymous Function"
+			],
+			[
+				"_is",
+				"_isClosed"
+			],
+			[
+				"clo",
+				"_closed"
+			],
+			[
+				"focus",
+				"focused"
+			],
+			[
+				"parent",
+				"parentNode"
+			],
+			[
+				"clic",
+				"click"
+			],
+			[
+				"over",
+				"overlay"
+			],
+			[
+				"show",
+				"showOverlay"
+			],
+			[
+				"cre",
+				"createElement"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "index.html",
+			"file": "/home/shidil/training/Drello/js/site.js",
 			"settings":
 			{
-				"buffer_size": 4098,
+				"buffer_size": 22935,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "boards.html",
+			"file": "/home/shidil/training/basic-html-css/index.html",
 			"settings":
 			{
-				"buffer_size": 12138,
+				"buffer_size": 2342,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "board-display.html",
+			"file": "/home/shidil/training/Drello/js/DragDrop.js",
 			"settings":
 			{
-				"buffer_size": 17922,
+				"buffer_size": 8858,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "scss/main.scss",
+			"file": "/home/shidil/training/Drello/js/BoardController.js",
 			"settings":
 			{
-				"buffer_size": 15135,
+				"buffer_size": 7853,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "scss/partials/_print.scss",
+			"file": "/home/shidil/training/Drello/js/ListController.js",
 			"settings":
 			{
-				"buffer_size": 1426,
+				"buffer_size": 3794,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "scss/partials/_buttons.scss",
+			"file": "/home/shidil/training/Drello/js/CardController.js",
 			"settings":
 			{
-				"buffer_size": 911,
+				"buffer_size": 1708,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "scss/modules/_variables.scss",
+			"file": "/home/shidil/training/Drello/main.html",
 			"settings":
 			{
-				"buffer_size": 1280,
+				"buffer_size": 16430,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/shidil/training/Drello/js/Drello.js",
+			"file": "/home/shidil/training/Drello/scss/main.scss",
 			"settings":
 			{
-				"buffer_size": 6254,
+				"buffer_size": 18539,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "js/site.js",
+			"file": "/home/shidil/training/Drello/js/Board.js",
 			"settings":
 			{
-				"buffer_size": 4939,
+				"buffer_size": 3703,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/shidil/training/Drello/js/List.js",
+			"settings":
+			{
+				"buffer_size": 3566,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/shidil/training/Drello/js/Card.js",
+			"settings":
+			{
+				"buffer_size": 2698,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/shidil/training/basic-html-css/test.html",
+			"settings":
+			{
+				"buffer_size": 611,
 				"line_ending": "Unix"
 			}
 		}
@@ -280,14 +644,26 @@
 	},
 	"file_history":
 	[
+		"/home/shidil/training/Drello/drag.html",
+		"/home/shidil/training/Drello/js/Card.js",
+		"/home/shidil/training/Drello/js/List.js",
+		"/home/shidil/training/Drello/js/Board.js",
+		"/home/shidil/training/Drello/js/Drello.js",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/site.js",
+		"/home/shidil/training/Drello/js/DragDrop.js",
+		"/home/shidil/training/Drello/main.html",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/scss/main.scss",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/index.html",
+		"/home/shidil/training/Drello/board-display.html",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/scss/partials/_print.scss",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/scss/partials/_buttons.scss",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/scss/modules/_variables.scss",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/boards.html",
+		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/board-display.html",
 		"/home/shidil/training/Drello/js/CoreJS.js",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/css/style_sass.scss",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/coreJS.js",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/login.html",
-		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/index.html",
-		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/boards.html",
-		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/board-display.html",
-		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/site.js",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/board1.html",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/Core.js",
 		"/home/shidil/monkey/monkey-1.5.6/htdocs/Drello/js/scripts",
@@ -305,6 +681,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
@@ -312,6 +689,40 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"cardCover",
+			"showCardPop",
+			"board-name",
+			"showCardPopup",
+			"middle",
+			"list {",
+			"localStorage",
+			"this",
+			"	\n",
+			"overflow",
+			"overf\n\noverflow",
+			"draggable",
+			"}\n",
+			"padding",
+			"saveToLocalStorage",
+			"loadAndDisplayBoard",
+			".icon-star",
+			".icon-st",
+			"transparent",
+			"starred",
+			"BoardController",
+			".board",
+			"listController",
+			"this.node",
+			">\n",
+			"getBoards",
+			"	searchBox.addEventListener(\"focus\",function(e) {\n		this.parentNode.classList.add(\"focused\");\n	},false);",
+			"saveToLocal",
+			"board-display.html",
+			"\").",
+			"board-display.html",
+			"boards.html",
+			"overlay",
+			"-->\n",
 			"this.organizations",
 			"this.boards",
 			"_debug",
@@ -350,6 +761,12 @@
 		"regex": false,
 		"replace_history":
 		[
+			"saveEverything",
+			"loadBoardAndDisplayListView",
+			"node",
+			"_getBoards",
+			"saveToLocalStorage",
+			"main.html",
 			"this._organizations",
 			"this._boards",
 			"drello",
@@ -368,65 +785,58 @@
 		"whole_word": false,
 		"wrap": true
 	},
-	"folders":
-	[
-		{
-			"path": "/home/shidil/training/Drello"
-		}
-	],
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "index.html",
+					"file": "/home/shidil/training/Drello/js/site.js",
 					"settings":
 					{
-						"buffer_size": 4098,
+						"buffer_size": 22935,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								529,
-								529
+								14996,
+								14996
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 7663.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "boards.html",
+					"file": "/home/shidil/training/basic-html-css/index.html",
 					"settings":
 					{
-						"buffer_size": 12138,
+						"buffer_size": 2342,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								763,
-								763
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 3,
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -437,78 +847,50 @@
 				},
 				{
 					"buffer": 2,
-					"file": "board-display.html",
+					"file": "/home/shidil/training/Drello/js/DragDrop.js",
 					"settings":
 					{
-						"buffer_size": 17922,
+						"buffer_size": 8858,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2712,
-								2686
+								1602,
+								1602
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 3,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 816.0,
+						"translation.y": 612.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "scss/main.scss",
+					"file": "/home/shidil/training/Drello/js/BoardController.js",
 					"settings":
 					{
-						"buffer_size": 15135,
+						"buffer_size": 7853,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3235,
-								3235
+								6439,
+								6439
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2763.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "scss/partials/_print.scss",
-					"settings":
-					{
-						"buffer_size": 1426,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								615,
-								615
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -518,11 +900,200 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "scss/partials/_buttons.scss",
+					"buffer": 4,
+					"file": "/home/shidil/training/Drello/js/ListController.js",
 					"settings":
 					{
-						"buffer_size": 911,
+						"buffer_size": 3794,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2187,
+								2187
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 765.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/home/shidil/training/Drello/js/CardController.js",
+					"settings":
+					{
+						"buffer_size": 1708,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								953,
+								953
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 306.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/shidil/training/Drello/main.html",
+					"settings":
+					{
+						"buffer_size": 16430,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10073,
+								10073
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3609.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/home/shidil/training/Drello/scss/main.scss",
+					"settings":
+					{
+						"buffer_size": 18539,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14789,
+								14789
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 15339.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/home/shidil/training/Drello/js/Board.js",
+					"settings":
+					{
+						"buffer_size": 3703,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3637,
+								3637
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2048.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/home/shidil/training/Drello/js/List.js",
+					"settings":
+					{
+						"buffer_size": 3566,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3437,
+								3437
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 629.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/home/shidil/training/Drello/js/Card.js",
+					"settings":
+					{
+						"buffer_size": 2698,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								955,
+								955
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 357.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/home/shidil/training/basic-html-css/test.html",
+					"settings":
+					{
+						"buffer_size": 611,
 						"regions":
 						{
 						},
@@ -535,91 +1106,10 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 51.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "scss/modules/_variables.scss",
-					"settings":
-					{
-						"buffer_size": 1280,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								582,
-								582
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 153.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "/home/shidil/training/Drello/js/Drello.js",
-					"settings":
-					{
-						"buffer_size": 6254,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6250,
-								6250
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1947.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "js/site.js",
-					"settings":
-					{
-						"buffer_size": 4939,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								371,
-								371
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1836.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -683,6 +1173,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 133.0,
 	"status_bar_visible": true
 }

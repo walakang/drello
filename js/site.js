@@ -18,7 +18,7 @@ function refreshListView() {
 
 	// Initialize drag events
 	dragManager.addDrag(new DragDrop({
-		container: "list-body",
+		container: "#board_content",
 		handle: "card",
 		dragClass: "dragging",
 		dropZone: ".list-body",

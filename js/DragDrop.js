@@ -30,6 +30,7 @@ function DragDrop(options) {
 	this.success = false;
 	this.dragging = false;
 	this.dataTransfer = {};
+	this.dragGhost = null;
 }
 /* Called from outside. initalizes the drag and drop interation and binds events to the container
  */
@@ -41,11 +42,6 @@ DragDrop.prototype.init = function() {
 		handles[i].addEventListener("dragstart", function (e) {
 			e = e|| window.event;
 			self.dragStart(e);
-		}, false);
-		handles[i].addEventListener("drag", function (e) {
-			console.log("fsdfff");
-			e = e|| window.event;
-			self.dragMouse(e);
 		}, false);
 		handles[i].addEventListener("dragend", function (e) {
 			e = e|| window.event;
@@ -72,6 +68,20 @@ DragDrop.prototype.init = function() {
 			self.dropItem(e, this);
 		}, false);
 	};
+
+	var container = (this.container && typeof this.container === "string") ? document.querySelector(this.container) : null;
+	if (container) {
+		// attach dragover event to container to get mouse position : FF fix
+		container.addEventListener("dragover", function (e) {
+			e = e|| window.event;
+			self.dragMouseOverContainer(e, this);
+		})
+	}
+
+	// create a blank ghost image
+	this.dragGhost = document.createElement("img");
+	this.dragGhost.src = "images/blank.png";
+	this.dragGhost.width = 100;
 };
 
 /* Called on the dragstart event. This function initializes the drag start, stores initial positions, changes state of
@@ -87,10 +97,9 @@ DragDrop.prototype.dragStart = function(e) {
 		console.info("Starting drag");
 		this.dragging = true;
 		// manage dataTransfer
-		var img = document.createElement("div");
-		img.style.opacity = "1";
+
 		e.dataTransfer.effectAllowed="move";
-		e.dataTransfer.setDragImage(img,0,0);
+		e.dataTransfer.setDragImage(this.dragGhost,0,0);
 
 		// Save mouse positions
 		this.startX = obj.offsetLeft;;
@@ -133,19 +142,24 @@ DragDrop.prototype.dragStart = function(e) {
  * This function calculates a new positon for the dragged node according to the mouse position.
  * @param e: MouseEvent
  */
- DragDrop.prototype.dragMouse = function(e) {
+ DragDrop.prototype.dragMouseOverContainer = function(e, target) {
+ 	if (e.preventDefault) {
+  	  e.preventDefault();
+	}
  	if (!this.dragging) return false;
  	var obj = this.draggedObject;
  	if (obj.classList.contains(this.handle)) {
  		console.info("Dragging...");
 
  		// Save mouse positions
+ 		console.log(e);
 		this.mouseX = e.clientX;
 		this.mouseY = e.clientY;
 		var dX = this.mouseX - this.initialMouseX;
 		var dY = this.mouseY - this.initialMouseY;
 		obj.style.pointerEvents = "none";
 		// change the position of the dragged element
+		console.log(dX, dY);
 		this.setPositon(dX, dY);
 
 		// call user defined drag functtion
@@ -160,9 +174,8 @@ DragDrop.prototype.dragStart = function(e) {
   	  e.preventDefault();
 	}
 	e.dataTransfer.dropEffect = 'move';
-	//console.log("dragging over");
-	if (!this.dragging) return false;
 
+	if (!this.dragging) return false;
 	// Re-arrange items in dropZone to make placeholder at current mouse position
 	if(e.target.classList.contains("drag-mask")) {
 		target.insertBefore(this.placeholder, e.target.parentNode);
