@@ -35,7 +35,7 @@ CardController.prototype.createCardNode = function(card) {
 	node.onclick = showCardPopup;
 	node.draggable = "true";
 	node.dataset.id = card._getId();
-	node.innerHTML = '<span class="icon-pencil-alt block text-center right"></span>\
+	node.innerHTML = '<span class="icon-pencil-alt block text-center right" onclick="showCardEditPopup(event)"></span>\
 					'+coverHTML+'\
 					<div class="card-detail">\
 						<div class="card-detail-labels">\

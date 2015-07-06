@@ -18,6 +18,9 @@ function Card(data) {
 	this._getName = function() {
 		return _name;
 	}
+	this._setName = function(name) {
+		_name = name;
+	};
 	this._getId = function() {
 		return _id;
 	}
@@ -63,6 +66,10 @@ Card.prototype.toJSON = function() {
 		cover: this._getCover(),
 		closed: this._isClosed()
 	};
+};
+
+Card.prototype.changeName = function(n) {
+	if (typeof n ==="string") this._setName(n);
 };
 
 Card.prototype.archive = function() {
