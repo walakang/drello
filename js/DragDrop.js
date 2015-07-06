@@ -2,41 +2,52 @@
  * @author Shidil Eringa
  * @email shidil@qburst.com
  *
- * @param options: the object representing the user choises.
- *				   container: the HTML node that contains drag targets.
- *				   handle: the class name of the target elements.
- *   			   target: the class name of drop target.
- *				   also contains custom fuctions for events (called after default behaviour).
+ * @param {options} the object representing the user choises.
+ *				    container: the HTML node that contains drag targets.
+ *				    handle: the class name of the target elements.
+ *   			    target: the class name of drop target.
+ *				    also contains custom fuctions for events (called after default behaviour).
  */
 function DragDrop(options) {
+
 	this.container = options.container || null;
-	this.handle = options.handle || null;
+	this.handle = options.handle || null;	// class of elements which are draggable
 	this.dropZone = options.dropZone || null;
-	this.dragClass = options.dragClass || null;
+	this.dragClass = options.dragClass || null;	// CSS class to be applied to the target when dragging it.
+
+	// callback functions (Will be called if not NULL).
 	this.start = options.start || null;
 	this.drag = options.drag || null;
 	this.end = options.end || null;
 	this.drop = options.drop || null;
 	this.hover = options.hover || null;
 
+	// Initial position (offset) of dragged element.
 	this.startX = null;
 	this.startY = null;
+
+	// Mouse positions
 	this.mouseX = null;
 	this.mouseY = null;
 	this.initialMouseX = null;
 	this.initialMouseY = null;
+
+	// The drag target.
 	this.draggedObject = null;
 	this.placeholder = null;
-	this.success = false;
 	this.dragging = false;
-	this.dataTransfer = {};
 	this.dragGhost = null;
+
+	// Custom data object.
+	this.dataTransfer = {};
+
 }
 /* Called from outside. initalizes the drag and drop interation and binds events to the container
  */
 DragDrop.prototype.init = function() {
 	var self = this;
-	// select DOM nodes
+
+	// Attach events to handle
 	var handles =  (this.handle && typeof this.handle === "string") ? document.querySelectorAll("."+this.handle) : [];
 	for (var i = handles.length - 1; i >= 0; i--) {
 		handles[i].addEventListener("dragstart", function (e) {
@@ -47,8 +58,23 @@ DragDrop.prototype.init = function() {
 			e = e|| window.event;
 			self.dragEnd(e);
 		}, false);
+
+		// Attach touch events for support of touch devices.
+		handles[i].addEventListener("touchstart", function (e) {
+			e = e|| window.event;
+			self.touchStart(e);
+		}, false);
+		handles[i].addEventListener("touchmove", function (e) {
+			e = e|| window.event;
+			self.touchMove(e);
+		}, false);
+		handles[i].addEventListener("touchend", function (e) {
+			e = e|| window.event;
+			self.touchEnd(e);
+		}, false);
 	};
 
+	// attach events to dropZone
 	var dropZones = (this.dropZone && typeof this.dropZone === "string") ? document.querySelectorAll(this.dropZone) : [];
 	for (var i = dropZones.length - 1; i >= 0; i--) {
 		dropZones[i].addEventListener("dragenter", function (e) {
@@ -89,53 +115,132 @@ DragDrop.prototype.init = function() {
  * @param e: MouseEvent
  */
 DragDrop.prototype.dragStart = function(e) {
-	e.dataTransfer.setData('text/plain',null)
-	this.draggedObject = e.target;
-	var obj = this.draggedObject;
+	var obj = this.draggedObject = e.target;
 
 	if (obj.classList.contains(this.handle)) {
 		console.info("Starting drag");
 		this.dragging = true;
-		// manage dataTransfer
 
+		// Firefox requires this to be set or the drag won't work.
+		e.dataTransfer.setData('text/plain',null);
+
+		// set the drag visual clue ghost image as a blank image
 		e.dataTransfer.effectAllowed="move";
 		e.dataTransfer.setDragImage(this.dragGhost,0,0);
 
-		// Save mouse positions
+		// Save initial mouse positions.
 		this.startX = obj.offsetLeft;;
 		this.startY = obj.offsetTop;;
 		this.initialMouseX = e.clientX;
 		this.initialMouseY = e.clientY;
-		this.mouseX = e.clientX;
-		this.mouseY = e.clientY;
 
-		//create a placeholder
-		this.placeholder = obj.cloneNode();
-		var container = obj.parentNode;
-		this.placeholder.classList.add("drag-placeholder")
-		this.placeholder.style.height = getComputedStyle(obj).height;
-		this.placeholder.style.background = "rgba(0,0,0,0.1)";
-		this.placeholder.style.pointerEvents = "none";
-		// Insert the placeholder after the dragged element in it's parent
-		container.insertBefore(this.placeholder, obj.nextSibling);
+		// update current mouse position.
+		this.setMousePosition(e.clientX, e.clientY);
 
-		// Make a mask in all items of the handle class
-		var mask = document.createElement("div");
-		mask.className = "drag-mask absolute-center";
-		var handles =  (this.handle && typeof this.handle === "string") ? document.querySelectorAll("."+this.handle) : [];
-		for (var i = handles.length - 1; i >= 0; i--){
-			var mask1 = mask.cloneNode(true);
-			mask1.id = i;
-			handles[i].appendChild(mask1);
-		}
+		//create a placeholder.
+		this.createPlaceholder(obj);
 
-		// Add style
-		this.dragClass && obj.classList.add(this.dragClass);	// position: absolute and cursor changes
+		// create a mask overlay over all draggable elements of type this.handle.
+		this.maskAllHandles();
+
+		// Add style to the dragged element.
+		this.dragClass && obj.classList.add(this.dragClass);	// position: absolute and cursor changes.
 		obj.style.position = "absolute";
 
-		// call user defined start functtion
-		this.start && this.start(e, this.dataTransfer);
+		// call user defined callback functtion.
+		this.start && this.start(e);
 	}
+};
+
+DragDrop.prototype.touchStart = function(e) {
+
+	e.stopPropagation();
+	var obj = this.draggedObject = e.currentTarget;
+	var touch = e.changedTouches[0];
+
+	if (obj.classList.contains(this.handle)) {
+		console.info("Starting touch drag of "+this.handle);
+		this.dragging = true;
+
+		// Save mouse positions.
+		this.startX = obj.offsetLeft;;
+		this.startY = obj.offsetTop;;
+		this.initialMouseX = touch.pageX;
+		this.initialMouseY = touch.pageY;
+
+		// update current mouse position.
+		this.setMousePosition(touch.pageX, touch.pageY);
+
+		//create a placeholder
+		this.createPlaceholder(obj);
+
+		// create a mask overlay over all draggable elements of type this.handle.
+		this.maskAllHandles();
+
+		// Add style to the dragged element.
+		this.dragClass && obj.classList.add(this.dragClass);	// position: absolute and cursor changes.
+		obj.style.position = "absolute";
+
+		// call user defined callback functtion.
+		this.start && this.start(e);
+
+
+		return true;
+	}
+	return false;
+};
+
+DragDrop.prototype.touchMove = function(e) {
+	var obj = this.draggedObject;
+	var touch = e.changedTouches[0];
+	var dropZone = null;
+	var mask = null;
+
+ 	if (e.preventDefault) {
+  	  e.preventDefault();
+	}
+ 	if (!this.dragging) return false;	// Don't mess with positions if drag not active.
+
+	obj.style.pointerEvents = "none";
+
+	// update current mouse position.
+	this.setMousePosition(touch.pageX, touch.pageY);
+
+	// Calculate new position of the object and set it (relative).
+	this.updateHandlePositon();
+
+	mask = document.elementFromPoint(touch.pageX,touch.pageY);
+
+	// Re-arrange items in dropZone to make placeholder at current mouse position
+	if(mask.classList.contains("drag-mask")) {
+		dropZone = mask.parentNode.parentNode; // mask is the child of handle, and we want container of handle :)
+
+		// Compute new position for position of placeholder
+		dropZone.insertBefore(this.placeholder, mask.parentNode);
+
+		// Compute the index position of the placeholder in it's new parentNode.
+		var index = Array.prototype.indexOf.call(dropZone.children, this.placeholder);
+		this.dataTransfer.dropPosition = index;
+
+		// Call user defined callback functtion.
+		this.hover && this.hover(e, dropZone);
+	}
+
+	// Call user defined callback functtion.
+	this.drag && this.drag(e);
+};
+
+DragDrop.prototype.touchEnd = function(e) {
+	e.preventDefault();
+	e.stopPropagation();
+
+	var touch = e.changedTouches[0];
+	var zone = document.elementFromPoint(touch.pageX,touch.pageY);
+
+	// Check if going to drop item
+	if(zone.classList.contains(this.dropZone.slice(1)) || zone.id === this.dropZone.slice(1)) // dropping on dropZone
+		this.dropItem(e);	// successfull drop.
+	else this.dragEnd(e);	// failed to drop.
 };
 
 /* Fired continuesly when the user drags the target element inside the container.
@@ -151,18 +256,15 @@ DragDrop.prototype.dragStart = function(e) {
  	if (obj.classList.contains(this.handle)) {
  		console.info("Dragging...");
 
- 		// Save mouse positions
- 		console.log(e);
-		this.mouseX = e.clientX;
-		this.mouseY = e.clientY;
-		var dX = this.mouseX - this.initialMouseX;
-		var dY = this.mouseY - this.initialMouseY;
 		obj.style.pointerEvents = "none";
-		// change the position of the dragged element
-		console.log(dX, dY);
-		this.setPositon(dX, dY);
 
-		// call user defined drag functtion
+		// Update current mouse position.
+		this.setMousePosition(e.clientX, e.clientY);
+
+		// Calculate new position of the object and set it (relative).
+		this.updateHandlePositon();
+
+		// Call user defined callback functtion.
 		this.drag && this.drag(e);
  	}
  };
@@ -176,18 +278,20 @@ DragDrop.prototype.dragStart = function(e) {
 	e.dataTransfer.dropEffect = 'move';
 
 	if (!this.dragging) return false;
+
 	// Re-arrange items in dropZone to make placeholder at current mouse position
 	if(e.target.classList.contains("drag-mask")) {
-		target.insertBefore(this.placeholder, e.target.parentNode);
-		var i, nodes = target.children, len = nodes.length, arr = [];
-		// convert nodelist to array
-		for (i = 0; i< nodes.length; i++) {
-			arr.push(nodes[i]);
-		};
-		this.dataTransfer.dropPosition = arr.indexOf(this.placeholder);
+		var mask = e.target;
+
+		// Compute new position for position of placeholder
+		target.insertBefore(this.placeholder, mask.parentNode);
+
+		// Compute the index position of the placeholder in it's new parentNode.
+		var index = Array.prototype.indexOf.call(target.children, this.placeholder);
+		this.dataTransfer.dropPosition = index;
 	}
 
-	this.hover && this.hover(e,target, this.dataTransfer);
+	this.hover && this.hover(e, target);
 	
 	return false;
  };
@@ -211,18 +315,16 @@ DragDrop.prototype.dragLeave = function(e, target) {
  	var obj = this.draggedObject;
  	if (obj.classList.contains(this.handle)) {
 		console.info("Drop object...");
-		this.success = true;
 		this.dragEnd(e);
-		e.dropZone = target.parentNode;
-
 		this.dragging = false;
+
 		// call user defined drop functtion
-		this.drop && this.drop(e,target, this.dataTransfer);
+		this.drop && this.drop(e);
  	}
  };
 
 
-/* Revert the position of the element.
+/* Called when cancelled a drag operation
  */
  DragDrop.prototype.dragEnd = function(e) {
  	if (!this.dragging) return false;
@@ -233,27 +335,70 @@ DragDrop.prototype.dragLeave = function(e, target) {
 	this.draggedObject.style.pointerEvents = "all";
 	this.dragClass && this.draggedObject.classList.remove(this.dragClass);
 
-	// remove all placeholders and masks
-	var placeholders = document.querySelectorAll(".drag-placeholder");
+	// remove placeholder
+	this.placeholder.parentNode.removeChild(this.placeholder);
+
+	// remove all masks
+	this.removeAllMasks();
+
+	this.dragging = false;
+
+ 	// call user defined callback functtion
+	this.end && this.end(e);
+ };
+
+/* This function creates a placeholder element from the given element and appends to its parent.
+ * A place holder is a visual clue for the dragged element positon.
+ * @param {obj} the object whose placeholder is to be created.
+ */
+DragDrop.prototype.createPlaceholder = function(obj) {
+	this.placeholder = obj.cloneNode();
+	this.placeholder.classList.add("drag-placeholder")
+	this.placeholder.style.height = getComputedStyle(obj).height;
+	this.placeholder.style.background = "rgba(0,0,0,0.1)";
+	this.placeholder.style.pointerEvents = "none";
+
+	// Insert the placeholder after the dragged element in it's parent
+	obj.parentNode.insertBefore(this.placeholder, obj.nextSibling);
+};
+
+DragDrop.prototype.maskAllHandles = function() {
+	// Make a mask in all items of the handle class
+	var mask = document.createElement("div");
+	mask.className = "drag-mask absolute-center";
+	var handles =  (this.handle && typeof this.handle === "string") ? document.querySelectorAll("."+this.handle) : [];
+	for (var i = handles.length - 1; i >= 0; i--){
+		handles[i].appendChild(mask.cloneNode(true));
+	}
+};
+
+DragDrop.prototype.removeAllMasks = function() {
+	// loop throgh all masks an detach from their parent.
 	var masks = document.querySelectorAll(".drag-mask");
-	for (var i = placeholders.length - 1; i >= 0; i--) {
-		placeholders[i].parentNode.removeChild(placeholders[i]);
-	};
 	for (var i = masks.length - 1; i >= 0; i--) {
 		masks[i].parentNode.removeChild(masks[i]);
 	};
-	this.dragging = false;
-	//this.draggedObject = null;
- 	// call user defined end functtion
-	this.end && this.end(e);
- };
+};
+
+/* Update the current mouse position
+ * @param {x} Mouse x co-ordinate
+ * @param {y} Mouse y co-ordinate
+ */
+DragDrop.prototype.setMousePosition = function(x, y) {
+	this.mouseX = x;
+	this.mouseY = y;
+};
 
 /* Sets the top and left of the dragged element
  * @param x: dx change in X position (integer)
  * @param y: dy change in Y position (integer)
  */
- DragDrop.prototype.setPositon = function(dx, dy) {
+ DragDrop.prototype.updateHandlePositon = function() {
  	if (!this.dragging) return false;
+
+ 	// Calculate the change in position.
+ 	var dx = this.mouseX - this.initialMouseX;
+	var dy = this.mouseY - this.initialMouseY;
  	this.draggedObject.style.left = this.startX + dx + 'px';
  	this.draggedObject.style.top = this.startY + dy + 'px';
  };

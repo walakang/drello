@@ -23,15 +23,18 @@ function refreshListView() {
 		dragClass: "dragging",
 		dropZone: ".list-body",
 
-		start: function(e, data) {
-			data.card = parseInt(e.target.dataset.id);
-			data.srcList = parseInt(e.target.dataset.list);
+		start: function(e) {
+			var data = this.dataTransfer;
+			data.card = parseInt(e.currentTarget.dataset.id);
+			data.srcList = parseInt(e.currentTarget.dataset.list);
 			data.dstList = null;
 		},
-		hover: function(e, target, data) {		
+		hover: function(e, target) {
+			var data = this.dataTransfer;		
 			data.dstList = parseInt(target.parentNode.dataset.id);
 		},
-		drop: function(e, target, data) {
+		drop: function(e) {
+			var data = this.dataTransfer;
 			if (data.dstList >= 0) {
 				boardController.moveCardToList(getCurrentBoardId(), data.card, data.srcList, data.dstList, data.dropPosition);
 				boardController.saveEverything();
@@ -45,18 +48,21 @@ function refreshListView() {
 		dragClass: "dragging",
 		dropZone: "#board_content",
 
-		start: function(e, data) {
+		start: function(e) {
+			var data = this.dataTransfer;
 			data.board = getCurrentBoardId();
-			data.src = parseInt(e.target.dataset.id);
+			data.src = parseInt(e.currentTarget.dataset.id);
 			data.dst = null;
 		},
-		hover: function(e, target, data) {		
-			if (e.target.parentNode.dataset.id >=0 )
-				data.dst = parseInt(e.target.parentNode.dataset.id);
+		hover: function(e, target) {	
+			var data = this.dataTransfer;	
+			if (parseInt(e.target.parentNode.dataset.id) >= 0 )
+				data.dst = parseInt(target.parentNode.dataset.id);
 		},
-		drop: function(e, target, data) {
-			if (data.dst >= 0) {
-				boardController.moveList(getCurrentBoardId(), data.src, data.dst);
+		drop: function(e) {
+			var data = this.dataTransfer;
+			if (data.dropPosition >= 0) {
+				boardController.moveList(getCurrentBoardId(), data.src, data.dropPosition);
 				boardController.saveEverything();
 				refreshListView();
 			}
@@ -502,7 +508,6 @@ function showCreateNewPopup(e){
 	return false;
 }
 function showCardPopup(e){
-	console.log("Hi");
 	e = e || window.event;
 	e.preventDefault();
 	e.stopPropagation();
