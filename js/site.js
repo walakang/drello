@@ -313,7 +313,28 @@ function archiveCurrentCard (e) {
 	refreshListView();
 }
 
+function EditCardDetails (e) {
+	e.preventDefault();
+	
+	var form = e.target;
+	var cardId = parseInt(form.dataset.card);
+	var listId = parseInt(form.dataset.list);	
 
+	var text = form.getElementsByTagName("textarea")[0].value;
+
+	// No cards with empty name
+	if(!text.trim()) return false;
+
+	console.log("Editing card exerpt");
+	boardController.getBoard(getCurrentBoardId()).getList(listId).getCard(cardId).changeName(text);
+	boardController.saveEverything();
+
+	//refresh view
+	closePopups(e, true);
+	refreshListView();
+
+	return false;
+}
 /* Call to show any popup box
  * @param name: ID of the popup box node.
  * @param position: position of the popup box - not required.
@@ -581,7 +602,7 @@ function showCardPopup(e){
 
 	// Show time
 	showOverlay();
-	showPopup('card_display_popup',null);
+	showPopup('card_display_popup');
 	return false;
 }
 
@@ -616,6 +637,27 @@ function showClosedBoardsPopup (e) {
 	showPopup('closed_boards_popup');
 }
 
+function showCardEditPopup (e) {
+	e = e || window.event
+	e.stopPropagation();
+
+	// clicked on the pencil icon
+	var cardId = parseInt(e.target.parentNode.dataset.id);
+	var listId = parseInt(e.target.parentNode.dataset.list);
+	var form = document.getElementById("card_edit_popup").getElementsByTagName("form")[0];
+	form.dataset.card = cardId;
+	form.dataset.list = listId;
+	form.getElementsByTagName("textarea")[0].value = e.target.parentNode.querySelector(".card-detail-exerpt").innerHTML;
+
+	// Bind events
+	form.addEventListener("submit", EditCardDetails, false);
+
+	// Show time
+	showOverlay();
+	showPopup('card_edit_popup', e.target.parentNode.getBoundingClientRect());
+
+	return false;
+}
 function showOverlay() {
 	document.getElementById("overlay").classList.add("visible");
 }
