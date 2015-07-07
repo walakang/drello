@@ -27,7 +27,7 @@ CardController.prototype.createCardNode = function(card) {
 						<img src="'+coverImage.data+'" />\
 					</figure>' : '';
 
-	var node = document.createElement("div");
+	var node = document.createElement("li");
 	var cardFlagsHTML = "";
 	if (card._getDesc().trim()) cardFlagsHTML += '<span class="icon-menu" title="This card has a description"></span>';
 	if (card._getAttachments().length > 0) cardFlagsHTML += '<span class="icon-attach" title="This card has attachments"></span>';

@@ -90,10 +90,12 @@
 			</div>
 
 			<!-- container fo lists - scrolls horizontally -->
-			<section id="board_content" class="wrapper">
+			<ul id="board_content" class="wrapper">
 				<!-- This list is populated using JavaScript -->
+				<!--<div class="list round ">
 
-				<div class="add-list round">
+				</div>-->
+				<li class="add-list round i-block">
 					<div id="add_list_link" class="add-list-placeholder round noselect">Add a list...</div>
 					<form method="POST" action="main.html" class="add-list-form round no-display" id="add_list_form">
 						<input type="text" id="add_list_form_input" class="block-input width-100 round block" name="list-name" 
@@ -102,9 +104,9 @@
 						<input type="submit" class="btn btn-normal btn-green" value="Save" />
 						<span class="icon-cancel middle pointer" id="add_list_form_close"></span>
 					</form>
-				</div>
+				</li>
 				<!-- end of a single list -->
-			</section>
+			</ul>
 			<!-- end of container for lists. -->
 
 			<!-- Sidebar -->

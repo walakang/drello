@@ -431,6 +431,7 @@ function showListActionsPopop(e) {
 		else if (e.target.id === "list_action_archive_allcards") {
 			// loop through all cards of that list and archive them all
 			boardController.getBoard(getCurrentBoardId()).getList(listId).archiveAllCards();
+			closePopups(e, true);
 			boardController.saveEverything();
 			refreshListView();
 		}
@@ -438,6 +439,7 @@ function showListActionsPopop(e) {
 			// put the list in trash
 			boardController.getBoard(getCurrentBoardId()).getList(listId).archive();
 			boardController.saveEverything();
+			closePopups(e, true);
 			refreshListView();
 		}
 	}, false);

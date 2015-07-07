@@ -36,6 +36,7 @@ function DragDrop(options) {
 	this.draggedObject = null;
 	this.placeholder = null;
 	this.dragging = false;
+	this.touchedHandle = false;
 	this.dragGhost = null;
 
 	// Custom data object.
@@ -153,14 +154,24 @@ DragDrop.prototype.dragStart = function(e) {
 };
 
 DragDrop.prototype.touchStart = function(e) {
+	e.stopPropagation();
+	if (e.currentTarget.classList.contains(this.handle)) {
+		this.touchedHandle = true;
+	}
+};
 
+DragDrop.prototype.touchMove = function(e) {
+	e.preventDefault();
 	e.stopPropagation();
 	var obj = this.draggedObject = e.currentTarget;
 	var touch = e.changedTouches[0];
+	var dropZone = null;
+	var mask = null;
 
-	if (obj.classList.contains(this.handle)) {
-		console.info("Starting touch drag of "+this.handle);
-		this.dragging = true;
+	if (this.touchedHandle && e.currentTarget.classList.contains(this.handle)) {
+
+		// wait to fire drag events.
+		this.touchedHandle = false;
 
 		// Save mouse positions.
 		this.startX = obj.offsetLeft;;
@@ -170,6 +181,8 @@ DragDrop.prototype.touchStart = function(e) {
 
 		// update current mouse position.
 		this.setMousePosition(touch.pageX, touch.pageY);
+		console.info("Starting touch drag of "+this.handle);
+		this.dragging = true;
 
 		//create a placeholder
 		this.createPlaceholder(obj);
@@ -183,22 +196,8 @@ DragDrop.prototype.touchStart = function(e) {
 
 		// call user defined callback functtion.
 		this.start && this.start(e);
-
-
-		return true;
 	}
-	return false;
-};
 
-DragDrop.prototype.touchMove = function(e) {
-	var obj = this.draggedObject;
-	var touch = e.changedTouches[0];
-	var dropZone = null;
-	var mask = null;
-
- 	if (e.preventDefault) {
-  	  e.preventDefault();
-	}
  	if (!this.dragging) return false;	// Don't mess with positions if drag not active.
 
 	obj.style.pointerEvents = "none";
@@ -212,7 +211,7 @@ DragDrop.prototype.touchMove = function(e) {
 	mask = document.elementFromPoint(touch.pageX,touch.pageY);
 
 	// Re-arrange items in dropZone to make placeholder at current mouse position
-	if(mask.classList.contains("drag-mask")) {
+	if(mask && mask.classList.contains("drag-mask")) {
 		dropZone = mask.parentNode.parentNode; // mask is the child of handle, and we want container of handle :)
 
 		// Compute new position for position of placeholder
@@ -226,19 +225,42 @@ DragDrop.prototype.touchMove = function(e) {
 		this.hover && this.hover(e, dropZone);
 	}
 
+	// checkn if we need to scroll the view when the handle is on the edge of the screen
+	var container = (this.container && typeof this.container === "string") ? document.querySelector(this.container) : null;
+	if (container) {
+		var rightEdge = container.clientWidth;
+		var scrollLeft = container.scrollLeft;
+		var scrollWidth = container.scrollWidth;
+		var handleRight = this.draggedObject.getBoundingClientRect().right;
+		var handleLeft = this.draggedObject.getBoundingClientRect().left;
+		var displacement =  handleRight- scrollLeft;
+
+		// First we need to check the direction of the drag (left/right).
+		// Then scroll the container to the right if needed.
+		if (this.initialMouseX < this.mouseX) { // going right
+
+			// displacement >= rightEdge means handle is on edge of the container clientRect
+			// We don't need to scroll further if the scrollLeft exceeds scrollWidth
+			container.scrollLeft = (displacement >= rightEdge-50) ? ((scrollLeft+10 < (scrollWidth - rightEdge)) ? scrollLeft+10 : scrollLeft) : scrollLeft;
+		}
+		else if (this.initialMouseX > this.mouseX) {
+			container.scrollLeft = (handleLeft < scrollLeft) ? scrollLeft-10 : scrollLeft;
+		}
+	}
+
 	// Call user defined callback functtion.
 	this.drag && this.drag(e);
 };
 
 DragDrop.prototype.touchEnd = function(e) {
-	e.preventDefault();
+	//e.preventDefault();
 	e.stopPropagation();
 
 	var touch = e.changedTouches[0];
 	var zone = document.elementFromPoint(touch.pageX,touch.pageY);
 
 	// Check if going to drop item
-	if(zone.classList.contains(this.dropZone.slice(1)) || zone.id === this.dropZone.slice(1)) // dropping on dropZone
+	if(zone && (zone.classList.contains(this.dropZone.slice(1)) || zone.id === this.dropZone.slice(1))) // dropping on dropZone
 		this.dropItem(e);	// successfull drop.
 	else this.dragEnd(e);	// failed to drop.
 };
@@ -401,6 +423,14 @@ DragDrop.prototype.setMousePosition = function(x, y) {
 	var dy = this.mouseY - this.initialMouseY;
  	this.draggedObject.style.left = this.startX + dx + 'px';
  	this.draggedObject.style.top = this.startY + dy + 'px';
+ };
+
+ DragDrop.prototype.getHandlePosition = function() {
+ 	if (!this.dragging) return null;
+ 	return {
+ 		left: this.draggedObject.style.left,
+ 		top: this.draggedObject.style.top
+ 	}
  };
 
  /* Releases all bound events */

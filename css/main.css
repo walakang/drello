@@ -663,24 +663,21 @@ body {
 #board_content {
   overflow-x: auto;
   overflow-y: hidden;
-  height: 85vh;
+  height: 83vh;
   padding-left: 10px;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex: auto;
-  align-items: flex-start;
-  flex-direction: row; }
+  display: block;
+  white-space: nowrap; }
 
 .list {
   background: #e2e4e6;
   max-width: 270px;
   min-width: 270px;
   margin: 0px 5px;
-  max-height: 80vh;
-  position: relative; }
+  max-height: 90%;
+  height: auto;
+  position: relative;
+  display: inline-block;
+  vertical-align: top; }
 
 .list-head {
   padding: 6px 10px;
@@ -693,7 +690,7 @@ body {
     opacity: 1; }
 
 .list-body {
-  max-height: 70vh;
+  max-height: 63vh;
   min-height: 25px; }
 
 .add-list {
@@ -1052,14 +1049,14 @@ input:focus {
   transition: 0.1s left ease-in-out; }
 
 #card_display_popup {
-  width: 60%;
+  width: 70%;
   min-height: 20%;
   height: auto;
   z-index: 16;
   background: #edeff0;
   padding: 0;
   top: 10%;
-  left: 20%; }
+  left: 15%; }
   #card_display_popup .popup-header {
     padding: 0; }
 

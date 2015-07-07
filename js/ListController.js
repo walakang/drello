@@ -57,10 +57,10 @@ ListController.prototype.createListNode = function(list) {
 	list = list || null;
 	if(!(list instanceof List)) return null;;
 	console.log("creating list node");
-	var node = document.createElement("div");
+	var node = document.createElement("li");
 	var listHead = document.createElement("div");
 	var listTail = document.createElement("div");
-	var listBody = document.createElement("div");
+	var listBody = document.createElement("ul");
 	var cardController = new CardController();
 
 	node.className = this.listClassName;
