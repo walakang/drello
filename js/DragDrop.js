@@ -47,10 +47,10 @@ function DragDrop(options) {
  */
 DragDrop.prototype.init = function() {
 	var self = this;
-
+	var i;
 	// Attach events to handle
 	var handles =  (this.handle && typeof this.handle === "string") ? document.querySelectorAll("."+this.handle) : [];
-	for (var i = handles.length - 1; i >= 0; i--) {
+	for (i = handles.length - 1; i >= 0; i--) {
 		handles[i].addEventListener("dragstart", function (e) {
 			e = e|| window.event;
 			self.dragStart(e);
@@ -73,11 +73,11 @@ DragDrop.prototype.init = function() {
 			e = e|| window.event;
 			self.touchEnd(e);
 		}, false);
-	};
+	}
 
 	// attach events to dropZone
 	var dropZones = (this.dropZone && typeof this.dropZone === "string") ? document.querySelectorAll(this.dropZone) : [];
-	for (var i = dropZones.length - 1; i >= 0; i--) {
+	for (i = dropZones.length - 1; i >= 0; i--) {
 		dropZones[i].addEventListener("dragenter", function (e) {
 			e = e|| window.event;
 			self.dragEnter(e,this);
@@ -94,7 +94,7 @@ DragDrop.prototype.init = function() {
 			e = e|| window.event;
 			self.dropItem(e, this);
 		}, false);
-	};
+	}
 
 	var container = (this.container && typeof this.container === "string") ? document.querySelector(this.container) : null;
 	if (container) {
@@ -102,7 +102,7 @@ DragDrop.prototype.init = function() {
 		container.addEventListener("dragover", function (e) {
 			e = e|| window.event;
 			self.dragMouseOverContainer(e, this);
-		})
+		});
 	}
 
 	// create a blank ghost image
@@ -130,8 +130,8 @@ DragDrop.prototype.dragStart = function(e) {
 		e.dataTransfer.setDragImage(this.dragGhost,0,0);
 
 		// Save initial mouse positions.
-		this.startX = obj.offsetLeft;;
-		this.startY = obj.offsetTop;;
+		this.startX = obj.offsetLeft;
+		this.startY = obj.offsetTop;
 		this.initialMouseX = e.clientX;
 		this.initialMouseY = e.clientY;
 
@@ -174,8 +174,8 @@ DragDrop.prototype.touchMove = function(e) {
 		this.touchedHandle = false;
 
 		// Save mouse positions.
-		this.startX = obj.offsetLeft;;
-		this.startY = obj.offsetTop;;
+		this.startX = obj.offsetLeft;
+		this.startY = obj.offsetTop;
 		this.initialMouseX = touch.pageX;
 		this.initialMouseY = touch.pageY;
 
@@ -314,7 +314,7 @@ DragDrop.prototype.touchEnd = function(e) {
 	}
 
 	this.hover && this.hover(e, target);
-	
+
 	return false;
  };
 
@@ -330,7 +330,7 @@ DragDrop.prototype.dragLeave = function(e, target) {
  */
  DragDrop.prototype.dropItem = function(e, target) {
 	if (e.stopPropagation) {
-		e.preventDefault();	 
+		e.preventDefault();
 		e.stopPropagation(); // stops the browser from redirecting.
 	}
 	if (!this.dragging) return false;

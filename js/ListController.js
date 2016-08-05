@@ -9,7 +9,7 @@ function ListController(){
 	// privilaged
 	this._getListNodes = function() {
 		return _listNodes;
-	}
+	};
 }
 
 /* Call to populate the list container with the nodes created
@@ -18,7 +18,7 @@ function ListController(){
 ListController.prototype.populateLists = function(board) {
 	// Refresh data
 	boardController.loadEverything();
-	
+
 	var lists = board._getLists();
 	var listNodes = this._getListNodes();
 	var container = document.getElementById(this.containerId);
@@ -33,11 +33,11 @@ ListController.prototype.populateLists = function(board) {
 		// exclude closed lists
 		if(lists[i]._isClosed()) continue;
 		node = this.createListNode(lists[i]);
-		if (node != null) {
+		if (node !== null) {
 			listNodes.push(node);
 			container.appendChild(node);
 		}
-	};
+	}
 	var emptyList = document.createElement("div");
 	emptyList.className="list";
 	emptyList.style.height = "200px";
@@ -49,13 +49,13 @@ ListController.prototype.populateLists = function(board) {
 };
 /* Called to create a DOM Node object from list object
  * @param board: the instance of List.
- * Template: 
- *			
+ * Template:
+ *
  */
 ListController.prototype.createListNode = function(list) {
 
 	list = list || null;
-	if(!(list instanceof List)) return null;;
+	if(!(list instanceof List)) return null;
 	console.log("creating list node");
 	var node = document.createElement("li");
 	var listHead = document.createElement("div");
@@ -101,4 +101,4 @@ ListController.prototype.createListNode = function(list) {
 	node.appendChild(listTail);
 
 	return node;
-}
+};
