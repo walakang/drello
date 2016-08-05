@@ -172,7 +172,7 @@ function loadBoardAndDisplayListView(id) {
  			console.log("No board found for ID: "+id);
  		}
  	}
- 	else console.log("Failed to load board - Invalid ID.")
+ 	else console.log("Failed to load board - Invalid ID.");
 }
 
 /* Called when user clicked on the star icon on a board */

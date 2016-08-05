@@ -9,18 +9,18 @@ function CardController(){
 	// privilaged
 	this._getCardNodes = function() {
 		return _cardNodes;
-	}
+	};
 }
 
 
 /* Called to create a DOM Node object from list object
  * @param {board} the instance of List.
- * Template: 
- *			
+ * Template:
+ *
  */
 CardController.prototype.createCardNode = function(card) {
 	card = card || null;
-	if(!(card instanceof Card)) return null;;
+	if(!(card instanceof Card)) return null;
 
 	var coverImage = card.getCoverImage();
 	var coverHTML = (coverImage) ? '<figure class="card-image">\
@@ -52,5 +52,5 @@ CardController.prototype.createCardNode = function(card) {
 					</div>';
 
 	return node;
-				
-}
+
+};
